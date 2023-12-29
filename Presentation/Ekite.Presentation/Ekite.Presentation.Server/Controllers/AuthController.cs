@@ -79,7 +79,7 @@ namespace Ekite.Presentation.Server.Controllers
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:secretKey"])); //
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:secretKey"])); 
 
             var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);  
 
