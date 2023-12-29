@@ -54,11 +54,6 @@ namespace Ekite.Presentation.Server
 
             });
 
-
-
-
-
-
             //REPOSÝTORÝES
             builder.Services.AddTransient(typeof(IBaseRepository<>),typeof(BaseRepository<>));
             builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
