@@ -7,8 +7,11 @@ const LoginForm = () => {
 
     const {login,isAuthenticated} = useContext(AuthContext) 
 
+
     const handlelogin = async (event) => {
         event.preventDefault()
+        console.log(email);
+        console.log(password);
         try {
             await login(email,password)
         } catch (error) {
@@ -75,9 +78,7 @@ const LoginForm = () => {
                   </label>
                 </div>
                 <div className="text-center">
-                  <button type="button" className="btn btn-primary my-4">
-                    Giriş yap
-                  </button>
+                  <input type="submit" className="btn btn-primary my-4" value="Giriş Yap"/> 
                 </div>
               </form>
             </div>

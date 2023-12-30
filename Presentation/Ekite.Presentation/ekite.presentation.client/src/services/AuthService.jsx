@@ -9,8 +9,8 @@ const AuthService = {
               "password": password,
             }
           );
-          if(response.token){
-            localStorage.setItem("user",JSON.stringify(response.token))
+          if(response.data.token){
+            localStorage.setItem("user",JSON.stringify(response.data.token))
           }
           console.log(response);
           return response.data
