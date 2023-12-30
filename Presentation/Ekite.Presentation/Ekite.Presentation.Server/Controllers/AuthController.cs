@@ -1,8 +1,10 @@
 ﻿using Ekite.Application.DTOs.AppUserDto;
 using Ekite.Application.Interfaces.Services;
+using Ekite.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -16,14 +18,15 @@ namespace Ekite.Presentation.Server.Controllers
     {
         private readonly IAppUserService _appUserService;
         private readonly IConfiguration _configuration;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AuthController(IAppUserService appUserService, IConfiguration configuration)
+        public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager)
+
         {
             _appUserService = appUserService;
             _configuration = configuration;
+            _userManager = userManager;
         }
-
-
 
         [HttpPost]
         [Route("[action]")]
@@ -46,34 +49,34 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpPost]
         [Route("[action]")]
-
         public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
             Microsoft.AspNetCore.Identity.SignInResult result = await _appUserService.Login(loginDTO);
 
+            AppUser appUser = await _userManager.FindByEmailAsync(loginDTO.Email);
+            var role = await _userManager.GetRolesAsync(appUser);
+           
             if (result.Succeeded)
             {
                 var authClaims = new List<Claim>
-                {
-                   new Claim (ClaimTypes.Email,loginDTO.Email),
-                   new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
+                {                   
+                   new Claim (ClaimTypes.Role, role.FirstOrDefault()),
 
+                   new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
                 };
 
                 var token = GetToken(authClaims);
 
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
+                    token = new JwtSecurityTokenHandler().WriteToken(token),                    
                     expiration = token.ValidTo
-                });
+                }) ;
             }
             else
             {
                 return Unauthorized();
             }
-
-
         }
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)

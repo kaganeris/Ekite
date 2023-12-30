@@ -2,6 +2,7 @@
 using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,16 +15,15 @@ namespace Ekite.Presentation.Server.Controllers
 	public class EmployeeController : ControllerBase
 	{
 		private readonly IEmployeeService _employeeService;
-		private readonly IMapper _mapper;
 
-		public EmployeeController(IEmployeeService employeeService, IMapper mapper)
+		public EmployeeController(IEmployeeService employeeService)
 		{
 			_employeeService = employeeService;
-			_mapper = mapper;
 		}
 
 
 		[HttpGet("[action]")]
+		[Authorize(Roles ="Admin,Employee")]
 		public async Task<IActionResult> GetSummaryPersonel(int id)
 		{
 			ResultSumEmployeeDto resultSum = await _employeeService.GetSumEmployee(id);
