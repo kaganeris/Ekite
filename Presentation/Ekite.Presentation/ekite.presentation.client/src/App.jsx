@@ -1,14 +1,35 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import LoginPage from "./pages/LoginPage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from "./context/AuthContext";
+import LoginPage from "./pages/LoginPage";
+import Navbar from "./Components/Navbar/Navbar";
+import Sidebar from "./Components/Sidebar/Sidebar";
+import Profile from "./Pages/Profile/Profile";
+import Footer from "./Components/Footer/Footer";
+import "./App.css";
 
 function App() {
   return (
     <div>
       <AuthProvider>
-        <LoginPage />
-      </AuthProvider>
+              {/*<LoginPage />*/}
+
+
+
+              <Navbar/>
+              <Sidebar />
+              <Profile/>
+              <BrowserRouter>
+                  <Routes>
+                      <Route path="/Profile" element={<Profile />} />
+                  
+                  </Routes>
+              </BrowserRouter>
+
+              <Footer />
+
+          </AuthProvider>
+
     </div>
   );
 
