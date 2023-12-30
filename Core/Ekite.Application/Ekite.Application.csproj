@@ -11,8 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AutoMapper\" />
     <Folder Include="Validators\" />
+    <Folder Include="Validators\" />
+    <Folder Include="VMs\EmployeeVM\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
   </ItemGroup>
 
 </Project>

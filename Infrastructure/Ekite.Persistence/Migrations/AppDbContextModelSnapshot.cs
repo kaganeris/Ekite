@@ -319,6 +319,22 @@ namespace Ekite.Persistence.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "87e89ef0-2f69-4cb4-aa69-d6e63ab36f1c",
+                            ConcurrencyStamp = "3981295c-6e33-40d2-ba63-77a4325dfc07",
+                            Name = "Employee",
+                            NormalizedName = "EMPLOYEE"
+                        },
+                        new
+                        {
+                            Id = "ca51d49e-fcaf-48ba-a2da-6c556daa4b66",
+                            ConcurrencyStamp = "ff224425-3e8d-46f2-9ee7-697c618ae3f0",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
