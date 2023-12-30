@@ -57,7 +57,6 @@ namespace Ekite.Presentation.Server.Controllers
            
             if (result.Succeeded)
             {
-
                 var authClaims = new List<Claim>
                 {                   
                    new Claim (ClaimTypes.Role, role.FirstOrDefault()),
@@ -68,8 +67,7 @@ namespace Ekite.Presentation.Server.Controllers
 
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    roles = role.FirstOrDefault(),
+                    token = new JwtSecurityTokenHandler().WriteToken(token),                    
                     expiration = token.ValidTo
                 }) ;
             }
