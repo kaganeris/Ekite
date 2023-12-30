@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -27,6 +29,9 @@ namespace Ekite.Persistence.Concrete.Repositories
         {
             return await _table.FindAsync(id);
         }
+
+
+
 
         public async Task<T> GetByExpression(Expression<Func<T, bool>> expression)
         {
