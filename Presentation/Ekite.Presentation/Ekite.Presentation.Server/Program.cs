@@ -1,3 +1,4 @@
+using Ekite.Application.AutoMapper;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Domain.Entities;
@@ -19,8 +20,12 @@ namespace Ekite.Presentation.Server
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conStr")));
+			// Add services to the container.
+
+			//MAPPER
+			builder.Services.AddAutoMapper(typeof(Mapping));
+
+			builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conStr")));
 
             builder.Services.AddIdentity<AppUser,IdentityRole>(opts =>
             {
@@ -29,7 +34,7 @@ namespace Ekite.Presentation.Server
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 
-            var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+			var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 
             var secretKey = jwtSettings["secretKey"];
 
@@ -54,11 +59,6 @@ namespace Ekite.Presentation.Server
 
             });
 
-
-
-
-
-
             //REPOSÝTORÝES
             builder.Services.AddTransient(typeof(IBaseRepository<>),typeof(BaseRepository<>));
             builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
@@ -74,10 +74,13 @@ namespace Ekite.Presentation.Server
             builder.Services.AddTransient<ICompanyService,CompanyManager >();
             builder.Services.AddTransient<IAppUserService,AppUserManager>();
 
-   
+
+     
+			
 
 
-            builder.Services.AddControllers();
+
+			builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles); 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

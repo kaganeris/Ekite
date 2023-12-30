@@ -15,8 +15,7 @@ namespace Ekite.Application.Interfaces.IRepositories
         Task<T> GetById(int id);
         Task<T> GetByExpression(Expression<Func<T,bool>> expression);
 
-
-        Task<bool> Create(T entity);
+		Task<bool> Create(T entity);
         Task<bool> Update(T entity);
         Task<bool> UpdateWithoutStatus(T entity);
         Task<bool> SoftDelete(T entity);
