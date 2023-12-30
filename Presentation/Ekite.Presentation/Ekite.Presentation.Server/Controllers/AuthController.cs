@@ -17,7 +17,7 @@ namespace Ekite.Presentation.Server.Controllers
         private readonly IAppUserService _appUserService;
         private readonly IConfiguration _configuration;
 
-        public AuthController(IAppUserService appUserService,IConfiguration configuration)
+        public AuthController(IAppUserService appUserService, IConfiguration configuration)
         {
             _appUserService = appUserService;
             _configuration = configuration;
@@ -55,7 +55,7 @@ namespace Ekite.Presentation.Server.Controllers
             {
                 var authClaims = new List<Claim>
                 {
-                    new Claim (ClaimTypes.Email,loginDTO.Email),
+                   new Claim (ClaimTypes.Email,loginDTO.Email),
                    new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
 
                 };
@@ -63,7 +63,7 @@ namespace Ekite.Presentation.Server.Controllers
                 var token = GetToken(authClaims);
 
                 return Ok(new
-                {   
+                {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo
                 });
@@ -79,16 +79,16 @@ namespace Ekite.Presentation.Server.Controllers
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:secretKey"])); 
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:secretKey"]));
 
-            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);  
+            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                _configuration["JwtSettings:validIssuer"], 
-                _configuration["JwtSettings:validAudience"], 
+                _configuration["JwtSettings:validIssuer"],
+                _configuration["JwtSettings:validAudience"],
                 authClaims,
                 expires: DateTime.UtcNow.AddMinutes(10),
-                signingCredentials: signIn 
+                signingCredentials: signIn
 
                 );
 

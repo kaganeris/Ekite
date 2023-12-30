@@ -10,7 +10,7 @@ export const AuthProvider = ({children}) => {
     const login = async(email,password) => {
         try {
             const response = await AuthService.login(email,password)
-            console.log("token mi lan",response);
+            console.log(response);
             if(response.token){
                 setIsAuthenticated(true)
             }
