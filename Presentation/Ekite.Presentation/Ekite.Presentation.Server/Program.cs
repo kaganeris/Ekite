@@ -36,7 +36,9 @@ namespace Ekite.Presentation.Server
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 
-			var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+
+
+            var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 
             var secretKey = jwtSettings["secretKey"];
 
@@ -86,6 +88,17 @@ namespace Ekite.Presentation.Server
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:5173") // Ýzin vermek istediðiniz kaynak
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
+
             var app = builder.Build();
 
 
@@ -109,6 +122,7 @@ namespace Ekite.Presentation.Server
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("AllowSpecificOrigin");
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
