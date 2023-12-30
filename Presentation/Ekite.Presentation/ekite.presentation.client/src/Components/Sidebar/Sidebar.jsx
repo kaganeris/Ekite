@@ -10,7 +10,7 @@ const Sidebar = () => {
                 <div className="sidenav-header  align-items-center">
                     <a className="navbar-brand" href="/">
                         <img
-                            src="/assets/img/brand/blue.png"
+                            src="src/assets/img/brand/blue.png"
                             className="navbar-brand-img"
                             alt="..."
                         />

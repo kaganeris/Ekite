@@ -11,7 +11,7 @@ function Profile() {
                     className="header pb-6 d-flex align-items-center"
                     style={{
                         minHeight: "500px",
-                        backgroundImage: "url(../assets/img/theme/profile-cover.jpg)",
+                        backgroundImage: "url(src/assets/img/theme/profile-cover.jpg)",
                         backgroundSize: "cover",
                         backgroundPosition: "center top",
                     }}

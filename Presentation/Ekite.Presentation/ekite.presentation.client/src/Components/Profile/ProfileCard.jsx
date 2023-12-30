@@ -5,7 +5,7 @@ function ProfileCard() {
     return (
         <>
             <img
-                src="../assets/img/theme/img-1-1000x600.jpg"
+                src="/src/assets/img/theme/img-1-1000x600.jpg"
                 alt="#"
                 className="card-img-top"
             />
@@ -14,7 +14,7 @@ function ProfileCard() {
                     <div className="card-profile-image">
                         <a href="/">
                             <img
-                                src="../assets/img/theme/team-4.jpg"
+                                src="src/assets/img/theme/team-4.jpg"
                                 className="rounded-circle"
                                 alt="#"
                             />
