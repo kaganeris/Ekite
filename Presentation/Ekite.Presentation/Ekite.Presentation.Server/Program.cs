@@ -5,6 +5,8 @@ using Ekite.Domain.Entities;
 using Ekite.Persistence.Concrete.Managers;
 using Ekite.Persistence.Concrete.Repositories;
 using Ekite.Persistence.Context;
+using Ekite.Persistence.Migrations;
+using Ekite.Persistence.SeedData;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -75,17 +77,27 @@ namespace Ekite.Presentation.Server
             builder.Services.AddTransient<IAppUserService,AppUserManager>();
 
 
-     
-			
+
+    
 
 
-
-			builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles); 
+            builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles); 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+
+            //SEEDDATA ADMÝN 
+            var serviceScope = app.Services.CreateScope();
+            AppDbContext _context = serviceScope.ServiceProvider.GetService<AppDbContext>()!;
+            UserManager<AppUser> userManager = serviceScope.ServiceProvider.GetService<UserManager<AppUser>>()!;
+            RoleManager<IdentityRole> roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>()!;
+
+            AdminSeedData.Seed(userManager, roleManager, _context);
+
+
 
             app.UseDefaultFiles();
             app.UseStaticFiles();

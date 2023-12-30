@@ -2,6 +2,7 @@
 using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
 		[HttpGet("[action]")]
+		[Authorize(Roles ="Admin,Employee")]
 		public async Task<IActionResult> GetSummaryPersonel(int id)
 		{
 			ResultSumEmployeeDto resultSum = await _employeeService.GetSumEmployee(id);
