@@ -1,6 +1,6 @@
-﻿using Ekite.Application.Interfaces.IRepositories;
+﻿using Ekite.Application.DTOs.EmployeeDto;
+using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
-using Ekite.Application.VMs.EmployeeVM;
 using Ekite.Domain.Entities;
 using Ekite.Domain.Enums;
 using Ekite.Persistence.Concrete.Repositories;
@@ -88,11 +88,22 @@ namespace Ekite.Persistence.Concrete.Managers
 			}
 		}
 
-		public async Task<bool> TUpdate(Employee entity)
+		public async Task<bool> TUpdate(int id,UpdateEmployeeDto entity)
 		{
-			if (entity != null)
+			Employee employee = await _employeeRepository.GetById(id);	
+
+			if (employee != null)
 			{
-				return await _employeeRepository.Update(entity);
+				employee.Address = entity.Address;
+				employee.PhoneNumber = entity.PhoneNumber;
+				
+				//if(entity.UploadPath != null)
+				//{
+				//	//TODOO: FOTOGRAF GÜNCELLEME YAPILACAK GELEN UZANTI KONTROL EDİLECEK 
+				
+				//}
+
+				return await _employeeRepository.Update(employee);
 			}
 			else
 			{
@@ -118,12 +129,12 @@ namespace Ekite.Persistence.Concrete.Managers
 			return _employeeRepository.GetFilteredInclude(expression, include);
 		}
 
-		public async Task<ResultSumEmployeeVM> GetSumEmployee(int id)
+		public async Task<ResultSumEmployeeDto> GetSumEmployee(int id)
 		{
 
 			if (id > 0)
 			{
-				ResultSumEmployeeVM resultSum = await _employeeRepository.GetFilteredFirstOrDefault(select: x => new ResultSumEmployeeVM
+				ResultSumEmployeeDto resultSum = await _employeeRepository.GetFilteredFirstOrDefault(select: x => new ResultSumEmployeeDto
 				{
 					FirstName = x.FirstName,
 					LastName = x.LastName,
@@ -145,11 +156,11 @@ namespace Ekite.Persistence.Concrete.Managers
 
 		}
 
-		public async Task<ResultDetailEmployeeVM> GetDetailEmployee(int id)
+		public async Task<ResultDetailEmployeeDto> GetDetailEmployee(int id)
 		{
 			if (id > 0)
 			{
-				ResultDetailEmployeeVM resultSum = await _employeeRepository.GetFilteredFirstOrDefault(select: x => new ResultDetailEmployeeVM
+				ResultDetailEmployeeDto resultSum = await _employeeRepository.GetFilteredFirstOrDefault(select: x => new ResultDetailEmployeeDto
 				{
 					FirstName = x.FirstName,
 					LastName = x.LastName,

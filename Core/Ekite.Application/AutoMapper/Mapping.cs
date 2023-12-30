@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Ekite.Application.VMs.EmployeeVM;
 using Ekite.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,9 +12,7 @@ namespace Ekite.Application.AutoMapper
     {
         public Mapping()
         {
-            
-            CreateMap<ResultSumEmployeeVM,Employee>().ReverseMap();
-            CreateMap<ResultDetailEmployeeVM, Employee>().ReverseMap();
+         
 
         }
     }

@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\EmployeeDto\" />
     <Folder Include="Validators\" />
     <Folder Include="Validators\" />
+    <Folder Include="VMs\EmployeeVM\" />
   </ItemGroup>
 
   <ItemGroup>

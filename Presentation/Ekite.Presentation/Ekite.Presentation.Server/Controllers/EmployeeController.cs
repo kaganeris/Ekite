@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Interfaces.Services;
-using Ekite.Application.VMs.EmployeeVM;
 using Ekite.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +26,7 @@ namespace Ekite.Presentation.Server.Controllers
 		[HttpGet("[action]")]
 		public async Task<IActionResult> GetSummaryPersonel(int id)
 		{
-			ResultSumEmployeeVM resultSum = await _employeeService.GetSumEmployee(id);
+			ResultSumEmployeeDto resultSum = await _employeeService.GetSumEmployee(id);
 			if (resultSum != null)
 			{
 				return Ok(resultSum);
@@ -40,7 +40,7 @@ namespace Ekite.Presentation.Server.Controllers
 		[HttpGet("[action]")]
 		public async Task<IActionResult> GetDetailPersonel(int id)
 		{
-			ResultDetailEmployeeVM resultSum = await _employeeService.GetDetailEmployee(id);
+			ResultDetailEmployeeDto resultSum = await _employeeService.GetDetailEmployee(id);
 
 			if (id > 0)
 			{
@@ -53,9 +53,21 @@ namespace Ekite.Presentation.Server.Controllers
 
 		}
 
-		
+		[HttpPatch("GetUpdatePersonel")]
+		public async Task<IActionResult> GetUpdatePersonel(int id, UpdateEmployeeDto employeeDto)
+		{
+
+			if (await _employeeService.TUpdate(id, employeeDto))
+			{
+				return Ok(employeeDto);
+			}
+			else
+			{
+				return NotFound("bulunamadı");
+			}
 
 
+		}
 
 	}
 }
