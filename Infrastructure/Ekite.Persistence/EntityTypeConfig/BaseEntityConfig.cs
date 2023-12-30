@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ekite.Persistence.EntityTypeConfig
 {
-    public abstract class BaseEntityConfig<T> : IEntityTypeConfiguration<T> where T : class,IBaseEntity
+    public abstract class BaseEntityConfig<T> : IEntityTypeConfiguration<T> where T : class , IBaseEntity
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
