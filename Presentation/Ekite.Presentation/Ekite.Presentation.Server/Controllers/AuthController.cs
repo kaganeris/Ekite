@@ -21,6 +21,7 @@ namespace Ekite.Presentation.Server.Controllers
         private readonly UserManager<AppUser> _userManager;
 
         public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager)
+
         {
             _appUserService = appUserService;
             _configuration = configuration;
@@ -60,6 +61,7 @@ namespace Ekite.Presentation.Server.Controllers
                 var authClaims = new List<Claim>
                 {                   
                    new Claim (ClaimTypes.Role, role.FirstOrDefault()),
+
                    new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
                 };
 

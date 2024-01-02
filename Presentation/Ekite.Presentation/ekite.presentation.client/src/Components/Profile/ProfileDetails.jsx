@@ -1,12 +1,7 @@
 import React, { useContext } from "react";
 
-import { AuthContext } from "../context/AuthContext";
-import { ProfileContext } from '../context/ProfileContext'
 
 const ProfileDetails=()=> {
-
-     const authData = useContext(AuthContext);
-     const profileData = useContext(ProfileContext);
 
 
     return (
@@ -33,7 +28,7 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-username"
                                     >
-                                        {profileData.Name}
+                                        asda
                                     </label>
                                     <label
                                         id="input-username"

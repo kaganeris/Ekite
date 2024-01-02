@@ -44,7 +44,7 @@ namespace Ekite.Persistence.Concrete.Managers
 
             if(result.Succeeded)
             {
-
+                // Role atılması yapılacak TODO
             }
 
             return result;

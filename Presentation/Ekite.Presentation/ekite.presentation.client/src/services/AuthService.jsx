@@ -14,7 +14,11 @@ const AuthService = {
           }
           console.log(response);
           return response.data
-    }
+    },
+    
+    logout: () => {
+      localStorage.removeItem("user")
+    },
 }
 
 export default AuthService
