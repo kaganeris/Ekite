@@ -6,6 +6,7 @@ export const AuthContext = createContext()
 export const AuthProvider = ({children}) => {
 
     const [isAuthenticated,setIsAuthenticated] = useState(false)
+    console.log("authcontext",isAuthenticated);
 
     const login = async(email,password) => {
         try {
@@ -19,10 +20,15 @@ export const AuthProvider = ({children}) => {
         }
     }
 
+    const logout = () => {
+        AuthService.logout()
+        setIsAuthenticated(false)
+    }
+
 
 
     return (
-        <AuthContext.Provider value={{isAuthenticated,login}}>
+        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated}}>
             {children}
         </AuthContext.Provider>
     )
