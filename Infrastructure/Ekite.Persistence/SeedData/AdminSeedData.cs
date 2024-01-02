@@ -37,6 +37,8 @@ namespace Ekite.Persistence.SeedData
 
                 await userManager.AddToRoleAsync(createdUser, adminRole.Name);
             }
+
+            
         }
 
     }
