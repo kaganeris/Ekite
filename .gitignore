@@ -361,6 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Presentation/Ekite.Presentation/Ekite.Presentation.Server/appsettings.json
 
 /Presentation/Ekite.Presentation/Ekite.Presentation.Server/appsettings.json
 
