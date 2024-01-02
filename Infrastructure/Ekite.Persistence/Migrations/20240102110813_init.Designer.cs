@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240102085532_addressAdd")]
-    partial class addressAdd
+    [Migration("20240102110813_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -332,15 +332,15 @@ namespace Ekite.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a8e05f65-4785-4e85-accc-0a1396ede3ac",
-                            ConcurrencyStamp = "3b9b4fb3-94c3-4b8d-ae6b-a7f6b1d0d03c",
+                            Id = "4248dbdf-4608-4a4a-a7bd-7d2e4a112555",
+                            ConcurrencyStamp = "89d89d43-b736-480b-9fe5-f4393efe861a",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "538f7be0-a6f1-488d-8e4f-41e120a03a04",
-                            ConcurrencyStamp = "dbca99c1-ce25-4e69-ac8f-5d99bf98f8d3",
+                            Id = "4e5a9b4a-5301-450f-9434-9dd50ff3d048",
+                            ConcurrencyStamp = "02a471c9-2f89-420e-a8cf-d4ea736f3937",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

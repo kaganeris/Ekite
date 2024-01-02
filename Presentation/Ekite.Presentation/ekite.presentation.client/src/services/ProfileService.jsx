@@ -7,7 +7,7 @@ const ProfileService = async (id) => {
         console.log("service", response.data)
         return response.data;
     } catch (error) {
-        console.error('Profil verisi çekilirken bir hata oluþtu', error);
+        console.error('Profil verisi Ã§ekilirken bir hata oluÅŸtu', error);
 
         throw error;
     }

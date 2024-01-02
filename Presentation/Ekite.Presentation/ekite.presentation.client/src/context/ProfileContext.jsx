@@ -10,13 +10,13 @@ const ProfileProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await ProfileService(13);
+                const data = await ProfileService(1);
                 console.log("context", data);
                 setProfileData(data);
                 setLoading(false);
 
             } catch (error) {
-                console.error('Profil verisi çekilirken bir hata oluþtu', error);
+                console.error('Profil verisi ï¿½ekilirken bir hata oluï¿½tu', error);
                 setLoading(false);
 
             }
