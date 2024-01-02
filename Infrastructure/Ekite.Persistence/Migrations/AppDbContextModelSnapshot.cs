@@ -323,15 +323,15 @@ namespace Ekite.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "87e89ef0-2f69-4cb4-aa69-d6e63ab36f1c",
-                            ConcurrencyStamp = "3981295c-6e33-40d2-ba63-77a4325dfc07",
+                            Id = "73109569-3ab8-47bc-8f8f-db8dee8ae94b",
+                            ConcurrencyStamp = "696f9b09-c006-4f5c-9364-1597c2b2283b",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "ca51d49e-fcaf-48ba-a2da-6c556daa4b66",
-                            ConcurrencyStamp = "ff224425-3e8d-46f2-9ee7-697c618ae3f0",
+                            Id = "d4f0a466-2849-4107-918b-c5ecbde0fbec",
+                            ConcurrencyStamp = "982483a2-ceff-416c-b097-e2d88fcf33ac",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

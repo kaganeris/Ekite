@@ -1,29 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
 
-import { AuthContext } from "../context/AuthContext";
-import { ProfileContext } from '../context/ProfileContext'
-
-const ProfileDetails=()=> {
-
-     const authData = useContext(AuthContext);
-     const profileData = useContext(ProfileContext);
-
-
+function EditProfileComponent() {
     return (
-        
         <div className="card">
             <div className="card-header">
                 <div className="row align-items-center">
                     <div className="col-8">
-                        <h3 className="mb-0">Profil Bilgileri </h3>
+                        <h3 className="mb-0">Profili Guncelle </h3>
                     </div>
                    
                 </div>
             </div>
+
+
+
+
             <div className="card-body">
                 <form>
                     <h6 className="heading-small text-muted mb-4">
-                       Calisan Bilgileri
+                        Calisan Bilgileri
                     </h6>
                     <div className="pl-lg-4">
                         <div className="row">
@@ -33,13 +28,15 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-username"
                                     >
-                                        {profileData.Name}
+                                        Username
                                     </label>
-                                    <label
+                                    <input
+                                        type="text"
                                         id="input-username"
                                         className="form-control"
-
-                                    >Buraya username gelecek</label>
+                                        placeholder="Username"
+                                       
+                                    />
                                 </div>
                             </div>
                             <div className="col-lg-6">
@@ -48,14 +45,14 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-email"
                                     >
-                                        Email Adresi
+                                        Email address
                                     </label>
-                                    <label
-
+                                    <input
+                                        type="email"
                                         id="input-email"
                                         className="form-control"
-
-                                    >Buraya Email Gelecek</label>
+                                        placeholder="jesse@example.com"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -66,14 +63,15 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-first-name"
                                     >
-                                        Isim
+                                        First name
                                     </label>
-                                    <label
-
+                                    <input
+                                        type="text"
                                         id="input-first-name"
-                                        className="form-control "
-
-                                    >Buraya isim gelecek</label>
+                                        className="form-control"
+                                        placeholder="First name"
+                                        
+                                    />
                                 </div>
                             </div>
                             <div className="col-lg-6">
@@ -82,14 +80,15 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-last-name"
                                     >
-                                        Soyisim
+                                        Last name
                                     </label>
-                                    <label
-                                       
+                                    <input
+                                        type="text"
                                         id="input-last-name"
                                         className="form-control"
-                                       
-                                    >Buraya soyisim gelecek</label>
+                                        placeholder="Last name"
+                                    
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -97,7 +96,7 @@ const ProfileDetails=()=> {
                     <hr className="my-4" />
 
                     <h6 className="heading-small text-muted mb-4">
-                        Iletisim Bilgileri
+                        Contact information
                     </h6>
                     <div className="pl-lg-4">
                         <div className="row">
@@ -107,14 +106,15 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-address"
                                     >
-                                        Adres
+                                        Address
                                     </label>
-                                    <label
-                                       
+                                    <input
+                                        id="input-address"
                                         className="form-control"
                                         placeholder="Home Address"
-                                        
-                                    >Buraya adres bilgisi gelecek</label>
+                                       
+                                        type="text"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -125,14 +125,15 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-city"
                                     >
-                                        Sehir
+                                        City
                                     </label>
-                                    <label
-                                      
+                                    <input
+                                        type="text"
                                         id="input-city"
                                         className="form-control"
-                                       
-                                    >Buraya sehir bilgisi gelecek</label>
+                                        placeholder="City"
+                                        
+                                    />
                                 </div>
                             </div>
                             <div className="col-lg-4">
@@ -141,14 +142,15 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-country"
                                     >
-                                        Ulke
+                                        Country
                                     </label>
-                                    <label
-                                      
+                                    <input
+                                        type="text"
                                         id="input-country"
                                         className="form-control"
-                                       
-                                  >Buraya ulke bilgisi gelecek</label>
+                                        placeholder="Country"
+                                     
+                                    />
                                 </div>
                             </div>
                             <div className="col-lg-4">
@@ -157,14 +159,14 @@ const ProfileDetails=()=> {
                                         className="form-control-label"
                                         htmlFor="input-country"
                                     >
-                                        Posta Kodu
+                                        Postal code
                                     </label>
-                                    <label
-                                        
+                                    <input
+                                        type="number"
                                         id="input-postal-code"
                                         className="form-control"
-                                       
-                                    >Buraya posta kodu gelecek</label>
+                                        placeholder="Postal code"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -176,8 +178,8 @@ const ProfileDetails=()=> {
                             <div className="row justify-content-end">
                                 <div className="col-auto ">
                                     <a href="/EditProfile" className="btn btn-m btn-primary">
-                            Profili Guncelle
-                        </a>
+                                        Kaydet
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +188,7 @@ const ProfileDetails=()=> {
                 </form>
             </div>
         </div>
-    );
+    )
 }
 
-export default ProfileDetails;
+export default EditProfileComponent;
