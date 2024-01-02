@@ -30,7 +30,7 @@ namespace Ekite.Persistence.EntityTypeConfig
 
             builder.Property(x=>x.PhoneNumber).IsRequired().HasMaxLength(20);
 
-            builder.Property(x=> x.Address).IsRequired().HasMaxLength(250);
+            //builder.Property(x=> x.Address).IsRequired().HasMaxLength(250);
 
             builder.Property(x => x.Salary).IsRequired();
             
@@ -43,6 +43,11 @@ namespace Ekite.Persistence.EntityTypeConfig
             builder.HasOne(x=>x.Company).WithMany(x=>x.Employees).HasForeignKey(x=>x.CompanyId);
 
             builder.HasOne(x=>x.AppUser).WithOne(x=>x.Employee).HasForeignKey<Employee>(x=>x.AppUserId);
+
+
+
+
+
 
             base.Configure(builder);
         }

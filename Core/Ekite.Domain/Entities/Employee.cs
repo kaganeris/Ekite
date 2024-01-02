@@ -26,11 +26,10 @@ namespace Ekite.Domain.Entities
 		public DateTime HireDate { get; set; }
 		public DateTime? LeavingDate { get; set; }
 		public string PhoneNumber { get; set; }
-		public string Address { get; set; }
-		//public string Address { get { return AddressDetail + " " + District.ToUpper() + "/" + City.ToUpper(); } }
-		//public string City { get; set; }
-		//public string District { get; set; }
-		//public string AddressDetail { get; set; }
+		public string Address { get { return AddressDetail + " " + District.ToUpper() + "/" + City.ToUpper(); } }
+		public string City { get; set; }
+		public string District { get; set; }
+		public string AddressDetail { get; set; }
 		public decimal Salary { get; set; }
 		public string? ImagePath { get; set; }
 		[NotMapped]

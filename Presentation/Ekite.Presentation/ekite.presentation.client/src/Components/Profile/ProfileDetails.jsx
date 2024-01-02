@@ -1,197 +1,188 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { ProfileContext } from "../../context/ProfileContext";
+import Profile from "../../Pages/Profile/Profile";
 
-function ProfileDetails() {
+const ProfileDetails = () => {
+  const { profileData, loading } = useContext(ProfileContext);
+    console.log("profildata",profileData);
 
-    return (
-        <div className="card">
-            <div className="card-header">
-                <div className="row align-items-center">
-                    <div className="col-8">
-                        <h3 className="mb-0">Edit profile </h3>
-                    </div>
-                    <div className="col-4 text-right">
-                        <a href="/" className="btn btn-sm btn-primary">
-                            Settings
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div className="card-body">
-                <form>
-                    <h6 className="heading-small text-muted mb-4">
-                        User information
-                    </h6>
-                    <div className="pl-lg-4">
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-username"
-                                    >
-                                        Username
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="input-username"
-                                        className="form-control"
-                                        placeholder="Username"
-                                        value="lucky.jesse"
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-lg-6">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-email"
-                                    >
-                                        Email address
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="input-email"
-                                        className="form-control"
-                                        placeholder="jesse@example.com"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-first-name"
-                                    >
-                                        First name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="input-first-name"
-                                        className="form-control"
-                                        placeholder="First name"
-                                        value="Lucky"
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-lg-6">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-last-name"
-                                    >
-                                        Last name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="input-last-name"
-                                        className="form-control"
-                                        placeholder="Last name"
-                                        value="Jesse"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr className="my-4" />
+    if (loading) {
+        console.log("yükleniyor")
+        return (<div>Yükleniyor</div>)
+    }
 
-                    <h6 className="heading-small text-muted mb-4">
-                        Contact information
-                    </h6>
-                    <div className="pl-lg-4">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-address"
-                                    >
-                                        Address
-                                    </label>
-                                    <input
-                                        id="input-address"
-                                        className="form-control"
-                                        placeholder="Home Address"
-                                        value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                                        type="text"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-4">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-city"
-                                    >
-                                        City
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="input-city"
-                                        className="form-control"
-                                        placeholder="City"
-                                        value="New York"
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-country"
-                                    >
-                                        Country
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="input-country"
-                                        className="form-control"
-                                        placeholder="Country"
-                                        value="United States"
-                                    />
-                                </div>
-                            </div>
-                            <div className="col-lg-4">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-country"
-                                    >
-                                        Postal code
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="input-postal-code"
-                                        className="form-control"
-                                        placeholder="Postal code"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr className="my-4" />
-
-                    <h6 className="heading-small text-muted mb-4">About me</h6>
-                    <div className="pl-lg-4">
-                        <div className="form-group">
-                            <label className="form-control-label">About Me</label>
-                            <textarea
-                                rows="4"
-                                className="form-control"
-                                placeholder="A few words about you ..."
-                            >
-                                A beautiful Dashboard for Bootstrap 4. It is Free and
-                                Open Source.
-                            </textarea>
-                        </div>
-                    </div>
-                </form>
-            </div>
+  return (
+    <div className="card">
+      <div className="card-header">
+        <div className="row align-items-center">
+          <div className="col-8">
+            <h3 className="mb-0">Profil Bilgileri </h3>
+          </div>
         </div>
-    );
-}
+      </div>
+      <div className="card-body">
+        <form>
+          <h6 className="heading-small text-muted mb-4">Calisan Bilgileri</h6>
+          <div className="pl-lg-4">
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label
+                    className="form-control-label"
+                    htmlFor="input-username"
+                  >
+                    Isim
+                  </label>
+                  <label id="input-username" className="form-control">
+                    {profileData.firstName}
+                  </label>
+                </div>
+              </div>
+
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label
+                    className="form-control-label"
+                    htmlFor="input-secondName"
+                  >
+                    Ikinci Isim
+                  </label>
+                  <label id="input-username" className="form-control">
+                    {profileData.secondName}
+                  </label>
+                </div>
+              </div>
+
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label
+                    className="form-control-label"
+                    htmlFor="input-last-name"
+                  >
+                    Soyisim
+                  </label>
+                  <label id="input-last-name" className="form-control">
+                    {profileData.lastName}
+                  </label>
+                </div>
+              </div>
+
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label
+                    className="form-control-label"
+                    htmlFor="input-last-name"
+                  >
+                    Ikinci Soyisim
+                  </label>
+                  <label id="input-last-name" className="form-control">
+                    {profileData.secondLastName}
+                  </label>
+                </div>
+              </div>
+
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label className="form-control-label" htmlFor="input-email">
+                    TCKN
+                  </label>
+                  <label id="input-email" className="form-control">
+                    {profileData.tcno}
+                  </label>
+                </div>
+              </div>
+
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label className="form-control-label" htmlFor="input-email">
+                    Adres
+                  </label>
+                  <label id="input-email" className="form-control">
+                    {profileData.address}
+                  </label>
+                </div>
+              </div>
+
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label className="form-control-label" htmlFor="input-email">
+                    Meslek
+                  </label>
+                  <label id="input-email" className="form-control">
+                    {profileData.jobName}
+                  </label>
+                </div>
+              </div>
+
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label className="form-control-label" htmlFor="input-email">
+                    Meslek
+                  </label>
+                  <label id="input-email" className="form-control">
+                    {profileData.departmentName}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="row"></div>
+          </div>
+          <hr className="my-4" />
+
+          <h6 className="heading-small text-muted mb-4">Iletisim Bilgileri</h6>
+          <div className="pl-lg-4">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="form-group">
+                  <label className="form-control-label" htmlFor="input-address">
+                    Adres
+                  </label>
+                  <label className="form-control" placeholder="Home Address">
+                    {profileData.address}
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label className="form-control-label" htmlFor="input-city">
+                    Sehir
+                  </label>
+                  <label id="input-city" className="form-control">
+                    {profileData.phoneNumber}
+                  </label>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label className="form-control-label" htmlFor="input-email">
+                    Sehir
+                  </label>
+                  <label id="input-email" className="form-control">
+                    {profileData.email}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr className="my-4" />
+
+          <div className="main-content">
+            <div className="container">
+              <div className="row justify-content-end">
+                <div className="col-auto ">
+                  <a href="/EditProfile" className="btn btn-m btn-primary">
+                    Profili Guncelle
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default ProfileDetails;

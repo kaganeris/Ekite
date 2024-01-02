@@ -5,7 +5,6 @@ using Ekite.Domain.Entities;
 using Ekite.Persistence.Concrete.Managers;
 using Ekite.Persistence.Concrete.Repositories;
 using Ekite.Persistence.Context;
-using Ekite.Persistence.Migrations;
 using Ekite.Persistence.SeedData;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -107,7 +106,7 @@ namespace Ekite.Presentation.Server
             AppDbContext _context = serviceScope.ServiceProvider.GetService<AppDbContext>()!;
             UserManager<AppUser> userManager = serviceScope.ServiceProvider.GetService<UserManager<AppUser>>()!;
             RoleManager<IdentityRole> roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>()!;
-
+            
             AdminSeedData.Seed(userManager, roleManager, _context);
 
 

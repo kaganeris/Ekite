@@ -21,6 +21,7 @@ namespace Ekite.Presentation.Server.Controllers
         private readonly UserManager<AppUser> _userManager;
 
         public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager)
+
         {
             _appUserService = appUserService;
             _configuration = configuration;
@@ -32,7 +33,6 @@ namespace Ekite.Presentation.Server.Controllers
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
             IdentityResult result = await _appUserService.Register(registerDTO);
-
 
             if (result.Succeeded)
             {
@@ -54,22 +54,28 @@ namespace Ekite.Presentation.Server.Controllers
 
             AppUser appUser = await _userManager.FindByEmailAsync(loginDTO.Email);
             var role = await _userManager.GetRolesAsync(appUser);
-           
+
             if (result.Succeeded)
             {
+
                 var authClaims = new List<Claim>
-                {                   
+                {
+
                    new Claim (ClaimTypes.Role, role.FirstOrDefault()),
+
                    new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
+
                 };
 
                 var token = GetToken(authClaims);
 
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),                    
+
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo
-                }) ;
+
+                });
             }
             else
             {
