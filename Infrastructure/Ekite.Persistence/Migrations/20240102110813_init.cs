@@ -225,7 +225,9 @@ namespace Ekite.Persistence.Migrations
                     HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LeavingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    District = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddressDetail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -269,12 +271,12 @@ namespace Ekite.Persistence.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "73109569-3ab8-47bc-8f8f-db8dee8ae94b", "696f9b09-c006-4f5c-9364-1597c2b2283b", "Employee", "EMPLOYEE" });
+                values: new object[] { "4248dbdf-4608-4a4a-a7bd-7d2e4a112555", "89d89d43-b736-480b-9fe5-f4393efe861a", "Employee", "EMPLOYEE" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "d4f0a466-2849-4107-918b-c5ecbde0fbec", "982483a2-ceff-416c-b097-e2d88fcf33ac", "Admin", "ADMIN" });
+                values: new object[] { "4e5a9b4a-5301-450f-9434-9dd50ff3d048", "02a471c9-2f89-420e-a8cf-d4ea736f3937", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
