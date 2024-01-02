@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,7 @@ namespace Ekite.Application.AutoMapper
     {
         public Mapping()
         {
-         
-
+            CreateMap<UpdateEmployeeDto, Employee>().ReverseMap();
         }
     }
 }

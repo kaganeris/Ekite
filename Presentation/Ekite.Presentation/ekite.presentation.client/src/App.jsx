@@ -13,9 +13,6 @@ function App() {
     <div>
       <AuthProvider>
               {/*<LoginPage />*/}
-
-
-
               <Navbar/>
               <Sidebar />
               <Profile/>
