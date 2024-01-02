@@ -75,8 +75,11 @@ namespace Ekite.Persistence.SeedData
                 IdentityResult result2 = await userManager.CreateAsync(app1, "Eren12345.");
 
 
+
+
                 if (result.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(appUser, "Employee");
 
                     Employee emp = new Employee
                     {
@@ -98,11 +101,16 @@ namespace Ekite.Persistence.SeedData
                         AddressDetail = "Mavi bulvar 72190 sk",
                         CreatedDate = DateTime.Now
                     };
+
+
+
                     _context.Employees.Add(emp);
+
                 }
 
                 if (result2.Succeeded)
                 {
+                    await userManager.AddToRoleAsync(app1, "Employee");
 
                     Employee emp1 = new Employee
                     {
