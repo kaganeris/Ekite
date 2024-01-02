@@ -1,4 +1,6 @@
 ﻿using Ekite.Domain.Entities;
+using Ekite.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -11,11 +13,19 @@ namespace Ekite.Persistence.EntityTypeConfig
     public class AppUserConfig : BaseEntityConfig<AppUser>
     {
 
-        public override void Configure(EntityTypeBuilder<AppUser> builder)
+   
+
+        public async override void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder.HasKey(x => x.Id);
-           
+
+     
+
             base.Configure(builder);
+
+
+
+
         }
 
 

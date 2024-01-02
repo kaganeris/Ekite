@@ -106,7 +106,7 @@ namespace Ekite.Presentation.Server
             AppDbContext _context = serviceScope.ServiceProvider.GetService<AppDbContext>()!;
             UserManager<AppUser> userManager = serviceScope.ServiceProvider.GetService<UserManager<AppUser>>()!;
             RoleManager<IdentityRole> roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>()!;
-
+            
             AdminSeedData.Seed(userManager, roleManager, _context);
 
 
