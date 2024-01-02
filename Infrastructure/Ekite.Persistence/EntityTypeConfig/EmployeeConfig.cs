@@ -44,6 +44,11 @@ namespace Ekite.Persistence.EntityTypeConfig
 
             builder.HasOne(x=>x.AppUser).WithOne(x=>x.Employee).HasForeignKey<Employee>(x=>x.AppUserId);
 
+
+
+
+
+
             base.Configure(builder);
         }
 

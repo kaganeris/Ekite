@@ -225,7 +225,9 @@ namespace Ekite.Persistence.Migrations
                     HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LeavingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    District = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AddressDetail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -264,6 +266,42 @@ namespace Ekite.Persistence.Migrations
                         principalTable: "Jobs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "5cff69d9-17da-480b-b851-ae45be7c2b55", "a205bd33-d48d-4574-9d94-ac1b413fa5f6", "Employee", "EMPLOYEE" },
+                    { "82b86c6c-1dc2-4f01-8bf5-bc33b13d1f70", "c14c1a61-4cec-4375-8659-1e10bc048d9a", "Admin", "ADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Companies",
+                columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8187), null, "EKİTE", 1, null },
+                    { 2, new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8195), null, "Bilge ADAM", 1, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8670), null, "IK", 1, null },
+                    { 2, new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8672), null, "Bilgi işlem", 1, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Jobs",
+                columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 1, 2, 14, 35, 16, 471, DateTimeKind.Local).AddTicks(1755), null, "Yazılım Geliştirici", 1, null },
+                    { 2, new DateTime(2024, 1, 2, 14, 35, 16, 471, DateTimeKind.Local).AddTicks(1758), null, "Proje Müdürü", 1, null }
                 });
 
             migrationBuilder.CreateIndex(

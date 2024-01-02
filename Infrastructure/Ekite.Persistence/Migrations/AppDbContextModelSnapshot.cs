@@ -127,6 +127,22 @@ namespace Ekite.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8187),
+                            Name = "EKİTE",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8195),
+                            Name = "Bilge ADAM",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("Ekite.Domain.Entities.Department", b =>
@@ -157,6 +173,22 @@ namespace Ekite.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8670),
+                            Name = "IK",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8672),
+                            Name = "Bilgi işlem",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("Ekite.Domain.Entities.Employee", b =>
@@ -299,6 +331,22 @@ namespace Ekite.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Jobs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 471, DateTimeKind.Local).AddTicks(1755),
+                            Name = "Yazılım Geliştirici",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 471, DateTimeKind.Local).AddTicks(1758),
+                            Name = "Proje Müdürü",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -330,15 +378,15 @@ namespace Ekite.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a8e05f65-4785-4e85-accc-0a1396ede3ac",
-                            ConcurrencyStamp = "3b9b4fb3-94c3-4b8d-ae6b-a7f6b1d0d03c",
+                            Id = "5cff69d9-17da-480b-b851-ae45be7c2b55",
+                            ConcurrencyStamp = "a205bd33-d48d-4574-9d94-ac1b413fa5f6",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "538f7be0-a6f1-488d-8e4f-41e120a03a04",
-                            ConcurrencyStamp = "dbca99c1-ce25-4e69-ac8f-5d99bf98f8d3",
+                            Id = "82b86c6c-1dc2-4f01-8bf5-bc33b13d1f70",
+                            ConcurrencyStamp = "c14c1a61-4cec-4375-8659-1e10bc048d9a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
