@@ -22,6 +22,7 @@ function App() {
     <div>
       {localStorage.getItem("user") ? (
         <>
+
           <BrowserRouter>
           <Navbar />
           <Sidebar />

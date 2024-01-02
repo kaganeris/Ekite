@@ -34,7 +34,6 @@ namespace Ekite.Presentation.Server.Controllers
         {
             IdentityResult result = await _appUserService.Register(registerDTO);
 
-
             if (result.Succeeded)
             {
                 return Ok();
@@ -55,23 +54,28 @@ namespace Ekite.Presentation.Server.Controllers
 
             AppUser appUser = await _userManager.FindByEmailAsync(loginDTO.Email);
             var role = await _userManager.GetRolesAsync(appUser);
-           
+
             if (result.Succeeded)
             {
+
                 var authClaims = new List<Claim>
-                {                   
+                {
+
                    new Claim (ClaimTypes.Role, role.FirstOrDefault()),
 
                    new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
+
                 };
 
                 var token = GetToken(authClaims);
 
                 return Ok(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),                    
+
+                    token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo
-                }) ;
+
+                });
             }
             else
             {

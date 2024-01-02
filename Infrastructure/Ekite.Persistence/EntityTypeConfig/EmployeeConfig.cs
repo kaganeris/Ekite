@@ -30,7 +30,7 @@ namespace Ekite.Persistence.EntityTypeConfig
 
             builder.Property(x=>x.PhoneNumber).IsRequired().HasMaxLength(20);
 
-            builder.Property(x=> x.Address).IsRequired().HasMaxLength(250);
+            //builder.Property(x=> x.Address).IsRequired().HasMaxLength(250);
 
             builder.Property(x => x.Salary).IsRequired();
             

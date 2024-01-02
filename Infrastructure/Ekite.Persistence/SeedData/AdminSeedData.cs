@@ -1,6 +1,5 @@
 ﻿using Ekite.Domain.Entities;
 using Ekite.Persistence.Context;
-using Ekite.Persistence.Migrations;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

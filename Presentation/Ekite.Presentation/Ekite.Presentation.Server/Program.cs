@@ -5,7 +5,6 @@ using Ekite.Domain.Entities;
 using Ekite.Persistence.Concrete.Managers;
 using Ekite.Persistence.Concrete.Repositories;
 using Ekite.Persistence.Context;
-using Ekite.Persistence.Migrations;
 using Ekite.Persistence.SeedData;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
