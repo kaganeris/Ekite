@@ -1,29 +1,41 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { ProfileContext } from "../../context/ProfileContext";
+import Profile from "../../Pages/Profile/Profile";
 
-import { AuthContext } from "../context/AuthContext";
-import { ProfileContext } from '../context/ProfileContext'
 
-const ProfileDetails=()=> {
 
-     const authData = useContext(AuthContext);
-     const profileData = useContext(ProfileContext);
+const ProfileDetails = () => {
 
+
+    const { profileData, loading } = useContext(ProfileContext);
+
+    if (loading) {
+        console.log("yükleniyor")
+        return (<div>Yükleniyor</div>)
+    }
+    if (!profileData) {
+        console.log("contextte veri bulunamadý.")
+        return (<div>Bulunamadý</div>)
+    }
+
+
+    console.log(profileData);
 
     return (
-        
+
         <div className="card">
             <div className="card-header">
                 <div className="row align-items-center">
                     <div className="col-8">
                         <h3 className="mb-0">Profil Bilgileri </h3>
                     </div>
-                   
+
                 </div>
             </div>
             <div className="card-body">
                 <form>
                     <h6 className="heading-small text-muted mb-4">
-                       Calisan Bilgileri
+                        Calisan Bilgileri
                     </h6>
                     <div className="pl-lg-4">
                         <div className="row">
@@ -32,50 +44,35 @@ const ProfileDetails=()=> {
                                     <label
                                         className="form-control-label"
                                         htmlFor="input-username"
+
                                     >
-                                        {profileData.Name}
+                                        Isim
                                     </label>
                                     <label
                                         id="input-username"
                                         className="form-control"
 
-                                    >Buraya username gelecek</label>
+                                    >{profileData.firstName}</label>
                                 </div>
                             </div>
+
                             <div className="col-lg-6">
                                 <div className="form-group">
                                     <label
                                         className="form-control-label"
-                                        htmlFor="input-email"
+                                        htmlFor="input-secondName"
+
                                     >
-                                        Email Adresi
+                                        Ikinci Isim
                                     </label>
                                     <label
-
-                                        id="input-email"
+                                        id="input-username"
                                         className="form-control"
 
-                                    >Buraya Email Gelecek</label>
+                                    >{profileData.secondName}</label>
                                 </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-first-name"
-                                    >
-                                        Isim
-                                    </label>
-                                    <label
 
-                                        id="input-first-name"
-                                        className="form-control "
-
-                                    >Buraya isim gelecek</label>
-                                </div>
-                            </div>
                             <div className="col-lg-6">
                                 <div className="form-group">
                                     <label
@@ -85,13 +82,105 @@ const ProfileDetails=()=> {
                                         Soyisim
                                     </label>
                                     <label
-                                       
+
                                         id="input-last-name"
                                         className="form-control"
-                                       
-                                    >Buraya soyisim gelecek</label>
+
+                                    >{profileData.lastName}</label>
                                 </div>
                             </div>
+
+                            <div className="col-lg-6">
+                                <div className="form-group">
+                                    <label
+                                        className="form-control-label"
+                                        htmlFor="input-last-name"
+                                    >
+                                        Ikinci Soyisim
+                                    </label>
+                                    <label
+
+                                        id="input-last-name"
+                                        className="form-control"
+
+                                    >{profileData.secondLastName}</label>
+                                </div>
+                            </div>
+
+
+                           
+
+                            <div className="col-lg-6">
+                                <div className="form-group">
+                                    <label
+                                        className="form-control-label"
+                                        htmlFor="input-email"
+                                    >
+                                        TCKN
+                                    </label>
+                                    <label
+
+                                        id="input-email"
+                                        className="form-control"
+
+                                    >{profileData.tcno}</label>
+                                </div>
+                            </div>
+
+                            <div className="col-lg-6">
+                                <div className="form-group">
+                                    <label
+                                        className="form-control-label"
+                                        htmlFor="input-email"
+                                    >
+                                        Adres
+                                    </label>
+                                    <label
+
+                                        id="input-email"
+                                        className="form-control"
+
+                                    >{profileData.address}</label>
+                                </div>
+                            </div>
+
+                            <div className="col-lg-6">
+                                <div className="form-group">
+                                    <label
+                                        className="form-control-label"
+                                        htmlFor="input-email"
+                                    >
+                                        Meslek
+                                    </label>
+                                    <label
+
+                                        id="input-email"
+                                        className="form-control"
+
+                                    >{profileData.jobName}</label>
+                                </div>
+                            </div>
+
+                            <div className="col-lg-6">
+                                <div className="form-group">
+                                    <label
+                                        className="form-control-label"
+                                        htmlFor="input-email"
+                                    >
+                                        Meslek
+                                    </label>
+                                    <label
+
+                                        id="input-email"
+                                        className="form-control"
+
+                                    >{profileData.departmentName}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+
+
                         </div>
                     </div>
                     <hr className="my-4" />
@@ -110,16 +199,16 @@ const ProfileDetails=()=> {
                                         Adres
                                     </label>
                                     <label
-                                       
+
                                         className="form-control"
                                         placeholder="Home Address"
-                                        
-                                    >Buraya adres bilgisi gelecek</label>
+
+                                    >{profileData.address}</label>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-4">
+                            <div className="col-lg-6">
                                 <div className="form-group">
                                     <label
                                         className="form-control-label"
@@ -128,45 +217,31 @@ const ProfileDetails=()=> {
                                         Sehir
                                     </label>
                                     <label
-                                      
+
                                         id="input-city"
                                         className="form-control"
-                                       
-                                    >Buraya sehir bilgisi gelecek</label>
+
+                                    >{profileData.phoneNumber}</label>
                                 </div>
                             </div>
-                            <div className="col-lg-4">
+                            <div className="col-lg-6">
                                 <div className="form-group">
                                     <label
                                         className="form-control-label"
-                                        htmlFor="input-country"
+                                        htmlFor="input-email"
                                     >
-                                        Ulke
+                                        Sehir
                                     </label>
                                     <label
-                                      
-                                        id="input-country"
+
+                                        id="input-email"
                                         className="form-control"
-                                       
-                                  >Buraya ulke bilgisi gelecek</label>
+
+                                    >{profileData.email}</label>
                                 </div>
                             </div>
-                            <div className="col-lg-4">
-                                <div className="form-group">
-                                    <label
-                                        className="form-control-label"
-                                        htmlFor="input-country"
-                                    >
-                                        Posta Kodu
-                                    </label>
-                                    <label
-                                        
-                                        id="input-postal-code"
-                                        className="form-control"
-                                       
-                                    >Buraya posta kodu gelecek</label>
-                                </div>
-                            </div>
+                           
+                           
                         </div>
                     </div>
                     <hr className="my-4" />
@@ -176,13 +251,13 @@ const ProfileDetails=()=> {
                             <div className="row justify-content-end">
                                 <div className="col-auto ">
                                     <a href="/EditProfile" className="btn btn-m btn-primary">
-                            Profili Guncelle
-                        </a>
+                                        Profili Guncelle
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
+
                 </form>
             </div>
         </div>

@@ -16,34 +16,23 @@ import { ProfileProvider } from './context/ProfileContext';
 
 
 
+
 function App() {
     return (
         <div>
-            <Navbar />
-            <Sidebar />
-      
-
-
-            <AuthProvider>
-                {/*<LoginPage />*/}
-                <BrowserRouter>
-                    <Routes>
-
-                        <ProfileProvider>
+            <BrowserRouter>
+                <AuthProvider>
+                    <ProfileProvider>
+                        <Navbar />
+                        <Sidebar />
+                        <Routes>
                             <Route path="/Profile" element={<Profile />} />
-                        </ProfileProvider>
-
-                        <Route path="/EditProfile" element={<EditProfile />} />
-
-                    </Routes>
-                </BrowserRouter>
-              
-                
-               
-
-                <Footer />
-
-            </AuthProvider>
+                            <Route path="/EditProfile" element={<EditProfile />} />
+                        </Routes>
+                        <Footer />
+                    </ProfileProvider>
+                </AuthProvider>
+            </BrowserRouter>
 
         </div>
     );
