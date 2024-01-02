@@ -1,4 +1,5 @@
-﻿using Ekite.Application.DTOs.EmployeeDto;
+﻿using AutoMapper;
+using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Domain.Entities;
@@ -19,11 +20,13 @@ namespace Ekite.Persistence.Concrete.Managers
 	public class EmployeeManager : IEmployeeService
 	{
 		private readonly IEmployeeRepository _employeeRepository;
+        private readonly IMapper _mapper;
 
-		public EmployeeManager(IEmployeeRepository employeeRepository)
+        public EmployeeManager(IEmployeeRepository employeeRepository,IMapper mapper)
 		{
 			_employeeRepository = employeeRepository;
-		}
+            _mapper = mapper;
+        }
 
 		public Task<List<Employee>> TGetAll(Expression<Func<Employee, bool>> expression = null)
 		{
@@ -94,15 +97,13 @@ namespace Ekite.Persistence.Concrete.Managers
 
 			if (employee != null)
 			{
-				employee.Address = entity.Address;
-				employee.PhoneNumber = entity.PhoneNumber;
+				_mapper.Map(entity,employee);
 				
 				//if(entity.UploadPath != null)
 				//{
 				//	//TODOO: FOTOGRAF GÜNCELLEME YAPILACAK GELEN UZANTI KONTROL EDİLECEK 
 				
 				//}
-
 				return await _employeeRepository.Update(employee);
 			}
 			else

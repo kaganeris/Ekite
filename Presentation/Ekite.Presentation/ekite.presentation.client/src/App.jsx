@@ -13,6 +13,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./services/PrivateRoute";
 
+
 function App() {
   const { isAuthenticated,setIsAuthenticated} = useContext(AuthContext);
     console.log("appauth",isAuthenticated);
@@ -20,12 +21,29 @@ function App() {
 
   return (
     <div>
+
       {localStorage.getItem("user") ? (
         <>
+
           <BrowserRouter>
           <Navbar />
+
+          
+                
+                    <ProfileProvider>
+                        
+
+          <Navbar />
+
           <Sidebar />
-            <Routes>
+
+                       
+
+
+            
+
+                        <Routes>
+
               <Route
                 path="/"
                 element={<PrivateRoute element={<Profile />} />}
@@ -34,13 +52,28 @@ function App() {
                 path="/editprofile"
                 element={<PrivateRoute element={<EditProfile />} />}
               />
+
+                           
+
             </Routes>
+
+                        
+
           <Footer />
-          </BrowserRouter>
+         
+
+         
+
         </>
       ) : (
         <LoginPage />
       )}
+
+                 
+                    </ProfileProvider>
+            
+            </BrowserRouter>
+
     </div>
   );
 
