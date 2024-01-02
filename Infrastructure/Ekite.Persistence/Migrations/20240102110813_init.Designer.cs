@@ -4,6 +4,7 @@ using Ekite.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240102110813_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -127,22 +129,6 @@ namespace Ekite.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8187),
-                            Name = "EKİTE",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8195),
-                            Name = "Bilge ADAM",
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("Ekite.Domain.Entities.Department", b =>
@@ -173,22 +159,6 @@ namespace Ekite.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8670),
-                            Name = "IK",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 470, DateTimeKind.Local).AddTicks(8672),
-                            Name = "Bilgi işlem",
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("Ekite.Domain.Entities.Employee", b =>
@@ -331,22 +301,6 @@ namespace Ekite.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Jobs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 471, DateTimeKind.Local).AddTicks(1755),
-                            Name = "Yazılım Geliştirici",
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 2, 14, 35, 16, 471, DateTimeKind.Local).AddTicks(1758),
-                            Name = "Proje Müdürü",
-                            Status = 1
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -378,15 +332,15 @@ namespace Ekite.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5cff69d9-17da-480b-b851-ae45be7c2b55",
-                            ConcurrencyStamp = "a205bd33-d48d-4574-9d94-ac1b413fa5f6",
+                            Id = "4248dbdf-4608-4a4a-a7bd-7d2e4a112555",
+                            ConcurrencyStamp = "89d89d43-b736-480b-9fe5-f4393efe861a",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "82b86c6c-1dc2-4f01-8bf5-bc33b13d1f70",
-                            ConcurrencyStamp = "c14c1a61-4cec-4375-8659-1e10bc048d9a",
+                            Id = "4e5a9b4a-5301-450f-9434-9dd50ff3d048",
+                            ConcurrencyStamp = "02a471c9-2f89-420e-a8cf-d4ea736f3937",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

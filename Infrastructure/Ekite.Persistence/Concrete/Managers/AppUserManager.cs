@@ -36,18 +36,24 @@ namespace Ekite.Persistence.Concrete.Managers
         {
             AppUser appUser = new AppUser()
             {
+
                Email = model.Email,
                UserName = model.Email
+
             };
 
             IdentityResult result = await _userManager.CreateAsync(appUser, model.Password);
 
             if(result.Succeeded)
             {
-
+                await _userManager.AddToRoleAsync(appUser,"Employee");
             }
 
             return result;
         }
+
+
+
+
     }
 }

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProfileDetails from "../../Components/Profile/ProfileDetails";
 import ProfileCard from "../../Components/Profile/ProfileCard";
 import ProfileHeader from "../../Components/Profile/ProfileHeader";
+import { AuthContext } from "../../context/AuthContext";
 
 function Profile() {
+
+    const {isAuthenticated} = useContext(AuthContext)
+    console.log("Prfoile auth",isAuthenticated);
     return (
         <>
             <div className="main-content" id="panel">
