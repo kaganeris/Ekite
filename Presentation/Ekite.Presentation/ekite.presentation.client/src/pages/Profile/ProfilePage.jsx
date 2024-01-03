@@ -12,22 +12,17 @@ function ProfilePage() {
     useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
 
-
-
   useEffect(() => {
     if (employeeId !== 0) {
       (async () => {
-        console.log("Profil Detayları if kısmı çalıştı", employeeId);
         try {
           let data = await fetchData(employeeId);
           setProfileData(data);
-          console.log("Profil Page",data);
         } catch (error) {}
       })();
     } else {
       const storedEmployeeId = localStorage.getItem("employeeId");
       if (storedEmployeeId) {
-        console.log("Profil detayları else kısmı useEffect", storedEmployeeId);
         setEmployeeId(parseInt(storedEmployeeId));
         setIsAuthenticated(true);
       }
