@@ -10,7 +10,7 @@ const Sidebar = () => {
       <div className="scrollbar-inner">
         <div className="d-flex justify-content-center  align-items-center">
           <a href="/" className="d-flex justify-content-center  align-items-center p-3">
-            <img src="src/assets/img/brand/ekiteLogo.png" className="img-fluid" style={{width:"40%"}}/>
+            <img src="https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png" className="img-fluid" style={{width:"40%"}}/>
           </a>
         </div>
         <div className="navbar-inner">
