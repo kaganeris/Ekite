@@ -12,7 +12,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./services/PrivateRoute";
 import { ProfileProvider } from "./context/ProfileContext";
-import ProfilePage from "./Pages/Profile/ProfilePage";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 function App() {
   const { isAuthenticated, setIsAuthenticated,employeeId } = useContext(AuthContext);

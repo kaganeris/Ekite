@@ -9,6 +9,7 @@
     <PublishAssetsDirectory>$(MSBuildProjectDirectory)\dist</PublishAssetsDirectory>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\assets\img\profilPhotos\" />
     <Folder Include="src\Components\EditProfile\" />
     <Folder Include="src\Pages\EditProfile\" />
   </ItemGroup>

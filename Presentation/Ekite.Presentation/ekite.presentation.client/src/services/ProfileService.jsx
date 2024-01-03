@@ -23,7 +23,7 @@ const ProfileService = {
   getUpdatePersonelByID: async (id) => {
     try {
       const token = localStorage.getItem("user");
-      const response = await axios.get( 
+      const response = await axios.get(
         `https://localhost:7152/api/Employee/GetUpdatePersonel?id=${id}`,
         {
           headers: {
@@ -39,37 +39,24 @@ const ProfileService = {
     }
   },
 
-  putUpdatePersonelById : async (id,data) => {
-    console.log(data, id)
-      try {
-        const token = localStorage.getItem("user");
-        const response = await axios.put(
-          `https://localhost:7152/api/Employee/PutUpdatePersonel?id=${id}`,      
-            {
-              imagePath: data.imagePath,
-              city: data.city,
-              district: data.district,
-              addressDetail: data.addressDetail,
-              phoneNumber: data.phoneNumber,
-              uploadPath: data.uploadPath
-            }
-          ,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: "Bearer " + token.replace(/"/g, "")
-            }
-          }
-        );
+  putUpdatePersonelById: async (id, data) => {
+    console.log(data, id);
+    try {
+      const token = localStorage.getItem("user");
+      const response = await axios.put(
+        `https://localhost:7152/api/Employee/PutUpdatePersonel?id=${id}`,
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+      );
 
-        
-        return response.data;
-      } catch (error) {
-        
-      }  
-
-  }
-
+      return response.data;
+    } catch (error) {}
+  },
 };
 
 export default ProfileService;
