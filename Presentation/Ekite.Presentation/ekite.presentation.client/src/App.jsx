@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/Navbar/Navbar";
 import Sidebar from "./Components/Sidebar/Sidebar";
-import Profile from "./Pages/Profile/Profile";
 import LoginPage from "./Pages/Login/LoginPage";
 
 import EditProfile from "./Pages/EditProfile/EditProfile";
@@ -13,23 +12,23 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./services/PrivateRoute";
 import { ProfileProvider } from "./context/ProfileContext";
+import ProfilePage from "./pages/Profile/ProfilePage";
 
 function App() {
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
-  console.log("appauth", isAuthenticated);
+  const { isAuthenticated, setIsAuthenticated,employeeId } = useContext(AuthContext);
 
   return (
     <div>
-      {localStorage.getItem("user") ? (
-        <>
-          <BrowserRouter>
-            <ProfileProvider>
+      <ProfileProvider>
+        {localStorage.getItem("user") ? (
+          <>
+            <BrowserRouter>
               <Navbar />
               <Sidebar />
               <Routes>
                 <Route
                   path="/"
-                  element={<PrivateRoute element={<Profile />} />}
+                  element={<PrivateRoute element={<ProfilePage />} />}
                 />
                 <Route
                   path="/editprofile"
@@ -37,12 +36,12 @@ function App() {
                 />
               </Routes>
               <Footer />
-            </ProfileProvider>
-          </BrowserRouter>
-        </>
-      ) : (
-        <LoginPage />
-      )}
+            </BrowserRouter>
+          </>
+        ) : (
+          <LoginPage />
+        )}
+      </ProfileProvider>
     </div>
   );
 

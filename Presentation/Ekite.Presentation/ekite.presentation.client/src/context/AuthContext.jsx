@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import AuthService from "../services/AuthService.jsx";
 
 export const AuthContext = createContext()
@@ -6,19 +6,21 @@ export const AuthContext = createContext()
 export const AuthProvider = ({children}) => {
 
     const [isAuthenticated,setIsAuthenticated] = useState(false)
-    console.log("authcontext",isAuthenticated);
+    const [employeeId,setEmployeeId] = useState(0)
 
-    const login = async(email,password) => {
+    
+      const login = async (email, password) => {
         try {
-            const response = await AuthService.login(email,password)
-            console.log(response);
-            if(response.token){
-                setIsAuthenticated(true)
-            }
+          const response = await AuthService.login(email, password);
+          console.log(response);
+          if (response.token) {
+            setEmployeeId(response.employeeId);
+            setIsAuthenticated(true);
+          }
         } catch (error) {
-            setIsAuthenticated(false)
+          setIsAuthenticated(false);
         }
-    }
+      }
 
     const logout = () => {
         AuthService.logout()
@@ -28,7 +30,7 @@ export const AuthProvider = ({children}) => {
 
 
     return (
-        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated}}>
+        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated,employeeId,setEmployeeId}}>
             {children}
         </AuthContext.Provider>
     )
