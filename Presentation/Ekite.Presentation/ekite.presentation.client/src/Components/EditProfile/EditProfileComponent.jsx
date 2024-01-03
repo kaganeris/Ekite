@@ -20,15 +20,14 @@ function EditProfileComponent({ profileData ,employeeId}) {
   const handleUpdate =  async (e) => {
     console.log("handleupdate çalıştı")
     e.preventDefault();
-          const data = {
-            phoneNumber : phoneNumber,
-            city : city,
-            district : district,
-            addressDetail : addressDetail,
-            uploadPath : null,
-            imagePath : null
-        }
-       await  putPersonelData(employeeId,data)
+    const formData = new FormData();
+  formData.append('phoneNumber', phoneNumber);
+  formData.append('city', city);
+  formData.append('district', district);
+  formData.append('addressDetail', addressDetail);
+  formData.append('uploadPath', uploadPath);
+  formData.append('imagePath', null);
+       await  putPersonelData(employeeId,formData)
    
   }
 
@@ -47,7 +46,7 @@ function EditProfileComponent({ profileData ,employeeId}) {
         </div>
       </div>
       <div className="card-body">
-        <form  onSubmit={handleUpdate} >
+        <form  onSubmit={handleUpdate} encType="multipart/form-data">
           <h6 className="heading-small text-muted mb-4">Calisan Bilgileri</h6>
           <div className="pl-lg-4">
             <div className="row">
