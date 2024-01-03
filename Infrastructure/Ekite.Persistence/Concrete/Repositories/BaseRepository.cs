@@ -94,7 +94,7 @@ namespace Ekite.Persistence.Concrete.Repositories
             try
             {
                 _table.Remove(entity);
-                return  await SaveChange()>0;
+                return await SaveChange() > 0;
             }
             catch (Exception)
             {
@@ -195,8 +195,12 @@ namespace Ekite.Persistence.Concrete.Repositories
             {
                 query = query.Where(expression);
             }
+            if (include != null)
+            {
+                query = include(query);
 
-            query = include(query);
+            }
+
 
 
             return await query.FirstOrDefaultAsync();

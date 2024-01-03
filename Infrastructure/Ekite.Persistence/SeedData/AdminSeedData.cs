@@ -21,7 +21,7 @@ namespace Ekite.Persistence.SeedData
 
 
 
-            if (!_context.Users.Any(u => u.UserName == "eren.colk@bilgeadam.com"))
+            if (!_context.Users.Any(u => u.UserName == "admin"))
             {
 
                 AppUser user = new AppUser

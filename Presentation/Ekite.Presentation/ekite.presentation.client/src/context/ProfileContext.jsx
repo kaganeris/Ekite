@@ -1,36 +1,29 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import ProfileService from '../services/ProfileService';
+import { AuthContext } from './AuthContext';
 
 const ProfileContext = createContext();
 
 const ProfileProvider = ({ children }) => {
     const [profileData, setProfileData] = useState(null);
     const [loading, setLoading] = useState(true);
+    
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await ProfileService(1);
-                console.log("context", data);
-                setProfileData(data);
-                setLoading(false);
+    const fetchData = async (employeeId) => {
+        try {
 
-            } catch (error) {
-                console.error('Profil verisi �ekilirken bir hata olu�tu', error);
-                setLoading(false);
+            const data = await ProfileService(employeeId);
+            setLoading(false);
+            return data
 
-            }
-        };
+        } catch (error) {
+            setLoading(false);
 
-        fetchData();
-    }, []);
-
-    if (loading) {
-        console.log(loading);
-    }
+        }
+    };
 
     return (
-        <ProfileContext.Provider value={{ profileData, loading }}>
+        <ProfileContext.Provider value={{ profileData, loading,fetchData }}>
             {children}
         </ProfileContext.Provider>
     );
