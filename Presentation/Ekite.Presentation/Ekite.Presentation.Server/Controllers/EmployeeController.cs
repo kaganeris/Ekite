@@ -55,8 +55,29 @@ namespace Ekite.Presentation.Server.Controllers
 
 		}
 
-		[HttpPut("GetUpdatePersonel")]
-		public async Task<IActionResult> GetUpdatePersonel(int id, UpdateEmployeeDto employeeDto)
+
+        [HttpGet("[action]")]
+		public async Task<IActionResult> GetUpdatePersonel(int id)
+		{
+			UpdateEmployeeDto updateEmployee = await _employeeService.GetUpdateEmployee(id);
+
+            if (id > 0)
+            {
+                return Ok(updateEmployee);
+            }
+            else
+            {
+                return NotFound("Kişi bulunamadı");
+            }
+
+
+        }
+
+
+        [HttpPut("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+
+        public async Task<IActionResult> PutUpdatePersonel(int id, UpdateEmployeeDto employeeDto)
 		{
 			//TODOO FOTO GÜNCELLEMEYİ HALLET
 			if (await _employeeService.TUpdate(id, employeeDto))
