@@ -72,6 +72,9 @@ namespace Ekite.Persistence.SeedData
                 };
 
 
+
+
+               
                 IdentityResult result = await userManager.CreateAsync(appUser, "Eren12345.");
                 IdentityResult result2 = await userManager.CreateAsync(app1, "Eren12345.");
                 if (result.Succeeded)
@@ -132,7 +135,16 @@ namespace Ekite.Persistence.SeedData
                     _context.Employees.Add(emp1);
 
 
+
                 }
+
+					
+
+				
+
+
+               
+
 
                 _context.SaveChanges();
             }
