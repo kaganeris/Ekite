@@ -5,12 +5,14 @@ function ProfileCard() {
 
     const { profileData, loading } = useContext(ProfileContext);
 
+
     if (loading) {       
         return (<div>Yükleniyor</div>)
     }
     if (!profileData) {       
         return (<div>Bulunamadı</div>)
     }
+
     const birthDate = new Date(profileData.birthDate);
     const currentDate = new Date();
     const age = currentDate.getFullYear() - birthDate.getFullYear();
