@@ -22,7 +22,9 @@ namespace Ekite.Application.Interfaces.Services
 		Task<List<Employee>> TGetAll(Expression<Func<Employee, bool>> expression = null);
 		Task<Employee> TGetFilteredInclude(Expression<Func<Employee, bool>> expression = null, Func<IQueryable<Employee>, IIncludableQueryable<Employee, object>> include = null);
         Task<ResultSumEmployeeDto> GetSumEmployee(int id);   
-        Task<ResultDetailEmployeeDto> GetDetailEmployee(int id);   
+        Task<ResultDetailEmployeeDto> GetDetailEmployee(int id);
+
+        Task<int> GetEmployeeIdByUserId(string id);
 
 	}
 }
