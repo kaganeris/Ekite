@@ -21,7 +21,7 @@ function Navbar() {
         try {
           let data = await fetchData(employeeId);
           setProfileData(data);
-          console.log("Navbar",data);
+        
         } catch (error) {}
       })();
     } else {
