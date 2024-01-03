@@ -18,12 +18,8 @@ namespace Ekite.Persistence.SeedData
 
         public static async void Seed(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, AppDbContext _context)
         {
-
-
-
             if (!_context.Users.Any(u => u.UserName == "admin"))
             {
-
                 AppUser user = new AppUser
                 {
                     UserName = "admin",
@@ -70,10 +66,6 @@ namespace Ekite.Persistence.SeedData
                     PhoneNumberConfirmed = false,
 
                 };
-
-
-
-
                
                 IdentityResult result = await userManager.CreateAsync(appUser, "Eren12345.");
                 IdentityResult result2 = await userManager.CreateAsync(app1, "Eren12345.");
@@ -101,11 +93,7 @@ namespace Ekite.Persistence.SeedData
                         AddressDetail = "Mavi bulvar 72190 sk",
                         CreatedDate = DateTime.Now
                     };
-
-
-
                     _context.Employees.Add(emp);
-
                 }
 
                 if (result2.Succeeded)
@@ -133,19 +121,7 @@ namespace Ekite.Persistence.SeedData
                         CreatedDate = DateTime.Now
                     };
                     _context.Employees.Add(emp1);
-
-
-
                 }
-
-					
-
-				
-
-
-               
-
-
                 _context.SaveChanges();
             }
         }
