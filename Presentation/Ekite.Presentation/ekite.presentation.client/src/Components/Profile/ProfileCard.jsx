@@ -6,10 +6,10 @@ function ProfileCard() {
     const { profileData, loading } = useContext(ProfileContext);
 
 
-    if (loading) {
+    if (loading) {       
         return (<div>Yükleniyor</div>)
     }
-    if (!profileData) {
+    if (!profileData) {       
         return (<div>Bulunamadı</div>)
     }
 

@@ -4,13 +4,12 @@ import { ProfileContext } from "../../context/ProfileContext";
 function ProfileHeader() {
   const { profileData, loading } = useContext(ProfileContext);
 
-  if (loading) {
-    console.log("y�kleniyor");
-    return <div>Y�kleniyor</div>;
+  if (loading) {    
+    return <div>Yükleniyor</div>;
   }
   if (!profileData) {
     console.log("contextte veri bulunamad�.");
-    return <div>Bulunamad�</div>;
+    return <div>Bulunamadı</div>;
   }
 
   return (
@@ -25,9 +24,7 @@ function ProfileHeader() {
             <p className="text-white mt-0 mb-5">
             Yeni bir yılın başlangıcında, sizlere bolca mutluluk, başarı ve sağlık diliyoruz. Hep birlikte geçireceğimiz bu yılda güzel anılar biriktirmenizi ve hedeflerinize ulaşmanızı temenni ediyoruz. Mutlu bir yıl geçirmeniz dileğiyle!
             </p>
-            <a href="/EditProfile" className="btn btn-primary">
-              Edit profile
-            </a>
+           
           </div>
         </div>
       </div>
