@@ -6,7 +6,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import LoginPage from "./Pages/Login/LoginPage";
 
-import EditProfile from "./Pages/EditProfile/EditProfile";
+import EditProfilePage from "./Pages/EditProfile/EditProfilePage";
 import "./App.css";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./context/AuthContext";
@@ -32,7 +32,7 @@ function App() {
                 />
                 <Route
                   path="/editprofile"
-                  element={<PrivateRoute element={<EditProfile />} />}
+                  element={<PrivateRoute element={<EditProfilePage />} />}
                 />
               </Routes>
               <Footer />
