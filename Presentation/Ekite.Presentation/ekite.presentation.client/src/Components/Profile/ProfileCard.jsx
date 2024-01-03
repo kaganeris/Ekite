@@ -1,16 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
-function ProfileCard() {
 
 
-    const { profileData, loading } = useContext(ProfileContext);
+function ProfileCard({profileData}) {
+
+    const {loading } = useContext(ProfileContext);
 
 
     if (loading) {       
         return (<div>Yükleniyor</div>)
-    }
-    if (!profileData) {       
-        return (<div>Bulunamadı</div>)
     }
 
     const birthDate = new Date(profileData.birthDate);

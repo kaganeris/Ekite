@@ -39,7 +39,8 @@ namespace Ekite.Presentation.Server.Controllers
 		}
 
 		[HttpGet("[action]")]
-		public async Task<IActionResult> GetDetailPersonel(int id)
+        [Authorize(Roles ="Admin,Employee")]
+        public async Task<IActionResult> GetDetailPersonel(int id)
 		{
 			ResultDetailEmployeeDto resultSum = await _employeeService.GetDetailEmployee(id);
 
