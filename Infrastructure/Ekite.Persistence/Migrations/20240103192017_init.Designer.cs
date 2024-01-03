@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240103072016_mig_1")]
-    partial class mig_1
+    [Migration("20240103192017_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -134,14 +134,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 3, 10, 20, 15, 785, DateTimeKind.Local).AddTicks(5969),
+                            CreatedDate = new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(6254),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 3, 10, 20, 15, 785, DateTimeKind.Local).AddTicks(5979),
+                            CreatedDate = new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(6263),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -180,14 +180,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 3, 10, 20, 15, 785, DateTimeKind.Local).AddTicks(7540),
+                            CreatedDate = new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(7275),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 3, 10, 20, 15, 785, DateTimeKind.Local).AddTicks(7544),
+                            CreatedDate = new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(7280),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -338,14 +338,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 3, 10, 20, 15, 786, DateTimeKind.Local).AddTicks(6775),
+                            CreatedDate = new DateTime(2024, 1, 3, 22, 20, 17, 292, DateTimeKind.Local).AddTicks(9085),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 3, 10, 20, 15, 786, DateTimeKind.Local).AddTicks(6780),
+                            CreatedDate = new DateTime(2024, 1, 3, 22, 20, 17, 292, DateTimeKind.Local).AddTicks(9094),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
@@ -380,15 +380,15 @@ namespace Ekite.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b764e7d4-0d8b-43a7-b599-df17794b782b",
-                            ConcurrencyStamp = "281f0fc6-f6f6-4d1a-9a86-e0a8fb164eea",
+                            Id = "6933f8a3-8670-4145-84a5-d7575df3a5b3",
+                            ConcurrencyStamp = "01f65129-5fb6-47b0-94e4-c882198cf9ab",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "6b02ad80-cdae-4c28-8b85-d0fdcbf6d2e7",
-                            ConcurrencyStamp = "fa447010-1e72-41c4-83f2-e67e9aece8e2",
+                            Id = "51736bba-a1dc-4ea6-9ab5-20e420b353af",
+                            ConcurrencyStamp = "cfb8d886-5a54-46cf-ab1d-e5efdb3cfb5e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

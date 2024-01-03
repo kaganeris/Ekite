@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
@@ -101,18 +103,33 @@ namespace Ekite.Persistence.Concrete.Managers
             {
                 if(entity.UploadPath != null)
                 {
-                    using var image = Image.Load(entity.UploadPath.OpenReadStream());
+                    string fileExtension = Path.GetExtension(entity.UploadPath.FileName);
 
-                    image.Mutate(x => x.Resize(300, 300));
+                    using MemoryStream fileUploadStream = new MemoryStream();
 
-                    Guid guid = Guid.NewGuid();
+                    entity.UploadPath.CopyTo(fileUploadStream);
+                    fileUploadStream.Position = 0;
+
+                    string connectionString = "DefaultEndpointsProtocol=https;AccountName=ekitedepo;AccountKey=vSKMkCAXSsLU58GHf/rSoaSbK05OOnuQmh2kPKO8Go2kIh4a6WmYDnro27Cg24Fv9bNyYiRCpOGG+AStSG8pyA==;EndpointSuffix=core.windows.net";
+                    string blobContainerName = "yeni";
 
 
-                    string yol = Path.Combine(Directory.GetCurrentDirectory(), $"..\\ekite.presentation.client\\src\\assets\\img\\profilPhotos\\{guid}.jpg");
+                    BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, blobContainerName);
 
-                    image.Save(yol);
+                    var uniqueName = Guid.NewGuid().ToString() + fileExtension;
 
-                    entity.ImagePath = $"src\\assets\\img\\profilPhotos\\{guid}.jpg";
+                    BlobClient blobClient = blobContainerClient.GetBlobClient(uniqueName);
+
+                    blobClient.Upload(fileUploadStream, new BlobUploadOptions()
+                    {
+                        HttpHeaders = new BlobHttpHeaders
+                        {
+                            ContentType = "image/bitmap"
+                        }
+                    },cancellationToken: default);
+
+
+                    entity.ImagePath = $"https://ekitedepo.blob.core.windows.net/yeni/{uniqueName}";
                 }
 
                 _mapper.Map(entity, employee);
