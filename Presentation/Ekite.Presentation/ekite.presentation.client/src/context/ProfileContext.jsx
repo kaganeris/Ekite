@@ -5,13 +5,11 @@ import { AuthContext } from './AuthContext';
 const ProfileContext = createContext();
 
 const ProfileProvider = ({ children }) => {
-    const [profileData, setProfileData] = useState(null);
     const [loading, setLoading] = useState(true);
     
 
     const fetchData = async (employeeId) => {
         try {
-
 
             const data = await ProfileService(employeeId);
 
@@ -25,7 +23,7 @@ const ProfileProvider = ({ children }) => {
     };
 
     return (
-        <ProfileContext.Provider value={{ profileData, loading,fetchData }}>
+        <ProfileContext.Provider value={{ loading,fetchData }}>
             {children}
         </ProfileContext.Provider>
     );

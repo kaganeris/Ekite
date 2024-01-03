@@ -10,7 +10,7 @@ const AuthService = {
             }
           );
           if(response.data.token){
-            localStorage.setItem("user",JSON.stringify(response.data.token))
+            localStorage.setItem("user",response.data.token)
             localStorage.setItem("employeeId", response.data.employeeId);
           }
           console.log(response);
@@ -18,8 +18,7 @@ const AuthService = {
     },
 
     logout: () => {
-      localStorage.removeItem("user")
-      localStorage.removeItem("employeeId")
+      localStorage.clear()
     },
 }
 

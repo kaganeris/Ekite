@@ -1,15 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
 
-function ProfileHeader() {
-  const { profileData, loading } = useContext(ProfileContext);
+function ProfileHeader({profileData}) {
+  const { loading } = useContext(ProfileContext);
 
   if (loading) {    
     return <div>Yükleniyor</div>;
-  }
-  if (!profileData) {
-    console.log("contextte veri bulunamad�.");
-    return <div>Bulunamadı</div>;
   }
 
   return (
