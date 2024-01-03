@@ -24,6 +24,9 @@ namespace Ekite.Application.Interfaces.Services
         Task<ResultSumEmployeeDto> GetSumEmployee(int id);   
         Task<ResultDetailEmployeeDto> GetDetailEmployee(int id);
 
+        Task<UpdateEmployeeDto> GetUpdateEmployee(int id);
+
+
         Task<int> GetEmployeeIdByUserId(string id);
 
 	}
