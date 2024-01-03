@@ -19,13 +19,15 @@ namespace Ekite.Presentation.Server.Controllers
         private readonly IAppUserService _appUserService;
         private readonly IConfiguration _configuration;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IEmployeeService employeeService;
 
-        public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager)
+        public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager,IEmployeeService employeeService)
 
         {
             _appUserService = appUserService;
             _configuration = configuration;
             _userManager = userManager;
+            this.employeeService = employeeService;
         }
 
         [HttpPost]
@@ -57,14 +59,13 @@ namespace Ekite.Presentation.Server.Controllers
 
             if (result.Succeeded)
             {
+                int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
 
                 var authClaims = new List<Claim>
                 {
 
                    new Claim (ClaimTypes.Role, role.FirstOrDefault()),
-
                    new Claim (JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())
-
                 };
 
                 var token = GetToken(authClaims);
@@ -73,8 +74,9 @@ namespace Ekite.Presentation.Server.Controllers
                 {
 
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
-
+                    expiration = token.ValidTo,
+                    role = role.FirstOrDefault(),
+                    employeeId = employeeId,
                 });
             }
             else

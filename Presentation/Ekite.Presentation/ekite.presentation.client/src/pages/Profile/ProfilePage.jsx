@@ -4,10 +4,9 @@ import ProfileCard from "../../Components/Profile/ProfileCard";
 import ProfileHeader from "../../Components/Profile/ProfileHeader";
 import { AuthContext } from "../../context/AuthContext";
 
-function Profile() {
-
+function ProfilePage() {
     const {isAuthenticated} = useContext(AuthContext)
-    console.log("Prfoile auth",isAuthenticated);
+
     return (
         <>
             <div className="main-content" id="panel">
@@ -40,4 +39,4 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default ProfilePage;
