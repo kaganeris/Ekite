@@ -5,7 +5,7 @@ const ProfileService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Employee/GetDetailPersonel?id=${id}`,
+        `https://ekite.azurewebsites.net/api/Employee/GetDetailPersonel?id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -24,7 +24,7 @@ const ProfileService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Employee/GetUpdatePersonel?id=${id}`,
+        `https://ekite.azurewebsites.net/api/Employee/GetUpdatePersonel?id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),

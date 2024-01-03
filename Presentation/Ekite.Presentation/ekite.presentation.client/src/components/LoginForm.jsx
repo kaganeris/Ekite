@@ -64,7 +64,7 @@ const LoginForm = () => {
                     />
                   </div>
                 </div>
-                <div className="custom-control custom-control-alternative custom-checkbox">
+                {/* <div className="custom-control custom-control-alternative custom-checkbox">
                   <input
                     className="custom-control-input"
                     id="customCheckLogin"
@@ -76,7 +76,7 @@ const LoginForm = () => {
                   >
                     <span className="text-muted">Beni Hatırla</span>
                   </label>
-                </div>
+                </div> */}
                 <div className="text-center">
                   <input type="submit" className="btn btn-primary my-4" value="Giriş Yap"/> 
                 </div>
