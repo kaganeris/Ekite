@@ -19,7 +19,7 @@ function ProfileCard({profileData}) {
     return (
         <>
             <img
-                src="/src/assets/img/theme/img-1-1000x600.jpg"
+                src="https://ekitedepo.blob.core.windows.net/yeni/img-1-1000x600.jpg"
                 alt="#"
                 className="card-img-top"
             />

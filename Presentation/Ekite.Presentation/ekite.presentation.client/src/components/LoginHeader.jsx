@@ -8,10 +8,6 @@ const LoginHeader = () => {
           <div className="row justify-content-center">
             <div className="col-xl-5 col-lg-6 col-md-8 px-5">
               <h1 className="text-white">Hoş geldiniz!</h1>
-              <p className="text-lead text-white">
-                Bu harika formları kullanarak projeniz için ücretsiz bir şekilde
-                giriş yapabilir veya yeni bir hesap oluşturabilirsiniz.
-              </p>
             </div>
           </div>
         </div>
