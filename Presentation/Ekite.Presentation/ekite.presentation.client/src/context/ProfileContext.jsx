@@ -11,12 +11,10 @@ const ProfileProvider = ({ children }) => {
         const fetchData = async () => {
             try {
                 const data = await ProfileService(1);
-                console.log("context", data);
                 setProfileData(data);
                 setLoading(false);
 
             } catch (error) {
-                console.error('Profil verisi �ekilirken bir hata olu�tu', error);
                 setLoading(false);
 
             }

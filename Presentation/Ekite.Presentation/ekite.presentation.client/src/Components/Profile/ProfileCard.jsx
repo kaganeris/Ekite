@@ -5,12 +5,10 @@ function ProfileCard() {
 
     const { profileData, loading } = useContext(ProfileContext);
 
-    if (loading) {
-        console.log("yükleniyor")
+    if (loading) {       
         return (<div>Yükleniyor</div>)
     }
-    if (!profileData) {
-        console.log("contextte veri bulunamad�.")
+    if (!profileData) {       
         return (<div>Bulunamadı</div>)
     }
     const birthDate = new Date(profileData.birthDate);
