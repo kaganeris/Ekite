@@ -2,32 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
 import { AuthContext } from "../../context/AuthContext";
 
-const ProfileDetails = () => {
-  const { profileData, loading, fetchData } = useContext(ProfileContext);
-  const [employeeBilgileri, setEmployeeBilgileri] = useState(null);
-  const { employeeId, setEmployeeId, setIsAuthenticated } =
-    useContext(AuthContext);
-
-
-
-  useEffect(() => {
-    if (employeeId !== 0) {
-      (async () => {
-        console.log("Profil Detayları if kısmı çalıştı", employeeId);
-        try {
-          let data = await fetchData(employeeId);
-          setEmployeeBilgileri(data);
-        } catch (error) {}
-      })();
-    } else {
-      const storedEmployeeId = localStorage.getItem("employeeId");
-      if (storedEmployeeId) {
-        console.log("Profil detayları else kısmı useEffect", storedEmployeeId);
-        setEmployeeId(parseInt(storedEmployeeId));
-        setIsAuthenticated(true);
-      }
-    }
-  }, [employeeId]);
+const ProfileDetails = ({profileData}) => {
+  const { loading } = useContext(ProfileContext);
+ 
 
   if (loading) {
     return <div>Yükleniyor</div>;
@@ -56,7 +33,7 @@ const ProfileDetails = () => {
                     Isim
                   </label>
                   <label id="input-username" className="form-control">
-                    {employeeBilgileri.firstName}
+                    {profileData.firstName}
                   </label>
                 </div>
               </div>
@@ -70,7 +47,7 @@ const ProfileDetails = () => {
                     Ikinci Isim
                   </label>
                   <label id="input-username" className="form-control">
-                    {employeeBilgileri.secondName}
+                    {profileData.secondName}
                   </label>
                 </div>
               </div>
@@ -84,7 +61,7 @@ const ProfileDetails = () => {
                     Soyisim
                   </label>
                   <label id="input-last-name" className="form-control">
-                    {employeeBilgileri.lastName}
+                    {profileData.lastName}
                   </label>
                 </div>
               </div>
@@ -98,7 +75,7 @@ const ProfileDetails = () => {
                     Ikinci Soyisim
                   </label>
                   <label id="input-last-name" className="form-control">
-                    {employeeBilgileri.secondLastName}
+                    {profileData.secondLastName}
                   </label>
                 </div>
               </div>
@@ -109,7 +86,7 @@ const ProfileDetails = () => {
                     TCKN
                   </label>
                   <label id="input-email" className="form-control">
-                    {employeeBilgileri.tcno}
+                    {profileData.tcno}
                   </label>
                 </div>
               </div>
@@ -120,7 +97,7 @@ const ProfileDetails = () => {
                     Adres
                   </label>
                   <label id="input-email" className="form-control">
-                    {employeeBilgileri.address}
+                    {profileData.address}
                   </label>
                 </div>
               </div>
@@ -131,7 +108,7 @@ const ProfileDetails = () => {
                     Meslek
                   </label>
                   <label id="input-email" className="form-control">
-                    {employeeBilgileri.jobName}
+                    {profileData.jobName}
                   </label>
                 </div>
               </div>
@@ -142,7 +119,7 @@ const ProfileDetails = () => {
                     Meslek
                   </label>
                   <label id="input-email" className="form-control">
-                    {employeeBilgileri.departmentName}
+                    {profileData.departmentName}
                   </label>
                 </div>
               </div>
@@ -160,7 +137,7 @@ const ProfileDetails = () => {
                     Adres
                   </label>
                   <label className="form-control" placeholder="Home Address">
-                    {employeeBilgileri.address}
+                    {profileData.address}
                   </label>
                 </div>
               </div>
@@ -172,7 +149,7 @@ const ProfileDetails = () => {
                     Sehir
                   </label>
                   <label id="input-city" className="form-control">
-                    {employeeBilgileri.phoneNumber}
+                    {profileData.phoneNumber}
                   </label>
                 </div>
               </div>
@@ -182,7 +159,7 @@ const ProfileDetails = () => {
                     Sehir
                   </label>
                   <label id="input-email" className="form-control">
-                    {employeeBilgileri.email}
+                    {profileData.email}
                   </label>
                 </div>
               </div>
