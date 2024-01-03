@@ -8,6 +8,8 @@ using Ekite.Persistence.Concrete.Repositories;
 using Ekite.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -97,13 +99,24 @@ namespace Ekite.Persistence.Concrete.Managers
 
             if (employee != null)
             {
+                if(entity.UploadPath != null)
+                {
+                    using var image = Image.Load(entity.UploadPath.OpenReadStream());
+
+                    image.Mutate(x => x.Resize(300, 300));
+
+                    Guid guid = Guid.NewGuid();
+
+
+                    string yol = Path.Combine(Directory.GetCurrentDirectory(), $"..\\ekite.presentation.client\\src\\assets\\img\\profilPhotos\\{guid}.jpg");
+
+                    image.Save(yol);
+
+                    entity.ImagePath = $"src\\assets\\img\\profilPhotos\\{guid}.jpg";
+                }
+
                 _mapper.Map(entity, employee);
 
-                //if(entity.UploadPath != null)
-                //{
-                //	//TODOO: FOTOGRAF GÜNCELLEME YAPILACAK GELEN UZANTI KONTROL EDİLECEK 
-
-                //}
                 return await _employeeRepository.Update(employee);
             }
             else

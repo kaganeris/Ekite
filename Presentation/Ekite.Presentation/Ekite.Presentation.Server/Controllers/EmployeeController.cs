@@ -75,11 +75,11 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpPut("[action]")]
-        [Authorize(Roles = "Admin,Employee")]
+        //[Authorize(Roles = "Admin,Employee")]
 
-        public async Task<IActionResult> PutUpdatePersonel(int id, UpdateEmployeeDto employeeDto)
+        public async Task<IActionResult> PutUpdatePersonel(int id, [FromForm]UpdateEmployeeDto employeeDto)
 		{
-			//TODOO FOTO GÜNCELLEMEYİ HALLET
+
 			if (await _employeeService.TUpdate(id, employeeDto))
 			{
 				return Ok(employeeDto);
