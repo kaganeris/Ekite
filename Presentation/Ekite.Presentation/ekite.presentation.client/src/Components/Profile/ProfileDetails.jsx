@@ -33,7 +33,7 @@ const ProfileDetails = ({profileData}) => {
                     Isim
                   </label>
                   <label id="input-username" className="form-control">
-                    {profileData.firstName}
+                  {profileData.secondName === null ?  profileData.firstName : profileData.firstName + " " + profileData.secondName  }
                   </label>
                 </div>
               </div>
@@ -44,64 +44,14 @@ const ProfileDetails = ({profileData}) => {
                     className="form-control-label"
                     htmlFor="input-secondName"
                   >
-                    Ikinci Isim
+                    Soy Isim
                   </label>
                   <label id="input-username" className="form-control">
-                    {profileData.secondName}
+                  {profileData.secondLastName === null ?  profileData.lastName : profileData.lastName + " " + profileData.secondLastName  }
                   </label>
                 </div>
               </div>
-
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className="form-control-label"
-                    htmlFor="input-last-name"
-                  >
-                    Soyisim
-                  </label>
-                  <label id="input-last-name" className="form-control">
-                    {profileData.lastName}
-                  </label>
-                </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className="form-control-label"
-                    htmlFor="input-last-name"
-                  >
-                    Ikinci Soyisim
-                  </label>
-                  <label id="input-last-name" className="form-control">
-                    {profileData.secondLastName}
-                  </label>
-                </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label className="form-control-label" htmlFor="input-email">
-                    TCKN
-                  </label>
-                  <label id="input-email" className="form-control">
-                    {profileData.tcno}
-                  </label>
-                </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label className="form-control-label" htmlFor="input-email">
-                    Adres
-                  </label>
-                  <label id="input-email" className="form-control">
-                    {profileData.address}
-                  </label>
-                </div>
-              </div>
-
+  
               <div className="col-lg-6">
                 <div className="form-group">
                   <label className="form-control-label" htmlFor="input-email">
@@ -116,7 +66,7 @@ const ProfileDetails = ({profileData}) => {
               <div className="col-lg-6">
                 <div className="form-group">
                   <label className="form-control-label" htmlFor="input-email">
-                    Meslek
+                    Departman
                   </label>
                   <label id="input-email" className="form-control">
                     {profileData.departmentName}
@@ -146,7 +96,7 @@ const ProfileDetails = ({profileData}) => {
               <div className="col-lg-6">
                 <div className="form-group">
                   <label className="form-control-label" htmlFor="input-city">
-                    Sehir
+                    Telefon Numarası
                   </label>
                   <label id="input-city" className="form-control">
                     {profileData.phoneNumber}
@@ -156,7 +106,7 @@ const ProfileDetails = ({profileData}) => {
               <div className="col-lg-6">
                 <div className="form-group">
                   <label className="form-control-label" htmlFor="input-email">
-                    Sehir
+                    E-mail
                   </label>
                   <label id="input-email" className="form-control">
                     {profileData.email}

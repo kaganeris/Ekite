@@ -13,6 +13,7 @@ import { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./services/PrivateRoute";
 import { ProfileProvider } from "./context/ProfileContext";
 import ProfilePage from "./pages/Profile/ProfilePage";
+import ProfileSumPage from "./Pages/Profile/ProfileSumPage";
 
 function App() {
   const { isAuthenticated, setIsAuthenticated,employeeId } = useContext(AuthContext);
@@ -29,6 +30,10 @@ function App() {
                 <Route
                   path="/"
                   element={<PrivateRoute element={<ProfilePage />} />}
+                />
+                  <Route
+                  path="/profilesum"
+                  element={<PrivateRoute element={<ProfileSumPage />} />}
                 />
                 <Route
                   path="/editprofile"

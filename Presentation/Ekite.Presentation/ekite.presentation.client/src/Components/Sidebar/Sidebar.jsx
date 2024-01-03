@@ -17,9 +17,9 @@ const Sidebar = () => {
           <div className="collapse navbar-collapse" id="sidenav-collapse-main">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link" to={"/"}>
+                <Link className="nav-link" to={"/profilesum"}>
                   <i className="ni ni-single-02 text-yellow"></i>
-                  <span className="nav-link-text">Profile</span>
+                  <span className="nav-link-text">Profil Detayı</span>
                 </Link>
               </li>
               <li className="nav-item">
