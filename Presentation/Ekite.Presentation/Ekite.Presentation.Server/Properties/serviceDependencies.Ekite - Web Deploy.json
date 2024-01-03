@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "apis1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.ApiManagement/service/EkitePresentationServerapi/apis/EkitePresentationServer",
+      "type": "apis.azure"
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/Ekite/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsconStr_E0366C5D62",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/sqldatabasedeneme/databases/EkiteOriginDB",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:conStr",
+      "dynamicId": null
+    }
+  }
+}

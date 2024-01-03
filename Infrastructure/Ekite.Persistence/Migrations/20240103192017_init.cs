@@ -273,8 +273,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8bc33b3a-44f9-4d8e-b047-5ed609ace987", "abceccc2-06f7-461b-a56f-b0500030113e", "Admin", "ADMIN" },
-                    { "e22fc24c-0a02-44dd-9507-e4e5823d7286", "ddcd6cdd-3046-42f4-a939-97779a810bce", "Employee", "EMPLOYEE" }
+                    { "51736bba-a1dc-4ea6-9ab5-20e420b353af", "cfb8d886-5a54-46cf-ab1d-e5efdb3cfb5e", "Admin", "ADMIN" },
+                    { "6933f8a3-8670-4145-84a5-d7575df3a5b3", "01f65129-5fb6-47b0-94e4-c882198cf9ab", "Employee", "EMPLOYEE" }
                 });
 
             migrationBuilder.InsertData(
@@ -282,8 +282,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 3, 10, 7, 6, 255, DateTimeKind.Local).AddTicks(1091), null, "EKİTE", 1, null },
-                    { 2, new DateTime(2024, 1, 3, 10, 7, 6, 255, DateTimeKind.Local).AddTicks(1104), null, "Bilge ADAM", 1, null }
+                    { 1, new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(6254), null, "EKİTE", 1, null },
+                    { 2, new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(6263), null, "Bilge ADAM", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -291,8 +291,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 3, 10, 7, 6, 255, DateTimeKind.Local).AddTicks(2144), null, "IK", 1, null },
-                    { 2, new DateTime(2024, 1, 3, 10, 7, 6, 255, DateTimeKind.Local).AddTicks(2149), null, "Bilgi işlem", 1, null }
+                    { 1, new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(7275), null, "IK", 1, null },
+                    { 2, new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(7280), null, "Bilgi işlem", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -300,8 +300,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 3, 10, 7, 6, 256, DateTimeKind.Local).AddTicks(4179), null, "Yazılım Geliştirici", 1, null },
-                    { 2, new DateTime(2024, 1, 3, 10, 7, 6, 256, DateTimeKind.Local).AddTicks(4188), null, "Proje Müdürü", 1, null }
+                    { 1, new DateTime(2024, 1, 3, 22, 20, 17, 292, DateTimeKind.Local).AddTicks(9085), null, "Yazılım Geliştirici", 1, null },
+                    { 2, new DateTime(2024, 1, 3, 22, 20, 17, 292, DateTimeKind.Local).AddTicks(9094), null, "Proje Müdürü", 1, null }
                 });
 
             migrationBuilder.CreateIndex(
