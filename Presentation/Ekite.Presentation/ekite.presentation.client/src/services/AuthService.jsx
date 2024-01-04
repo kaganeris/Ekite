@@ -3,7 +3,7 @@ import axios from 'axios'
 const AuthService = {
     login: async (email,password) => {
         const response = await axios.post(
-            "https://localhost:7152/api/Auth/Login",
+            "https://ekite.azurewebsites.net/api/Auth/Login",
             {
               "email": email,
               "password": password,
