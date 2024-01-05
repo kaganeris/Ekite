@@ -132,14 +132,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 4, 0, 27, 49, 893, DateTimeKind.Local).AddTicks(7177),
+                            CreatedDate = new DateTime(2024, 1, 5, 9, 49, 47, 572, DateTimeKind.Local).AddTicks(3863),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 4, 0, 27, 49, 893, DateTimeKind.Local).AddTicks(7185),
+                            CreatedDate = new DateTime(2024, 1, 5, 9, 49, 47, 572, DateTimeKind.Local).AddTicks(3875),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -178,14 +178,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 4, 0, 27, 49, 893, DateTimeKind.Local).AddTicks(7624),
+                            CreatedDate = new DateTime(2024, 1, 5, 9, 49, 47, 572, DateTimeKind.Local).AddTicks(5497),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 4, 0, 27, 49, 893, DateTimeKind.Local).AddTicks(7625),
+                            CreatedDate = new DateTime(2024, 1, 5, 9, 49, 47, 572, DateTimeKind.Local).AddTicks(5503),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -336,14 +336,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 4, 0, 27, 49, 894, DateTimeKind.Local).AddTicks(442),
+                            CreatedDate = new DateTime(2024, 1, 5, 9, 49, 47, 573, DateTimeKind.Local).AddTicks(9370),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 4, 0, 27, 49, 894, DateTimeKind.Local).AddTicks(445),
+                            CreatedDate = new DateTime(2024, 1, 5, 9, 49, 47, 573, DateTimeKind.Local).AddTicks(9381),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
@@ -378,15 +378,15 @@ namespace Ekite.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "36052dea-dff2-4dac-8050-408c23a82e27",
-                            ConcurrencyStamp = "401a088c-967e-4a7c-8790-460854e007d4",
+                            Id = "1c8e9c9b-8fce-4c26-826d-8f839ea83b72",
+                            ConcurrencyStamp = "17f15f96-c266-46ae-b117-1d83e3747d77",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "81c9cf29-9af7-4aa7-8a6d-7762e0bababf",
-                            ConcurrencyStamp = "940f1659-f4ee-4a29-a627-0173377381a4",
+                            Id = "10b5f22c-61ba-403e-9963-1c3088586b94",
+                            ConcurrencyStamp = "2f8a0fa5-ee8d-4e70-8283-15d03ed08c07",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

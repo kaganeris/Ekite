@@ -55,12 +55,13 @@ function Navbar() {
                         <li className="nav-item">
                             <div className="nav-link pr-0" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div className="media align-items-center">
+                                    <div className="media-body ml-2 d-none d-lg-block">
+                                        <a className="mb-0 text-sm font-weight-bold mr-2">{profileData?.fullName}</a>
+                                    </div>
                                     <span className="avatar avatar-sm rounded-circle">
                                         <img alt="Image placeholder" src={profileData?.imagePath} />
                                     </span>
-                                    <div className="media-body ml-2 d-none d-lg-block">
-                                        <a className="mb-0 text-sm font-weight-bold">{profileData?.fullName}</a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div className="dropdown-menu dropdown-menu-right">
