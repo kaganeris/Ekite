@@ -1,6 +1,6 @@
 import React, { useContext, useState, useTransition } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
-
+import Swal from "sweetalert2";
 function EditProfileComponent({ profileData, employeeId }) {
     const [phoneNumber, setPhoneNumber] = useState(profileData.phoneNumber);
     const [city, setCity] = useState(profileData.city);
@@ -10,6 +10,7 @@ function EditProfileComponent({ profileData, employeeId }) {
     );
     const { putPersonelData } = useContext(ProfileContext)
     const [uploadPath, setUploadPath] = useState(profileData.uploadPath);
+
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -29,15 +30,19 @@ function EditProfileComponent({ profileData, employeeId }) {
         formData.append('imagePath', null);
         await putPersonelData(employeeId, formData)
 
+        //Swal.fire({
+        //    position: "top-end",
+        //    icon: "success",
+        //    title: "Güncelleme başarılı",
+        //    showConfirmButton: false,
+        //    timer: 1500
+        //});
+
     }
-
-
-
-
 
     console.log(profileData);
     return (
-        <div className="card">
+        <div className="card m-4">
             <div className="card-header">
                 <div className="row align-items-center">
                     <div className="col-8">

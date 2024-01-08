@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-
+import Swal from "sweetalert2"
 const LoginForm = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -15,10 +15,21 @@ const LoginForm = () => {
         console.log(password);
         try {
             await login(email, password)
+            //Swal.fire({
+            //    position: "top-end",
+            //    icon: "success",
+            //    title: "Giriş başarılı",
+            //    showConfirmButton: false,
+            //    timer: 1500
+            //});
+           
         } catch (error) {
+          
             alert("login failed")
         }
     }
+
+    
 
 
     return (

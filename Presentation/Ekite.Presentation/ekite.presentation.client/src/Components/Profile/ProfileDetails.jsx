@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
 import { AuthContext } from "../../context/AuthContext";
 
+
 const ProfileDetails = ({ profileData }) => {
     const { loading } = useContext(ProfileContext);
 
 
     if (loading) {
-        return <div>Yükleniyor</div>;
+        return (<div>Yükleniyor</div>);
     }
 
     return (
@@ -70,13 +71,13 @@ const ProfileDetails = ({ profileData }) => {
                             </div>
                         </div>
                     </div>
-                    <hr className="my-4" />
+                    <hr className="my-2" />
 
                     <h6 className="heading-small text-muted mb-4">İletişim Bilgileri</h6>
-                    <div className="pl-lg-4">
+                    <div className="pl-lg-3">
 
                         <div className="row">
-                            <div className="col-lg-4">
+                            <div className="col-lg-6">
                                 <div className="form-group">
                                     <label className="form-control-label" htmlFor="input-city">
                                         Telefon Numarası
@@ -86,7 +87,8 @@ const ProfileDetails = ({ profileData }) => {
                                     </label>
                                 </div>
                             </div>
-                            <div className="col-lg-4">
+
+                            <div className="col-lg-6">
                                 <div className="form-group">
                                     <label className="form-control-label" htmlFor="input-email">
                                         E-mail
@@ -96,6 +98,7 @@ const ProfileDetails = ({ profileData }) => {
                                     </label>
                                 </div>
                             </div>
+                            <div className="col-lg-12"> 
                             <div className="form-group">
                                 <label className="form-control-label" htmlFor="input-address">
                                     Adres
@@ -103,8 +106,9 @@ const ProfileDetails = ({ profileData }) => {
                                 <label className="form-control" placeholder="Home Address">
                                     {profileData.address}
                                 </label>
+                                </div>
                             </div>
-                        </div>
+                        </div>              
                     </div>
                 </form>
             </div>

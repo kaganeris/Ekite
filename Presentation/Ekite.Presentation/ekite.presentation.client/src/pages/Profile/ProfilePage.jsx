@@ -35,12 +35,12 @@ function ProfilePage() {
         <>{profileData ? <div className="main-content" id="panel">
 
             <div
-                className="header pb-6 d-flex align-items-center"
+                className="header pb-6 d-flex align-items-center "
                 style={{
-                    minHeight: "400px",
+                    minHeight: "350px",
                     backgroundImage: "url(https://ekitedepo.blob.core.windows.net/yeni/profile-cover.jpg)",
                     backgroundSize: "cover",
-                    backgroundPosition: "50% 30%",
+                    backgroundPosition: "50% 30%"
                 }}
             >
                 <ProfileHeader profileData={profileData} />
@@ -48,18 +48,15 @@ function ProfilePage() {
 
             <div className="container-fluid mt--6 ">
                 <div className="row " >
-
                     <div className="col-xl-4 order-xl-1" >
                         <div className="card card-profile  " >
                             <ProfileCard profileData={profileData} />
                         </div>
                     </div>
-
                     <div className="col-xl-8 order-xl-2">
 
                         <ProfileDetails profileData={profileData} />
                     </div>
-
                 </div>
             </div>
         </div> : <span>Yükleniyor</span>}

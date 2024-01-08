@@ -29,13 +29,11 @@ function EditProfilePage() {
 
   return (
     <>
-    {profileData && <div className="main-content">
-        <div className="container mt-5  ">
-          <div className="row ">
-            <div className="col ">
+    {profileData && <div className="main-content" id="panel">
+              <div className="col-xl-12 order-xl-2  ">
+          
               <EditProfileComponent profileData={profileData}  employeeId ={employeeId}/>
-            </div>
-          </div>
+            
         </div>
       </div>}
 
