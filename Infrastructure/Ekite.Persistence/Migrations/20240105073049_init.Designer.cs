@@ -4,6 +4,7 @@ using Ekite.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240105073049_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,14 +134,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 127, DateTimeKind.Local).AddTicks(3651),
+                            CreatedDate = new DateTime(2024, 1, 5, 10, 30, 48, 784, DateTimeKind.Local).AddTicks(6072),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 127, DateTimeKind.Local).AddTicks(3662),
+                            CreatedDate = new DateTime(2024, 1, 5, 10, 30, 48, 784, DateTimeKind.Local).AddTicks(6082),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -178,14 +180,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 127, DateTimeKind.Local).AddTicks(4777),
+                            CreatedDate = new DateTime(2024, 1, 5, 10, 30, 48, 784, DateTimeKind.Local).AddTicks(6973),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 127, DateTimeKind.Local).AddTicks(4781),
+                            CreatedDate = new DateTime(2024, 1, 5, 10, 30, 48, 784, DateTimeKind.Local).AddTicks(6977),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -336,14 +338,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 128, DateTimeKind.Local).AddTicks(2191),
+                            CreatedDate = new DateTime(2024, 1, 5, 10, 30, 48, 785, DateTimeKind.Local).AddTicks(4536),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 128, DateTimeKind.Local).AddTicks(2197),
+                            CreatedDate = new DateTime(2024, 1, 5, 10, 30, 48, 785, DateTimeKind.Local).AddTicks(4541),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
@@ -360,23 +362,17 @@ namespace Ekite.Persistence.Migrations
                     b.Property<int>("ApprovalStatus")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ApprovedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("LeaveEndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("LeaveStartDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("LeaveType")
                         .HasColumnType("int");
@@ -423,15 +419,15 @@ namespace Ekite.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "466005d4-d600-4786-b4cc-b24debca420f",
-                            ConcurrencyStamp = "b743de5f-5c0c-47e7-b259-d59d54620d90",
+                            Id = "8f6c2927-0eaf-4774-91c0-766150c843c4",
+                            ConcurrencyStamp = "ced3e7f0-1843-417f-8086-5c9ef5b951d0",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "95cf6178-f664-4ce9-bf54-5c6c97fae91f",
-                            ConcurrencyStamp = "04d307eb-69ff-45a5-ba9f-4950e30b34ab",
+                            Id = "0e16e48a-c76c-4202-b763-f244e75f4b8e",
+                            ConcurrencyStamp = "aa329eaf-4ba6-4045-92e1-433a12b12c2b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

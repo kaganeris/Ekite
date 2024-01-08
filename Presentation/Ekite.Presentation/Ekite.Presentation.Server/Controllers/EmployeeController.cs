@@ -57,7 +57,8 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpGet("[action]")]
-		public async Task<IActionResult> GetUpdatePersonel(int id)
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> GetUpdatePersonel(int id)
 		{
 			UpdateEmployeeDto updateEmployee = await _employeeService.GetUpdateEmployee(id);
 
@@ -75,7 +76,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpPut("[action]")]
-        //[Authorize(Roles = "Admin,Employee")]
+        [Authorize(Roles = "Admin,Employee")]
 
         public async Task<IActionResult> PutUpdatePersonel(int id, [FromForm]UpdateEmployeeDto employeeDto)
 		{

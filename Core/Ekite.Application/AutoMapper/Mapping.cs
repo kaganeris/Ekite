@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Ekite.Application.DTOs.EmployeeDto;
+using Ekite.Application.DTOs.LeaveDto;
 using Ekite.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Ekite.Application.AutoMapper
         public Mapping()
         {
             CreateMap<UpdateEmployeeDto, Employee>().ReverseMap();
+            CreateMap<Leave, CreateLeaveDTO>().ReverseMap();
+            CreateMap<Leave, UpdateLeaveDTO>().ReverseMap();
         }
     }
 }
