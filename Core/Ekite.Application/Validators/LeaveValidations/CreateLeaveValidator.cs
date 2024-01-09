@@ -12,8 +12,9 @@ namespace Ekite.Application.Validators.LeaveValidations
     {
         public CreateLeaveValidator()
         {
-            RuleFor(x => x.LeaveType).NotEmpty().WithMessage("İzin türü boş geçilemez");
-            // TODO DOLDURULACAK
+            RuleFor(x => x.LeaveType).NotNull().WithMessage("İzin türü boş geçilemez");
+            RuleFor(x => x.LeaveStartDate).NotNull().WithMessage("İzin başlangıç tarihi boş geçilemez");
+            RuleFor(x => x.LeaveEndDate).NotNull().WithMessage("İzin bitiş tarihi boş geçilemez");
         }
     }
 }

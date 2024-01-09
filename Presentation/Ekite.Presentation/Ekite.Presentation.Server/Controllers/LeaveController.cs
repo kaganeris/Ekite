@@ -78,6 +78,7 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpGet]
         [Route("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> GetUpdateLeaveById(int id)
         {
             UpdateLeaveDTO updateLeaveDto = await leaveService.GetLeaveById(id);
@@ -93,6 +94,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpGet("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> GetLeaveTypes()
         {
             var enums = Enum.GetValues<LeaveType>();
@@ -114,6 +116,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Update([FromForm]UpdateLeaveDTO updateLeaveDTO)
         {
             UpdateLeaveValidator validationRules = new UpdateLeaveValidator();
