@@ -1,14 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { LeaveContext } from "../../context/LeaveContext";
 import { AuthContext } from "../../context/AuthContext";
-
+import Swal from "sweetalert2"
 const CreateLeave = ({ leaveTypes }) => {
   const [leaveStartDate, setLeaveStartDate] = useState("");
   const [leaveEndDate, setLeaveEndDate] = useState("");
   const [leaveType, setLeaveType] = useState(1);
   const { createLeave } = useContext(LeaveContext);
-  const {employeeId} = useContext(AuthContext)
-
+    const { employeeId } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const [error, setError] = useState("");
+ 
   const handleAddleave = async (e) => {
     e.preventDefault()
     if (leaveEndDate && leaveStartDate && leaveType) {
@@ -24,11 +28,29 @@ const CreateLeave = ({ leaveTypes }) => {
         formData.append('leaveEndDate', leaveEndDate);
         formData.append('employeeId', employeeId);
         console.log(leaveData);
+
         let data = await createLeave(formData);
-        console.log(data);
-      }
+        console.log("data",data)
+
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "İzin Talebi Oluşturuldu",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        setTimeout(() => {
+
+           navigate("/leaves")
+        }, 2000)
+     
+    }
       else{
-        console.log("hata");
+        Swal.fire({
+            icon: "error",
+            title: "İzin Talebi Başarısız",
+            text: "Tüm Bilgileri Eksiksiz Doldurun",
+        });
       }
     }
 
