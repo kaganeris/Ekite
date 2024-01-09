@@ -96,7 +96,7 @@ namespace Ekite.Presentation.Server.Controllers
                 _configuration["JwtSettings:validIssuer"],
                 _configuration["JwtSettings:validAudience"],
                 authClaims,
-                expires: DateTime.Now.AddMinutes(10),
+                expires: DateTime.Now.AddMinutes(20),
                 signingCredentials: signIn
                 
                 );

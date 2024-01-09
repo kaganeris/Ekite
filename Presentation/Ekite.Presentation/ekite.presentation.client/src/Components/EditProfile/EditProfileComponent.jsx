@@ -1,4 +1,5 @@
 import React, { useContext, useState, useTransition } from "react";
+import { useNavigate } from "react-router-dom";
 import { ProfileContext } from "../../context/ProfileContext";
 import Swal from "sweetalert2";
 function EditProfileComponent({ profileData, employeeId }) {
@@ -10,37 +11,76 @@ function EditProfileComponent({ profileData, employeeId }) {
     );
     const { putPersonelData } = useContext(ProfileContext)
     const [uploadPath, setUploadPath] = useState(profileData.uploadPath);
+    const navigate = useNavigate();
 
+    const [formErrors, setFormErrors] = useState({
+        phoneNumber: "",
+        city: "",
+        district: "",
+        addressDetail: "",
+        uploadPath: "",
+    });
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
+
+        const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+
+        if (file && !allowedFileTypes.includes(file.type)) {
+            setFormErrors((prevErrors) => ({
+                ...prevErrors,
+                uploadPath: "Lütfen geçerli bir resim dosyası seçin (jpg, jpeg veya png).",
+            }));
+            setUploadPath(null); 
+        } else {
+            setFormErrors((prevErrors) => ({
+                ...prevErrors,
+                uploadPath: "",
+            }));
+            setUploadPath(file);
+        }
         console.log(event.target.files[0]);
-        setUploadPath(file);
+      
     };
 
     const handleUpdate = async (e) => {
         console.log("handleupdate çalıştı")
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('phoneNumber', phoneNumber);
-        formData.append('city', city);
-        formData.append('district', district);
-        formData.append('addressDetail', addressDetail);
-        formData.append('uploadPath', uploadPath);
-        formData.append('imagePath', null);
-        await putPersonelData(employeeId, formData)
 
-        //Swal.fire({
-        //    position: "top-end",
-        //    icon: "success",
-        //    title: "Güncelleme başarılı",
-        //    showConfirmButton: false,
-        //    timer: 1500
-        //});
+        try {
+            const formData = new FormData();
+            formData.append('phoneNumber', phoneNumber);
+            formData.append('city', city);
+            formData.append('district', district);
+            formData.append('addressDetail', addressDetail);
+            formData.append('uploadPath', uploadPath);
+            formData.append('imagePath', null);
 
+            await putPersonelData(employeeId, formData)
+
+
+
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Güncelleme başarılı",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate("/");
+
+        } catch (error) {
+            console.log("swal error", error);
+            Swal.fire({
+                icon: "error",
+                title: "Bilgilerinizi Kontrol Edin",
+                text: error,
+            });
+        }
     }
 
     console.log(profileData);
+
     return (
         <div className="card m-4">
             <div className="card-header">
@@ -69,7 +109,12 @@ function EditProfileComponent({ profileData, employeeId }) {
                                         className="form-control"
                                         placeholder="Username"
                                         onChange={handleFileChange}
+                                        accept=", .jpg,.jpeg, .png"
+                                        required
                                     />
+                                    {formErrors.uploadPath && (
+                                        <span style={{ color: "red" }}>{formErrors.uploadPath}</span>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -87,9 +132,9 @@ function EditProfileComponent({ profileData, employeeId }) {
                                         type="text"
                                         id="input-first-name"
                                         className="form-control"
-                                        placeholder="First name"
+                                        placeholder="Telefon Numarası"
                                         onChange={(e) => setPhoneNumber(e.target.value)}
-
+                                        required
                                     />
                                 </div>
                             </div>
@@ -110,9 +155,9 @@ function EditProfileComponent({ profileData, employeeId }) {
                                         type="text"
                                         id="input-city"
                                         className="form-control"
-                                        placeholder="City"
+                                        placeholder="Şehir"
                                         onChange={(e) => setCity(e.target.value)}
-
+                                        required
                                     />
                                 </div>
                             </div>
@@ -126,9 +171,9 @@ function EditProfileComponent({ profileData, employeeId }) {
                                         type="text"
                                         id="input-country"
                                         className="form-control"
-                                        placeholder="Country"
+                                        placeholder="İlçe"
                                         onChange={(e) => setDistrict(e.target.value)}
-
+                                        required
                                     />
                                 </div>
                             </div>
@@ -143,9 +188,10 @@ function EditProfileComponent({ profileData, employeeId }) {
                                         value={addressDetail}
                                         id="input-address"
                                         className="form-control"
-                                        placeholder="Home Address"
+                                        placeholder="Mahalle-Cadde-Sokak"
                                         type="text"
                                         onChange={(e) => setAddressDetail(e.target.value)}
+                                        required
                                     />
                                 </div>
                             </div>
