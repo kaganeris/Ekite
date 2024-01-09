@@ -48,7 +48,7 @@ function App() {
                                     />
 
                                     <Route
-                                        path="/leave"
+                                        path="/leaves"
                                         element={<PrivateRoute element={<LeaveListPage />} />}
                                     />
                                     <Route
