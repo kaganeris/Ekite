@@ -31,7 +31,8 @@ const ProfileService = {
             Authorization: "Bearer " + token.replace(/"/g, ""),
           },
         }
-      );
+        );
+        console.log(response);
       return response.data;
     } catch (error) {
       console.error("Profil verisi çekilirken bir hata oluştu", error.message);

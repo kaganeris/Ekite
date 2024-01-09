@@ -1,81 +1,147 @@
 ﻿
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { ProfileContext } from "../../context/ProfileContext";
 import { AuthContext } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
-function Navbar() {
-    const {fetchData} = useContext(ProfileContext)
-    const { employeeId, setEmployeeId, setIsAuthenticated,logout } =
-    useContext(AuthContext);
+function Navbar({ isSidebarOpen, setSidebarOpen }) {
+    const { fetchData } = useContext(ProfileContext)
+    const { employeeId, setEmployeeId, setIsAuthenticated, logout } =
+        useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
+   
 
+    const toggleSidebar = () => {
+        if (isSidebarOpen) {
+            setSidebarOpen(false);
+        }
+        else {
+            setSidebarOpen(true);
+        }
+    };
 
     const handleLogout = () => {
+        Swal.fire({
+            title: "Çıkış işlemi başarılı",
+            text: "İyi günler dileriz...",
+            imageUrl: "https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png",
+            imageWidth: 400,
+            imageHeight:200,
+            imageAlt:"logo",       
+            showConfirmButton: false,
+            timer: 2000
+        });
+        setTimeout(() => {
+
         logout()
+        },2000)
+
     }
 
+    useEffect(() => {
+        if (employeeId !== 0) {
+            (async () => {
+                try {
+                    let data = await fetchData(employeeId);
+                    setProfileData(data);
 
-  useEffect(() => {
-    if (employeeId !== 0) {
-      (async () => {
-        try {
-          let data = await fetchData(employeeId);
-          setProfileData(data);
-        
-        } catch (error) {}
-      })();
-    } else {
-      const storedEmployeeId = localStorage.getItem("employeeId");
-      if (storedEmployeeId) {
-        setEmployeeId(parseInt(storedEmployeeId));
-        setIsAuthenticated(true);
-      }
-    }
-  }, [employeeId]);
+                } catch (error) { }
+            })();
+        } else {
+            const storedEmployeeId = localStorage.getItem("employeeId");
+            if (storedEmployeeId) {
+                setEmployeeId(parseInt(storedEmployeeId));
+                setIsAuthenticated(true);
+            }
+        }
+    }, [employeeId]);
 
 
     return (
-        <nav className="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
-            <div className="container-fluid">
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            < div
+                className="main-content"
+                style={{
+                    marginLeft: isSidebarOpen ? "250px" : "0",
+                    
+                }}
+            >
+                <nav className="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+                    <div className="container-fluid">
+                        <div
+                            className="collapse navbar-collapse"
+                            id="navbarSupportedContent"
+                        >
+                            <ul className="navbar-nav align-items right">
+                                {!isSidebarOpen && (
+                                    <li className="nav-item  ">
 
-                    <ul className="navbar-nav align-items-center ml-md-auto">
-                        <li className="nav-item d-xl-none">
-                            <div className="pr-3 sidenav-toggler sidenav-toggler-dark active" data-action="sidenav-pin" data-target="/sidenav-main">
-                                <div className="sidenav-toggler-inner">
-                                    <i className="sidenav-toggler-line"></i>
-                                    <i className="sidenav-toggler-line"></i>
-                                    <i className="sidenav-toggler-line"></i>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                                        <a href="/" className="d-flex justify-content-center  align-items-center" >
+                                            <img src="https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png" className="" style={{ width: "40px", height:"auto" }} />
+                                        </a>                                
+                                    </li>                                  
+                                )}
+                            </ul>
 
-                    <ul className="navbar-nav align-items-center ml-auto ml-md-0 " style={{ cursor: "pointer" }}>
-                        <li className="nav-item">
-                            <div className="nav-link pr-0" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div className="media align-items-center">
-                                    <span className="avatar avatar-sm rounded-circle">
-                                        <img alt="Image placeholder" src={profileData?.imagePath} />
-                                    </span>
-                                    <div className="media-body ml-2 d-none d-lg-block">
-                                        <a className="mb-0 text-sm font-weight-bold">{profileData?.fullName}</a>
+                            <ul className="navbar-nav align-items-center ml-md-auto">
+                                <li className="nav-item d-xl">
+                                    <div
+                                        className="pr-3 sidenav-toggler sidenav-toggler-dark"
+                                    >
+                                        <div
+                                            className="sidenav-toggler-inner "
+                                            href="#sidebar"
+                                            data-bs-toggle="offcanvas"
+
+                                            role="button"
+                                            aria-controls="sidebar"
+                                            onClick={toggleSidebar}
+                                        >
+                                            {!isSidebarOpen ? <>  <i className="sidenav-toggler-line"></i>
+                                                <i className="sidenav-toggler-line"></i>
+                                                <i className="sidenav-toggler-line"></i> </> : <><i className="fa fa-x" style={{ color: "#ffffff" }} ></i></>}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="dropdown-menu dropdown-menu-right">
-                                <div className="dropdown-divider" ></div>
-                                <a onClick={handleLogout} className="dropdown-item">
-                                    <i className="ni ni-button-power"></i>
-                                    <span>Logout</span>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                                </li>
+                            </ul>
+                            <ul className="navbar-nav align-items-center ml-auto ml-md-0">
+
+                                <li className="nav-item dropdown">
+                                    <a
+                                        className="nav-link pr-0"
+                                        href="#"
+                                        role="button"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                        <div className="media align-items-center">
+                                            <div className="media-body ml-2 d-none d-lg-block mr-2">
+                                                <span className="mb-0 text-sm font-weight-bold">
+                                                    {profileData?.fullName}
+                                                </span>
+                                            </div>
+                                            <span className="avatar avatar-sm rounded-circle">
+                                                <img
+                                                    alt="Image placeholder"
+                                                    src={profileData?.imagePath}
+                                                />
+                                            </span>
+                                        </div>
+                                    </a>
+                                    <div className="dropdown-menu dropdown-menu-right">
+                                        <div className="dropdown-divider"></div>
+                                        <a onClick={handleLogout} className="dropdown-item">
+                                            <i className="ni ni-user-run"></i>
+                                            <span>Logout</span>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div >   
     );
 }
-
 export default Navbar;

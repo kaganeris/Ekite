@@ -20,60 +20,61 @@ import AddLeavePage from "./pages/AddLeave/AddLeavePage";
 import UpdateLeavePage from "./pages/UpdateLeave/UpdateLeavePage";
 
 function App() {
-  const { isAuthenticated, setIsAuthenticated, employeeId } =
-    useContext(AuthContext);
-  
-  return (
-    <div>
-      <ProfileProvider>
-        {localStorage.getItem("user") ? (
-          <>
-            <LeaveProvider>
-              <BrowserRouter>
-                <Navbar />
-                <Sidebar />
-                <Routes>
-                  <Route
-                    path="/"
-                    element={<PrivateRoute element={<ProfilePage />} />}
-                  />
-                  <Route
-                    path="/profilesum"
-                    element={<PrivateRoute element={<ProfileSumPage />} />}
-                  />
-                  <Route
-                    path="/editprofile"
-                    element={<PrivateRoute element={<EditProfilePage />} />}
-                  />
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const { isAuthenticated, setIsAuthenticated, employeeId } =
+        useContext(AuthContext);
 
-                  <Route
-                    path="/leave"
-                    element={<PrivateRoute element={<LeaveListPage />} />}
-                  />
-                   <Route
-                    path="/addLeave"
-                    element={<PrivateRoute element={<AddLeavePage />} />}
-                  />
-                   <Route
-                    path="/updateLeave"
-                    element={<PrivateRoute element={<UpdateLeavePage />} />}
-                  />
-                </Routes>
-                <Footer />
-              </BrowserRouter>
-            </LeaveProvider>
-          </>
-        ) : (
-          <LoginPage />
-        )}
-      </ProfileProvider>
-    </div>
-  );
+    return (
+        <div>
+            <ProfileProvider>
+                {localStorage.getItem("user") ? (
+                    <>
+                        <LeaveProvider>
+                            <BrowserRouter>
+                                <Navbar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
+                                {isSidebarOpen && <Sidebar />}
+                                <Routes>
+                                    <Route
+                                        path="/"
+                                        element={<PrivateRoute element={<ProfilePage />} />}
+                                    />
+                                    <Route
+                                        path="/profilesum"
+                                        element={<PrivateRoute element={<ProfileSumPage />} />}
+                                    />
+                                    <Route
+                                        path="/editprofile"
+                                        element={<PrivateRoute element={<EditProfilePage />} />}
+                                    />
 
-  //async function populateWeatherData() {
-  //    const response = await fetch("weatherforecast");
-  //    const data = await response.json();
-  //}
+                                    <Route
+                                        path="/leaves"
+                                        element={<PrivateRoute element={<LeaveListPage />} />}
+                                    />
+                                    <Route
+                                        path="/addLeave"
+                                        element={<PrivateRoute element={<AddLeavePage />} />}
+                                    />
+                                    <Route
+                                        path="/updateLeave"
+                                        element={<PrivateRoute element={<UpdateLeavePage />} />}
+                                    />
+                                </Routes>
+                                <Footer />
+                            </BrowserRouter>
+                        </LeaveProvider>
+                    </>
+                ) : (
+                    <LoginPage />
+                )}
+            </ProfileProvider>
+        </div>
+    );
+
+    //async function populateWeatherData() {
+    //    const response = await fetch("weatherforecast");
+    //    const data = await response.json();
+    //}
 }
 
 export default App;
