@@ -51,7 +51,7 @@ const Sidebar = () => {
                                     <div className="container  ">
                                         <div className="row ">
                                             <div className="col  ">
-                                                <Link className="dropdown-item " to={"/izingiris"}>
+                                                <Link className="dropdown-item " to={"/addLeave"}>
                                                     <div className="dropdown-content ">
                                                         <i className="fa fa-pencil text-red mr-2" ></i>
                                                         <span>İzin Girişi</span>
@@ -59,7 +59,7 @@ const Sidebar = () => {
                                                 </Link>
                                             </div>
                                             <div className="col">
-                                                <Link className="dropdown-item" to={"/izinlisele"}>
+                                                <Link className="dropdown-item" to={"/leaves"}>
                                                     <div className="dropdown-content ">
                                                         <i className="fa fa-list mr-2 text-red" ></i>
                                                         <span>İzin Listele</span>

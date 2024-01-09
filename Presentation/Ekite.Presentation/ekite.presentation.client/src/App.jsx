@@ -14,38 +14,58 @@ import PrivateRoute from "./services/PrivateRoute";
 import { ProfileProvider } from "./context/ProfileContext";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import ProfileSumPage from "./Pages/Profile/ProfileSumPage";
+import LeaveListPage from "./pages/LeaveList/LeaveListPage";
+import { LeaveProvider } from "./context/LeaveContext";
+import AddLeavePage from "./pages/AddLeave/AddLeavePage";
+import UpdateLeavePage from "./pages/UpdateLeave/UpdateLeavePage";
 
 function App() {
-    const { isAuthenticated, setIsAuthenticated, employeeId } = useContext(AuthContext);
-
     const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const { isAuthenticated, setIsAuthenticated, employeeId } =
+        useContext(AuthContext);
 
     return (
         <div>
             <ProfileProvider>
                 {localStorage.getItem("user") ? (
                     <>
-                        <BrowserRouter>
-                            <Navbar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
-                            {isSidebarOpen && <Sidebar />}
-                            <Routes>
-                                <Route
-                                    path="/"
-                                    element={<PrivateRoute element={<ProfilePage />} />}
-                                />
-                                <Route
-                                    path="/profilesum"
-                                    element={<PrivateRoute element={<ProfileSumPage />} />} />
-                                <Route
-                                    path="/editprofile"
-                                    element={<PrivateRoute element={< EditProfilePage />} />} />
+                        <LeaveProvider>
+                            <BrowserRouter>
+                                <Navbar isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
+                                {isSidebarOpen && <Sidebar />}
+                                <Routes>
+                                    <Route
+                                        path="/"
+                                        element={<PrivateRoute element={<ProfilePage />} />}
+                                    />
+                                    <Route
+                                        path="/profilesum"
+                                        element={<PrivateRoute element={<ProfileSumPage />} />}
+                                    />
+                                    <Route
+                                        path="/editprofile"
+                                        element={<PrivateRoute element={<EditProfilePage />} />}
+                                    />
 
-                            </Routes>
-                            {/*<Footer />*/}
-                        </BrowserRouter>
+                                    <Route
+                                        path="/leaves"
+                                        element={<PrivateRoute element={<LeaveListPage />} />}
+                                    />
+                                    <Route
+                                        path="/addLeave"
+                                        element={<PrivateRoute element={<AddLeavePage />} />}
+                                    />
+                                    <Route
+                                        path="/updateLeave"
+                                        element={<PrivateRoute element={<UpdateLeavePage />} />}
+                                    />
+                                </Routes>
+                                <Footer />
+                            </BrowserRouter>
+                        </LeaveProvider>
                     </>
-                ) : (                    
-                    <LoginPage/>
+                ) : (
+                    <LoginPage />
                 )}
             </ProfileProvider>
         </div>

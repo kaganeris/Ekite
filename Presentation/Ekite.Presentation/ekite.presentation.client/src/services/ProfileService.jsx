@@ -1,5 +1,6 @@
 import axios from "axios";
-
+//https://localhost:7152
+//https://ekite.azurewebsites.net
 const ProfileService = {
   getDetailPersonelById: async (id) => {
     try {
