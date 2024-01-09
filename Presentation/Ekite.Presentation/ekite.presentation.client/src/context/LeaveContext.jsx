@@ -1,64 +1,128 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import LeaveService from "../services/LeaveService";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./AuthContext";
 
 const LeaveContext = createContext();
 
 const LeaveProvider = ({ children }) => {
-  const [updateLeaveId,setUpdateLeaveId] = useState(0)
+  const [updateLeaveId, setUpdateLeaveId] = useState(0);
+  const { setIsAuthenticated, setToken, token } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const getLeave = async (leaveId) => {
     try {
-      const data = await LeaveService.getLeaveById(leaveId)
-      return data
-    } catch (error) {
-      
-    }
-  }
-
+      const data = await LeaveService.getLeaveById(leaveId);
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        console.log("data.status else çalıştı");
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {}
+  };
 
   const LeaveDatas = async (employeeId) => {
     try {
       const data = await LeaveService.getLeaveListByEmployeeId(employeeId);
-      console.log(data);
-      return data;
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        console.log("data.status else çalıştı");
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {}
   };
 
   const getLeaveTypes = async () => {
     try {
       const data = await LeaveService.getLeaveTypes();
-      return data;
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        console.log("data.status else çalıştı");
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {}
   };
 
   const createLeave = async (leaveData) => {
     try {
       const data = await LeaveService.postLeave(leaveData);
-      console.log(leaveData);
-      return data;
+      console.log(data);
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        console.log("data.status else çalıştı");
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {}
   };
 
   const deleteLeave = async (id) => {
     try {
-        const data = await LeaveService.deleteLeaveByData(id)
-        return data;
-    } catch (error) {
-        
-    }
-  }
+      const data = await LeaveService.deleteLeaveByData(id);
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        console.log("data.status else çalıştı");
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {}
+  };
 
   const updateLeave = async (updateData) => {
     try {
       const data = await LeaveService.updateLeaveByData(updateData);
-      return data;
+      console.log(data);
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        console.log("data.status else çalıştı");
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   return (
-    <LeaveContext.Provider value={{ LeaveDatas, getLeaveTypes, createLeave,deleteLeave,updateLeaveId,setUpdateLeaveId,getLeave,updateLeave }}>
+    <LeaveContext.Provider
+      value={{
+        LeaveDatas,
+        getLeaveTypes,
+        createLeave,
+        deleteLeave,
+        updateLeaveId,
+        setUpdateLeaveId,
+        getLeave,
+        updateLeave,
+      }}
+    >
       {children}
     </LeaveContext.Provider>
   );

@@ -25,7 +25,6 @@ const LeaveListPage = () => {
       const storedEmployeeId = localStorage.getItem("employeeId");
       if (storedEmployeeId) {
         setEmployeeId(parseInt(storedEmployeeId));
-        setIsAuthenticated(true);
       }
     }
   }, [employeeId]);

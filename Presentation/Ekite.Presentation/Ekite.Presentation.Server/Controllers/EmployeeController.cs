@@ -23,7 +23,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
 		[HttpGet("[action]")]
-		//[Authorize(Roles ="Admin,Employee")]
+		[Authorize(Roles ="Admin,Employee")]
 		public async Task<IActionResult> GetSummaryPersonel(int id)
 		{
 			ResultSumEmployeeDto resultSum = await _employeeService.GetSumEmployee(id);

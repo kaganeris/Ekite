@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2"
+import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -9,6 +10,8 @@ const LoginForm = () => {
     const [emailError, setEmailError] = useState("");
 
     const { login, isAuthenticated } = useContext(AuthContext)
+
+    const navigate = useNavigate()
 
     const validatePassword = () => {
         if (!/(?=.*[a-z])/.test(password)) {
@@ -71,6 +74,10 @@ const LoginForm = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                setTimeout(() => {
+
+                    navigate("/home")
+                 }, 1500)
 
             } catch (error) {
                 Swal.fire(

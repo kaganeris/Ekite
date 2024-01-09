@@ -274,9 +274,11 @@ namespace Ekite.Persistence.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Day = table.Column<int>(type: "int", nullable: false),
                     ApprovalStatus = table.Column<int>(type: "int", nullable: false),
                     LeaveType = table.Column<int>(type: "int", nullable: false),
+                    ApprovedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LeaveStartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LeaveEndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -295,21 +297,12 @@ namespace Ekite.Persistence.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { "0e16e48a-c76c-4202-b763-f244e75f4b8e", "aa329eaf-4ba6-4045-92e1-433a12b12c2b", "Admin", "ADMIN" },
-                    { "8f6c2927-0eaf-4774-91c0-766150c843c4", "ced3e7f0-1843-417f-8086-5c9ef5b951d0", "Employee", "EMPLOYEE" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Companies",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 5, 10, 30, 48, 784, DateTimeKind.Local).AddTicks(6072), null, "EKİTE", 1, null },
-                    { 2, new DateTime(2024, 1, 5, 10, 30, 48, 784, DateTimeKind.Local).AddTicks(6082), null, "Bilge ADAM", 1, null }
+                    { 1, new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(8505), null, "EKİTE", 1, null },
+                    { 2, new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(8515), null, "Bilge ADAM", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -317,8 +310,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 5, 10, 30, 48, 784, DateTimeKind.Local).AddTicks(6973), null, "IK", 1, null },
-                    { 2, new DateTime(2024, 1, 5, 10, 30, 48, 784, DateTimeKind.Local).AddTicks(6977), null, "Bilgi işlem", 1, null }
+                    { 1, new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(9522), null, "IK", 1, null },
+                    { 2, new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(9527), null, "Bilgi işlem", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -326,8 +319,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 5, 10, 30, 48, 785, DateTimeKind.Local).AddTicks(4536), null, "Yazılım Geliştirici", 1, null },
-                    { 2, new DateTime(2024, 1, 5, 10, 30, 48, 785, DateTimeKind.Local).AddTicks(4541), null, "Proje Müdürü", 1, null }
+                    { 1, new DateTime(2024, 1, 9, 14, 13, 37, 483, DateTimeKind.Local).AddTicks(7326), null, "Yazılım Geliştirici", 1, null },
+                    { 2, new DateTime(2024, 1, 9, 14, 13, 37, 483, DateTimeKind.Local).AddTicks(7330), null, "Proje Müdürü", 1, null }
                 });
 
             migrationBuilder.CreateIndex(

@@ -7,8 +7,26 @@ export const AuthProvider = ({children}) => {
 
     const [isAuthenticated,setIsAuthenticated] = useState(false)
     const [employeeId,setEmployeeId] = useState(0)
+    const [token,setToken] = useState(localStorage.getItem("user"))
 
-    
+    // useEffect(() => {
+    //   console.log("auth useeffect çalıştı",token);
+    //   if(token){
+    //     setIsAuthenticated(true)
+    //   }
+    // },[token])
+
+    useEffect(() => {
+      console.log("auth useeffect çalıştı",token);
+      if(token){
+        setIsAuthenticated(true)
+      }
+      else{
+        setIsAuthenticated(false)
+      }
+    },[token])
+
+
       const login = async (email, password) => {
         try {
           const response = await AuthService.login(email, password);
@@ -25,12 +43,13 @@ export const AuthProvider = ({children}) => {
     const logout = () => {
         AuthService.logout()
         setIsAuthenticated(false)
+        setToken('');
     }
 
 
 
     return (
-        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated,employeeId,setEmployeeId,logout}}>
+        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated,employeeId,setEmployeeId,logout,token,setToken}}>
             {children}
         </AuthContext.Provider>
     )
