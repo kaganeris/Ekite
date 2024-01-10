@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ekite.Domain.Enums
 {
-    public enum Status
+    public enum AdvanceType
     {
-        [Display(Name = "Aktif")]
-        Active = 1,
-        [Display(Name = "Güncellendi")]
-        Modified,
-        [Display(Name = "Silindi")]
-        Passive
+        [Display(Name = "Bireysel")]
+        Individual = 1,
+        [Display(Name = "Kurumsal")]
+        Institutional = 2,
+      
     }
 }

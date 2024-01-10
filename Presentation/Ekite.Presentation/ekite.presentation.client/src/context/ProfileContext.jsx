@@ -10,7 +10,6 @@ const ProfileProvider = ({ children }) => {
 
     const fetchData = async (employeeId) => {
         try {
-
             const data = await ProfileService.getDetailPersonelById(employeeId);
 
             setLoading(false);
