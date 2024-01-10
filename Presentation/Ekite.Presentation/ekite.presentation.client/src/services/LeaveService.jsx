@@ -12,11 +12,11 @@ const LeaveService = {
           },
         }
       );
-      return response.data;
+      return response;
     } catch (error) {
       console.error("İzin bilgisi çekilirken bir hata oluştu", error.message);
 
-      throw error;
+      return error.response;
     }
   },
 
@@ -32,11 +32,11 @@ const LeaveService = {
         }
       );
       console.log(response.data);
-      return response.data;
+      return response;
     } catch (error) {
       console.error("İzin bilgisi çekilirken bir hata oluştu", error.message);
 
-      throw error;
+      return error.response;
     }
   },
 
@@ -51,11 +51,11 @@ const LeaveService = {
           },
         }
       );
-      return response.data;
+      return response;
     } catch (error) {
       console.error("İzin türleri çekilirken bir hata oluştu", error.message);
 
-      throw error;
+      return error.response;
     }
   },
 
@@ -72,10 +72,10 @@ const LeaveService = {
           },
         }
       );
-      return response.data;
+      return response;
     } catch (error) {
       console.error("İzin oluşturulurken bir hata oluştu", error.message);
-      throw error;
+      return error.response;
     }
   },
 
@@ -90,10 +90,10 @@ const LeaveService = {
           },
         }
       );
-      return response.data;
+      return response;
     } catch (error) {
         console.error("İzin silinirken bir hata oluştu", error.message);
-        throw error;
+        return error.response;
     }
   },
 
@@ -110,10 +110,10 @@ const LeaveService = {
           },
         }
       );
-      return response.data;
+      return response;
     } catch (error) {
       console.error("İzin güncellenirken bir hata oluştu", error.message);
-      throw error;
+      return erro.response;
     }
   }
 };

@@ -27,7 +27,18 @@ namespace Ekite.Persistence.Concrete.Repositories
 
         public async Task<T> GetById(int id)
         {
-            return await _table.FindAsync(id);
+
+            try
+            {
+                return await _table.FindAsync(id);
+
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+
         }
 
 

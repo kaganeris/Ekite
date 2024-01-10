@@ -8,7 +8,9 @@ const PrivateRoute = ({element}) => {
     const {isAuthenticated} = useContext(AuthContext)
 
 
-    return localStorage.getItem("user") ? element : <Navigate to="/login"/>
+
+    return isAuthenticated ? element : <Navigate to="/login"/>
+
 }
 
 export default PrivateRoute

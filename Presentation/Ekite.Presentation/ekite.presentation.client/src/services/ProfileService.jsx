@@ -4,20 +4,23 @@ import axios from "axios";
 const ProfileService = {
   getDetailPersonelById: async (id) => {
     try {
+      console.log("getdetailpersonelbyid çalıştı");
       const token = localStorage.getItem("user");
-      const response = await axios.get(
-        `https://localhost:7152/api/Employee/GetDetailPersonel?id=${id}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token.replace(/"/g, ""),
-          },
-        }
-      );
-      return response.data;
+      if(token){
+        const response = await axios.get(
+          `https://localhost:7152/api/Employee/GetDetailPersonel?id=${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token.replace(/"/g, ""),
+            },
+          }
+        );
+        return response;
+      }
     } catch (error) {
       console.error("Profil verisi çekilirken bir hata oluştu", error.message);
 
-      throw error;
+      return error.response;
     }
   },
 
@@ -33,11 +36,11 @@ const ProfileService = {
         }
         );
         console.log(response);
-      return response.data;
+      return response;
     } catch (error) {
       console.error("Profil verisi çekilirken bir hata oluştu", error.message);
 
-      throw error;
+      return error.response;
     }
   },
 
@@ -56,8 +59,10 @@ const ProfileService = {
         }
       );
 
-      return response.data;
-    } catch (error) {}
+      return response;
+    } catch (error) {
+      return error.response;
+    }
   },
 };
 
