@@ -108,7 +108,6 @@ namespace Ekite.Persistence.Concrete.Managers
                     string connectionString = "DefaultEndpointsProtocol=https;AccountName=ekitedepo;AccountKey=vSKMkCAXSsLU58GHf/rSoaSbK05OOnuQmh2kPKO8Go2kIh4a6WmYDnro27Cg24Fv9bNyYiRCpOGG+AStSG8pyA==;EndpointSuffix=core.windows.net";
                     string blobContainerName = "yeni";
 
-
                     BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, blobContainerName);
 
                     var uniqueName = Guid.NewGuid().ToString() + fileExtension;
@@ -122,7 +121,6 @@ namespace Ekite.Persistence.Concrete.Managers
                             ContentType = "image/bitmap"
                         }
                     }, cancellationToken: default);
-
 
                     entity.ImagePath = $"https://ekitedepo.blob.core.windows.net/yeni/{uniqueName}";
                 }

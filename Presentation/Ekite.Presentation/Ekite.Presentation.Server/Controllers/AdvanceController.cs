@@ -27,7 +27,6 @@ namespace Ekite.Presentation.Server.Controllers
         {
 
             List<ResultAdvanceDTO> results = await _advanceService.TGetAll(x => x.Status != Status.Passive && x.EmployeeId == employeeId);
-
             return Ok(results);
         }
 
@@ -146,12 +145,6 @@ namespace Ekite.Presentation.Server.Controllers
             return BadRequest("Avans silinirken hata oluştu.");
 
         }
-
-
-
-
-
-
 
     }
 }

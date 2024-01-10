@@ -13,7 +13,7 @@ const AdvanceProvider = ({ children }) => {
   const getAdvanceList = async (employeeId) => {
     try {
       const data = await AdvanceService.getAdvanceList(employeeId);
-      if (data.status === 200) {
+      if (data.status !== 401) {
         return data.data;
       } else {
         if (token === "") {
@@ -30,7 +30,7 @@ const AdvanceProvider = ({ children }) => {
   const getEnums = async () => {
     try {
       const data = await AdvanceService.getEnums();
-      if (data.status === 200) {
+      if (data.status !== 401) {
         return data.data;
       } else {
         if (token === "") {
@@ -47,7 +47,7 @@ const AdvanceProvider = ({ children }) => {
   const addAdvance = async (createData) => {
     try {
       const data = await AdvanceService.createAdvance(createData);
-      if (data.status === 200) {
+      if (data.status !== 401) {
         return data.data;
       } else {
         if (token === "") {
@@ -57,7 +57,6 @@ const AdvanceProvider = ({ children }) => {
         navigate("/login");
       }
     } catch (error) {
-        
       return error;
     }
   };
@@ -65,7 +64,7 @@ const AdvanceProvider = ({ children }) => {
   const getAdvanceById = async (id) => {
     try {
       const data = await AdvanceService.getAdvanceById(id);
-      if (data.status === 200) {
+      if (data.status !== 401) {
         return data.data;
       } else {
         if (token === "") {
@@ -82,7 +81,7 @@ const AdvanceProvider = ({ children }) => {
   const updateAdvance = async (id, updateData) => {
     try {
       const data = await AdvanceService.updateAdvance(id, updateData);
-      if (data.status === 200) {
+      if (data.status !== 401) {
         return data.data;
       } else {
         if (token === "") {
@@ -99,7 +98,7 @@ const AdvanceProvider = ({ children }) => {
   const deleteAdvance = async (id) => {
     try {
       const data = await AdvanceService.deleteAdvance(id);
-      if (data.status === 200) {
+      if (data.status !== 401) {
         return data.data;
       } else {
         if (token === "") {
