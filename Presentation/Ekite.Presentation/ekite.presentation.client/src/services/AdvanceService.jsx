@@ -13,9 +13,11 @@ const AdvanceService = {
         }
       );
       if (response !== null) {
-        return response.data;
+        return response;
       }
-    } catch (error) {}
+    } catch (error) {
+      return error.response
+    }
   },
 
   getEnums: async () => {
@@ -32,9 +34,10 @@ const AdvanceService = {
         }
       );
       if (response !== null) {
-        return response.data;
+        return response;
       }
-    } catch (error) {     
+    } catch (error) {   
+      return error.response  
     }
   },
 
@@ -48,10 +51,10 @@ const AdvanceService = {
           Authorization: "Bearer " + token.replace(/"/g, ""),
         }
       });
-      return response.data;
+      return response;
     } catch (error) {
       console.error("Avans oluşturulurken bir hata oluştu", error.message);
-      throw error;
+      return error.response;
     }
   },
 
@@ -65,11 +68,11 @@ const AdvanceService = {
       },
     });
 
-    return response.data;
+    return response;
 
    } catch (error) {
     console.error("Avans bilgileri getirilirken bir hata oluştu", error.message);
-    throw error;
+    return error.response;
     
    }
 
@@ -87,9 +90,10 @@ const AdvanceService = {
           Authorization: "Bearer " + token.replace(/"/g, ""),
         }
       });
-      return response.data;
+      return response;
 
-    } catch (error) {    
+    } catch (error) {   
+      return error.response 
     }
   },
 
@@ -105,7 +109,7 @@ const AdvanceService = {
         }
       });
     } catch (error) {
-      
+      return error.response
     }
 
 

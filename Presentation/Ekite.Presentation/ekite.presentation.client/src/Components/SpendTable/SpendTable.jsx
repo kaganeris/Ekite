@@ -118,9 +118,13 @@ const SpendTable = ({ spendList }) => {
                                         <span className="status">{spend.approvalStatus}</span>
                                     </span>
                                 </td>
+
+
                                 <td>{formatDate(spend.createdDate)}</td>
                                 <td>{formatDate(spend.updatedDate)}</td>
                                 {spend.approvalStatus === "Bekleniyor" ? (
+
+
                                     <td className="text-right">
                                         <a
                                             className="btn btn-outline-primary"
@@ -133,7 +137,9 @@ const SpendTable = ({ spendList }) => {
                                 ) : (
                                     <td></td>
                                 )}
-                                {spend.approvalStatus === "Bekleniyor" ? (
+
+                  {spend.approvalStatus === "Bekleniyor" ? (
+
                                     <td className="text-right">
                                         <a
                                             className="btn btn-outline-danger"
