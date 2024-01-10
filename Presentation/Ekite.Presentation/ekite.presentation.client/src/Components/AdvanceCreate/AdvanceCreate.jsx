@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState, useTransition } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { AdvanceContext } from "../../context/AdvanceContext";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"
 
 const AdvanceCreate = ({ enumsType }) => {
   const [advanceType, setAdvanceType] = useState(1);
@@ -21,22 +22,41 @@ const AdvanceCreate = ({ enumsType }) => {
   const handleAddCreate = async (e) => {
     e.preventDefault();
 
-    const formData = {
-      advanceType,
-      currency,
-      amount: parseInt(amount.replace(/\D/g, ""), 10),
-      description,
-      employeeId,
-    };
+      if (advanceType && currency && amount && description) {
+          const formData = {
+              advanceType,
+              currency,
+              amount: parseInt(amount.replace(/\D/g, ""), 10),
+              description,
+              employeeId,
+          };
 
-    console.log(formData.amount);
+          console.log(formData.amount);
 
-    const response = await addAdvance(formData);
+          const response = await addAdvance(formData);
+          console.log("response advance:", response);
 
-    // TODOO : TESTİNİ YAP NULL VEYA BOŞ STRİNG GELİRSE LİSTEYE DÖNECEK Mİ
-    if (response !== null || response !== "") {
-      navigate("/advanceList");
-    }
+          Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Avans Talebi Oluşturuldu",
+              showConfirmButton: false,
+              timer: 2000
+          });
+          setTimeout(() => {
+
+              navigate("/advanceList")
+          }, 2000)
+      }
+      else {
+          Swal.fire({
+              icon: "error",
+              title: "Avans Talebi Başarısız",
+              text: "Tüm Bilgileri Eksiksiz Doldurun",
+          });
+      }
+    
+    
   };
 
   return (

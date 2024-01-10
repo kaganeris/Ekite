@@ -4,6 +4,7 @@ using Ekite.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240110101530_add_approvedDate")]
+    partial class add_approvedDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,14 +184,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 11, 47, 56, 371, DateTimeKind.Local).AddTicks(4431),
+                            CreatedDate = new DateTime(2024, 1, 10, 13, 15, 29, 963, DateTimeKind.Local).AddTicks(3256),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 11, 47, 56, 371, DateTimeKind.Local).AddTicks(4442),
+                            CreatedDate = new DateTime(2024, 1, 10, 13, 15, 29, 963, DateTimeKind.Local).AddTicks(3268),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -228,14 +230,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 11, 47, 56, 371, DateTimeKind.Local).AddTicks(5350),
+                            CreatedDate = new DateTime(2024, 1, 10, 13, 15, 29, 963, DateTimeKind.Local).AddTicks(4605),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 11, 47, 56, 371, DateTimeKind.Local).AddTicks(5354),
+                            CreatedDate = new DateTime(2024, 1, 10, 13, 15, 29, 963, DateTimeKind.Local).AddTicks(4609),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -386,14 +388,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 11, 47, 56, 372, DateTimeKind.Local).AddTicks(2007),
+                            CreatedDate = new DateTime(2024, 1, 10, 13, 15, 29, 964, DateTimeKind.Local).AddTicks(3121),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 11, 47, 56, 372, DateTimeKind.Local).AddTicks(2013),
+                            CreatedDate = new DateTime(2024, 1, 10, 13, 15, 29, 964, DateTimeKind.Local).AddTicks(3126),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
@@ -457,6 +459,9 @@ namespace Ekite.Persistence.Migrations
 
                     b.Property<int>("ApprovalStatus")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ApprovedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");

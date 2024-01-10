@@ -18,7 +18,7 @@ namespace Ekite.Application.Validators.SpendValidations
 
 
 
-			RuleFor(x => x.Amount).NotEmpty().NotNull().WithMessage("Harcama Limiti Boş Geçilemez!").LessThan(100000).WithMessage("Bu kadar harcama yapılamaz!");
+			RuleFor(x => x.Amount).NotEmpty().NotNull().WithMessage("Harcama Limiti Boş Geçilemez!").LessThan(100000).WithMessage("Bu kadar harcama yapılamaz!").GreaterThan(0).WithMessage("Lütfen geçerli bir sayı giriniz!");
 		}
     }
 }

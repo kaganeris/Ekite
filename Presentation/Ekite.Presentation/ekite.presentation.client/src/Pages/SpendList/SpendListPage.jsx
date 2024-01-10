@@ -5,17 +5,19 @@ import SpendHeader from "../../Components/SpendHeader/SpendHeader";
 import SpendTable from "../../Components/SpendTable/SpendTable";
 
 const SpendListPage = () => {
-  const { employeeId, setEmployeeId, setIsAuthenticated } =
-    useContext(AuthContext);
-  const { SpendDatas } = useContext(SpendContext);
 
-  const [spendData, setSpendData] = useState([]);
+    const{employeeId, setEmployeeId, setIsAuthenticated}=useContext(AuthContext);
+    const{SpendDatas}= useContext(SpendContext);
 
-  useEffect(() => {
-    if (employeeId !== 0) {
-      (async () => {
-        try {
-          let data = await SpendDatas(employeeId);
+    const [spendData, setSpendData]=useState();
+    
+
+    useEffect(()=>{
+        if (employeeId !==0) {
+            (async ()=>{
+                try{
+                    let data =await SpendDatas(employeeId);
+
           console.log(data);
           setSpendData(data);
         } catch (error) {}
