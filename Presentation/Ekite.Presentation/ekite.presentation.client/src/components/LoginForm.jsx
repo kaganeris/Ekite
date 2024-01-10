@@ -37,8 +37,8 @@ const LoginForm = () => {
     };
 
     const validateEmail = () => {
-        if (!email.endsWith("@gmail.com")) {
-            setEmailError("E-Mail adresi @gmail.com ile bitmelidir.");
+        if (!email.endsWith("@bilgeadam.com")) {
+            setEmailError("E-Mail adresi @bilgeadam.com ile bitmelidir.");
             return false;
         }
 

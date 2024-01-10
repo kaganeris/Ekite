@@ -28,7 +28,7 @@ const LeaveTable = ({ leaveList }) => {
                 if (result.isConfirmed) {
                     navigate("/addLeave");
                 } else {
-                    navigate("/");
+                    navigate("/home");
                 }
             });
         } else { }
@@ -106,7 +106,15 @@ const LeaveTable = ({ leaveList }) => {
                                 <th scope="row">{leave.day}</th>
                                 <td>
                                     <span className="badge badge-dot mr-4">
-                                        <i className="bg-warning"></i>
+                                        <i
+                                            className={
+                                                leave.approvalStatus === "Bekleniyor"
+                                                    ? "bg-warning"
+                                                    : leave.approvalStatus === "Reddedildi"
+                                                        ? "bg-danger"
+                                                        : "bg-success"
+                                            }
+                                        ></i>
                                         <span className="status">{leave.approvalStatus}</span>
                                     </span>
                                 </td>
