@@ -28,7 +28,7 @@ import AdvanceUpdatePage from "./Pages/AdvanceUpdate/AdvanceUpdatePage";
 import AdvanceListPage from "./Pages/Advance/AdvanceListPage";
 
 function App() {
-    const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const [isSidebarOpen, setSidebarOpen] = useState(true);
     const { isAuthenticated, setIsAuthenticated, employeeId, token, setToken } =
         useContext(AuthContext);
 

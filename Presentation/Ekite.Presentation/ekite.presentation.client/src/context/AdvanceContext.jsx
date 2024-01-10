@@ -29,6 +29,7 @@ const AdvanceProvider = ({children}) => {
       const data = await AdvanceService.createAdvance(createData);
       return data;
     } catch (error) {
+        
       return error;
     }
   };

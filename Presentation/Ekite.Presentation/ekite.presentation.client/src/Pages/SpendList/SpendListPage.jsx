@@ -10,7 +10,7 @@ const SpendListPage = () => {
     const{employeeId, setEmployeeId, setIsAuthenticated}=useContext(AuthContext);
     const{SpendDatas}= useContext(SpendContext);
 
-    const [spendData, setSpendData]=useState([]);
+    const [spendData, setSpendData]=useState();
     
 
     useEffect(()=>{

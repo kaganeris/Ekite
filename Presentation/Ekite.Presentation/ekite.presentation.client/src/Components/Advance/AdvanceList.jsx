@@ -1,10 +1,19 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdvanceContext } from "../../context/AdvanceContext";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 const AdvanceList = ({ advanceList }) => {
   const { setUpdateAdvanceId, deleteAdvance } = useContext(AdvanceContext);
   const navigate = useNavigate();
+
+    const formatDate = (inputDate) => {
+        const date = new Date(inputDate);
+        const formattedDate = new Intl.DateTimeFormat("tr-TR").format(date);
+        return formattedDate;
+    }
+
 
   const handleUpdateAdvance = (id) => {
     setUpdateAdvanceId(id);
@@ -12,8 +21,47 @@ const AdvanceList = ({ advanceList }) => {
   };
 
   const handleDeleteAdvance = (id) => {
-    deleteAdvance(id);
-  } 
+      deleteAdvance(id);
+
+      Swal.fire({
+          title: "Avans talebini silmek istediğine emin misin?",
+          showDenyButton: true,
+          showCancelButton: false,
+          confirmButtonText: "Sil",
+          denyButtonText: `İptal`
+      }).then((result) => {
+          if (result.isConfirmed) {
+              deleteAdvance(id);
+              Swal.fire({
+                  title: "Silme İşlemi Başarılı",
+                  icon: "success",
+                  showConfirmButton: false,                  
+              });
+              setTimeout(() => {
+                  location.reload();
+              }, 2000)
+          } 
+      })
+    } 
+
+
+    useEffect(() => {
+        if (advanceList && advanceList.length === 0) {
+            Swal.fire({
+                title: "Avans talebiniz bulunamadı. Avans girişi yapmak ister misiniz?",
+                showDenyButton: true,
+                showCancelButton: false,
+                confirmButtonText: "Evet",
+                denyButtonText: `Hayır`
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    navigate("/createAdvance");
+                } else {
+                    navigate("/home");
+                }
+            });
+        } else { }
+    }, [advanceList])
 
   return (
     <div className="table-responsive">
@@ -59,7 +107,7 @@ const AdvanceList = ({ advanceList }) => {
                       className={
                         advance.approvalStatus === "Bekleniyor"
                           ? "bg-warning"
-                          : advance.approvalStatus === "Rededildi"
+                          : advance.approvalStatus === "Reddedildi"
                           ? "bg-danger"
                           : "bg-success"
                       }
@@ -67,8 +115,8 @@ const AdvanceList = ({ advanceList }) => {
                     <span className="status">{advance.approvalStatus}</span>
                   </span>
                 </td>
-                <td>{advance.createdDate}</td>
-                <td>{advance.approvalDate}</td>
+                    <td>{formatDate(advance.createdDate)}</td>
+                    <td>{formatDate(advance.approvalDate)}</td>
 
                 {advance.approvalStatus === "Bekleniyor" ? (
                   <td className="text-right">

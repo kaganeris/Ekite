@@ -79,7 +79,7 @@ const Sidebar = () => {
                                     <div className="container">
                                         <div className="row">
                                             <div className="col">
-                                                <Link className="dropdown-item" to={"/avansgirisi"}>
+                                                <Link className="dropdown-item" to={"/createAdvance"}>
                                                     <div className="dropdown-content" >
                                                         <i className="fa fa-plus-circle mr-2" style={{ color: "#0aa305" }}></i>
                                                         <span>Avans Girişi</span>
@@ -87,7 +87,7 @@ const Sidebar = () => {
                                                 </Link>
                                             </div>
                                             <div className="col">
-                                                <Link className="dropdown-item" to={"/avanslisteleme"}>
+                                                <Link className="dropdown-item" to={"/advanceList"}>
                                                     <div className="dropdown-content" >
                                                         <i className="fa fa-list mr-2" style={{ color: "#0aa305" }} ></i>
                                                         <span>Avans Listele</span>
@@ -107,7 +107,7 @@ const Sidebar = () => {
                                     <div className="container">
                                         <div className="row">
                                             <div className="col">
-                                                <Link className="dropdown-item" to={"/harcamagirisi"}>
+                                                <Link className="dropdown-item" to={"/createspend"}>
                                                     <div className="dropdown-content" style={{ marginLeft: "8px" }}>
                                                         <i className="fa fa-plus-circle mr-2" style={{ color: "#64d38b" }}></i>
                                                         <span>Harcama Girişi</span>
@@ -115,7 +115,7 @@ const Sidebar = () => {
                                                 </Link>
                                             </div>
                                             <div className="col">
-                                                <Link className="dropdown-item" to={"/harcamalisteleme"}>
+                                                <Link className="dropdown-item" to={"/spend"}>
                                                     <div className="dropdown-content" style={{ marginLeft: "8px" }}>
                                                         <i className="fa fa-list mr-2" style={{ color: "#64d38b" }}></i>
                                                         <span>Harcama Listele</span>
