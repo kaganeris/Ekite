@@ -101,7 +101,7 @@ const LeaveTable = ({ leaveList }) => {
                     </thead>
                     <tbody className="list">
                         {leaveList.map((leave, index) => (
-                            <tr key={index}>
+                            <tr key={index} >
                                 <td className="budget">{leave.leaveType}</td>
                                 <th scope="row">{leave.day}</th>
                                 <td>

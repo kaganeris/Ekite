@@ -30,18 +30,12 @@ const LoginForm = () => {
             setPasswordError("Parola özel karakter içermelidir.");
             return false;
         }
-
-        //if (password.length < 10) {
-        //    setPasswordError("Parola en az 10 karakter olmalıdır.");
-        //    return false;
-        //}
-
         return true;
     };
 
     const validateEmail = () => {
         if (!email.endsWith("@gmail.com")) {
-            setEmailError("E-Mail adresi @bilgeadam.com ile bitmelidir.");
+            setEmailError("E-Mail adresi @gmail.com ile bitmelidir.");
             return false;
         }
 
