@@ -66,7 +66,7 @@ function EditProfileComponent({ profileData, employeeId }) {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/");
+     location.reload();
     } catch (error) {
       console.log("swal error", error);
       Swal.fire({
@@ -138,7 +138,7 @@ function EditProfileComponent({ profileData, employeeId }) {
                   </label>
                   <input
                     value={phoneNumber}
-                    type="text"
+                    type="number"
                     id="input-first-name"
                     className="form-control"
                     placeholder="Telefon Numarası"
