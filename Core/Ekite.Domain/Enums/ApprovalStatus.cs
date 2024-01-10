@@ -9,11 +9,19 @@ namespace Ekite.Domain.Enums
 {
     public enum ApprovalStatus
     {
-        [Display(Name = "Rededildi")]
-        Rejected = 1, 
+
+        [Display(Name = "Reddedildi")]
+        Rejected = 1,
+
+
+
         [Display(Name = "Bekleniyor")]
-        Pending = 2, 
-        [Display(Name = "Onaylandı")]     
-        Approved = 3
+
+        Pending,
+        [Display(Name = "Onaylandı")]
+        Approved
+
+
+
     }
 }

@@ -1,22 +1,26 @@
 import axios from "axios";
-
+//https://localhost:7152
+//https://ekite.azurewebsites.net
 const ProfileService = {
   getDetailPersonelById: async (id) => {
     try {
+      console.log("getdetailpersonelbyid çalıştı");
       const token = localStorage.getItem("user");
-      const response = await axios.get(
-        `https://localhost:7152/api/Employee/GetDetailPersonel?id=${id}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token.replace(/"/g, ""),
-          },
-        }
-      );
-      return response.data;
+      if(token){
+        const response = await axios.get(
+          `https://localhost:7152/api/Employee/GetDetailPersonel?id=${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token.replace(/"/g, ""),
+            },
+          }
+        );
+        return response;
+      }
     } catch (error) {
       console.error("Profil verisi çekilirken bir hata oluştu", error.message);
 
-      throw error;
+      return error.response;
     }
   },
 
@@ -30,12 +34,13 @@ const ProfileService = {
             Authorization: "Bearer " + token.replace(/"/g, ""),
           },
         }
-      );
-      return response.data;
+        );
+        console.log(response);
+      return response;
     } catch (error) {
       console.error("Profil verisi çekilirken bir hata oluştu", error.message);
 
-      throw error;
+      return error.response;
     }
   },
 
@@ -54,8 +59,10 @@ const ProfileService = {
         }
       );
 
-      return response.data;
-    } catch (error) {}
+      return response;
+    } catch (error) {
+      return error.response;
+    }
   },
 };
 

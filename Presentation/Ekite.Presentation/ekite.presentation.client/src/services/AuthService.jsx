@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+// "https://ekite.azurewebsites.net/api/Auth/Login"
 const AuthService = {
     login: async (email,password) => {
         const response = await axios.post(
@@ -13,7 +13,7 @@ const AuthService = {
             localStorage.setItem("user",response.data.token)
             localStorage.setItem("employeeId", response.data.employeeId);
           }
-          console.log(response);
+        console.log(response);
           return response.data
     },
 
@@ -23,3 +23,4 @@ const AuthService = {
 }
 
 export default AuthService
+
