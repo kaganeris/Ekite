@@ -1,11 +1,11 @@
 import axios from "axios";
-
+// `https://ekite.azurewebsites.net/api/Employee/GetDetailPersonel?id=${id}`
 const ProfileService = {
   getDetailPersonelById: async (id) => {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://ekite.azurewebsites.net/api/Employee/GetDetailPersonel?id=${id}`,
+        `https://localhost:7152/api/Employee/GetDetailPersonel?id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),

@@ -14,6 +14,11 @@ import PrivateRoute from "./services/PrivateRoute";
 import { ProfileProvider } from "./context/ProfileContext";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import ProfileSumPage from "./Pages/Profile/ProfileSumPage";
+import SpendListPage from "./Pages/SpendList/SpendListPage";
+import { SpendProvider } from "./context/SpendContext"
+import CreateSpendPage from "./Pages/CreateSpend/CreateSpendPage";
+import UpdateSpendPage from "./Pages/UpdateSpend/UpdateSpendPage";
+
 
 function App() {
   const { isAuthenticated, setIsAuthenticated,employeeId } = useContext(AuthContext);
@@ -23,6 +28,7 @@ function App() {
       <ProfileProvider>
         {localStorage.getItem("user") ? (
           <>
+          <SpendProvider>
             <BrowserRouter>
               <Navbar />
               <Sidebar />
@@ -39,9 +45,25 @@ function App() {
                   path="/editprofile"
                   element={<PrivateRoute element={<EditProfilePage />} />}
                 />
+
+                <Route
+                    path="/spend"
+                    element={<PrivateRoute element={<SpendListPage />} />}
+                  />
+
+                  <Route
+                    path="/createspend"
+                    element={<PrivateRoute element={<CreateSpendPage />} />}
+                    />
+
+                    <Route
+                    path="/updatespend"
+                    element={<PrivateRoute element={<UpdateSpendPage />} />}
+                    />
               </Routes>
               <Footer />
             </BrowserRouter>
+            </SpendProvider>
           </>
         ) : (
           <LoginPage />

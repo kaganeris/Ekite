@@ -29,6 +29,13 @@ const Sidebar = () => {
                   <span className="nav-link-text">Edit Profile</span>
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to={"/spend"}>
+                  {/*<i className="ni ni-single-02 text-yellow"></i>*/}
+                  <i className="fas fa-gears"></i>
+                  <span className="nav-link-text">Harcamalarım</span>
+                </Link>
+              </li>
             </ul>
             <hr className="my-3" />
           </div>

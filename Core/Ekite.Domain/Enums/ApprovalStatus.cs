@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 
 namespace Ekite.Domain.Enums
 {
-    public enum Status
+	public enum ApprovalStatus
 	{
-        [Display(Name ="Aktif")]
+		[Display(Name ="Reddedildi")]
+		Rejected = 1,
 
-        Active = 1,
-		[Display(Name = "Güncellendi")]
-		Modified,
-		[Display(Name = "Pasif")]
-		Passive
-    }
+		[Display(Name = "Bekliyor")]
+		Pending,
+
+		[Display(Name = "Onaylandı")]
+		Approved
+	}
 }

@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace Ekite.Domain.Enums
 {
-    public enum Status
+	public enum Currency
 	{
-        [Display(Name ="Aktif")]
-
-        Active = 1,
-		[Display(Name = "Güncellendi")]
-		Modified,
-		[Display(Name = "Pasif")]
-		Passive
-    }
+		[Display(Name = "₺")]
+		TurkLirasi=1,
+		[Display(Name = "$")]
+		Dolar ,
+		[Display(Name = "£")]
+		Euro
+	}
 }

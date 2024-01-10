@@ -5,70 +5,76 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ekite.Persistence.Migrations
 {
-    public partial class initial : Migration
+    public partial class add_imagePath : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "51736bba-a1dc-4ea6-9ab5-20e420b353af");
+                keyValue: "4df989ea-14b1-498a-804e-dbd3d0646fd3");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "6933f8a3-8670-4145-84a5-d7575df3a5b3");
+                keyValue: "5bd6ae1c-1db2-41f6-9118-0424ab19a28e");
+
+            migrationBuilder.AddColumn<string>(
+                name: "ImagePath",
+                table: "Spend",
+                type: "nvarchar(max)",
+                nullable: true);
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "36052dea-dff2-4dac-8050-408c23a82e27", "401a088c-967e-4a7c-8790-460854e007d4", "Employee", "EMPLOYEE" },
-                    { "81c9cf29-9af7-4aa7-8a6d-7762e0bababf", "940f1659-f4ee-4a29-a627-0173377381a4", "Admin", "ADMIN" }
+                    { "0be294ca-11c4-4494-bd2d-6cadd3dbf35f", "2a390812-b35f-43f9-824a-51ea2bf21058", "Employee", "EMPLOYEE" },
+                    { "d3229728-80f8-404c-8246-8a80990e3345", "b8ed840a-20cb-4cab-b6f0-26b67f4c6948", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.UpdateData(
-                table: "Companies",
+                table: "Company",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 4, 0, 27, 49, 893, DateTimeKind.Local).AddTicks(7177));
+                value: new DateTime(2024, 1, 5, 15, 51, 31, 517, DateTimeKind.Local).AddTicks(107));
 
             migrationBuilder.UpdateData(
-                table: "Companies",
+                table: "Company",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 4, 0, 27, 49, 893, DateTimeKind.Local).AddTicks(7185));
+                value: new DateTime(2024, 1, 5, 15, 51, 31, 517, DateTimeKind.Local).AddTicks(121));
 
             migrationBuilder.UpdateData(
                 table: "Departments",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 4, 0, 27, 49, 893, DateTimeKind.Local).AddTicks(7624));
+                value: new DateTime(2024, 1, 5, 15, 51, 31, 517, DateTimeKind.Local).AddTicks(3167));
 
             migrationBuilder.UpdateData(
                 table: "Departments",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 4, 0, 27, 49, 893, DateTimeKind.Local).AddTicks(7625));
+                value: new DateTime(2024, 1, 5, 15, 51, 31, 517, DateTimeKind.Local).AddTicks(3172));
 
             migrationBuilder.UpdateData(
                 table: "Jobs",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 4, 0, 27, 49, 894, DateTimeKind.Local).AddTicks(442));
+                value: new DateTime(2024, 1, 5, 15, 51, 31, 518, DateTimeKind.Local).AddTicks(3344));
 
             migrationBuilder.UpdateData(
                 table: "Jobs",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 4, 0, 27, 49, 894, DateTimeKind.Local).AddTicks(445));
+                value: new DateTime(2024, 1, 5, 15, 51, 31, 518, DateTimeKind.Local).AddTicks(3350));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -76,63 +82,67 @@ namespace Ekite.Persistence.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "36052dea-dff2-4dac-8050-408c23a82e27");
+                keyValue: "0be294ca-11c4-4494-bd2d-6cadd3dbf35f");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "81c9cf29-9af7-4aa7-8a6d-7762e0bababf");
+                keyValue: "d3229728-80f8-404c-8246-8a80990e3345");
+
+            migrationBuilder.DropColumn(
+                name: "ImagePath",
+                table: "Spend");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "51736bba-a1dc-4ea6-9ab5-20e420b353af", "cfb8d886-5a54-46cf-ab1d-e5efdb3cfb5e", "Admin", "ADMIN" },
-                    { "6933f8a3-8670-4145-84a5-d7575df3a5b3", "01f65129-5fb6-47b0-94e4-c882198cf9ab", "Employee", "EMPLOYEE" }
+                    { "4df989ea-14b1-498a-804e-dbd3d0646fd3", "98726439-8947-4e93-a1da-486c089a0a54", "Admin", "ADMIN" },
+                    { "5bd6ae1c-1db2-41f6-9118-0424ab19a28e", "a1f3487f-d2c3-4abc-b1b4-d10a03940702", "Employee", "EMPLOYEE" }
                 });
 
             migrationBuilder.UpdateData(
-                table: "Companies",
+                table: "Company",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(6254));
+                value: new DateTime(2024, 1, 5, 10, 32, 33, 933, DateTimeKind.Local).AddTicks(6692));
 
             migrationBuilder.UpdateData(
-                table: "Companies",
+                table: "Company",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(6263));
+                value: new DateTime(2024, 1, 5, 10, 32, 33, 933, DateTimeKind.Local).AddTicks(6708));
 
             migrationBuilder.UpdateData(
                 table: "Departments",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(7275));
+                value: new DateTime(2024, 1, 5, 10, 32, 33, 933, DateTimeKind.Local).AddTicks(8033));
 
             migrationBuilder.UpdateData(
                 table: "Departments",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 3, 22, 20, 17, 291, DateTimeKind.Local).AddTicks(7280));
+                value: new DateTime(2024, 1, 5, 10, 32, 33, 933, DateTimeKind.Local).AddTicks(8039));
 
             migrationBuilder.UpdateData(
                 table: "Jobs",
                 keyColumn: "Id",
                 keyValue: 1,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 3, 22, 20, 17, 292, DateTimeKind.Local).AddTicks(9085));
+                value: new DateTime(2024, 1, 5, 10, 32, 33, 934, DateTimeKind.Local).AddTicks(8710));
 
             migrationBuilder.UpdateData(
                 table: "Jobs",
                 keyColumn: "Id",
                 keyValue: 2,
                 column: "CreatedDate",
-                value: new DateTime(2024, 1, 3, 22, 20, 17, 292, DateTimeKind.Local).AddTicks(9094));
+                value: new DateTime(2024, 1, 5, 10, 32, 33, 934, DateTimeKind.Local).AddTicks(8719));
         }
     }
 }
