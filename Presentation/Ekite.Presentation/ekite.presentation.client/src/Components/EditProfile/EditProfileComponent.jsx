@@ -32,9 +32,6 @@ function EditProfileComponent({ profileData ,employeeId}) {
   }
 
 
-  
-
-
   console.log(profileData);
   return (
     <div className="card">

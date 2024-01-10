@@ -56,14 +56,9 @@ namespace Ekite.Persistence.Concrete.Managers
 
         public async Task<Employee> TGetById(int id)
         {
-            if (id > 0)
-            {
-                return await _employeeRepository.GetById(id);
-            }
-            else
-            {
-                return null;
-            }
+
+            return await _employeeRepository.GetById(id);
+
         }
 
         public async Task<bool> THardDelete(Employee entity)
@@ -101,7 +96,7 @@ namespace Ekite.Persistence.Concrete.Managers
 
             if (employee != null)
             {
-                if(entity.UploadPath != null)
+                if (entity.UploadPath != null)
                 {
                     string fileExtension = Path.GetExtension(entity.UploadPath.FileName);
 
@@ -126,7 +121,7 @@ namespace Ekite.Persistence.Concrete.Managers
                         {
                             ContentType = "image/bitmap"
                         }
-                    },cancellationToken: default);
+                    }, cancellationToken: default);
 
 
                     entity.ImagePath = $"https://ekitedepo.blob.core.windows.net/yeni/{uniqueName}";
@@ -191,6 +186,7 @@ namespace Ekite.Persistence.Concrete.Managers
         {
             if (id > 0)
             {
+
                 ResultDetailEmployeeDto resultSum = await _employeeRepository.GetFilteredFirstOrDefault(select: x => new ResultDetailEmployeeDto
                 {
                     FirstName = x.FirstName,
@@ -210,6 +206,7 @@ namespace Ekite.Persistence.Concrete.Managers
                     LeavingDate = x.LeavingDate,
                     TCNO = x.TCNO,
                 }, where: x => x.Id == id && x.Status != Status.Passive, include: q => q.Include(x => x.AppUser).Include(x => x.Department).Include(x => x.Job));
+
                 return resultSum;
             }
             else
@@ -234,16 +231,12 @@ namespace Ekite.Persistence.Concrete.Managers
 
                 }, where: x => x.Id == id && x.Status != Status.Passive);
                 return resultSum;
-
             }
             else
             {
                 return null;
             }
-
-
         }
-
 
         public async Task<int> GetEmployeeIdByUserId(string id)
         {

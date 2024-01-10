@@ -12,36 +12,55 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./services/PrivateRoute";
 import { ProfileProvider } from "./context/ProfileContext";
-import ProfilePage from "./pages/Profile/ProfilePage";
 import ProfileSumPage from "./Pages/Profile/ProfileSumPage";
+import AdvanceListPage from "./Pages/Advance/AdvanceListPage";
+import ProfilePage from "./Pages/Profile/ProfilePage";
+import {AdvanceProvider} from "./context/AdvanceContext";
+import AdvanceCreatePage from "./Pages/AdvanceCreate/AdvanceCreatePage";
+import AdvanceUpdatePage from "./Pages/AdvanceUpdate/AdvanceUpdatePage";
 
 function App() {
-  const { isAuthenticated, setIsAuthenticated,employeeId } = useContext(AuthContext);
+  const { isAuthenticated, setIsAuthenticated, employeeId } =
+    useContext(AuthContext);
 
   return (
     <div>
       <ProfileProvider>
         {localStorage.getItem("user") ? (
           <>
-            <BrowserRouter>
-              <Navbar />
-              <Sidebar />
-              <Routes>
-                <Route
-                  path="/"
-                  element={<PrivateRoute element={<ProfilePage />} />}
-                />
+            <AdvanceProvider>
+              <BrowserRouter>
+                <Navbar />
+                <Sidebar />
+                <Routes>
                   <Route
-                  path="/profilesum"
-                  element={<PrivateRoute element={<ProfileSumPage />} />}
-                />
-                <Route
-                  path="/editprofile"
-                  element={<PrivateRoute element={<EditProfilePage />} />}
-                />
-              </Routes>
-              <Footer />
-            </BrowserRouter>
+                    path="/"
+                    element={<PrivateRoute element={<ProfilePage />} />}
+                  />
+                  <Route
+                    path="/profilesum"
+                    element={<PrivateRoute element={<ProfileSumPage />} />}
+                  />
+                  <Route
+                    path="/editprofile"
+                    element={<PrivateRoute element={<EditProfilePage />} />}
+                  />
+                  <Route
+                    path="/advanceList"
+                    element={<PrivateRoute element={<AdvanceListPage />} />}
+                  />
+                     <Route
+                    path="/createAdvance"
+                    element={<PrivateRoute element={<AdvanceCreatePage />} />}
+                  />
+                     <Route
+                    path="/updateAdvance"
+                    element={<PrivateRoute element={<AdvanceUpdatePage />} />}
+                  />
+                </Routes>
+                <Footer />
+              </BrowserRouter>
+            </AdvanceProvider>
           </>
         ) : (
           <LoginPage />

@@ -27,9 +27,7 @@ namespace Ekite.Persistence.Concrete.Managers
             else
             {
                 return SignInResult.Failed;
-            }
-
-            
+            }           
         }
 
         public async Task<IdentityResult> Register(RegisterDTO model)
