@@ -117,8 +117,10 @@ namespace Ekite.Persistence.Concrete.Managers
 
                     blobClient.Upload(fileUploadStream, new BlobUploadOptions()
                     {
+
                         HttpHeaders = new BlobHttpHeaders
                         {
+                            
                             ContentType = "image/bitmap"
                         }
                     }, cancellationToken: default);

@@ -17,7 +17,7 @@ namespace Ekite.Application.DTOs.AdvanceDto
         public string AdvanceType { get; set; }
         public decimal Amount { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime ApprovalDate { get; set; }
+        public DateTime? ApprovalDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
  
     }
