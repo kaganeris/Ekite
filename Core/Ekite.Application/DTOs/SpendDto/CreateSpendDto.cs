@@ -18,7 +18,7 @@ namespace Ekite.Application.DTOs.SpendDto
         public Currency Currency { get; set; }
 		public decimal Amount { get; set; }
 		public string? ImagePath { get; set; }
-		
-		public int EmployeeId { get; set; }
+        public IFormFile UploadPath { get; set; }
+        public int EmployeeId { get; set; }
 	}
 }

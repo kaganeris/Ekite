@@ -25,6 +25,7 @@ namespace Ekite.Application.AutoMapper
             CreateMap<CreateAdvanceDTO, Advance>().ReverseMap();
 
             CreateMap<UpdateAdvanceDTO, Advance>().ReverseMap();
+            CreateMap<ResultAdvanceDTO, Advance>().ReverseMap();
 
             CreateMap<ResultAdvanceDTO, Advance>().ReverseMap().ForMember(x => x.AdvanceType, x => x.MapFrom(x => EnumDescriber.Description(x.AdvanceType))).ForMember(x => x.Currency, x => x.MapFrom(x => EnumDescriber.Description(x.Currency))).ForMember(x => x.ApprovalStatus, x => x.MapFrom(x => EnumDescriber.Description(x.ApprovalStatus)));
         }

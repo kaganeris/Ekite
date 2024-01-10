@@ -128,7 +128,6 @@ namespace Ekite.Presentation.Server.Controllers
 		[Authorize(Roles = "Admin,Employee")]
 		public async Task<IActionResult> UpdateSpend([FromForm] UpdateSpendDto updateSpendDto)
 		{
-			//Patch isteği olmasına rağmen her propu güncellersem 200 dönüyor anlamadım.
 			UpdateSpendValidator validations = new UpdateSpendValidator();
 			ValidationResult result = await validations.ValidateAsync(updateSpendDto);
 			if (result.IsValid)

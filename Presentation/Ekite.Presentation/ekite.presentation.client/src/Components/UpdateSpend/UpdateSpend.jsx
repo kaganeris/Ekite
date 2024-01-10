@@ -10,15 +10,39 @@ const UpdateSpend = ({spendTypes,currencyTypes}) => {
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState(1);
   const [amount, setAmount] = useState(0);
-  const [imagePath, setImagePath] =useState(null)
+  const [imagePath, setImagePath] =useState("")
+  const [uploadPath,setUploadPath] = useState("")
   const { updateSpend,updateSpendId, getSpend } = useContext(SpendContext);
   const {employeeId} = useContext(AuthContext);
     const navigate = useNavigate();
 
+    const handleUpdateFile = (event) => {
+      const file = event.target.files[0];
+      console.log(event.target.files[0]);
+  
+      const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png","application/pdf"];
+  
+      if (file && !allowedFileTypes.includes(file.type)) {
+        // setFormErrors((prevErrors) => ({
+        //   ...prevErrors,
+        //   uploadPath:
+        //     "Lütfen geçerli bir resim dosyası seçin (jpg, jpeg veya png).",
+        // }));
+        setUploadPath(null);
+      } else {
+        // setFormErrors((prevErrors) => ({
+        //   ...prevErrors,
+        //   uploadPath: "",
+        // }));
+        setUploadPath(file);
+      }
+    };
+
+
 
   const handleUpdateSpend = async (e)=>{
       e.preventDefault();
-      if (spendType && description && amount && imagePath && currency) {
+      if (spendType && description && amount && uploadPath && currency) {
       //const spendData = {
       //  description: description,
       //  spendType: spendType,
@@ -35,6 +59,7 @@ const UpdateSpend = ({spendTypes,currencyTypes}) => {
       formData.append('currency',currency)
       formData.append('amount',amount)
       formData.append('imagePath',imagePath)
+      formData.append('uploadPath',uploadPath)
       formData.append('employeeId',employeeId)
 
           let data = await updateSpend(formData); 
@@ -195,12 +220,14 @@ const UpdateSpend = ({spendTypes,currencyTypes}) => {
                        Fatura
                       </label>
                       <input
-                        type="text"
+                        type="file"
                         id="input-first-name"
                         className="form-control"
-                        onChange={(e)=>setImagePath(e.target.value)}
-                        value={imagePath}
+                        accept="image/*,application/pdf"
+                        onChange={handleUpdateFile}
                       />
+                      <br/>
+                     <embed src={imagePath} type="application/pdf" width="100%" height="200px" />
                     </div>
                   </div>
                 </div>
