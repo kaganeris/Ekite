@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext';
-
 import { SpendContext } from '../../context/SpendContext';
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateSpend = ({spendTypes,currencyTypes}) => {
 
@@ -10,22 +11,23 @@ const UpdateSpend = ({spendTypes,currencyTypes}) => {
   const [currency, setCurrency] = useState(1);
   const [amount, setAmount] = useState(0);
   const [imagePath, setImagePath] =useState(null)
-
   const { updateSpend,updateSpendId, getSpend } = useContext(SpendContext);
   const {employeeId} = useContext(AuthContext);
+    const navigate = useNavigate();
+
 
   const handleUpdateSpend = async (e)=>{
-    e.preventDefault();
-    if (spendType) {
-      const spendData = {
-        description: description,
-        spendType: spendType,
-        currency: currency,
-        amount: amount,
-        imagePath: imagePath,
-        employeeId:employeeId
-      };
-      console.log(spendData);
+      e.preventDefault();
+      if (spendType && description && amount && imagePath && currency) {
+      //const spendData = {
+      //  description: description,
+      //  spendType: spendType,
+      //  currency: currency,
+      //  amount: amount,
+      //  imagePath: imagePath,
+      //  employeeId:employeeId
+      //};
+      //console.log(spendData);
     const formData= new FormData();
       formData.append('id',updateSpendId)
       formData.append('description', description)
@@ -35,9 +37,26 @@ const UpdateSpend = ({spendTypes,currencyTypes}) => {
       formData.append('imagePath',imagePath)
       formData.append('employeeId',employeeId)
 
-      let data =await updateSpend(formData); 
+          let data = await updateSpend(formData); 
+          console.log(data);
+
+          Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Harcama Başarıyla Güncellendi",
+              showConfirmButton: false,
+              timer: 2000
+          });
+          setTimeout(() => {
+
+              navigate("/spend")
+          }, 2000)
     }else{
-        console.log("hata");
+          Swal.fire({
+              icon: "error",
+              title: "Güncelleme İşlemi Başarısız",
+              text: "Tüm Bilgileri Eksiksiz Doldurun",
+          });
     }
   }
 

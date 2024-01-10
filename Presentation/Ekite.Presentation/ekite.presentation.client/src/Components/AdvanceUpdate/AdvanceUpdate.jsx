@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { AdvanceContext } from "../../context/AdvanceContext";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AdvanceUpdate = ({ enumsType, advance ,updateAdvanceId }) => {
   const [advanceType, setAdvanceType] = useState(advance.advanceType);
@@ -10,6 +12,7 @@ const AdvanceUpdate = ({ enumsType, advance ,updateAdvanceId }) => {
 
   const {employeeId} = useContext(AuthContext);
   const {updateAdvance} = useContext(AdvanceContext)
+    const navigate = useNavigate();
 
   const handleAmountChange = (e) => {
     const sanitizedValue = e.target.value.replace(/[^\d]/g, "");
@@ -21,20 +24,37 @@ const AdvanceUpdate = ({ enumsType, advance ,updateAdvanceId }) => {
 
   const handleUpdate = async (e) => {
     console.log("handleUpdateÇalıştı")
+      e.preventDefault();
 
+      if (amount && description) {
+          const data = {
+              advanceType,
+              currency,
+              amount: parseInt(amount.toString().replace(/\D/g, ""), 10),
+              description,
+              employeeId,
+          }
+          await updateAdvance(updateAdvanceId, data);
 
+          Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Avans Başarıyla Güncellendi",
+              showConfirmButton: false,
+              timer: 2000
+          });
+          setTimeout(() => {
 
-   e.preventDefault();
-    const data = {
-      advanceType,
-      currency,
-      amount : parseInt(amount.toString().replace(/\D/g, ""), 10),
-      description,
-      employeeId,
-    }
-    console.log(amount);
-
-    await updateAdvance(updateAdvanceId,data);
+              navigate("/advanceList")
+          }, 2000)
+      }
+      else {
+          Swal.fire({
+              icon: "error",
+              title: "Güncelleme İşlemi Başarısız",
+              text: "Tüm Bilgileri Eksiksiz Doldurun",
+          });
+      }
   }
 
 

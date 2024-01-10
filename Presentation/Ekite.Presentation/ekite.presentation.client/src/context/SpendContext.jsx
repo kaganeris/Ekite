@@ -1,16 +1,27 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import SpendService from "../services/SpendService"
+import { AuthContext } from './AuthContext';
+import { useNavigate } from 'react-router';
 
 const SpendContext=createContext();
 
 const SpendProvider=({children}) =>{
     const [updateSpendId,setUpdateSpendId] = useState(0);
-
+    const { setIsAuthenticated, setToken, token } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const getSpend = async(leaveId)=>{
         try{
             const data=await SpendService.getSpendById(leaveId)
-            return data
+            if (data.status === 200) {
+                return data.data;
+              } else {
+                if (token === "") {
+                  setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+              }
         }catch(error){}
     }
 
@@ -18,7 +29,15 @@ const SpendProvider=({children}) =>{
         try{
             const data = await SpendService.getSpendListByEmployeeId(employeeId)
             console.log(data);
-            return data
+            if (data.status === 200) {
+                return data.data;
+              } else {
+                if (token === "") {
+                  setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+              }
         }catch(error){
 
         }
@@ -27,28 +46,60 @@ const SpendProvider=({children}) =>{
     const getSpendType = async () => {
         try {
           const data = await SpendService.getSpendTypes();
-          return data;
+          if (data.status === 200) {
+            return data.data;
+          } else {
+            if (token === "") {
+              setIsAuthenticated(false);
+            }
+            setToken("");
+            navigate("/login");
+          }
         } catch (error) {}
       };
     
       const getCurrencyType = async () => {
         try {
           const data = await SpendService.getCurrency();
-          return data;
+          if (data.status === 200) {
+            return data.data;
+          } else {
+            if (token === "") {
+              setIsAuthenticated(false);
+            }
+            setToken("");
+            navigate("/login");
+          }
         } catch (error) {}
       };
 
     const addSpend = async (spendData) =>{
         try{
             const data = await SpendService.postSpend(spendData);
-            return data;
+            if (data.status === 200) {
+                return data.data;
+              } else {
+                if (token === "") {
+                  setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+              }
         } catch(error) {}
     };
 
     const deleteSpend = async (id) =>{
         try{
             const data = await SpendService.deleteSpendByData(id);
-            return data;
+            if (data.status === 200) {
+                return data.data;
+              } else {
+                if (token === "") {
+                  setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+              }
         } catch(error) {}
     };
     
@@ -56,7 +107,15 @@ const SpendProvider=({children}) =>{
     const updateSpend = async (updateSpendData) =>{
         try{
             const data = await SpendService.updateSpendByData(updateSpendData);
-            return data;
+            if (data.status === 200) {
+                return data.data;
+              } else {
+                if (token === "") {
+                  setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+              }
         } catch(error) {}
     };
 

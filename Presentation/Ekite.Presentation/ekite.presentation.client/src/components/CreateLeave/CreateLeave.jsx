@@ -41,7 +41,7 @@ const CreateLeave = ({ leaveTypes }) => {
         });
         setTimeout(() => {
 
-           navigate("/leaves")
+            navigate("/leaves")
         }, 2000)
      
     }
