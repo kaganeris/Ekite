@@ -122,7 +122,7 @@ const SpendTable = ({ spendList }) => {
 
                 <td>
                   <a
-                    className="btn btn-outline-primary"
+                    className="btn btn-outline-primary text-white"
                     href={spend.imagePath}
                     target="_blank"
                   >
