@@ -116,7 +116,11 @@ const AdvanceList = ({ advanceList }) => {
                   </span>
                 </td>
                     <td>{formatDate(advance.createdDate)}</td>
-                    <td>{formatDate(advance.approvalDate)}</td>
+                    {advance.approvalDate ? (
+                  <td>{formatDate(advance.approvalDate)}</td>
+                ) : (
+                  <td></td>
+                )}
 
                 {advance.approvalStatus === "Bekleniyor" ? (
                   <td className="text-right">

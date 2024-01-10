@@ -13,7 +13,7 @@ const SpendProvider=({children}) =>{
     const getSpend = async(leaveId)=>{
         try{
             const data=await SpendService.getSpendById(leaveId)
-            if (data.status === 200) {
+            if (data.status !== 401) {
                 return data.data;
               } else {
                 if (token === "") {
@@ -29,7 +29,7 @@ const SpendProvider=({children}) =>{
         try{
             const data = await SpendService.getSpendListByEmployeeId(employeeId)
             console.log(data);
-            if (data.status === 200) {
+            if (data.status !== 401) {
                 return data.data;
               } else {
                 if (token === "") {
@@ -46,7 +46,7 @@ const SpendProvider=({children}) =>{
     const getSpendType = async () => {
         try {
           const data = await SpendService.getSpendTypes();
-          if (data.status === 200) {
+          if (data.status !== 401) {
             return data.data;
           } else {
             if (token === "") {
@@ -61,7 +61,7 @@ const SpendProvider=({children}) =>{
       const getCurrencyType = async () => {
         try {
           const data = await SpendService.getCurrency();
-          if (data.status === 200) {
+          if (data.status !== 401) {
             return data.data;
           } else {
             if (token === "") {
@@ -76,7 +76,7 @@ const SpendProvider=({children}) =>{
     const addSpend = async (spendData) =>{
         try{
             const data = await SpendService.postSpend(spendData);
-            if (data.status === 200) {
+            if (data.status !== 401) {
                 return data.data;
               } else {
                 if (token === "") {
@@ -91,7 +91,7 @@ const SpendProvider=({children}) =>{
     const deleteSpend = async (id) =>{
         try{
             const data = await SpendService.deleteSpendByData(id);
-            if (data.status === 200) {
+            if (data.status !== 401) {
                 return data.data;
               } else {
                 if (token === "") {
@@ -107,7 +107,7 @@ const SpendProvider=({children}) =>{
     const updateSpend = async (updateSpendData) =>{
         try{
             const data = await SpendService.updateSpendByData(updateSpendData);
-            if (data.status === 200) {
+            if (data.status !== 401) {
                 return data.data;
               } else {
                 if (token === "") {
