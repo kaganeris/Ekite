@@ -18,9 +18,11 @@ namespace Ekite.Application.DTOs.SpendDto
 		public decimal Amount { get; set; }
 		public DateTime CreatedDate { get; set; }
 		public DateTime? UpdatedDate { get; set; }
+		public DateTime? ApprovedDate { get; set; }
+        public string ImagePath { get; set; }
 
-		
-		public int EmployeeId { get; set; }
+
+        public int EmployeeId { get; set; }
 
 
 

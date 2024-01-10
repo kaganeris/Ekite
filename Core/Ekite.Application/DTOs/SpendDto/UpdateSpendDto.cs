@@ -1,4 +1,5 @@
 ﻿using Ekite.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Ekite.Application.DTOs.SpendDto
         public decimal? Amount { get; set; }
      
 		public string? ImagePath { get; set; }
+        public IFormFile UploadPath { get; set; }
         public int? EmployeeId { get; set; }
 
 
