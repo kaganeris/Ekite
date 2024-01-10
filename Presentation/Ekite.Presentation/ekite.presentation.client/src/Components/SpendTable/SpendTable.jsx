@@ -70,7 +70,7 @@ const SpendTable = ({ spendList }) => {
                 </td>
                 <td>{spend.createdDate}</td>
                 <td>{spend.updatedDate}</td>
-                {spend.approvalStatus === "Bekliyor" ? (
+                {spend.approvalStatus === "Bekleniyor" ? (
                   <td className="text-right">
                     <a
                       className="btn btn-outline-primary"
@@ -83,7 +83,7 @@ const SpendTable = ({ spendList }) => {
                 ) : (
                   <td></td>
                 )}
-                  {spend.approvalStatus === "Bekliyor" ? (
+                  {spend.approvalStatus === "Bekleniyor" ? (
                   <td className="text-right">
                     <a
                       className="btn btn-outline-danger"

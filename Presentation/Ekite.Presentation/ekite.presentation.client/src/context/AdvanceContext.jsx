@@ -1,15 +1,27 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import AdvanceService from "../services/AdvanceService";
+import { useNavigate } from "react-router";
+import { AuthContext } from "./AuthContext";
 
 const AdvanceContext = createContext();
 
-const AdvanceProvider = ({children}) => {
+const AdvanceProvider = ({ children }) => {
   const [updateAdvanceId, setUpdateAdvanceId] = useState(0);
+  const { setIsAuthenticated, setToken, token } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const getAdvanceList = async (employeeId) => {
     try {
       const data = await AdvanceService.getAdvanceList(employeeId);
-      return data;
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {
       return error;
     }
@@ -18,7 +30,15 @@ const AdvanceProvider = ({children}) => {
   const getEnums = async () => {
     try {
       const data = await AdvanceService.getEnums();
-      return data;
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {
       return error;
     }
@@ -27,7 +47,15 @@ const AdvanceProvider = ({children}) => {
   const addAdvance = async (createData) => {
     try {
       const data = await AdvanceService.createAdvance(createData);
-      return data;
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {
       return error;
     }
@@ -36,7 +64,15 @@ const AdvanceProvider = ({children}) => {
   const getAdvanceById = async (id) => {
     try {
       const data = await AdvanceService.getAdvanceById(id);
-      return data;
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {
       return error;
     }
@@ -45,22 +81,36 @@ const AdvanceProvider = ({children}) => {
   const updateAdvance = async (id, updateData) => {
     try {
       const data = await AdvanceService.updateAdvance(id, updateData);
-      return data;
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
     } catch (error) {
       return error;
     }
   };
 
-
   const deleteAdvance = async (id) => {
-try {
-  const data = await AdvanceService.deleteAdvance(id);
-  return data;
-} catch (error) {
-  return error;
-}
-
-  }
+    try {
+      const data = await AdvanceService.deleteAdvance(id);
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {
+      return error;
+    }
+  };
 
   return (
     <AdvanceContext.Provider
@@ -72,7 +122,7 @@ try {
         updateAdvanceId,
         setUpdateAdvanceId,
         getAdvanceById,
-        deleteAdvance
+        deleteAdvance,
       }}
     >
       {children}

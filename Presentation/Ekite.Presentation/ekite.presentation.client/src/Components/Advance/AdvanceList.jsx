@@ -59,7 +59,7 @@ const AdvanceList = ({ advanceList }) => {
                       className={
                         advance.approvalStatus === "Bekleniyor"
                           ? "bg-warning"
-                          : advance.approvalStatus === "Rededildi"
+                          : advance.approvalStatus === "Reddedildi"
                           ? "bg-danger"
                           : "bg-success"
                       }

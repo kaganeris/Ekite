@@ -12,10 +12,10 @@ const SpendService={
               },
             }
             );
-            return response.data;
+            return response;
         }catch (error){
          console.error("Harcama Bilgisi Çekilirken Bir Hata Oluştu!",error.message);
-         throw error;
+         return error.response;
         }
 
     },
@@ -33,10 +33,10 @@ const SpendService={
             
             )
             console.log(response.data);
-            return response.data
+            return response
         } catch(error){
             console.error("Harcama Bilgisi Çekilirken Bir Hata Oluştu!", error.message);
-            throw error;
+            return error.response;
         }
 
     },
@@ -52,10 +52,10 @@ const SpendService={
                     },
                 }
             );
-            return response.data;
+            return response;
         }catch(error) {
             console.error("Harcama Türleri Çekilirken Bir Hata Oluştu!", error.message);
-            throw error;
+            return error.response;
         }
     },
 
@@ -70,10 +70,10 @@ const SpendService={
                     },
                 }
             );
-            return response.data;
+            return response;
         }catch(error) {
             console.error("Para Birimi Çekilirken Bir Hata Oluştu!", error.message);
-            throw error;
+            return error.response;
         }
     },
 
@@ -90,11 +90,11 @@ const SpendService={
             }
             );
 
-            return response.data;
+            return response;
 
         }catch(error){
             console.error("Harcama oluşturulurken bir hata oluştu!",error.message);
-            throw error;
+            return error.response;
         }
             
     },
@@ -112,10 +112,10 @@ const SpendService={
                   }
                 
             );
-            return response.data;
+            return response;
         }catch(error){
             console.error("Harcama Silinirken Hata Oluştu!",error.message);
-            throw error;
+            return error.response;
 
         }
 
@@ -133,11 +133,11 @@ const SpendService={
                     },
                 }
             );
-            return response.data;
+            return response;
 
         }catch(error){
             console.error("Harcama Güncellenirken Hata Oluştu!",error.message);
-            throw error;
+            return error.response;
         }
     }
             
