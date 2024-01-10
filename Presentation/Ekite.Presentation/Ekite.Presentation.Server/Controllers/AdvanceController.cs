@@ -15,10 +15,12 @@ namespace Ekite.Presentation.Server.Controllers
     public class AdvanceController : ControllerBase
     {
         private readonly IAdvanceService _advanceService;
+        private readonly IEmployeeService _employeeService;
 
-        public AdvanceController(IAdvanceService advanceService)
+        public AdvanceController(IAdvanceService advanceService,IEmployeeService employeeService)
         {
             _advanceService = advanceService;
+            _employeeService = employeeService;
         }
 
 
@@ -57,7 +59,7 @@ namespace Ekite.Presentation.Server.Controllers
         public async Task<IActionResult> CreateAdvance(CreateAdvanceDTO advanceDto)
         {
 
-            CreateAdvanceValidator validations = new CreateAdvanceValidator();
+            CreateAdvanceValidator validations = new CreateAdvanceValidator(await _employeeService.TGetById(advanceDto.EmployeeId));
             ValidationResult result = await validations.ValidateAsync(advanceDto);
 
             if (result.IsValid)
@@ -105,7 +107,7 @@ namespace Ekite.Presentation.Server.Controllers
         {
 
 
-            UpdateAdvanceValidator validations = new UpdateAdvanceValidator();
+            UpdateAdvanceValidator validations = new UpdateAdvanceValidator(await _employeeService.TGetById(updateAdvance.EmployeeID));
             ValidationResult result = await validations.ValidateAsync(updateAdvance);
 
             if (result.IsValid)
