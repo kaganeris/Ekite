@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Ekite.Domain.Enums
 {
-	public enum Currency
-	{
-		[Display(Name = "₺")]
-		TurkLirasi=1,
-		[Display(Name = "$")]
-		Dolar ,
-		[Display(Name = "£")]
-		Euro
-	}
+    public enum Currency
+    {
+        [Display(Name = "₺")]
+        TurkLirasi = 1,
+        [Display(Name = "$")]
+        Dolar = 2,
+        [Display(Name = "£")]
+        Euro = 3,
+    }
 }

@@ -31,9 +31,12 @@ namespace Ekite.Persistence.SeedData
 
                 userManager.CreateAsync(user, "Eren12345.").Wait();
 
-                AppUser createdUser = await userManager.FindByNameAsync("admin");
+                IdentityRole adminRole = new IdentityRole();
+                adminRole.Name = "Admin";
 
-                IdentityRole adminRole = await roleManager.FindByNameAsync("Admin");
+                await roleManager.CreateAsync(adminRole);
+
+                AppUser createdUser = await userManager.FindByNameAsync("admin");
 
                 await userManager.AddToRoleAsync(createdUser, adminRole.Name);
 
@@ -41,11 +44,11 @@ namespace Ekite.Persistence.SeedData
                 {
                     Id = "113FE8D8-DD1E-4B90-8DE4-1A087D5DEC75",
                     CreatedDate = DateTime.Now,
-                    Email = "ali@gmail.com",
+                    Email = "ali@bilgeadam.com",
                     UserName = "ali",
                     PhoneNumber = "1234567890",
                     Status = Status.Active,
-                    EmailConfirmed = false,
+                    EmailConfirmed = true,
                     LockoutEnabled = true,
                     TwoFactorEnabled = false,
                     PhoneNumberConfirmed = false,
@@ -56,22 +59,27 @@ namespace Ekite.Persistence.SeedData
                 {
                     Id = "04C13619-3039-42F3-9085-3752DCDB42B7",
                     CreatedDate = DateTime.Now,
-                    Email = "mehmet@gmail.com",
+                    Email = "mehmet@bilgeadam.com",
                     UserName = "mehmet",
                     PhoneNumber = "1234567890",
                     Status = Status.Active,
-                    EmailConfirmed = false,
+                    EmailConfirmed = true,
                     LockoutEnabled = true,
                     TwoFactorEnabled = false,
                     PhoneNumberConfirmed = false,
 
                 };
                
-                IdentityResult result = await userManager.CreateAsync(appUser, "Eren12345.");
-                IdentityResult result2 = await userManager.CreateAsync(app1, "Eren12345.");
+                IdentityResult result = await userManager.CreateAsync(appUser, "Ali12345.");
+                IdentityResult result2 = await userManager.CreateAsync(app1, "Mehmet12345.");
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(appUser, "Employee");
+                    IdentityRole employee1Role = new IdentityRole();
+                    employee1Role.Name = "Employee";
+
+                    await roleManager.CreateAsync(employee1Role);
+
+                    await userManager.AddToRoleAsync(appUser, employee1Role.Name);
 
                     Employee emp = new Employee
                     {
@@ -99,6 +107,7 @@ namespace Ekite.Persistence.SeedData
 
                 if (result2.Succeeded)
                 {
+
                     await userManager.AddToRoleAsync(app1, "Employee");
 
                     Employee emp1 = new Employee

@@ -26,6 +26,10 @@ namespace Ekite.Persistence.Context
         public DbSet<Company> Companies{ get; set; }
         public DbSet<Company> Spends { get; set; }
 
+        public DbSet<Leave> Leaves{ get; set; }
+
+        public DbSet<Advance> Advances { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

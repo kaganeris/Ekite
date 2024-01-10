@@ -11,7 +11,14 @@ namespace Ekite.Domain.Entities
 {
 	public class Employee : IBaseEntity
 	{
-		public int Id { get; set; }
+
+        public Employee()
+        {
+			Leaves = new List<Leave>();
+			Advances = new List<Advance>();
+        }
+
+        public int Id { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		[NotMapped]
@@ -49,6 +56,17 @@ namespace Ekite.Domain.Entities
 		public string AppUserId { get; set; }
 		public AppUser AppUser { get; set; }
 
+
+        public List<Leave> Leaves { get; set; }
+    
+
+        public List<Advance> Advances { get; set; }
+
+
+    
+
 		public List<Spend> Spends { get; set; } = new();
 	}
+
+
 }

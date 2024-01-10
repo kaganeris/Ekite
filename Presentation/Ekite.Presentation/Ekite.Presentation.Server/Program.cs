@@ -73,6 +73,11 @@ namespace Ekite.Presentation.Server
             builder.Services.AddTransient<IAppUserRepository, AppUserRepository>();
             builder.Services.AddTransient<ISpendRepository, SpendRepository>();
 
+            builder.Services.AddTransient<ILeaveRepository, LeaveRepository>();
+
+            builder.Services.AddTransient<IAdvanceRepository, AdvanceRepository>();
+
+
             //MANAGERS
             builder.Services.AddTransient<IEmployeeService, EmployeeManager>();
             builder.Services.AddTransient<IDepartmentService,DepartmentManager >();
@@ -80,6 +85,11 @@ namespace Ekite.Presentation.Server
             builder.Services.AddTransient<ICompanyService,CompanyManager >();
             builder.Services.AddTransient<IAppUserService,AppUserManager>();
             builder.Services.AddTransient<ISpendService,SpendManager>();
+
+            builder.Services.AddTransient<ILeaveService,LeaveManager>();
+
+            builder.Services.AddTransient<IAdvanceService,AdvanceManager>();
+
 
 
 

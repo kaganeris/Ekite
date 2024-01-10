@@ -11,7 +11,6 @@ namespace Ekite.Application.Interfaces.Services
     public interface IAppUserService
     {
 
-
         Task<IdentityResult> Register(RegisterDTO model);
 
         Task<SignInResult> Login(LoginDTO model);

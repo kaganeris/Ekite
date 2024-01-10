@@ -13,7 +13,7 @@ const AuthService = {
             localStorage.setItem("user",response.data.token)
             localStorage.setItem("employeeId", response.data.employeeId);
           }
-          console.log(response);
+        console.log(response);
           return response.data
     },
 
@@ -23,3 +23,4 @@ const AuthService = {
 }
 
 export default AuthService
+
