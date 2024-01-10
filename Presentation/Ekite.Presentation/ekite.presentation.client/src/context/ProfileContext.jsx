@@ -80,6 +80,7 @@ const ProfileProvider = ({ children }) => {
 
         } catch (error) {
             setLoading(false);
+            throw error
         }
     };
 

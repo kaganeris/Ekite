@@ -9,13 +9,6 @@ export const AuthProvider = ({children}) => {
     const [employeeId,setEmployeeId] = useState(0)
     const [token,setToken] = useState(localStorage.getItem("user"))
 
-    // useEffect(() => {
-    //   console.log("auth useeffect çalıştı",token);
-    //   if(token){
-    //     setIsAuthenticated(true)
-    //   }
-    // },[token])
-
     useEffect(() => {
       console.log("auth useeffect çalıştı",token);
       if(token){
@@ -37,6 +30,7 @@ export const AuthProvider = ({children}) => {
           }
         } catch (error) {
           setIsAuthenticated(false);
+          throw error
         }
       }
 
