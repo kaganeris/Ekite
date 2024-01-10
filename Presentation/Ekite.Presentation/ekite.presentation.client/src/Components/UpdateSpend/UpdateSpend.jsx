@@ -140,7 +140,7 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                                     <input
                                         type="text"
                                         id="input-first-name"
-                                        className={`form-control ${isDescriptionValid ? '' : 'is-invalid'}`}
+                                        className="form-control"
                                         value={description}
                                         onChange={(e) => {
                                             setDescription(e.target.value);
@@ -184,7 +184,7 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                                     <input
                                         type="text"
                                         id="input-first-name"
-                                        className={`form-control ${isAmountValid ? '' : 'is-invalid'}`}
+                                        className="form-control"
                                         onChange={(e) => {
                                             setAmount(e.target.value);
                                             setAmountValid(true);

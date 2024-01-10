@@ -149,7 +149,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
                                         className="form-control"
                                         onChange={(e) => setDescription(e.target.value)}
                                     />
-                                    {!isDescriptionValid && <label className="text-danger">Açıklama gerekli.</label>}
+                                    {!isDescriptionValid && <label className="text-danger">Açıklama boş bırakılamaz.</label>}
                                 </div>
                             </div>
                         </div>
@@ -195,7 +195,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
                                         className="form-control"
                                         onChange={(e) => setAmount(e.target.value)}
                                     />
-                                    {!isAmountValid && <label className="text-danger">Tutar gerekli.</label>}
+                                    {!isAmountValid && <label className="text-danger">Tutar boş bırakılamaz.</label>}
                                 </div>
                             </div>
                         </div>
