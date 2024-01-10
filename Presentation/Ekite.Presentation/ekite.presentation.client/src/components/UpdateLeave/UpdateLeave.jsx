@@ -15,19 +15,12 @@ const UpdateLeave = ({ leaveTypes }) => {
     const handleUpdateLeave = async (e) => {
         e.preventDefault()
         if (leaveEndDate && leaveStartDate && leaveType) {
-            const leaveData = {
-                leaveType: leaveType,
-                leaveStartDate: leaveStartDate,
-                leaveEndDate: leaveEndDate,
-                employeeId: employeeId,
-            };
+
             const formData = new FormData();
             formData.append('id', updateLeaveId);
             formData.append('leaveType', leaveType);
             formData.append('leaveStartDate', leaveStartDate);
             formData.append('leaveEndDate', leaveEndDate);
-            console.log(leaveData);
-            console.log(formData);
             let data = await updateLeave(formData);
             console.log("data", data)
 

@@ -3,6 +3,7 @@ using Ekite.Application.Interfaces.Services;
 using Ekite.Application.Validators.AppUserValidations;
 using Ekite.Domain.Entities;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,7 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpPost]
         [Route("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
             IdentityResult result = await _appUserService.Register(registerDTO);
@@ -115,7 +117,8 @@ namespace Ekite.Presentation.Server.Controllers
                 _configuration["JwtSettings:validAudience"],
                 authClaims,
 
-                expires: DateTime.Now.AddDays(10),
+
+                expires: DateTime.Now.AddMinutes(10),
 
                 signingCredentials: signIn
                 

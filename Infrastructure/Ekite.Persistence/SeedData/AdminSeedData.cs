@@ -44,11 +44,11 @@ namespace Ekite.Persistence.SeedData
                 {
                     Id = "113FE8D8-DD1E-4B90-8DE4-1A087D5DEC75",
                     CreatedDate = DateTime.Now,
-                    Email = "ali@gmail.com",
+                    Email = "ali@bilgeadam.com",
                     UserName = "ali",
                     PhoneNumber = "1234567890",
                     Status = Status.Active,
-                    EmailConfirmed = false,
+                    EmailConfirmed = true,
                     LockoutEnabled = true,
                     TwoFactorEnabled = false,
                     PhoneNumberConfirmed = false,
@@ -59,19 +59,19 @@ namespace Ekite.Persistence.SeedData
                 {
                     Id = "04C13619-3039-42F3-9085-3752DCDB42B7",
                     CreatedDate = DateTime.Now,
-                    Email = "mehmet@gmail.com",
+                    Email = "mehmet@bilgeadam.com",
                     UserName = "mehmet",
                     PhoneNumber = "1234567890",
                     Status = Status.Active,
-                    EmailConfirmed = false,
+                    EmailConfirmed = true,
                     LockoutEnabled = true,
                     TwoFactorEnabled = false,
                     PhoneNumberConfirmed = false,
 
                 };
                
-                IdentityResult result = await userManager.CreateAsync(appUser, "Eren12345.");
-                IdentityResult result2 = await userManager.CreateAsync(app1, "Eren12345.");
+                IdentityResult result = await userManager.CreateAsync(appUser, "Ali12345.");
+                IdentityResult result2 = await userManager.CreateAsync(app1, "Mehmet12345.");
                 if (result.Succeeded)
                 {
                     IdentityRole employee1Role = new IdentityRole();
