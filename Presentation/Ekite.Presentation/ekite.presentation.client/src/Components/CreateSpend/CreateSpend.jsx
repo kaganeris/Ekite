@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {SpendContext} from "../../context/SpendContext"
 import {AuthContext} from "../../context/AuthContext"
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"
 
 const CreateSpend = ({spendTypes,currencyTypes}) => {
   const navigate = useNavigate()
@@ -18,7 +19,7 @@ const CreateSpend = ({spendTypes,currencyTypes}) => {
   const handleAddSpend = async(e)=>{
     e.preventDefault()
 
-    if(spendType){
+      if (description && amount && imagePath) {
       const spendData = {
         description: description,
         spendType: spendType,
@@ -39,14 +40,28 @@ const CreateSpend = ({spendTypes,currencyTypes}) => {
       formData.append('employeeId',employeeId)
       try{
         let data =await addSpend(formData);
-        console.log(formData);
+          Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Harcama Talebi Oluşturuldu",
+              showConfirmButton: false,
+              timer: 2000
+          });
+          setTimeout(() => {
+
+              navigate("/spend")
+          }, 2000)
       }catch(error){
         console.error("Hata:", error);
       }
       
       
     }else{
-      console.log("hata");
+        Swal.fire({
+            icon: "error",
+            title: "Avans Talebi Başarısız",
+            text: "Tüm Bilgileri Eksiksiz Doldurun",
+        });
     }
   }
 

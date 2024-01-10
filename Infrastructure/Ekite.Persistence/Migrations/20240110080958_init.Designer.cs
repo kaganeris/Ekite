@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240105073234_spend_add")]
-    partial class spend_add
+    [Migration("20240110080958_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,56 @@ namespace Ekite.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Ekite.Domain.Entities.Advance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdvanceType")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("ApprovalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ApprovalStatus")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Advances");
+                });
 
             modelBuilder.Entity("Ekite.Domain.Entities.AppUser", b =>
                 {
@@ -134,14 +184,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 5, 10, 32, 33, 933, DateTimeKind.Local).AddTicks(6692),
+                            CreatedDate = new DateTime(2024, 1, 10, 11, 9, 58, 646, DateTimeKind.Local).AddTicks(3897),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 5, 10, 32, 33, 933, DateTimeKind.Local).AddTicks(6708),
+                            CreatedDate = new DateTime(2024, 1, 10, 11, 9, 58, 646, DateTimeKind.Local).AddTicks(4041),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -180,14 +230,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 5, 10, 32, 33, 933, DateTimeKind.Local).AddTicks(8033),
+                            CreatedDate = new DateTime(2024, 1, 10, 11, 9, 58, 646, DateTimeKind.Local).AddTicks(5614),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 5, 10, 32, 33, 933, DateTimeKind.Local).AddTicks(8039),
+                            CreatedDate = new DateTime(2024, 1, 10, 11, 9, 58, 646, DateTimeKind.Local).AddTicks(5621),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -338,17 +388,62 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 5, 10, 32, 33, 934, DateTimeKind.Local).AddTicks(8710),
+                            CreatedDate = new DateTime(2024, 1, 10, 11, 9, 58, 647, DateTimeKind.Local).AddTicks(6359),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 5, 10, 32, 33, 934, DateTimeKind.Local).AddTicks(8719),
+                            CreatedDate = new DateTime(2024, 1, 10, 11, 9, 58, 647, DateTimeKind.Local).AddTicks(6367),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
+                });
+
+            modelBuilder.Entity("Ekite.Domain.Entities.Leave", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ApprovalStatus")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ApprovedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LeaveEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LeaveStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LeaveType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Leaves");
                 });
 
             modelBuilder.Entity("Ekite.Domain.Entities.Spend", b =>
@@ -380,6 +475,12 @@ namespace Ekite.Persistence.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SpendType")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -420,22 +521,6 @@ namespace Ekite.Persistence.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "5bd6ae1c-1db2-41f6-9118-0424ab19a28e",
-                            ConcurrencyStamp = "a1f3487f-d2c3-4abc-b1b4-d10a03940702",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
-                        },
-                        new
-                        {
-                            Id = "4df989ea-14b1-498a-804e-dbd3d0646fd3",
-                            ConcurrencyStamp = "98726439-8947-4e93-a1da-486c089a0a54",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -544,6 +629,17 @@ namespace Ekite.Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Ekite.Domain.Entities.Advance", b =>
+                {
+                    b.HasOne("Ekite.Domain.Entities.Employee", "Employee")
+                        .WithMany("Advances")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("Ekite.Domain.Entities.Employee", b =>
                 {
                     b.HasOne("Ekite.Domain.Entities.AppUser", "AppUser")
@@ -577,6 +673,17 @@ namespace Ekite.Persistence.Migrations
                     b.Navigation("Department");
 
                     b.Navigation("Job");
+                });
+
+            modelBuilder.Entity("Ekite.Domain.Entities.Leave", b =>
+                {
+                    b.HasOne("Ekite.Domain.Entities.Employee", "Employee")
+                        .WithMany("Leaves")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Ekite.Domain.Entities.Spend", b =>
@@ -658,6 +765,10 @@ namespace Ekite.Persistence.Migrations
 
             modelBuilder.Entity("Ekite.Domain.Entities.Employee", b =>
                 {
+                    b.Navigation("Advances");
+
+                    b.Navigation("Leaves");
+
                     b.Navigation("Spends");
                 });
 

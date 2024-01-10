@@ -16,7 +16,7 @@ namespace Ekite.Domain.Entities
         public AdvanceType AdvanceType { get; set; }
         public decimal Amount { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime ApprovalDate { get; set; }
+        public DateTime? ApprovalDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
         public Status Status { get; set; }

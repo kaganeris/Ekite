@@ -53,7 +53,7 @@ namespace Ekite.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Companies",
+                name: "Company",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -66,7 +66,7 @@ namespace Ekite.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Companies", x => x.Id);
+                    table.PrimaryKey("PK_Company", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,9 +249,9 @@ namespace Ekite.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employees_Companies_CompanyId",
+                        name: "FK_Employees_Company_CompanyId",
                         column: x => x.CompanyId,
-                        principalTable: "Companies",
+                        principalTable: "Company",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -264,6 +264,35 @@ namespace Ekite.Persistence.Migrations
                         name: "FK_Employees_Jobs_JobId",
                         column: x => x.JobId,
                         principalTable: "Jobs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Advances",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ApprovalStatus = table.Column<int>(type: "int", nullable: false),
+                    Currency = table.Column<int>(type: "int", nullable: false),
+                    AdvanceType = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ApprovalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Advances", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Advances_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -296,13 +325,42 @@ namespace Ekite.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Spend",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ApprovalStatus = table.Column<int>(type: "int", nullable: false),
+                    SpendType = table.Column<int>(type: "int", nullable: false),
+                    Currency = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Spend", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Spend_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
-                table: "Companies",
+                table: "Company",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(8505), null, "EKİTE", 1, null },
-                    { 2, new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(8515), null, "Bilge ADAM", 1, null }
+                    { 1, new DateTime(2024, 1, 10, 11, 47, 56, 371, DateTimeKind.Local).AddTicks(4431), null, "EKİTE", 1, null },
+                    { 2, new DateTime(2024, 1, 10, 11, 47, 56, 371, DateTimeKind.Local).AddTicks(4442), null, "Bilge ADAM", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -310,8 +368,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(9522), null, "IK", 1, null },
-                    { 2, new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(9527), null, "Bilgi işlem", 1, null }
+                    { 1, new DateTime(2024, 1, 10, 11, 47, 56, 371, DateTimeKind.Local).AddTicks(5350), null, "IK", 1, null },
+                    { 2, new DateTime(2024, 1, 10, 11, 47, 56, 371, DateTimeKind.Local).AddTicks(5354), null, "Bilgi işlem", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -319,9 +377,14 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 9, 14, 13, 37, 483, DateTimeKind.Local).AddTicks(7326), null, "Yazılım Geliştirici", 1, null },
-                    { 2, new DateTime(2024, 1, 9, 14, 13, 37, 483, DateTimeKind.Local).AddTicks(7330), null, "Proje Müdürü", 1, null }
+                    { 1, new DateTime(2024, 1, 10, 11, 47, 56, 372, DateTimeKind.Local).AddTicks(2007), null, "Yazılım Geliştirici", 1, null },
+                    { 2, new DateTime(2024, 1, 10, 11, 47, 56, 372, DateTimeKind.Local).AddTicks(2013), null, "Proje Müdürü", 1, null }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Advances_EmployeeId",
+                table: "Advances",
+                column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -387,10 +450,18 @@ namespace Ekite.Persistence.Migrations
                 name: "IX_Leaves_EmployeeId",
                 table: "Leaves",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Spend_EmployeeId",
+                table: "Spend",
+                column: "EmployeeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Advances");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -410,6 +481,9 @@ namespace Ekite.Persistence.Migrations
                 name: "Leaves");
 
             migrationBuilder.DropTable(
+                name: "Spend");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -419,7 +493,7 @@ namespace Ekite.Persistence.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Companies");
+                name: "Company");
 
             migrationBuilder.DropTable(
                 name: "Departments");
