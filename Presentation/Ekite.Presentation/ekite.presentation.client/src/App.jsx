@@ -24,10 +24,7 @@ function App() {
   const { isAuthenticated, setIsAuthenticated, employeeId, token, setToken } =
     useContext(AuthContext);
 
-  useEffect(() => {
-    
-    console.log("app jsx çalıştı",isAuthenticated);
-  }, [isAuthenticated]);
+  useEffect(() => {}, [isAuthenticated]);
 
   return (
     <div>

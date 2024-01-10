@@ -20,7 +20,6 @@ const ProfileProvider = ({ children }) => {
                 return data.data
             }
             else{
-                console.log("data.status else çalıştı");
                 console.log(token);
                 if(token === ""){
                     setIsAuthenticated(false)
@@ -42,12 +41,10 @@ const ProfileProvider = ({ children }) => {
 
             const data = await ProfileService.getUpdatePersonelByID(employeeId);
             if(data.status === 200){
-                console.log("updatePersoneldata çalıştı");
                 setLoading(false);
                 return data.data
             }
             else{
-                console.log("updatePersoneldata data status else çalıştı");
                 if(token === ""){
                     setIsAuthenticated(false)
                 }
@@ -64,7 +61,6 @@ const ProfileProvider = ({ children }) => {
 
     const putPersonelData = async (employeeId,updateData) => {
         try {
-            console.log("putpersonaldata çalıştı",employeeId,updateData)
             const data = await ProfileService.putUpdatePersonelById(employeeId,updateData);
             if(data.status === 200){
                 setLoading(false);

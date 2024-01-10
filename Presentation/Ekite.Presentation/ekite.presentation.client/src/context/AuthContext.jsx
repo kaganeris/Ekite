@@ -10,7 +10,6 @@ export const AuthProvider = ({children}) => {
     const [token,setToken] = useState(localStorage.getItem("user"))
 
     useEffect(() => {
-      console.log("auth useeffect çalıştı",token);
       if(token){
         setIsAuthenticated(true)
       }
@@ -23,7 +22,6 @@ export const AuthProvider = ({children}) => {
       const login = async (email, password) => {
         try {
           const response = await AuthService.login(email, password);
-          console.log(response);
           if (response.token) {
             setEmployeeId(response.employeeId);
             setIsAuthenticated(true);

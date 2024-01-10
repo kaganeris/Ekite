@@ -16,7 +16,6 @@ const LeaveProvider = ({ children }) => {
       if (data.status === 200) {
         return data.data;
       } else {
-        console.log("data.status else çalıştı");
         if (token === "") {
           setIsAuthenticated(false);
         }
@@ -32,7 +31,6 @@ const LeaveProvider = ({ children }) => {
       if (data.status === 200) {
         return data.data;
       } else {
-        console.log("data.status else çalıştı");
         if (token === "") {
           setIsAuthenticated(false);
         }
@@ -48,7 +46,6 @@ const LeaveProvider = ({ children }) => {
       if (data.status === 200) {
         return data.data;
       } else {
-        console.log("data.status else çalıştı");
         if (token === "") {
           setIsAuthenticated(false);
         }
@@ -65,7 +62,6 @@ const LeaveProvider = ({ children }) => {
       if (data.status === 200) {
         return data.data;
       } else {
-        console.log("data.status else çalıştı");
         if (token === "") {
           setIsAuthenticated(false);
         }
@@ -81,7 +77,6 @@ const LeaveProvider = ({ children }) => {
       if (data.status === 200) {
         return data.data;
       } else {
-        console.log("data.status else çalıştı");
         if (token === "") {
           setIsAuthenticated(false);
         }
@@ -98,7 +93,6 @@ const LeaveProvider = ({ children }) => {
       if (data.status === 200) {
         return data.data;
       } else {
-        console.log("data.status else çalıştı");
         if (token === "") {
           setIsAuthenticated(false);
         }
