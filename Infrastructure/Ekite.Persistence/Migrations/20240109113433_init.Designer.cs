@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240108161948_son")]
-    partial class son
+    [Migration("20240109113433_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -134,14 +134,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 127, DateTimeKind.Local).AddTicks(3651),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 466, DateTimeKind.Local).AddTicks(1188),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 127, DateTimeKind.Local).AddTicks(3662),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 466, DateTimeKind.Local).AddTicks(1203),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -180,14 +180,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 127, DateTimeKind.Local).AddTicks(4777),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 466, DateTimeKind.Local).AddTicks(2554),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 127, DateTimeKind.Local).AddTicks(4781),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 466, DateTimeKind.Local).AddTicks(2560),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -338,14 +338,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 128, DateTimeKind.Local).AddTicks(2191),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 467, DateTimeKind.Local).AddTicks(5073),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 8, 19, 19, 48, 128, DateTimeKind.Local).AddTicks(2197),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 467, DateTimeKind.Local).AddTicks(5080),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
@@ -421,22 +421,6 @@ namespace Ekite.Persistence.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "466005d4-d600-4786-b4cc-b24debca420f",
-                            ConcurrencyStamp = "b743de5f-5c0c-47e7-b259-d59d54620d90",
-                            Name = "Employee",
-                            NormalizedName = "EMPLOYEE"
-                        },
-                        new
-                        {
-                            Id = "95cf6178-f664-4ce9-bf54-5c6c97fae91f",
-                            ConcurrencyStamp = "04d307eb-69ff-45a5-ba9f-4950e30b34ab",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

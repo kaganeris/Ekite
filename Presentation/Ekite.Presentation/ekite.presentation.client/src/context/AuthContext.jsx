@@ -19,6 +19,7 @@ export const AuthProvider = ({children}) => {
           }
         } catch (error) {
           setIsAuthenticated(false);
+            throw error;
         }
       }
 
