@@ -9,11 +9,11 @@ namespace Ekite.Domain.Enums
 {
     public enum Currency
     {
-        [Display(Name = "₺")]
+        [Display(Name = "Türk Lirası ₺")]
         TurkLirasi = 1,
-        [Display(Name = "$")]
+        [Display(Name = "Dolar $")]
         Dolar = 2,
-        [Display(Name = "£")]
+        [Display(Name = "Euro £")]
         Euro = 3,
     }
 }

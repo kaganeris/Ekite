@@ -98,7 +98,7 @@ namespace Ekite.Persistence.SeedData
                         District = "Seyhan",
                         HireDate = DateTime.Now,
                         Status = Status.Active,
-                        Salary = 55.500m,
+                        Salary = 55500m,
                         AddressDetail = "Mavi bulvar 72190 sk",
                         CreatedDate = DateTime.Now
                     };
@@ -127,7 +127,7 @@ namespace Ekite.Persistence.SeedData
                         District = "mezitli",
                         HireDate = DateTime.Now,
                         Status = Status.Active,
-                        Salary = 45.500m,
+                        Salary = 45500m,
                         AddressDetail = "Fenerbahçe Meydanı 190 sk",
                         CreatedDate = DateTime.Now
                     };

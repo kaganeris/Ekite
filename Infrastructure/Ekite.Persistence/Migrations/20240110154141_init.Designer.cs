@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240110124152_initial")]
-    partial class initial
+    [Migration("20240110154141_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -184,14 +184,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 15, 41, 52, 469, DateTimeKind.Local).AddTicks(4210),
+                            CreatedDate = new DateTime(2024, 1, 10, 18, 41, 40, 850, DateTimeKind.Local).AddTicks(3808),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 15, 41, 52, 469, DateTimeKind.Local).AddTicks(4218),
+                            CreatedDate = new DateTime(2024, 1, 10, 18, 41, 40, 850, DateTimeKind.Local).AddTicks(3821),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -230,14 +230,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 15, 41, 52, 469, DateTimeKind.Local).AddTicks(4769),
+                            CreatedDate = new DateTime(2024, 1, 10, 18, 41, 40, 850, DateTimeKind.Local).AddTicks(5441),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 15, 41, 52, 469, DateTimeKind.Local).AddTicks(4771),
+                            CreatedDate = new DateTime(2024, 1, 10, 18, 41, 40, 850, DateTimeKind.Local).AddTicks(5445),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -388,14 +388,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 15, 41, 52, 469, DateTimeKind.Local).AddTicks(7660),
+                            CreatedDate = new DateTime(2024, 1, 10, 18, 41, 40, 852, DateTimeKind.Local).AddTicks(119),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 15, 41, 52, 469, DateTimeKind.Local).AddTicks(7664),
+                            CreatedDate = new DateTime(2024, 1, 10, 18, 41, 40, 852, DateTimeKind.Local).AddTicks(128),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
