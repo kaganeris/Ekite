@@ -132,14 +132,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(8505),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 466, DateTimeKind.Local).AddTicks(1188),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(8515),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 466, DateTimeKind.Local).AddTicks(1203),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -178,14 +178,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(9522),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 466, DateTimeKind.Local).AddTicks(2554),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 9, 14, 13, 37, 482, DateTimeKind.Local).AddTicks(9527),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 466, DateTimeKind.Local).AddTicks(2560),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -336,14 +336,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 9, 14, 13, 37, 483, DateTimeKind.Local).AddTicks(7326),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 467, DateTimeKind.Local).AddTicks(5073),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 9, 14, 13, 37, 483, DateTimeKind.Local).AddTicks(7330),
+                            CreatedDate = new DateTime(2024, 1, 9, 14, 34, 33, 467, DateTimeKind.Local).AddTicks(5080),
                             Name = "Proje Müdürü",
                             Status = 1
                         });

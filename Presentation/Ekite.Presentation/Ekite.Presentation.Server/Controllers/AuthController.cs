@@ -62,6 +62,7 @@ namespace Ekite.Presentation.Server.Controllers
             {
                 Microsoft.AspNetCore.Identity.SignInResult result = await _appUserService.Login(loginDTO);
 
+
                 AppUser appUser = await _userManager.FindByEmailAsync(loginDTO.Email);
                 var role = await _userManager.GetRolesAsync(appUser);
 
@@ -115,7 +116,10 @@ namespace Ekite.Presentation.Server.Controllers
                 _configuration["JwtSettings:validIssuer"],
                 _configuration["JwtSettings:validAudience"],
                 authClaims,
+
+
                 expires: DateTime.Now.AddMinutes(10),
+
                 signingCredentials: signIn
                 
                 );

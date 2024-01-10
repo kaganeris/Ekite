@@ -13,6 +13,7 @@ const ProfileSumPage = () => {
     const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
+    
     if (employeeId !== 0) {
       (async () => {
         try {
@@ -20,6 +21,7 @@ const ProfileSumPage = () => {
           setProfileData(data);
         } catch (error) {}
       })();
+
     } else {
       const storedEmployeeId = localStorage.getItem("employeeId");
       if (storedEmployeeId) {

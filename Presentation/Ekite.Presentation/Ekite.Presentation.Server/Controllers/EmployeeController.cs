@@ -62,8 +62,8 @@ namespace Ekite.Presentation.Server.Controllers
 		{
 			UpdateEmployeeDto updateEmployee = await _employeeService.GetUpdateEmployee(id);
 
-            if (id > 0)
-            {
+            if (updateEmployee != null)
+			{ 
                 return Ok(updateEmployee);
             }
             else
@@ -77,7 +77,6 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpPut("[action]")]
         [Authorize(Roles = "Admin,Employee")]
-
         public async Task<IActionResult> PutUpdatePersonel(int id, [FromForm]UpdateEmployeeDto employeeDto)
 		{
 

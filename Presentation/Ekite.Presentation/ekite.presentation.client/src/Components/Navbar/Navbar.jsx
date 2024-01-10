@@ -130,8 +130,8 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
                                         </div>
                                     </a>
                                     <div className="dropdown-menu dropdown-menu-right">
-                                        <div className="dropdown-divider"></div>
-                                        <a onClick={handleLogout} className="dropdown-item">
+                                    <div className="dropdown-divider"></div>
+                                    <a onClick={handleLogout} className="dropdown-item" type="button">
                                             <i className="ni ni-user-run"></i>
                                             <span>Logout</span>
                                         </a>

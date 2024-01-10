@@ -15,6 +15,7 @@ namespace Ekite.Application.DTOs.EmployeeDto
         public string AddressDetail { get; set; }
         public string PhoneNumber { get; set; }
         public IFormFile UploadPath { get; set; }
+        
 
     }
 }

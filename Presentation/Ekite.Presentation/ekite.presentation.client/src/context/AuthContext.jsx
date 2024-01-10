@@ -28,7 +28,9 @@ export const AuthProvider = ({children}) => {
           }
         } catch (error) {
           setIsAuthenticated(false);
+
           throw error
+
         }
       }
 
@@ -38,11 +40,10 @@ export const AuthProvider = ({children}) => {
         setToken('');
     }
 
-
-
     return (
         <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated,employeeId,setEmployeeId,logout,token,setToken}}>
             {children}
         </AuthContext.Provider>
     )
 }
+export default AuthProvider

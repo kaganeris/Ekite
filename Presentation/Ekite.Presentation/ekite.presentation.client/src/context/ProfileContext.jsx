@@ -12,7 +12,6 @@ const ProfileProvider = ({ children }) => {
 
     const fetchData = async (employeeId) => {
         try {
-
             const data = await ProfileService.getDetailPersonelById(employeeId);
             console.log(data);
             if(data.status === 200){

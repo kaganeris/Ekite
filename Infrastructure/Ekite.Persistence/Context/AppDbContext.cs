@@ -24,7 +24,11 @@ namespace Ekite.Persistence.Context
         public DbSet<Department> Departments{ get; set; }
         public DbSet<Job> Jobs{ get; set; }
         public DbSet<Company> Companies{ get; set; }
+        public DbSet<Company> Spends { get; set; }
+
         public DbSet<Leave> Leaves{ get; set; }
+
+        public DbSet<Advance> Advances { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
