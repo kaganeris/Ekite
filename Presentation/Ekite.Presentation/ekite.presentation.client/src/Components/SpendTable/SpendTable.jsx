@@ -119,9 +119,11 @@ const SpendTable = ({ spendList }) => {
                                     </span>
                                 </td>
 
+
                                 <td>{formatDate(spend.createdDate)}</td>
                                 <td>{formatDate(spend.updatedDate)}</td>
                                 {spend.approvalStatus === "Bekleniyor" ? (
+
 
                                     <td className="text-right">
                                         <a
