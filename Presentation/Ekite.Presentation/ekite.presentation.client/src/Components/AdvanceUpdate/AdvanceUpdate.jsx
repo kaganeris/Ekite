@@ -4,66 +4,73 @@ import { AdvanceContext } from "../../context/AdvanceContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const AdvanceUpdate = ({ enumsType, advance ,updateAdvanceId }) => {
+const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
   const [advanceType, setAdvanceType] = useState(advance.advanceType);
   const [currency, setCurrency] = useState(advance.currency);
   const [amount, setAmount] = useState(advance.amount);
   const [description, setDescription] = useState(advance.description);
 
-  const {employeeId} = useContext(AuthContext);
-  const {updateAdvance} = useContext(AdvanceContext)
-    const navigate = useNavigate();
+  const { employeeId } = useContext(AuthContext);
+  const { updateAdvance } = useContext(AdvanceContext);
+  const navigate = useNavigate();
 
   const handleAmountChange = (e) => {
     const sanitizedValue = e.target.value.replace(/[^\d]/g, "");
     const formattedValue = new Intl.NumberFormat().format(sanitizedValue);
-    console.log(formattedValue)
+    console.log(formattedValue);
     setAmount(formattedValue);
-    
   };
 
   const handleUpdate = async (e) => {
-    console.log("handleUpdateÇalıştı")
-      e.preventDefault();
+    console.log("handleUpdateÇalıştı");
+    e.preventDefault();
+   
+    if (amount && description) {
+      const data = {
+        advanceType,
+        currency,
+        amount: parseInt(amount.toString().replace(/\D/g, ""), 10),
+        description,
+        employeeId,
+      };
+      const response = await updateAdvance(updateAdvanceId, data);
 
-      if (amount && description) {
-          const data = {
-              advanceType,
-              currency,
-              amount: parseInt(amount.toString().replace(/\D/g, ""), 10),
-              description,
-              employeeId,
-          }
-          await updateAdvance(updateAdvanceId, data);
+      if (response === "Avans güncellendi") {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Avans Başarıyla Güncellendi",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        setTimeout(() => {
+          navigate("/advanceList");
+        }, 2000);
+      } else {
+        let errorsArray = response.map((element, index) => {
+          return element + (index < response.length - 1 ? "<br/>" : "");
+        });
 
-          Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Avans Başarıyla Güncellendi",
-              showConfirmButton: false,
-              timer: 2000
-          });
-          setTimeout(() => {
+        let errors = errorsArray.join("");
 
-              navigate("/advanceList")
-          }, 2000)
+        console.log(errors);
+        Swal.fire({
+          icon: "error",
+          title: "Avans Güncelleme Başarısız",
+          html: errors,
+        });
       }
-      else {
-          Swal.fire({
-              icon: "error",
-              title: "Güncelleme İşlemi Başarısız",
-              text: "Tüm Bilgileri Eksiksiz Doldurun",
-          });
-      }
-  }
-
-
-
-
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Güncelleme İşlemi Başarısız",
+        text: "Tüm Bilgileri Eksiksiz Doldurun",
+      });
+    }
+  };
 
   return (
-   
-      <div className="card">
+    <div className="card">
       <div className="card-header">
         <div className="row align-items-center">
           <div className="col-8">
@@ -72,9 +79,8 @@ const AdvanceUpdate = ({ enumsType, advance ,updateAdvanceId }) => {
         </div>
       </div>
       <div className="card-body">
-        <form onSubmit={handleUpdate} >
+        <form onSubmit={handleUpdate}>
           <div className="pl-lg-4">
-
             <div className="row">
               <div className="col-lg-12">
                 <div className="form-group">

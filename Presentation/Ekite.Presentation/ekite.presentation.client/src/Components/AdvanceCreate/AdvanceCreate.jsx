@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState, useTransition } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { AdvanceContext } from "../../context/AdvanceContext";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 const AdvanceCreate = ({ enumsType }) => {
   const [advanceType, setAdvanceType] = useState(1);
   const [currency, setCurrency] = useState(1);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const { employeeId } = useContext(AuthContext);
   const { addAdvance } = useContext(AdvanceContext);
@@ -21,42 +21,60 @@ const AdvanceCreate = ({ enumsType }) => {
 
   const handleAddCreate = async (e) => {
     e.preventDefault();
+ 
+    if (advanceType && currency && amount && description) {
+      const formData = {
+        advanceType,
+        currency,
+        amount: parseInt(amount.toString().replace(/\D/g, ""), 10),
+        description,
+        employeeId,
+      };
 
-      if (advanceType && currency && amount && description) {
-          const formData = {
-              advanceType,
-              currency,
-              amount: parseInt(amount.replace(/\D/g, ""), 10),
-              description,
-              employeeId,
-          };
+      console.log(formData);
 
-          console.log(formData.amount);
+      const response = await addAdvance(formData);
+      console.log("response advance:", response);
 
-          const response = await addAdvance(formData);
-          console.log("response advance:", response);
+      if (response === "Avans oluşturuldu.") {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Avans Talebi Oluşturuldu",
+          showConfirmButton: false,
+          timer: 2000,
+        });
 
-          Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Avans Talebi Oluşturuldu",
-              showConfirmButton: false,
-              timer: 2000
-          });
-          setTimeout(() => {
+        setTimeout(() => {
+          navigate("/advanceList");
+        }, 2000);
+      } else {
 
-              navigate("/advanceList")
-          }, 2000)
+        let errorsArray = response.map((element, index) => {
+          return element + (index < response.length - 1 ? "<br/>" : "");
+      });
+      
+      let errors = errorsArray.join("");
+      
+
+        console.log(errors);
+        Swal.fire({
+          icon: "error",
+          title: "Avans Talebi Başarısız",
+          html: errors,
+        });
       }
-      else {
-          Swal.fire({
-              icon: "error",
-              title: "Avans Talebi Başarısız",
-              text: "Tüm Bilgileri Eksiksiz Doldurun",
-          });
-      }
-    
-    
+    } else {
+
+
+
+
+      Swal.fire({
+        icon: "error",
+        title: "Avans Talebi Başarısız",
+        text: "Tüm Bilgileri Eksiksiz Doldurun",
+      });
+    }
   };
 
   return (
