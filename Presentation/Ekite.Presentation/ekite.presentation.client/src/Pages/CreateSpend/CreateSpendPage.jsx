@@ -34,9 +34,6 @@ const CreateSpendPage = () => {
       }
     },[employeeId])
 
-
-
-
   return (
     <div className="main-content">
       <div className="container mt-5  ">

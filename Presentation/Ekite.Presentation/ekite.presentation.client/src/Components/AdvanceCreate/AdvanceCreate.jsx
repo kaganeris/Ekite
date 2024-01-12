@@ -9,6 +9,12 @@ const AdvanceCreate = ({ enumsType }) => {
   const [currency, setCurrency] = useState(1);
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
+
+  const [isDescriptionValid, setDescriptionValid] = useState(true);
+  const [isAmountValid, setAmountValid] = useState(true);
+
+
+
   const { employeeId } = useContext(AuthContext);
   const { addAdvance } = useContext(AdvanceContext);
   const navigate = useNavigate();
@@ -53,7 +59,8 @@ const AdvanceCreate = ({ enumsType }) => {
         let errorsArray = response.map((element, index) => {
           return element + (index < response.length - 1 ? "<br/>" : "");
       });
-      
+
+ 
       let errors = errorsArray.join("");
       
 
@@ -66,8 +73,8 @@ const AdvanceCreate = ({ enumsType }) => {
       }
     } else {
 
-
-
+      if (!description) setDescriptionValid(false);
+      if (!amount) setAmountValid(false);
 
       Swal.fire({
         icon: "error",
@@ -129,6 +136,11 @@ const AdvanceCreate = ({ enumsType }) => {
                     className="form-control"
                     onChange={(e) => setDescription(e.target.value)}
                   />
+                  {!isDescriptionValid && (
+                    <label className="text-danger">
+                      Açıklama boş bırakılamaz.
+                    </label>
+                  )}
                 </div>
               </div>
             </div>
@@ -149,6 +161,11 @@ const AdvanceCreate = ({ enumsType }) => {
                     className="form-control"
                     onChange={handleAmountChange}
                   />
+                    {!isAmountValid && (
+                    <label className="text-danger">
+                      Miktar boş bırakılamaz.
+                    </label>
+                  )}
                 </div>
               </div>
             </div>
