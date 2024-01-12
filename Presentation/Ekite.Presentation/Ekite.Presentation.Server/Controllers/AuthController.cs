@@ -68,7 +68,10 @@ namespace Ekite.Presentation.Server.Controllers
 
                 if (result.Succeeded)
                 {
-                    int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
+                    //int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
+
+                    int id = await _appUserService.GetIDByRole(appUser.Id, role.FirstOrDefault());
+
 
                     var authClaims = new List<Claim>
                 {
@@ -85,7 +88,7 @@ namespace Ekite.Presentation.Server.Controllers
                         token = new JwtSecurityTokenHandler().WriteToken(token),
                         expiration = token.ValidTo,
                         role = role.FirstOrDefault(),
-                        employeeId = employeeId,
+                        id = id,
                     });
                 }
                 else

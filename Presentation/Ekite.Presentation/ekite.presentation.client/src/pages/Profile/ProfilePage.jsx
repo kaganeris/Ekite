@@ -8,7 +8,7 @@ import { ProfileContext } from "../../context/ProfileContext";
 function ProfilePage() {
     const { isAuthenticated } = useContext(AuthContext)
     const { fetchData } = useContext(ProfileContext)
-    const { employeeId, setEmployeeId, setIsAuthenticated } =
+    const { employeeId, setEmployeeId, setIsAuthenticated,userRole } =
         useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
 
@@ -16,8 +16,14 @@ function ProfilePage() {
         if (employeeId !== 0) {
             (async () => {
                 try {
-                    let data = await fetchData(employeeId);
-                    setProfileData(data);
+                    if(userRole === "Employee"){
+                        console.log("kullanıcı rolu employee çalıştı");
+                        let data = await fetchData(employeeId);
+                        setProfileData(data);
+                    }
+                    else if(userRole === "Admin"){
+                        console.log("kullanıcı rolu admin çalıştı");
+                    }
                 } catch (error) { }
             })();
         } else {

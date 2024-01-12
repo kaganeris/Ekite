@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 function Navbar({ isSidebarOpen, setSidebarOpen }) {
     const { fetchData } = useContext(ProfileContext)
-    const { employeeId, setEmployeeId, setIsAuthenticated, logout } =
+    const { employeeId, setEmployeeId, setIsAuthenticated, logout,userRole } =
         useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
    
@@ -43,8 +43,13 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
         if (employeeId !== 0) {
             (async () => {
                 try {
-                    let data = await fetchData(employeeId);
-                    setProfileData(data);
+                    if(userRole == "Employee"){
+                        let data = await fetchData(employeeId);
+                        setProfileData(data);
+                    }
+                    else if(userRole == "Admin"){
+                        
+                    }
 
                 } catch (error) { }
             })();

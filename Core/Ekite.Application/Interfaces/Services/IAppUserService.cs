@@ -14,5 +14,7 @@ namespace Ekite.Application.Interfaces.Services
         Task<IdentityResult> Register(RegisterDTO model);
 
         Task<SignInResult> Login(LoginDTO model);
+
+        Task<int> GetIDByRole(string appuserId,string roleName);
     }
 }
