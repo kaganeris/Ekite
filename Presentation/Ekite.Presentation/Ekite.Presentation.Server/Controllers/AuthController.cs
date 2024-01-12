@@ -68,6 +68,8 @@ namespace Ekite.Presentation.Server.Controllers
 
                 if (result.Succeeded)
                 {
+
+
                     int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
 
                     var authClaims = new List<Claim>

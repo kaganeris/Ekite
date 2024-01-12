@@ -115,7 +115,72 @@ const LeaveService = {
       console.error("İzin güncellenirken bir hata oluştu", error.message);
       return erro.response;
     }
+  },
+
+  getPendingLeaveList : async () => {
+    try {
+      const token = localStorage.getItem("user");
+      const response = await axios.get(
+        `https://localhost:7152/api/Leave/GetPendingList`,
+        {
+          headers: {
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+      );
+      console.log(response.data);
+      return response;
+    } catch (error) {
+      console.error("Bekleyen izin bilgileri çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }  
+    
+  },
+
+
+  approveLeave: async (id) => {
+    console.log("ONAYLAMA ÇALIŞTI" , id);
+    try {
+      const token = localStorage.getItem("user");
+      const response = await axios.get(
+        `https://localhost:7152/api/Leave/ApproveLeave?id=${id}`, 
+        {
+          headers: {
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+      );
+      console.log(response.data);
+      return response;
+    } catch (error) {
+      console.error("Onaylama işlemi yapılırken hata oluştu", error.message);
+      return error.response;
+    } 
+},
+
+  
+rejectLeave: async (id) => {
+  console.log("Reddetme ÇALIŞTI" , id);
+  try {
+    const token = localStorage.getItem("user");
+    const response = await axios.get(
+      `https://localhost:7152/api/Leave/RejectLeave?id=${id}`, 
+      {
+        headers: {
+          Authorization: "Bearer " + token.replace(/"/g, ""),
+        },
+      }
+    );
+    console.log(response.data);
+    return response;
+  } 
+  catch (error) {
+    console.error("Reddetme işlemi yapılırken hata oluştu.", error.message);
+    return error.response;
   }
-};
+}
+
+}
 
 export default LeaveService;

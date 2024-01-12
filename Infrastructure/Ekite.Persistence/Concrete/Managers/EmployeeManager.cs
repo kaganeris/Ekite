@@ -241,6 +241,8 @@ namespace Ekite.Persistence.Concrete.Managers
         public async Task<int> GetEmployeeIdByUserId(string id)
         {
             Employee employee = await _employeeRepository.GetFilteredInclude(x => x.AppUserId == id);
+
+
             if (employee == null)
             {
                 return 0;

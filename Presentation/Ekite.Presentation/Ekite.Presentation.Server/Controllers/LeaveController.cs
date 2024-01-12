@@ -8,6 +8,7 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Ekite.Presentation.Server.Controllers
 {
@@ -29,6 +30,19 @@ namespace Ekite.Presentation.Server.Controllers
             List<ResultLeaveDTO> list = await leaveService.GetAllLeaveList(employeeId);
             return Ok(list);
         }
+
+
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> GetPendingList()    
+                {
+
+            return Ok(await leaveService.GetPendingList());
+        }
+
+
 
         [HttpPost]
         [Authorize(Roles = "Admin,Employee")]
@@ -143,5 +157,34 @@ namespace Ekite.Presentation.Server.Controllers
                 return BadRequest(errors);
             }
         }
+
+
+
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> ApproveLeave(int id)
+        {
+            if (await leaveService.ApproveLeave(id))
+            {
+                return Ok("İşlem başarılı");
+            }
+
+            return BadRequest("İşlem sırasında hata oluştu");
+        }
+
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> RejectLeave(int id)
+        {
+            if (await leaveService.RejectLeave(id))
+            {
+                return Ok("İşlem başarılı");
+            }
+
+            return BadRequest("İşlem sırasında hata oluştu");
+        }
+
     }
 }
