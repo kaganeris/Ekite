@@ -10,7 +10,7 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
   const [amount, setAmount] = useState(advance.amount);
   const [description, setDescription] = useState(advance.description);
 
-  const { employeeId } = useContext(AuthContext);
+  const { id } = useContext(AuthContext);
   const { updateAdvance } = useContext(AdvanceContext);
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
         currency,
         amount: parseInt(amount.toString().replace(/\D/g, ""), 10),
         description,
-        employeeId,
+        employeeId:id,
       };
       const response = await updateAdvance(updateAdvanceId, data);
 

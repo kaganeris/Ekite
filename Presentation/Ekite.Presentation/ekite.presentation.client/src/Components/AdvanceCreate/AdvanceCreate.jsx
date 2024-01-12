@@ -15,7 +15,7 @@ const AdvanceCreate = ({ enumsType }) => {
 
 
 
-  const { employeeId } = useContext(AuthContext);
+  const { id } = useContext(AuthContext);
   const { addAdvance } = useContext(AdvanceContext);
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const AdvanceCreate = ({ enumsType }) => {
         currency,
         amount: parseInt(amount.toString().replace(/\D/g, ""), 10),
         description,
-        employeeId,
+        employeeId:id,
       };
 
       console.log(formData);

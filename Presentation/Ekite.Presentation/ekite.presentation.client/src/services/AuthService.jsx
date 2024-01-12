@@ -12,7 +12,7 @@ const AuthService = {
           if(response.data.token){
             console.log(response.data);
             localStorage.setItem("user",response.data.token)
-            localStorage.setItem("employeeId", response.data.id);
+            localStorage.setItem("id", response.data.id);
             localStorage.setItem("userRole",response.data.role)
           }
         console.log(response);

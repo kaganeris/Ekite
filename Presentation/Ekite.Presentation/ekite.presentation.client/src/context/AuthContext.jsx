@@ -6,7 +6,7 @@ export const AuthContext = createContext()
 export const AuthProvider = ({children}) => {
 
     const [isAuthenticated,setIsAuthenticated] = useState(false)
-    const [employeeId,setEmployeeId] = useState(0)
+    const [id,setId] = useState(0)
     const [token,setToken] = useState(localStorage.getItem("user"))
     const [userRole,setUserRole] = useState("")
 
@@ -26,7 +26,7 @@ export const AuthProvider = ({children}) => {
         try {
           const response = await AuthService.login(email, password);
           if (response.token) {
-            setEmployeeId(response.id);
+            setId(response.id);
             setIsAuthenticated(true);
             setUserRole(localStorage.getItem("userRole"))
           }
@@ -46,7 +46,7 @@ export const AuthProvider = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated,employeeId,setEmployeeId,logout,token,setToken,userRole,setUserRole}}>
+        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated,id,setId,logout,token,setToken,userRole,setUserRole}}>
             {children}
         </AuthContext.Provider>
     )

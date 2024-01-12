@@ -6,29 +6,29 @@ import SpendTable from "../../Components/SpendTable/SpendTable";
 
 const SpendListPage = () => {
 
-    const{employeeId, setEmployeeId, setIsAuthenticated}=useContext(AuthContext);
+    const{id, setId, setIsAuthenticated}=useContext(AuthContext);
     const{SpendDatas}= useContext(SpendContext);
 
     const [spendData, setSpendData]=useState();
     
 
     useEffect(()=>{
-        if (employeeId !==0) {
+        if (id !==0) {
             (async ()=>{
                 try{
-                    let data =await SpendDatas(employeeId);
+                    let data =await SpendDatas(id);
 
           console.log(data);
           setSpendData(data);
         } catch (error) {}
       })();
     } else {
-      const storedEmployeeId = localStorage.getItem("employeeId");
+      const storedEmployeeId = localStorage.getItem("id");
       if (storedEmployeeId) {
-        setEmployeeId(parseInt(storedEmployeeId));
+        setId(parseInt(storedEmployeeId));
       }
     }
-  }, [employeeId]);
+  }, [id]);
 
   return (
     <>
