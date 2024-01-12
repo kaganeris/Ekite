@@ -10,7 +10,7 @@ const UpdateLeave = ({ leaveTypes }) => {
     const navigate = useNavigate();
 
     const { updateLeave, updateLeaveId, getLeave } = useContext(LeaveContext);
-    const { employeeId } = useContext(AuthContext);
+    const { id } = useContext(AuthContext);
 
     const handleUpdateLeave = async (e) => {
         e.preventDefault()

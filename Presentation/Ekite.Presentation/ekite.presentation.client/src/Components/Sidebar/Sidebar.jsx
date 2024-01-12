@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Sidebar = () => {
+    const {userRole} = useContext(AuthContext)
+
+
     return (
         < nav
             className="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white
@@ -42,7 +46,7 @@ const Sidebar = () => {
                                     <span className="nav-link-text">Profili Güncelle</span>
                                 </Link>
                             </li>
-                            <li className="nav-item dropdown" >
+                            {userRole === "Employee" && <><li className="nav-item dropdown" >
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i className="fa fa-calendar text-red" ></i>
                                     <span className="nav-link-text">İzin İşlemleri</span>
@@ -125,7 +129,8 @@ const Sidebar = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li></>}
+                            
                         </ul>
                         <hr className="my-3" />
                     </div>

@@ -9,7 +9,7 @@ const CreateLeave = ({ leaveTypes }) => {
   const [leaveEndDate, setLeaveEndDate] = useState("");
   const [leaveType, setLeaveType] = useState(1);
   const { createLeave } = useContext(LeaveContext);
-    const { employeeId } = useContext(AuthContext)
+    const { id } = useContext(AuthContext)
     const navigate = useNavigate();
     const [error, setError] = useState("");
  
@@ -20,13 +20,13 @@ const CreateLeave = ({ leaveTypes }) => {
           leaveType: leaveType,
           leaveStartDate: leaveStartDate,
           leaveEndDate: leaveEndDate,
-          employeeId: employeeId,
+          employeeId: id,
         };
         const formData = new FormData();
         formData.append('leaveType', leaveType);
         formData.append('leaveStartDate', leaveStartDate);
         formData.append('leaveEndDate', leaveEndDate);
-        formData.append('employeeId', employeeId);
+        formData.append('employeeId', id);
         console.log(leaveData);
 
         let data = await createLeave(formData);
@@ -58,7 +58,7 @@ const CreateLeave = ({ leaveTypes }) => {
         console.log("Leave type",leaveType);
         console.log("leave end date",leaveEndDate);
         console.log("leave start date",leaveStartDate);
-        console.log("employee id",employeeId);
+        console.log("employee id",id);
     },[leaveType,leaveEndDate,leaveStartDate])
 
   return (

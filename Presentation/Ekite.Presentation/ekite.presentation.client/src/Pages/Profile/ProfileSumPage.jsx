@@ -6,29 +6,33 @@ import ProfileSum from "../../Components/Profile/ProfileSum";
 
 const ProfileSumPage = () => {
 
-    const {isAuthenticated} = useContext(AuthContext)
     const {fetchData} = useContext(ProfileContext)
-    const { employeeId, setEmployeeId, setIsAuthenticated } =
+    const { id, setId,userRole } =
     useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
     
-    if (employeeId !== 0) {
+    if (id !== 0) {
       (async () => {
         try {
-          let data = await fetchData(employeeId);
-          setProfileData(data);
+          if(userRole === "Employee"){
+            let data = await fetchData(id);
+            setProfileData(data);
+          }
+          else if(userRole === "Admin"){
+            // Todo
+          }
         } catch (error) {}
       })();
 
     } else {
-      const storedEmployeeId = localStorage.getItem("employeeId");
+      const storedEmployeeId = localStorage.getItem("id");
       if (storedEmployeeId) {
-        setEmployeeId(parseInt(storedEmployeeId));
+        setId(parseInt(storedEmployeeId));
       }
     }
-  }, [employeeId]);
+  }, [id]);
 
   return (
     <>

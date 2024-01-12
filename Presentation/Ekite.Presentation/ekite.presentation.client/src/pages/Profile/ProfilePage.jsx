@@ -9,30 +9,41 @@ import { LeaveContext } from "../../context/LeaveContext";
 function ProfilePage() {
     const { isAuthenticated } = useContext(AuthContext)
     const { fetchData } = useContext(ProfileContext)
+
     const {pendingLeaveDatas} = useContext(LeaveContext);
-    const { employeeId, setEmployeeId, setIsAuthenticated } =
+
+    const { id, setId, setIsAuthenticated,userRole } =
+
         useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
     const [pendingLeaveList, setPendingLeaveList] = useState(null);
 
     
     useEffect(() => {
-        if (employeeId !== 0) {
+        if (id !== 0) {
             (async () => {
                 try {
-                    let data = await fetchData(employeeId);
-                    let pendingListData = await pendingLeaveDatas();
-                    setProfileData(data);
-                    setPendingLeaveList(pendingListData);   
+
+                    if(userRole === "Employee"){
+                        console.log("kullanıcı rolu employee çalıştı");
+                        let data = await fetchData(id);
+let pendingListData = await pendingLeaveDatas();
+                        setProfileData(data);
+setPendingLeaveList(pendingListData);   
+                    }
+                    else if(userRole === "Admin"){
+                        console.log("kullanıcı rolu admin çalıştı");
+                    }
+
                 } catch (error) { }
             })();
         } else {
-            const storedEmployeeId = localStorage.getItem("employeeId");
+            const storedEmployeeId = localStorage.getItem("id");
             if (storedEmployeeId) {
-                setEmployeeId(parseInt(storedEmployeeId));
+                setId(parseInt(storedEmployeeId));
             }
         }
-    }, [employeeId]);
+    }, [id]);
 
 
 
