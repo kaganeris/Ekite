@@ -22,6 +22,9 @@ namespace Ekite.Application.AutoMapper
             CreateMap<Leave, CreateLeaveDTO>().ReverseMap();
             CreateMap<Leave, UpdateLeaveDTO>().ReverseMap();
 
+
+            CreateMap<ResultPendingLeaveDTO,Leave >().ReverseMap();
+
             CreateMap<CreateAdvanceDTO, Advance>().ReverseMap();
 
             CreateMap<UpdateAdvanceDTO, Advance>().ReverseMap();

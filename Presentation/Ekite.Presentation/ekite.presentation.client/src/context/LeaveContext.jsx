@@ -104,6 +104,56 @@ const LeaveProvider = ({ children }) => {
     }
   };
 
+  const pendingLeaveDatas = async () => {
+    try {
+      const data = await LeaveService.getPendingLeaveList();
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {}
+  };
+
+
+  const approveLeaveProcess= async(id) => {
+    try {
+      const data = await LeaveService.approveLeave(id);
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {}
+
+  }
+
+
+  const rejectLeaveProcess= async(id) => {
+    try {
+      const data = await LeaveService.rejectLeave(id);
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {}
+
+  }
+
+
   return (
     <LeaveContext.Provider
       value={{
@@ -115,6 +165,10 @@ const LeaveProvider = ({ children }) => {
         setUpdateLeaveId,
         getLeave,
         updateLeave,
+        pendingLeaveDatas,
+        rejectLeaveProcess,
+        approveLeaveProcess
+
       }}
     >
       {children}

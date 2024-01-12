@@ -4,26 +4,37 @@ import ProfileCard from "../../Components/Profile/ProfileCard";
 import ProfileHeader from "../../Components/Profile/ProfileHeader";
 import { AuthContext } from "../../context/AuthContext";
 import { ProfileContext } from "../../context/ProfileContext";
+import { LeaveContext } from "../../context/LeaveContext";
 
 function ProfilePage() {
     const { isAuthenticated } = useContext(AuthContext)
     const { fetchData } = useContext(ProfileContext)
+
+    const {pendingLeaveDatas} = useContext(LeaveContext);
+
     const { id, setId, setIsAuthenticated,userRole } =
+
         useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
+    const [pendingLeaveList, setPendingLeaveList] = useState(null);
 
+    
     useEffect(() => {
         if (id !== 0) {
             (async () => {
                 try {
+
                     if(userRole === "Employee"){
                         console.log("kullanıcı rolu employee çalıştı");
                         let data = await fetchData(id);
+let pendingListData = await pendingLeaveDatas();
                         setProfileData(data);
+setPendingLeaveList(pendingListData);   
                     }
                     else if(userRole === "Admin"){
                         console.log("kullanıcı rolu admin çalıştı");
                     }
+
                 } catch (error) { }
             })();
         } else {
@@ -55,7 +66,7 @@ function ProfilePage() {
                 <div className="row " >
                     <div className="col-xl-4 order-xl-1" >
                         <div className="card card-profile  " >
-                            <ProfileCard profileData={profileData} />
+                            <ProfileCard profileData={profileData} pendingLeaveList={pendingLeaveList} setPendingLeaveList={setPendingLeaveList} />
                         </div>
                     </div>
                     <div className="col-xl-8 order-xl-2">

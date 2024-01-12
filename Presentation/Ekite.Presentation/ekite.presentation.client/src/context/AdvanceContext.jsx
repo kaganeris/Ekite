@@ -100,8 +100,11 @@ const AdvanceProvider = ({ children }) => {
       const data = await AdvanceService.deleteAdvance(id);
       if (data.status !== 401) {
         return data.data;
-      } else {
-        if (token === "") {
+      }
+      else
+      {
+        if (token === "")
+        {
           setIsAuthenticated(false);
         }
         setToken("");

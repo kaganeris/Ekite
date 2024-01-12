@@ -68,6 +68,8 @@ namespace Ekite.Presentation.Server.Controllers
 
                 if (result.Succeeded)
                 {
+
+
                     //int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
 
                     int id = await _appUserService.GetIDByRole(appUser.Id, role.FirstOrDefault());
