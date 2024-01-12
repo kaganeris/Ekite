@@ -4,7 +4,7 @@ import axios from "axios";
 const ProfileService = {
   getDetailPersonelById: async (id) => {
     try {
-      console.log("getdetailpersonelbyid çalıştı");
+      console.log("getdetailpersonelbyid çalıştı",id);
       const token = localStorage.getItem("user");
       if(token){
         const response = await axios.get(
