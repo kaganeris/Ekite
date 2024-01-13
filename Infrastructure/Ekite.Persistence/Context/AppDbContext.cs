@@ -29,9 +29,11 @@ namespace Ekite.Persistence.Context
         public DbSet<Leave> Leaves{ get; set; }
 
         public DbSet<Advance> Advances { get; set; }
+		public DbSet<Director> Directors { get; set; }
 
 
-        protected override void OnModelCreating(ModelBuilder builder)
+
+		protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(builder);

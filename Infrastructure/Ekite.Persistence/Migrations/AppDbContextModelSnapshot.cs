@@ -163,6 +163,9 @@ namespace Ekite.Persistence.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("DirectorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(75)
@@ -182,14 +185,16 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 23, 57, 21, 589, DateTimeKind.Local).AddTicks(4964),
+                            CreatedDate = new DateTime(2024, 1, 13, 15, 59, 11, 219, DateTimeKind.Local).AddTicks(7653),
+                            DirectorId = 0,
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 23, 57, 21, 589, DateTimeKind.Local).AddTicks(4973),
+                            CreatedDate = new DateTime(2024, 1, 13, 15, 59, 11, 219, DateTimeKind.Local).AddTicks(7666),
+                            DirectorId = 0,
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -228,17 +233,119 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 23, 57, 21, 589, DateTimeKind.Local).AddTicks(5413),
+                            CreatedDate = new DateTime(2024, 1, 13, 15, 59, 11, 219, DateTimeKind.Local).AddTicks(9060),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 23, 57, 21, 589, DateTimeKind.Local).AddTicks(5415),
+                            CreatedDate = new DateTime(2024, 1, 13, 15, 59, 11, 219, DateTimeKind.Local).AddTicks(9065),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
+                });
+
+            modelBuilder.Entity("Ekite.Domain.Entities.Director", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AddressDetail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("BirthPlace")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasAnnotation("MinLength", 2);
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasAnnotation("MinLength", 2);
+
+                    b.Property<DateTime?>("LeavingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SecondLastName")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasAnnotation("MinLength", 2);
+
+                    b.Property<string>("SecondName")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasAnnotation("MinLength", 2);
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TCNO")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)")
+                        .HasAnnotation("MinLength", 11);
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CompanyId")
+                        .IsUnique();
+
+                    b.ToTable("Directors", (string)null);
                 });
 
             modelBuilder.Entity("Ekite.Domain.Entities.Employee", b =>
@@ -386,14 +493,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 10, 23, 57, 21, 589, DateTimeKind.Local).AddTicks(8336),
+                            CreatedDate = new DateTime(2024, 1, 13, 15, 59, 11, 223, DateTimeKind.Local).AddTicks(565),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 10, 23, 57, 21, 589, DateTimeKind.Local).AddTicks(8339),
+                            CreatedDate = new DateTime(2024, 1, 13, 15, 59, 11, 223, DateTimeKind.Local).AddTicks(577),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
@@ -641,6 +748,25 @@ namespace Ekite.Persistence.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("Ekite.Domain.Entities.Director", b =>
+                {
+                    b.HasOne("Ekite.Domain.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ekite.Domain.Entities.Company", "Company")
+                        .WithOne("Director")
+                        .HasForeignKey("Ekite.Domain.Entities.Director", "CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("Ekite.Domain.Entities.Employee", b =>
                 {
                     b.HasOne("Ekite.Domain.Entities.AppUser", "AppUser")
@@ -756,6 +882,9 @@ namespace Ekite.Persistence.Migrations
 
             modelBuilder.Entity("Ekite.Domain.Entities.Company", b =>
                 {
+                    b.Navigation("Director")
+                        .IsRequired();
+
                     b.Navigation("Employees");
                 });
 

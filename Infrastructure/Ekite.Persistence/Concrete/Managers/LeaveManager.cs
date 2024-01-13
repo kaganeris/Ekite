@@ -5,6 +5,7 @@ using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Domain.Entities;
 using Ekite.Domain.Enums;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -125,5 +126,62 @@ namespace Ekite.Persistence.Concrete.Managers
                 return await leaveRepository.Update(leave);
             }
         }
-    }
+
+		//public async Task<bool> ApproveLeave(int id)
+		//{
+		//	if (id > 0)
+		//	{
+
+		//		Leave leave = await leaveRepository.GetById(id);
+		//		leave.ApprovalStatus = ApprovalStatus.Approved;
+		//		leave.ApprovedDate = DateTime.Now;
+
+		//		return await leaveRepository.UpdateWithoutStatus(leave);
+
+
+
+
+		//	}
+		//	else
+		//	{
+		//		return false;
+		//	}
+		//}
+
+		//public async Task<bool> RejectLeave(int id)
+		//{
+		//	if (id > 0)
+		//	{
+
+		//		Leave leave = await leaveRepository.GetById(id);
+		//		leave.ApprovalStatus = ApprovalStatus.Rejected;
+		//		leave.ApprovedDate = DateTime.Now;
+		//		return await leaveRepository.UpdateWithoutStatus(leave);
+
+		//	}
+		//	else
+		//	{
+		//		return false;
+		//	}
+		//}
+
+
+		//public async Task<List<ResultPendingLeaveDTO>> GetPendingList()
+		//{
+		//	List<ResultPendingLeaveDTO> resultList = await leaveRepository.GetFilteredList(select: x => new ResultPendingLeaveDTO
+		//	{
+		//		Id = x.Id,
+		//		Day = x.Day,
+		//		LeaveEndDate = x.LeaveEndDate,
+		//		LeaveStartDate = x.LeaveStartDate,
+		//		LeaveType = EnumDescriber.Description(x.LeaveType),
+		//		FullName = x.Employee.FullName,
+
+		//	}, where: x => x.ApprovalStatus == ApprovalStatus.Pending, include: q => q.Include(x => x.Employee));
+
+		//	return resultList;
+
+		//}
+
+	}
 }

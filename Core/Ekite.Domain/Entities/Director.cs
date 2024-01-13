@@ -1,27 +1,29 @@
 ﻿using Ekite.Domain.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ekite.Domain.Entities
 {
-	public class Company : IBaseEntity
+	public class Director:Person,IBaseEntity
 	{
-		public Company()
-		{
-			Employees = new List<Employee>();
-		}
-
 		public int Id { get; set; }
-		public string Name { get; set; }
+
+		public string AppUserId { get; set; }
+		public AppUser AppUser { get; set; }
+
+		[NotMapped]
+		public IFormFile UploadPath { get; set; }
 		public DateTime CreatedDate { get; set; }
 		public DateTime? UpdatedDate { get; set; }
 		public DateTime? DeletedDate { get; set; }
 		public Status Status { get; set; }
-		public List<Employee> Employees { get; set; }
-		public int DirectorId { get; set; }
-		public Director Director { get; set; }
+
+		public int CompanyId { get; set; }
+		public Company Company { get; set; }
 	}
 }
