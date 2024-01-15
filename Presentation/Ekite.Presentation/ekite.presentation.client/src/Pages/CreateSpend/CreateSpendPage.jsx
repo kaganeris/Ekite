@@ -36,7 +36,7 @@ const CreateSpendPage = () => {
 
   return (
     <div className="main-content">
-      <div className="container mt-5  ">
+      <div className="container mt-4 ">
         <div className="row ">
           <div className="col ">
             <CreateSpend spendTypes={spendTypes} currencyTypes={currencyTypes} />
