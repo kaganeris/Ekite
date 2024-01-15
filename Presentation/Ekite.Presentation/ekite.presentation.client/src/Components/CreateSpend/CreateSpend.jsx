@@ -159,7 +159,28 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-12">
+              <div className="col-lg-8">
+                <div className="form-group">
+                  <label
+                    className="form-control-label"
+                    htmlFor="input-first-name"
+                  >
+                    Tutar
+                  </label>
+                  <input
+                    type="text"
+                    id="input-first-name"
+                    className="form-control"
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                  {!isAmountValid && (
+                    <label className="text-danger">
+                      Tutar boş bırakılamaz.
+                    </label>
+                  )}
+                </div>
+              </div>
+              <div className="col-lg-4">
                 <div className="form-group">
                   <label
                     className="form-control-label"
@@ -186,28 +207,9 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-12">
-                <div className="form-group">
-                  <label
-                    className="form-control-label"
-                    htmlFor="input-first-name"
-                  >
-                    Tutar
-                  </label>
-                  <input
-                    type="text"
-                    id="input-first-name"
-                    className="form-control"
-                    onChange={(e) => setAmount(e.target.value)}
-                  />
-                  {!isAmountValid && (
-                    <label className="text-danger">
-                      Tutar boş bırakılamaz.
-                    </label>
-                  )}
-                </div>
-              </div>
+              
             </div>
+            
 
             <div className="row">
               <div className="col-lg-12">
