@@ -146,7 +146,7 @@ const AdvanceCreate = ({ enumsType }) => {
             </div>
 
             <div className="row">
-              <div className="col-lg-12">
+              <div className="col-lg-8">
                 <div className="form-group">
                   <label
                     className="form-control-label"
@@ -168,9 +168,7 @@ const AdvanceCreate = ({ enumsType }) => {
                   )}
                 </div>
               </div>
-            </div>
-            <div className="row">
-              <div className="col-lg-12">
+              <div className="col-lg-4">
                 <div className="form-group">
                   <label
                     className="form-control-label"
@@ -194,6 +192,9 @@ const AdvanceCreate = ({ enumsType }) => {
                 </div>
               </div>
             </div>
+            <div className="row">
+              
+            </div>
           </div>
           <div className="main-content">
             <div className="container">
@@ -201,7 +202,7 @@ const AdvanceCreate = ({ enumsType }) => {
                 <div className="col-auto ">
                   <input
                     type="submit"
-                    value="Kaydet"
+                    value="Oluştur"
                     className="btn btn-m btn-primary"
                   />
                 </div>

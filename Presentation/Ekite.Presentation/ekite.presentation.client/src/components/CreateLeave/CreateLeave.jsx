@@ -63,7 +63,7 @@ const CreateLeave = ({ leaveTypes }) => {
 
   return (
     <div className="card">
-      <div className="card-header">
+      <div className="card-header ">
         <div className="row align-items-center">
           <div className="col-8">
             <h3 className="mb-0">İzin Oluştur </h3>
@@ -144,7 +144,7 @@ const CreateLeave = ({ leaveTypes }) => {
                 <div className="col-auto ">
                   <input
                     type="submit"
-                    value="Kaydet"
+                    value="Oluştur"
                     className="btn btn-m btn-primary"
                   />
                 </div>

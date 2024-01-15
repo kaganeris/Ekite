@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import CreateLeave from "../../components/CreateLeave/CreateLeave";
+import CreateLeave from "../../Components/CreateLeave/CreateLeave"
 import { LeaveContext } from "../../context/LeaveContext";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -28,8 +28,8 @@ const AddLeavePage = () => {
 
   return (
     <div className="main-content">
-      <div className="container mt-5  ">
-        <div className="row ">
+      <div className="container mb-3 mt-4">
+        <div className="row">
           <div className="col ">
             <CreateLeave leaveTypes={leaveTypes} />
           </div>

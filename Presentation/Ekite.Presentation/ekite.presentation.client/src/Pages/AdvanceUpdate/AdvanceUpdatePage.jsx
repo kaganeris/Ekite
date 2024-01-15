@@ -35,7 +35,7 @@ const AdvanceUpdatePage = () => {
     <>
       {advance && (
         <div className="main-content">
-          <div className="container mt-5  ">
+          <div className="container mt-4  ">
             <div className="row ">
               <div className="col ">
                 <AdvanceUpdate

@@ -136,12 +136,12 @@ const SpendTable = ({ spendList }) => {
                   <td></td>
                 )}
                 {spend.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right">
+                  <td className="text-right" style={{paddingRight: '0px'}} >
                     <a
                       className="btn btn-outline-primary"
                       onClick={() => handleUpdateSpend(spend.id)}
                     >
-                      Güncelle
+                      Düzenle
                     </a>
                   </td>
                 ) : (
@@ -149,7 +149,7 @@ const SpendTable = ({ spendList }) => {
                 )}
 
                 {spend.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right">
+                  <td className="text-right" style={{paddingLeft:'0px'}}>
                     <a
                       className="btn btn-outline-danger"
                       onClick={() => handleDeleteSpend(spend.id)}

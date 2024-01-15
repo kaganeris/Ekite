@@ -93,12 +93,12 @@ const LoginForm = () => {
             <div className="row justify-content-center">
                 <div className="col-lg-5 col-md-7">
                     <div className="card bg-secondary border-0 mb-0">
-                        <div className="card-header bg-transparent pb-5">
-                            <div className=" text-center mt-2 mb-3">
-                                <small>Giriş yapın</small>
+                        <div className="card-header bg-transparent pb-6">
+                            <div className=" text-center mt-3 mb-3 ">
+                                <h2>Giriş yapın</h2>
                             </div>
                         </div>
-                        <div className="card-body px-lg-5 py-lg-5">
+                        <div className="card-body px-lg-5 py-lg-2 ">
                             <form role="form" onSubmit={handlelogin}>
                                 <div className="form-group mb-3">
                                     <div className="input-group input-group-merge input-group-alternative">

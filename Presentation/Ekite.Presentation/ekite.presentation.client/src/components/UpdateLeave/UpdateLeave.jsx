@@ -152,7 +152,7 @@ const UpdateLeave = ({ leaveTypes }) => {
                                 <div className="col-auto ">
                                     <input
                                         type="submit"
-                                        value="Güncelle"
+                                        value="Kaydet"
                                         className="btn btn-m btn-primary"
                                     />
                                 </div>

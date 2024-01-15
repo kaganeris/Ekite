@@ -123,19 +123,20 @@ const AdvanceList = ({ advanceList }) => {
                 )}
 
                 {advance.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right">
+                  <td className="text-right" style={{ paddingRight: '0px' }}>
                     <a
                       className="btn btn-outline-primary"
+                      
                       onClick={() => handleUpdateAdvance(advance.id)}
                     >
-                      Güncelle
+                      Düzenle
                     </a>
                   </td>
                 ) : (
                   <td></td>
                 )}
                 {advance.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right">
+                  <td className="text-right" style={{ paddingLeft: '2px' }}>
                     <a
                       className="btn btn-outline-danger"
                       onClick={() => handleDeleteAdvance(advance.id)}

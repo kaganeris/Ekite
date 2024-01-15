@@ -22,6 +22,7 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
     const handleUpdateFile = (event) => {
         const file = event.target.files[0];
         console.log(event.target.files[0]);
+        
 
         const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
 
@@ -154,7 +155,27 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-12">
+                            <div className="col-lg-8">
+                                <div className="form-group">
+                                    <label className="form-control-label" htmlFor="input-first-name">
+                                        Tutar
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="input-first-name"
+                                        className="form-control"
+                                        onChange={(e) => {
+                                            setAmount(e.target.value);
+                                            setAmountValid(true);
+                                        }}
+                                        value={amount}
+                                    />
+                                    {!isAmountValid && (
+                                        <span className="help-block text-danger">Tutar bilgisi boş bırakılamaz.</span>
+                                    )}
+                                </div>
+                            </div>
+                            <div className="col-lg-4">
                                 <div className="form-group">
                                     <label className="form-control-label" htmlFor="input-leave-end">
                                         Para Birimi
@@ -176,27 +197,9 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-lg-12">
-                                <div className="form-group">
-                                    <label className="form-control-label" htmlFor="input-first-name">
-                                        Tutar
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="input-first-name"
-                                        className="form-control"
-                                        onChange={(e) => {
-                                            setAmount(e.target.value);
-                                            setAmountValid(true);
-                                        }}
-                                        value={amount}
-                                    />
-                                    {!isAmountValid && (
-                                        <span className="help-block text-danger">Tutar bilgisi boş bırakılamaz.</span>
-                                    )}
-                                </div>
-                            </div>
+                          
                         </div>
+                     
 
                         <div className="row">
                             <div className="col-lg-12">
@@ -210,6 +213,7 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                                         className={`form-control ${isFileValid ? '' : 'is-invalid'}`}
                                         accept="image/*,application/pdf"
                                         onChange={handleUpdateFile}
+                                        
                                     />
                                     {!isFileValid && (
                                         <span className="help-block text-danger">
@@ -217,7 +221,9 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                                         </span>
                                     )}
                                     <br />
-                                    <embed src={imagePath} type="application/pdf" width="100%" height="200px" />
+                                    <embed src={imagePath} type="application/pdf" width="250px" height="250px" />
+                                    <img src={imagePath} alt="Görsel" style={{ width: '200px', height: '200px', objectFit: 'contain' }} />
+
                                 </div>
                             </div>
                         </div>
@@ -229,7 +235,7 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                                 <div className="col-auto">
                                     <input
                                         type="submit"
-                                        value="Güncelle"
+                                        value="Kaydet"
                                         className="btn btn-m btn-primary"
                                     />
                                 </div>
