@@ -64,6 +64,25 @@ const ProfileService = {
       return error.response;
     }
   },
+  getUpdateDirectorByID: async (id) => {
+    try {
+      const token = localStorage.getItem("user");
+      const response = await axios.get(
+        `https://localhost:7152/api/Director/GetUpdateDirector?id=${id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+        );
+        console.log(response);
+      return response;
+    } catch (error) {
+      console.error("Profil verisi çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }
+  },
 
   putUpdatePersonelById: async (id, data) => {
     console.log(data, id);
@@ -71,6 +90,26 @@ const ProfileService = {
       const token = localStorage.getItem("user");
       const response = await axios.put(
         `https://localhost:7152/api/Employee/PutUpdatePersonel?id=${id}`,
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+      );
+
+      return response;
+    } catch (error) {
+      return error.response;
+    }
+  },
+
+  putUpdateDirectorById: async (id,data) => {
+    try {
+      const token = localStorage.getItem("user");
+      const response = await axios.put(
+        `https://localhost:7152/api/Director/PutUpdateDirector?id=${id}`,
         data,
         {
           headers: {

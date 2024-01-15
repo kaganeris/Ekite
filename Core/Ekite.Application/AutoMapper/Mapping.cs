@@ -5,6 +5,7 @@ using Ekite.Application.DTOs.SpendDto;
 using Ekite.Application.DTOs.LeaveDto;
 using Ekite.Application.Helpers;
 using Ekite.Domain.Entities;
+using Ekite.Application.DTOs.DirectorDto;
 
 namespace Ekite.Application.AutoMapper
 {
@@ -16,6 +17,9 @@ namespace Ekite.Application.AutoMapper
             CreateMap<CreateSpendDto, Spend>().ReverseMap();
             CreateMap<ResultSpendDto, Spend>().ReverseMap();
             CreateMap<UpdateSpendDto, Spend>().ReverseMap();
+
+            CreateMap<UpdateDirectorDto, Director>().ReverseMap();
+
 
             CreateMap<ResultSpendDto, Spend>().ReverseMap().ForMember(x => x.Currency, x => x.MapFrom(x => EnumDescriber.Description(x.Currency))).ForMember(x => x.ApprovalStatus, x => x.MapFrom(x => EnumDescriber.Description(x.ApprovalStatus))).ForMember(x => x.SpendType, x => x.MapFrom(x => EnumDescriber.Description(x.SpendType)));
 
