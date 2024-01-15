@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { ProfileContext } from "../../context/ProfileContext";
 import { AuthContext } from "../../context/AuthContext";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../../context/ThemeContext";
 
 function Navbar({ isSidebarOpen, setSidebarOpen }) {
     const { fetchData,getDirectorById } = useContext(ProfileContext)
     const { id, setId, setIsAuthenticated, logout,userRole } =
         useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
+    const {darkMode} = useContext(ThemeContext)
    
 
     const toggleSidebar = () => {
@@ -72,7 +74,7 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
                     
                 }}
             >
-                <nav className="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+                <nav className={darkMode ? "navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom" : "navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom bg-dark"}>
                     <div className="container-fluid">
                         <div
                             className="collapse navbar-collapse"

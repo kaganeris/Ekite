@@ -50,7 +50,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 		[HttpGet]
 		[Route("[action]")]
-		//[Authorize(Roles = "Admin")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> GetPendingList()
 		{
 
@@ -59,7 +59,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
 		[HttpPut("[action]")]
-		//[Authorize(Roles = "Admin,Employee")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> PutUpdateDirector(int id, [FromForm] UpdateDirectorDto directorDto)
 		{
 
