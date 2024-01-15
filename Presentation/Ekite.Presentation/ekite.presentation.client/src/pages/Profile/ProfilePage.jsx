@@ -8,7 +8,7 @@ import ProfileCard from "../../components/Profile/ProfileCard";
 
 function ProfilePage() {
   const { isAuthenticated } = useContext(AuthContext);
-  const { fetchData } = useContext(ProfileContext);
+  const { fetchData,getDirectorById } = useContext(ProfileContext);
 
   const { pendingLeaveDatas } = useContext(LeaveContext);
 
@@ -26,6 +26,8 @@ function ProfilePage() {
             setProfileData(data);
           } else if (userRole === "Admin") {
             let pendingListData = await pendingLeaveDatas();
+            let data = await getDirectorById(id)
+            setProfileData(data)
             setPendingLeaveList(pendingListData);
             console.log("kullanıcı rolu admin çalıştı");
           }
