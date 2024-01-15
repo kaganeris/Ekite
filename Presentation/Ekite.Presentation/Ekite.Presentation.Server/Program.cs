@@ -76,10 +76,11 @@ namespace Ekite.Presentation.Server
             builder.Services.AddTransient<ILeaveRepository, LeaveRepository>();
 
             builder.Services.AddTransient<IAdvanceRepository, AdvanceRepository>();
+			builder.Services.AddTransient<IDirectorRepository, DirectorRepository>();
 
 
-            //MANAGERS
-            builder.Services.AddTransient<IEmployeeService, EmployeeManager>();
+			//MANAGERS
+			builder.Services.AddTransient<IEmployeeService, EmployeeManager>();
             builder.Services.AddTransient<IDepartmentService,DepartmentManager >();
             builder.Services.AddTransient<IJobService,JobManager >();
             builder.Services.AddTransient<ICompanyService,CompanyManager >();
@@ -89,14 +90,15 @@ namespace Ekite.Presentation.Server
             builder.Services.AddTransient<ILeaveService,LeaveManager>();
 
             builder.Services.AddTransient<IAdvanceService,AdvanceManager>();
+			builder.Services.AddTransient<IDirectorService, DirectorManager>();
 
 
 
 
-    
 
 
-            builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles); 
+
+			builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles); 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

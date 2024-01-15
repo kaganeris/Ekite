@@ -7,28 +7,28 @@ import AdvanceHeader from '../../Components/Advance/AdvanceHeader';
 const AdvanceListPage = () => {
 
     const {getAdvanceList} = useContext(AdvanceContext)
-    const { employeeId, setEmployeeId, setIsAuthenticated } =
+    const { id, setId, setIsAuthenticated } =
     useContext(AuthContext);
 
     const [advanceList,setAdvanceList] = useState(null);
 
     useEffect(() => {
-        if (employeeId !== 0) {
+        if (id !== 0) {
           (async () => {
             try {
-              let data = await getAdvanceList(employeeId);
+              let data = await getAdvanceList(id);
               console.log(data);
               setAdvanceList(data);
             } catch (error) {}
           })();
     
         } else {
-          const storedEmployeeId = localStorage.getItem("employeeId");
+          const storedEmployeeId = localStorage.getItem("id");
           if (storedEmployeeId) {
-            setEmployeeId(parseInt(storedEmployeeId));
+            setId(parseInt(storedEmployeeId));
           }
         }
-      }, [employeeId]);
+      }, [id]);
 
   return (
     <>

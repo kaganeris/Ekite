@@ -5,7 +5,7 @@ import { SpendContext } from "../../context/SpendContext";
 import Swal from "sweetalert2";
 
 const SpendTable = ({ spendList }) => {
-  const { employeeId } = useContext(AuthContext);
+  const { id } = useContext(AuthContext);
   const { deleteSpend, setUpdateSpendId, updateSpendId } =
     useContext(SpendContext);
   const navigate = useNavigate();

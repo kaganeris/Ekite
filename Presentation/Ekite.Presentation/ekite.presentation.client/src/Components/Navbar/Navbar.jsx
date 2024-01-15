@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 function Navbar({ isSidebarOpen, setSidebarOpen }) {
     const { fetchData } = useContext(ProfileContext)
-    const { employeeId, setEmployeeId, setIsAuthenticated, logout } =
+    const { id, setId, setIsAuthenticated, logout,userRole } =
         useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
    
@@ -40,22 +40,27 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
     }
 
     useEffect(() => {
-        if (employeeId !== 0) {
+        if (id !== 0) {
             (async () => {
                 try {
-                    let data = await fetchData(employeeId);
-                    setProfileData(data);
+                    if(userRole == "Employee"){
+                        let data = await fetchData(id);
+                        setProfileData(data);
+                    }
+                    else if(userRole == "Admin"){
+
+                    }
 
                 } catch (error) { }
             })();
         } else {
-            const storedEmployeeId = localStorage.getItem("employeeId");
+            const storedEmployeeId = localStorage.getItem("id");
             if (storedEmployeeId) {
-                setEmployeeId(parseInt(storedEmployeeId));
+                setId(parseInt(storedEmployeeId));
                 setIsAuthenticated(true);
             }
         }
-    }, [employeeId]);
+    }, [id]);
 
 
     return (
@@ -97,9 +102,9 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
                                             aria-controls="sidebar"
                                             onClick={toggleSidebar}
                                         >
-                                            {!isSidebarOpen ? <>  <i className="sidenav-toggler-line"></i>
-                                                <i className="sidenav-toggler-line"></i>
-                                                <i className="sidenav-toggler-line"></i> </> : <><i className="fa fa-x" style={{ color: "#ffffff" }} ></i></>}
+                                            {!isSidebarOpen ? <>  <i className="ni ni-align-center" style={{ color: "#ffffff" }}></i>
+                                               
+                                                 </> : <><i className="ni ni-align-left-2" style={{ color: "#ffffff" }} ></i></>}
                                         </div>
                                     </div>
                                 </li>

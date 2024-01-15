@@ -68,7 +68,12 @@ namespace Ekite.Presentation.Server.Controllers
 
                 if (result.Succeeded)
                 {
-                    int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
+
+
+                    //int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
+
+                    int id = await _appUserService.GetIDByRole(appUser.Id, role.FirstOrDefault());
+
 
                     var authClaims = new List<Claim>
                 {
@@ -85,7 +90,7 @@ namespace Ekite.Presentation.Server.Controllers
                         token = new JwtSecurityTokenHandler().WriteToken(token),
                         expiration = token.ValidTo,
                         role = role.FirstOrDefault(),
-                        employeeId = employeeId,
+                        id = id,
                     });
                 }
                 else
@@ -117,8 +122,7 @@ namespace Ekite.Presentation.Server.Controllers
                 _configuration["JwtSettings:validAudience"],
                 authClaims,
 
-
-                expires: DateTime.Now.AddMinutes(10),
+                expires: DateTime.Now.AddDays(10),
 
                 signingCredentials: signIn
                 

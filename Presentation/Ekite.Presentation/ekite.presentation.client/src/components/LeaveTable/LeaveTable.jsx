@@ -4,7 +4,7 @@ import { LeaveContext } from "../../context/LeaveContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const LeaveTable = ({ leaveList }) => {
-  const { employeeId } = useContext(AuthContext);
+  const { id } = useContext(AuthContext);
   const { deleteLeave, setUpdateLeaveId, updateLeaveId } =
     useContext(LeaveContext);
   const navigate = useNavigate();

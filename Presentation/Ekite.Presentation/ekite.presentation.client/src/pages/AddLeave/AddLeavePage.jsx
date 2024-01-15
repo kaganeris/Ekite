@@ -6,10 +6,10 @@ import { AuthContext } from "../../context/AuthContext";
 const AddLeavePage = () => {
     const [leaveTypes,setLeaveTypes] = useState(null)
     const {getLeaveTypes} = useContext(LeaveContext)
-    const { employeeId,setEmployeeId,setIsAuthenticated } = useContext(AuthContext);
+    const { id,setId,setIsAuthenticated } = useContext(AuthContext);
 
     useEffect(() => {
-      if (employeeId !== 0) {
+      if (id !== 0) {
         (async () => {
           try {
            let data = await getLeaveTypes()
@@ -19,12 +19,12 @@ const AddLeavePage = () => {
           }
        })()
       }else{
-          const storedEmployeeId = localStorage.getItem("employeeId");
+          const storedEmployeeId = localStorage.getItem("id");
           if (storedEmployeeId) {
-            setEmployeeId(parseInt(storedEmployeeId));
+            setId(parseInt(storedEmployeeId));
           }
       }
-    },[employeeId])
+    },[id])
 
   return (
     <div className="main-content">
