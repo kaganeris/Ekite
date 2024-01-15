@@ -5,7 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { ProfileContext } from "../../context/ProfileContext";
 
 function EditProfilePage() {
-  const { updatePersonelData } = useContext(ProfileContext);
+  const { updatePersonelData,updateDirectorData } = useContext(ProfileContext);
   const { id, setId, userRole } =
     useContext(AuthContext);
   const [profileData, setProfileData] = useState(null);
@@ -19,7 +19,8 @@ function EditProfilePage() {
             setProfileData(data);
           }
           else if(userRole === "Admin"){
-            // Todo
+            let data = await updateDirectorData(id)
+            setProfileData(data)
           }
         } catch (error) {}
       })();

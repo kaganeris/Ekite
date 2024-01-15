@@ -24,16 +24,14 @@ namespace Ekite.Persistence.Concrete.Managers
 	{
 		private readonly IDirectorRepository _directorRepository;
 		private readonly ILeaveRepository _leaveRepository;
-		private readonly IMapper _mapper;
+        private readonly IMapper mapper;
 
-
-		public DirectorManager(IDirectorRepository directorRepository, ILeaveRepository leaveRepository)
+        public DirectorManager(IDirectorRepository directorRepository, ILeaveRepository leaveRepository,IMapper mapper)
 		{
-			
-			
 			_directorRepository = directorRepository;
 			_leaveRepository = leaveRepository;
-		}
+            this.mapper = mapper;
+        }
 
 		public async Task<bool> ApproveLeave(int id)
 		{
@@ -228,7 +226,7 @@ namespace Ekite.Persistence.Concrete.Managers
 					entity.ImagePath = $"https://ekitedepo.blob.core.windows.net/yeni/{uniqueName}";
 				}
 
-				_mapper.Map(entity, director);
+                mapper.Map(entity, director);
 
 				return await _directorRepository.Update(director);
 			}
