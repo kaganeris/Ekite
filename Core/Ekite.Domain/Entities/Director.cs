@@ -25,5 +25,9 @@ namespace Ekite.Domain.Entities
 
 		public int CompanyId { get; set; }
 		public Company Company { get; set; }
+		public int JobId { get; set; }
+		public Job Job { get; set; }
+		public int DepartmentId { get; set; }
+		public Department Department { get; set; }
 	}
 }
