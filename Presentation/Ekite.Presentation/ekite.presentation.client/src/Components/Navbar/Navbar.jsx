@@ -102,9 +102,9 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
                                             aria-controls="sidebar"
                                             onClick={toggleSidebar}
                                         >
-                                            {!isSidebarOpen ? <>  <i className="sidenav-toggler-line"></i>
-                                                <i className="sidenav-toggler-line"></i>
-                                                <i className="sidenav-toggler-line"></i> </> : <><i className="fa fa-x" style={{ color: "#ffffff" }} ></i></>}
+                                            {!isSidebarOpen ? <>  <i className="ni ni-align-center" style={{ color: "#ffffff" }}></i>
+                                               
+                                                 </> : <><i className="ni ni-align-left-2" style={{ color: "#ffffff" }} ></i></>}
                                         </div>
                                     </div>
                                 </li>

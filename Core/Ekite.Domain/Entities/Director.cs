@@ -9,17 +9,13 @@ using System.Threading.Tasks;
 
 namespace Ekite.Domain.Entities
 {
-	public class Employee :Person, IBaseEntity
+	public class Director:Person,IBaseEntity
 	{
+		public int Id { get; set; }
 
-        public Employee()
-        {
-			Leaves = new List<Leave>();
-			Advances = new List<Advance>();
-        }
+		public string AppUserId { get; set; }
+		public AppUser AppUser { get; set; }
 
-        public int Id { get; set; }
-		
 		[NotMapped]
 		public IFormFile UploadPath { get; set; }
 		public DateTime CreatedDate { get; set; }
@@ -27,27 +23,11 @@ namespace Ekite.Domain.Entities
 		public DateTime? DeletedDate { get; set; }
 		public Status Status { get; set; }
 
-		//NAVİGATİON
+		public int CompanyId { get; set; }
+		public Company Company { get; set; }
 		public int JobId { get; set; }
 		public Job Job { get; set; }
 		public int DepartmentId { get; set; }
 		public Department Department { get; set; }
-		public int CompanyId { get; set; }
-		public Company Company { get; set; }
-		public string AppUserId { get; set; }
-		public AppUser AppUser { get; set; }
-
-
-        public List<Leave> Leaves { get; set; }
-    
-
-        public List<Advance> Advances { get; set; }
-
-
-    
-
-		public List<Spend> Spends { get; set; } = new();
 	}
-
-
 }

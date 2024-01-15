@@ -40,7 +40,26 @@ namespace Ekite.Persistence.SeedData
 
                 await userManager.AddToRoleAsync(createdUser, adminRole.Name);
 
-                AppUser appUser = new AppUser
+				Director adminDirector = new Director
+				{
+					FirstName = "Eren",
+					LastName = "ÇOLAK",
+					TCNO = "12345678912",
+					PhoneNumber = "05069232107",
+					AppUserId = user.Id,
+					BirthDate = Convert.ToDateTime("1992/01/01"),
+					City = "Istanbul",
+					ImagePath = "https://randomuser.me/api/portraits/men/77.jpg",
+					BirthPlace = "ISTANBUL",
+					CompanyId = 1,
+					District = "Kadikoy",
+					Status = Status.Active,
+					AddressDetail = "Kırmızı Caddesi 124",
+					CreatedDate = DateTime.Now
+				};
+				_context.Directors.Add(adminDirector);
+
+				AppUser appUser = new AppUser
                 {
                     Id = "113FE8D8-DD1E-4B90-8DE4-1A087D5DEC75",
                     CreatedDate = DateTime.Now,
