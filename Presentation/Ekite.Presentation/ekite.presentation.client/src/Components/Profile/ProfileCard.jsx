@@ -3,7 +3,7 @@ import { ProfileContext } from "../../context/ProfileContext";
 import { LeaveContext } from "../../context/LeaveContext";
 import AuthService from "../../services/AuthService";
 
-function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
+function ProfileCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   const { loading } = useContext(ProfileContext);
   const { rejectLeaveProcess, approveLeaveProcess } = useContext(LeaveContext);
   const numberPage = useRef(0);
@@ -118,7 +118,6 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                           marginLeft: "-30px",
                           padding: "0px 5px",
                           fontSize: "15px",
-                          paddingTop:"2px"
                         }}
                         onClick={() => handleOperation(leave.id, true)}
                       >
@@ -126,11 +125,10 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                       </a>
                       <a
                         className="btn btn-outline-danger"
-                        style={{ padding: "0px 5px",                          paddingTop:"2px"
-,                        fontSize: "15px" }}
+                        style={{ padding: "0px 5px", fontSize: "15px" }}
                         onClick={() => handleOperation(leave.id, false)}
                       >
-                        <i className="ni ni-fat-remove"  style={{margin:"auto" }}></i>
+                        <i className="ni ni-fat-remove"></i>
                       </a>
                     </td>
                   </tr>
@@ -248,4 +246,4 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   );
 }
 
-export default DirectorCard;
+export default ProfileCard;

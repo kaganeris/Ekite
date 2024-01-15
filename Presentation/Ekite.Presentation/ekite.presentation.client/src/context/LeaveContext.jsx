@@ -120,6 +120,40 @@ const LeaveProvider = ({ children }) => {
   };
 
 
+  const approvedLeaveDatas = async () => {
+    try {
+      const data = await LeaveService.getApprovedLeaveList();
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {}
+  };
+
+
+
+  const rejectLeaveDatas = async () => {
+    try {
+      const data = await LeaveService.getRejectLeaveList();
+      if (data.status === 200) {
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {}
+  };
+
+
+
   const approveLeaveProcess= async(id) => {
     try {
       const data = await LeaveService.approveLeave(id);
@@ -135,7 +169,6 @@ const LeaveProvider = ({ children }) => {
     } catch (error) {}
 
   }
-
 
   const rejectLeaveProcess= async(id) => {
     try {
@@ -167,8 +200,9 @@ const LeaveProvider = ({ children }) => {
         updateLeave,
         pendingLeaveDatas,
         rejectLeaveProcess,
-        approveLeaveProcess
-
+        approveLeaveProcess,
+        approvedLeaveDatas,
+        rejectLeaveDatas
       }}
     >
       {children}
