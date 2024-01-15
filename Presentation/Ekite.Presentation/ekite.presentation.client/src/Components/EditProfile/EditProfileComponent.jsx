@@ -2,7 +2,7 @@ import React, { useContext, useState, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { ProfileContext } from "../../context/ProfileContext";
 import Swal from "sweetalert2";
-function EditProfileComponent({ profileData, employeeId }) {
+function EditProfileComponent({ profileData, id }) {
   const [phoneNumber, setPhoneNumber] = useState(profileData.phoneNumber);
   const [city, setCity] = useState(profileData.city);
   const [district, setDistrict] = useState(profileData.district);
@@ -57,7 +57,7 @@ function EditProfileComponent({ profileData, employeeId }) {
       formData.append("uploadPath", uploadPath);
       formData.append("imagePath", null);
 
-      await putPersonelData(employeeId, formData);
+      await putPersonelData(id, formData);
 
       Swal.fire({
         position: "top-end",

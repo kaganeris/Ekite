@@ -6,14 +6,14 @@ import AdvanceUpdate from "../../Components/AdvanceUpdate/AdvanceUpdate";
 const AdvanceUpdatePage = () => {
   const { getEnums, updateAdvanceId, getAdvanceById } =
     useContext(AdvanceContext);
-  const { employeeId, setEmployeeId, setIsAuthenticated, isAuthenticated } =
+  const { id, setId, setIsAuthenticated, isAuthenticated } =
     useContext(AuthContext);
 
   const [enumsType, setEnumsType] = useState(null);
   const [advance, setAdvance] = useState(null);
 
   useEffect(() => {
-    if (employeeId !== 0) {
+    if (id !== 0) {
       (async () => {
         try {
           let enumData = await getEnums();
@@ -24,9 +24,9 @@ const AdvanceUpdatePage = () => {
         } catch (error) {}
       })();
     } else {
-      const storedEmployeeId = localStorage.getItem("employeeId");
+      const storedEmployeeId = localStorage.getItem("id");
       if (storedEmployeeId) {
-        setEmployeeId(parseInt(storedEmployeeId));
+        setId(parseInt(storedEmployeeId));
       }
     }
   }, []);
@@ -35,7 +35,7 @@ const AdvanceUpdatePage = () => {
     <>
       {advance && (
         <div className="main-content">
-          <div className="container mt-5  ">
+          <div className="container mt-4  ">
             <div className="row ">
               <div className="col ">
                 <AdvanceUpdate

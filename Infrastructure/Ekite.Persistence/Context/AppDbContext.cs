@@ -24,7 +24,7 @@ namespace Ekite.Persistence.Context
         public DbSet<Department> Departments{ get; set; }
         public DbSet<Job> Jobs{ get; set; }
         public DbSet<Company> Companies{ get; set; }
-        public DbSet<Company> Spends { get; set; }
+        public DbSet<Spend> Spends { get; set; }
 
         public DbSet<Leave> Leaves{ get; set; }
 

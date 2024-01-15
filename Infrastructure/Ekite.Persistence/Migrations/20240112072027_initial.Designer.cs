@@ -4,6 +4,7 @@ using Ekite.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240112072027_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -176,20 +178,20 @@ namespace Ekite.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Company");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 12, 13, 59, 21, 158, DateTimeKind.Local).AddTicks(1343),
+                            CreatedDate = new DateTime(2024, 1, 12, 10, 20, 27, 510, DateTimeKind.Local).AddTicks(6558),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 12, 13, 59, 21, 158, DateTimeKind.Local).AddTicks(1351),
+                            CreatedDate = new DateTime(2024, 1, 12, 10, 20, 27, 510, DateTimeKind.Local).AddTicks(6568),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -228,14 +230,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 12, 13, 59, 21, 158, DateTimeKind.Local).AddTicks(1794),
+                            CreatedDate = new DateTime(2024, 1, 12, 10, 20, 27, 510, DateTimeKind.Local).AddTicks(8003),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 12, 13, 59, 21, 158, DateTimeKind.Local).AddTicks(1795),
+                            CreatedDate = new DateTime(2024, 1, 12, 10, 20, 27, 510, DateTimeKind.Local).AddTicks(8007),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -386,14 +388,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 12, 13, 59, 21, 158, DateTimeKind.Local).AddTicks(4486),
+                            CreatedDate = new DateTime(2024, 1, 12, 10, 20, 27, 511, DateTimeKind.Local).AddTicks(6286),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 12, 13, 59, 21, 158, DateTimeKind.Local).AddTicks(4488),
+                            CreatedDate = new DateTime(2024, 1, 12, 10, 20, 27, 511, DateTimeKind.Local).AddTicks(6290),
                             Name = "Proje Müdürü",
                             Status = 1
                         });
@@ -494,7 +496,7 @@ namespace Ekite.Persistence.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Spends");
+                    b.ToTable("Spend");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

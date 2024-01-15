@@ -5,13 +5,13 @@ import CreateSpend from '../../Components/CreateSpend/CreateSpend'
 
 
 const CreateSpendPage = () => {
-    const {employeeId,setEmployeeId,setIsAuthenticated} = useContext(AuthContext);
+    const {id,setId,setIsAuthenticated} = useContext(AuthContext);
     const [spendTypes, setSpendTypes] = useState(null);
     const [currencyTypes, setCurrencyTypes] = useState(null);
     const {getSpendType,getCurrencyType} = useContext(SpendContext);
 
     useEffect(()=>{
-      if(employeeId !==0){
+      if(id !==0){
         (async()=>{
           try{
             let typeData =await getSpendType();
@@ -27,16 +27,16 @@ const CreateSpendPage = () => {
           }
         })()
       }else{
-        const storedEmployeeId= localStorage.getItem("employeeId");
+        const storedEmployeeId= localStorage.getItem("id");
         if (storedEmployeeId) {
-          setEmployeeId(parseInt(storedEmployeeId));
+          setId(parseInt(storedEmployeeId));
         }
       }
-    },[employeeId])
+    },[id])
 
   return (
     <div className="main-content">
-      <div className="container mt-5  ">
+      <div className="container mt-4 ">
         <div className="row ">
           <div className="col ">
             <CreateSpend spendTypes={spendTypes} currencyTypes={currencyTypes} />

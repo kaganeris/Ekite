@@ -4,7 +4,7 @@ import { LeaveContext } from "../../context/LeaveContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 const LeaveTable = ({ leaveList }) => {
-  const { employeeId } = useContext(AuthContext);
+  const { id } = useContext(AuthContext);
   const { deleteLeave, setUpdateLeaveId, updateLeaveId } =
     useContext(LeaveContext);
   const navigate = useNavigate();
@@ -131,25 +131,30 @@ const LeaveTable = ({ leaveList }) => {
                 )}
 
                 {leave.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right">
+                  <td className="text-right" style={{ paddingRight: '0px' }} >
+                    
                     <a
                       className="btn btn-outline-primary"
                       onClick={() => handleUpdateLeave(leave.id)}
                     >
-                      Güncelle
+                      Düzenle
                     </a>
+                 
                   </td>
                 ) : (
                   <td></td>
                 )}
                 {leave.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right">
+                  <td className="text-right" style={{ paddingLeft: '0px' }} >
+                    
                     <a
-                      className="btn btn-outline-danger"
+                      className="btn btn-outline-danger "
+                      
                       onClick={() => handleDeleteLeave(leave.id)}
                     >
                       Sil
                     </a>
+                    
                   </td>
                 ) : (
                   <td></td>

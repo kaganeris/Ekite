@@ -6,12 +6,12 @@ import { AuthContext } from "../../context/AuthContext";
 const AdvanceCreatePage = () => {
   const { getEnums } = useContext(AdvanceContext);
   const [enumsType, setEnumsType] = useState(null);
-  const { employeeId, setEmployeeId, setIsAuthenticated } =
+  const { id, setId, setIsAuthenticated } =
     useContext(AuthContext);
 
   useEffect(() => {
     console.log("advancePage çalıştı");
-    if (employeeId !== 0) {
+    if (id !== 0) {
       (async () => {
         try {
           let data = await getEnums();
@@ -19,16 +19,16 @@ const AdvanceCreatePage = () => {
         } catch (error) {}
       })();
     } else {
-      const storedEmployeeId = localStorage.getItem("employeeId");
+      const storedEmployeeId = localStorage.getItem("id");
       if (storedEmployeeId) {
-        setEmployeeId(parseInt(storedEmployeeId));
+        setId(parseInt(storedEmployeeId));
       }
     }
-  }, [employeeId]);
+  }, [id]);
 
   return (
     <div className="main-content">
-      <div className="container mt-5  ">
+      <div className="container mt-4 ">
         <div className="row ">
           <div className="col ">
             <AdvanceCreate enumsType={enumsType} />

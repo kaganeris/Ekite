@@ -18,7 +18,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
   const [isFileValid, setFileValid] = useState(true);
 
   const { addSpend } = useContext(SpendContext);
-  const { employeeId } = useContext(AuthContext);
+  const { id } = useContext(AuthContext);
 
   const validateFile = (file) => {
     const allowedFileTypes = [
@@ -52,7 +52,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
         currency: currency,
         amount: amount,
         imagePath: imagePath,
-        employeeId: employeeId,
+        employeeId: id,
       };
 
       console.log(spendData);
@@ -63,7 +63,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
       formData.append("currency", currency);
       formData.append("amount", amount);
       formData.append("imagePath", imagePath);
-      formData.append("employeeId", employeeId);
+      formData.append("employeeId", id);
       formData.append("uploadPath", uploadPath);
       try {
         let data = await addSpend(formData);
@@ -159,7 +159,28 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-12">
+              <div className="col-lg-8">
+                <div className="form-group">
+                  <label
+                    className="form-control-label"
+                    htmlFor="input-first-name"
+                  >
+                    Tutar
+                  </label>
+                  <input
+                    type="text"
+                    id="input-first-name"
+                    className="form-control"
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                  {!isAmountValid && (
+                    <label className="text-danger">
+                      Tutar boş bırakılamaz.
+                    </label>
+                  )}
+                </div>
+              </div>
+              <div className="col-lg-4">
                 <div className="form-group">
                   <label
                     className="form-control-label"
@@ -186,28 +207,9 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-12">
-                <div className="form-group">
-                  <label
-                    className="form-control-label"
-                    htmlFor="input-first-name"
-                  >
-                    Tutar
-                  </label>
-                  <input
-                    type="text"
-                    id="input-first-name"
-                    className="form-control"
-                    onChange={(e) => setAmount(e.target.value)}
-                  />
-                  {!isAmountValid && (
-                    <label className="text-danger">
-                      Tutar boş bırakılamaz.
-                    </label>
-                  )}
-                </div>
-              </div>
+              
             </div>
+            
 
             <div className="row">
               <div className="col-lg-12">

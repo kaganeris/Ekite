@@ -21,7 +21,6 @@ const AdvanceService = {
   },
 
   getEnums: async () => {
-    console.log("metot çalıştı")
     try {
       const token = localStorage.getItem("user");
 

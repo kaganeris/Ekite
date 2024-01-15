@@ -10,7 +10,7 @@ const UpdateLeave = ({ leaveTypes }) => {
     const navigate = useNavigate();
 
     const { updateLeave, updateLeaveId, getLeave } = useContext(LeaveContext);
-    const { employeeId } = useContext(AuthContext);
+    const { id } = useContext(AuthContext);
 
     const handleUpdateLeave = async (e) => {
         e.preventDefault()
@@ -152,7 +152,7 @@ const UpdateLeave = ({ leaveTypes }) => {
                                 <div className="col-auto ">
                                     <input
                                         type="submit"
-                                        value="Güncelle"
+                                        value="Kaydet"
                                         className="btn btn-m btn-primary"
                                     />
                                 </div>

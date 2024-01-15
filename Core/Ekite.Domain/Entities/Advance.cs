@@ -21,6 +21,7 @@ namespace Ekite.Domain.Entities
         public DateTime? DeletedDate { get; set; }
         public Status Status { get; set; }
 
+
         //NAV
         public int EmployeeId { get; set; }
         public Employee  Employee{ get; set; }

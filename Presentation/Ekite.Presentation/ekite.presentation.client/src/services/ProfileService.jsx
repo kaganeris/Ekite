@@ -4,11 +4,31 @@ import axios from "axios";
 const ProfileService = {
   getDetailPersonelById: async (id) => {
     try {
-      console.log("getdetailpersonelbyid çalıştı");
+      console.log("getdetailpersonelbyid çalıştı",id);
       const token = localStorage.getItem("user");
       if(token){
         const response = await axios.get(
           `https://localhost:7152/api/Employee/GetDetailPersonel?id=${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token.replace(/"/g, ""),
+            },
+          }
+        );
+        return response;
+      }
+    } catch (error) {
+      console.error("Profil verisi çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }
+  },
+  getDetailDirectorById: async (id) => {
+    try {
+      const token = localStorage.getItem("user");
+      if(token){
+        const response = await axios.get(
+          `https://localhost:7152/api/Director/GetDetailDirector?id=${id}`,
           {
             headers: {
               Authorization: "Bearer " + token.replace(/"/g, ""),
