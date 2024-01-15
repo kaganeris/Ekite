@@ -35,8 +35,6 @@ namespace Ekite.Persistence.EntityTypeConfig
 
 			builder.Property(x => x.ImagePath).IsRequired(false);
 
-			builder.HasOne(c => c.Company).WithOne(d => d.Director).HasForeignKey<Director>(d => d.CompanyId);
-
 			builder.ToTable("Directors");
 
 

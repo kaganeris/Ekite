@@ -4,11 +4,12 @@ import ProfileHeader from "../../Components/Profile/ProfileHeader";
 import { AuthContext } from "../../context/AuthContext";
 import { ProfileContext } from "../../context/ProfileContext";
 import { LeaveContext } from "../../context/LeaveContext";
-import ProfileCard from "../../components/Profile/ProfileCard";
+import DirectorCard from "../../components/Profile/DirectorCard";
+import EmployeeCard from "../../components/Profile/EmployeeCard";
 
 function ProfilePage() {
   const { isAuthenticated } = useContext(AuthContext);
-  const { fetchData,getDirectorById } = useContext(ProfileContext);
+  const { fetchData, getDirectorById } = useContext(ProfileContext);
 
   const { pendingLeaveDatas } = useContext(LeaveContext);
 
@@ -26,10 +27,11 @@ function ProfilePage() {
             setProfileData(data);
           } else if (userRole === "Admin") {
             let pendingListData = await pendingLeaveDatas();
-            let data = await getDirectorById(id)
-            setProfileData(data)
+            let data = await getDirectorById(id);
+            setProfileData(data);
             setPendingLeaveList(pendingListData);
             console.log("kullanıcı rolu admin çalıştı");
+            console.log("auth",isAuthenticated);
           }
         } catch (error) {}
       })();
@@ -55,18 +57,22 @@ function ProfilePage() {
               backgroundPosition: "50% 30%",
             }}
           >
-            <ProfileHeader />
+            <ProfileHeader profileData={profileData}/>
           </div>
 
           <div className="container-fluid mt--6 ">
             <div className="row ">
               <div className="col-xl-4 order-xl-1">
                 <div className="card card-profile  ">
-                  <ProfileCard
-                    profileData={profileData}
-                    pendingLeaveList={pendingLeaveList}
-                    setPendingLeaveList={setPendingLeaveList}
-                  />
+                  {userRole === "Employee" ? (
+                    <EmployeeCard profileData={profileData} />
+                  ) : (
+                    <DirectorCard
+                      profileData={profileData}
+                      pendingLeaveList={pendingLeaveList}
+                      setPendingLeaveList={setPendingLeaveList}
+                    />
+                  )}
                 </div>
               </div>
               <div className="col-xl-8 order-xl-2">

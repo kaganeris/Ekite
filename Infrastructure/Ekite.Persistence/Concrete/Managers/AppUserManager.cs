@@ -33,8 +33,15 @@ namespace Ekite.Persistence.Concrete.Managers
 
                 if(roleName == "Admin")
                 {
-                    // Todo Director
-                    return 1;
+                    UserDTO userDto = await appUserRepository.GetFilteredFirstOrDefault(
+                         select: x => new UserDTO
+                         {
+                             Id = x.Director.Id
+                         },
+                         where: x => x.Id == appuserId,
+                         include: x => x.Include(x => x.Director)
+                         );
+                    return userDto.Id;
                 }
                 else if(roleName == "Employee")
                 {

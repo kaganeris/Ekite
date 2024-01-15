@@ -12,6 +12,7 @@ namespace Ekite.Domain.Entities
 		public Company()
 		{
 			Employees = new List<Employee>();
+			Directors = new List<Director>();
 		}
 
 		public int Id { get; set; }
@@ -21,12 +22,7 @@ namespace Ekite.Domain.Entities
 		public DateTime? DeletedDate { get; set; }
 		public Status Status { get; set; }
 		public List<Employee> Employees { get; set; }
-
-
-
-
-		public int DirectorId { get; set; }
-		public Director Director { get; set; }
+		public List<Director> Directors { get; set; }
 	}
 
 }

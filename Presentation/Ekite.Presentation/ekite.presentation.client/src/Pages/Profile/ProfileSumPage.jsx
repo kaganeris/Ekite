@@ -6,13 +6,13 @@ import ProfileSum from "../../Components/Profile/ProfileSum";
 
 const ProfileSumPage = () => {
 
-    const {fetchData} = useContext(ProfileContext)
+    const {fetchData,getDirectorById} = useContext(ProfileContext)
     const { id, setId,userRole } =
     useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
-    
+    console.log("profilsum çalıştı kullanıcı rolü",userRole,id);
     if (id !== 0) {
       (async () => {
         try {
@@ -21,7 +21,9 @@ const ProfileSumPage = () => {
             setProfileData(data);
           }
           else if(userRole === "Admin"){
-            // Todo
+            let data = await getDirectorById(id)
+            console.log(data);
+            setProfileData(data)
           }
         } catch (error) {}
       })();
