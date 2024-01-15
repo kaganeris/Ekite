@@ -3,7 +3,7 @@ import { ProfileContext } from "../../context/ProfileContext";
 import { LeaveContext } from "../../context/LeaveContext";
 import AuthService from "../../services/AuthService";
 
-function ProfileCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
+function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   const { loading } = useContext(ProfileContext);
   const { rejectLeaveProcess, approveLeaveProcess } = useContext(LeaveContext);
   const numberPage = useRef(0);
@@ -246,4 +246,4 @@ function ProfileCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   );
 }
 
-export default ProfileCard;
+export default DirectorCard;

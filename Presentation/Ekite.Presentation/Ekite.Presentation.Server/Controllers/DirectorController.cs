@@ -75,7 +75,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
 		[HttpGet("[action]")]
-		//[Authorize(Roles = "Admin,Employee")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> GetDetailDirector(int id)
 		{
 			ResultDetailDirectorDto resultSum = await _directorService.GetDetailDirector(id);
@@ -92,7 +92,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
 		[HttpGet("[action]")]
-		//[Authorize(Roles = "Admin,Employee")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> GetSummaryDirector(int id)
 		{
 			ResultDetailDirectorDto resultSum = await _directorService.GetDetailDirector(id);
@@ -108,7 +108,7 @@ namespace Ekite.Presentation.Server.Controllers
 		}
 
 		[HttpGet("[action]")]
-		//[Authorize(Roles = "Admin,Employee")]
+		[Authorize(Roles = "Admin")]
 		public async Task<IActionResult> GetUpdateDirector(int id)
 		{
 			UpdateDirectorDto updateDirector = await _directorService.GetUpdateDirector(id);
