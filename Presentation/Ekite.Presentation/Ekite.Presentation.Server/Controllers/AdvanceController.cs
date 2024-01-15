@@ -136,6 +136,7 @@ namespace Ekite.Presentation.Server.Controllers
         }
 
         [HttpDelete("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> DeleteAdvance(int id)
         {
 
