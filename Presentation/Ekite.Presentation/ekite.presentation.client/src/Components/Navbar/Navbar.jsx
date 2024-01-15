@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 
 function Navbar({ isSidebarOpen, setSidebarOpen }) {
-    const { fetchData } = useContext(ProfileContext)
+    const { fetchData,getDirectorById } = useContext(ProfileContext)
     const { id, setId, setIsAuthenticated, logout,userRole } =
         useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
@@ -48,7 +48,8 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
                         setProfileData(data);
                     }
                     else if(userRole == "Admin"){
-
+                        let data = await getDirectorById(id)
+                        setProfileData(data)
                     }
 
                 } catch (error) { }
