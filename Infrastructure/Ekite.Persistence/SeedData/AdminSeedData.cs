@@ -29,7 +29,7 @@ namespace Ekite.Persistence.SeedData
                     Status = Domain.Enums.Status.Active
                 };
 
-                userManager.CreateAsync(user, "Eren12345.").Wait();
+                IdentityResult adminResult = await userManager.CreateAsync(user, "Eren12345.");
 
                 IdentityRole adminRole = new IdentityRole();
                 adminRole.Name = "Admin";
@@ -52,6 +52,8 @@ namespace Ekite.Persistence.SeedData
 					ImagePath = "https://randomuser.me/api/portraits/men/77.jpg",
 					BirthPlace = "ISTANBUL",
 					CompanyId = 1,
+                    DepartmentId = 1,
+                    JobId = 1,
 					District = "Kadikoy",
 					Status = Status.Active,
 					AddressDetail = "Kırmızı Caddesi 124",
@@ -61,7 +63,6 @@ namespace Ekite.Persistence.SeedData
 
 				AppUser appUser = new AppUser
                 {
-                    Id = "113FE8D8-DD1E-4B90-8DE4-1A087D5DEC75",
                     CreatedDate = DateTime.Now,
                     Email = "ali@bilgeadam.com",
                     UserName = "ali",
@@ -76,7 +77,6 @@ namespace Ekite.Persistence.SeedData
 
                 AppUser app1 = new AppUser
                 {
-                    Id = "04C13619-3039-42F3-9085-3752DCDB42B7",
                     CreatedDate = DateTime.Now,
                     Email = "mehmet@bilgeadam.com",
                     UserName = "mehmet",
@@ -107,7 +107,7 @@ namespace Ekite.Persistence.SeedData
                         JobId = 1,
                         TCNO = "12345678910",
                         PhoneNumber = "05069232105",
-                        AppUserId = "113FE8D8-DD1E-4B90-8DE4-1A087D5DEC75",
+                        AppUserId = appUser.Id,
                         BirthDate = Convert.ToDateTime("1990/01/01"),
                         City = "Adana",
                         BirthPlace = "OSMANİYE",
@@ -136,7 +136,7 @@ namespace Ekite.Persistence.SeedData
                         JobId = 2,
                         TCNO = "12345678910",
                         PhoneNumber = "05069232105",
-                        AppUserId = "04C13619-3039-42F3-9085-3752DCDB42B7",
+                        AppUserId = app1.Id,
                         BirthDate = Convert.ToDateTime("1995/01/01"),
                         City = "Mersin",
                         ImagePath = "https://randomuser.me/api/portraits/men/86.jpg",

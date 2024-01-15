@@ -35,6 +35,7 @@ const ProfileService = {
             },
           }
         );
+        console.log("profileservice getdetaildirector",response);
         return response;
       }
     } catch (error) {
