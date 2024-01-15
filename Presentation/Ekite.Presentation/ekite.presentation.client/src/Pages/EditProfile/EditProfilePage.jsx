@@ -6,32 +6,37 @@ import { ProfileContext } from "../../context/ProfileContext";
 
 function EditProfilePage() {
   const { updatePersonelData } = useContext(ProfileContext);
-  const { employeeId, setEmployeeId, setIsAuthenticated, isAuthenticated } =
+  const { id, setId, userRole } =
     useContext(AuthContext);
   const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
-    if (employeeId !== 0) {
+    if (id !== 0) {
       (async () => {
         try {
-          let data = await updatePersonelData(employeeId);
-          setProfileData(data);
+          if(userRole === "Employee"){
+            let data = await updatePersonelData(id);
+            setProfileData(data);
+          }
+          else if(userRole === "Admin"){
+            // Todo
+          }
         } catch (error) {}
       })();
     } else {
-      const storedEmployeeId = localStorage.getItem("employeeId");
+      const storedEmployeeId = localStorage.getItem("id");
       if (storedEmployeeId) {
-        setEmployeeId(parseInt(storedEmployeeId));
+        setId(parseInt(storedEmployeeId));
       }
     }
-  }, [employeeId]);
+  }, [id]);
 
   return (
     <>
     {profileData && <div className="main-content" id="panel">
               <div className="col-xl-12 order-xl-2  ">
           
-              <EditProfileComponent profileData={profileData}  employeeId ={employeeId}/>
+              <EditProfileComponent profileData={profileData}  id ={id}/>
             
         </div>
       </div>}

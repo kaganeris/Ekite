@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 const UpdateSpend = ({ spendTypes, currencyTypes }) => {
     const { updateSpend, updateSpendId, getSpend } = useContext(SpendContext);
-    const { employeeId } = useContext(AuthContext);
+    const { id } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [spendType, setSpendType] = useState(1);
@@ -46,7 +46,7 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
             formData.append('amount', amount);
             formData.append('imagePath', imagePath);
             formData.append('uploadPath', uploadPath);
-            formData.append('employeeId', employeeId);
+            formData.append('employeeId', id);
 
             try {
                 let data = await updateSpend(formData);

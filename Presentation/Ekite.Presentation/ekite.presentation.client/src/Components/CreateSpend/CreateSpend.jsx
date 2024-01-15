@@ -18,7 +18,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
   const [isFileValid, setFileValid] = useState(true);
 
   const { addSpend } = useContext(SpendContext);
-  const { employeeId } = useContext(AuthContext);
+  const { id } = useContext(AuthContext);
 
   const validateFile = (file) => {
     const allowedFileTypes = [
@@ -52,7 +52,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
         currency: currency,
         amount: amount,
         imagePath: imagePath,
-        employeeId: employeeId,
+        employeeId: id,
       };
 
       console.log(spendData);
@@ -63,7 +63,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
       formData.append("currency", currency);
       formData.append("amount", amount);
       formData.append("imagePath", imagePath);
-      formData.append("employeeId", employeeId);
+      formData.append("employeeId", id);
       formData.append("uploadPath", uploadPath);
       try {
         let data = await addSpend(formData);
