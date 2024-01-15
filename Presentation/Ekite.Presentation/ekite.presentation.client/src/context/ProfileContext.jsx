@@ -82,6 +82,28 @@ const ProfileProvider = ({ children }) => {
         }
     };
 
+    const updateDirectorData = async (directorId) => {
+        try {
+
+            const data = await ProfileService.getUpdateDirectorByID(directorId);
+            if(data.status === 200){
+                setLoading(false);
+                return data.data
+            }
+            else{
+                if(token === ""){
+                    setIsAuthenticated(false)
+                }
+                setToken("")
+                navigate("/login")
+            }
+
+        } catch (error) {
+            setLoading(false);
+
+        }
+    }
+
 
     const putPersonelData = async (employeeId,updateData) => {
         try {
@@ -104,9 +126,30 @@ const ProfileProvider = ({ children }) => {
         }
     };
 
+    const putDirectorData = async (directorId,updateData) => {
+        try {
+            const data = await ProfileService.putUpdateDirectorById(directorId,updateData);
+            if(data.status === 200){
+                setLoading(false);
+                return data.data
+            }
+            else{
+                if(token === ""){
+                    setIsAuthenticated(false)
+                }
+                setToken("")
+                navigate("/login")
+            }
+
+        } catch (error) {
+            setLoading(false);
+            throw error
+        }
+    }
+
 
     return (
-        <ProfileContext.Provider value={{ loading,fetchData , updatePersonelData , putPersonelData,getDirectorById }}>
+        <ProfileContext.Provider value={{ loading,fetchData , updatePersonelData , putPersonelData,getDirectorById,updateDirectorData,putDirectorData }}>
             {children}
         </ProfileContext.Provider>
     );

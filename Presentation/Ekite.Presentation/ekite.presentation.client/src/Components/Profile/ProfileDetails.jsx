@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
 import { AuthContext } from "../../context/AuthContext";
+import { ThemeContext } from "../../context/ThemeContext";
 
 
 const ProfileDetails = ({ profileData }) => {
     const { loading } = useContext(ProfileContext);
-
+    const {darkMode} = useContext(ThemeContext)
 
     if (loading) {
         return (<div>Yükleniyor</div>);
     }
 
     return (
-        <div className="card">
+        <div className={darkMode ? "card" : "card bg-dark"}>
 
             <div className="card-body">
                 <form>

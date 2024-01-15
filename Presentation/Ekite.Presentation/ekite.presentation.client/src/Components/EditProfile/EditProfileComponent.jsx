@@ -1,15 +1,21 @@
-import React, { useContext, useState, useTransition } from "react";
+import React, { useContext, useEffect, useState, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { ProfileContext } from "../../context/ProfileContext";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../context/AuthContext";
+import { AddressContext } from "../../context/AddressContext";
 function EditProfileComponent({ profileData, id }) {
   const [phoneNumber, setPhoneNumber] = useState(profileData.phoneNumber);
-  const [city, setCity] = useState(profileData.city);
+  const [cityName, setCityName] = useState(profileData.city);
   const [district, setDistrict] = useState(profileData.district);
   const [addressDetail, setAddressDetail] = useState(profileData.addressDetail);
-  const { putPersonelData } = useContext(ProfileContext);
+  const { putPersonelData, putDirectorData } = useContext(ProfileContext);
+  const { userRole } = useContext(AuthContext);
   const [uploadPath, setUploadPath] = useState(profileData.uploadPath);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [cities, setCities] = useState(null);
+  const [districts, setDistricts] = useState(null);
+  const { getCities, getDistricts } = useContext(AddressContext);
   const navigate = useNavigate();
 
   const [formErrors, setFormErrors] = useState({
@@ -51,13 +57,17 @@ function EditProfileComponent({ profileData, id }) {
     try {
       const formData = new FormData();
       formData.append("phoneNumber", phoneNumber);
-      formData.append("city", city);
+      formData.append("city", cityName);
       formData.append("district", district);
       formData.append("addressDetail", addressDetail);
       formData.append("uploadPath", uploadPath);
       formData.append("imagePath", null);
 
-      await putPersonelData(id, formData);
+      if (userRole === "Employee") {
+        await putPersonelData(id, formData);
+      } else if (userRole === "Admin") {
+        await putDirectorData(id, formData);
+      }
 
       Swal.fire({
         position: "top-end",
@@ -66,7 +76,7 @@ function EditProfileComponent({ profileData, id }) {
         showConfirmButton: false,
         timer: 1500,
       });
-     location.reload();
+      location.reload();
     } catch (error) {
       console.log("swal error", error);
       Swal.fire({
@@ -77,7 +87,16 @@ function EditProfileComponent({ profileData, id }) {
     }
   };
 
-  console.log(profileData);
+  useEffect(() => {
+    (async () => {
+      if (cities === null) {
+        const data = await getCities();
+        setCities(data);
+      }
+      const districtData = await getDistricts(cityName);
+      setDistricts(districtData);
+    })();
+  }, [cityName]);
 
   return (
     <div className="card m-4">
@@ -159,15 +178,21 @@ function EditProfileComponent({ profileData, id }) {
                   <label className="form-control-label" htmlFor="input-city">
                     Şehir
                   </label>
-                  <input
-                    value={city}
-                    type="text"
-                    id="input-city"
-                    className="form-control"
-                    placeholder="Şehir"
-                    onChange={(e) => setCity(e.target.value)}
-                    required
-                  />
+                  {cities && (
+                    <select
+                      className="form-control"
+                      onChange={(e) => setCityName(e.target.value)}
+                      value={cityName}
+                    >
+                      {cities.map((city) => {
+                        return (
+                          <option key={city.id} value={city.name}>
+                            {city.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
                 </div>
               </div>
               <div className="col-lg-6">
@@ -175,15 +200,23 @@ function EditProfileComponent({ profileData, id }) {
                   <label className="form-control-label" htmlFor="input-country">
                     İlçe
                   </label>
-                  <input
-                    value={district}
-                    type="text"
-                    id="input-country"
-                    className="form-control"
-                    placeholder="İlçe"
-                    onChange={(e) => setDistrict(e.target.value)}
-                    required
-                  />
+                  {districts && (
+                    <>
+                      {cityName && (
+                        <select
+                          className="form-control"
+                          onChange={(e) => setDistrict(e.target.value)}
+                          value={district}
+                        >
+                          {districts.map((district) => (
+                            <option key={district.id} value={district.name}>
+                              {district.name}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
