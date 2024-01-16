@@ -2,16 +2,15 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { ProfileContext } from "../../context/ProfileContext";
 import { LeaveContext } from "../../context/LeaveContext";
 import AuthService from "../../services/AuthService";
-import { ThemeContext } from "../../context/ThemeContext";
 
-function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
+function ProfileCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   const { loading } = useContext(ProfileContext);
   const { rejectLeaveProcess, approveLeaveProcess } = useContext(LeaveContext);
   const numberPage = useRef(0);
   const getNumber = useRef(1);
   const [copyPendingLeaveList, setCopyPendingLeaveList] = useState(null);
   const [activePage, setActivePage] = useState(1);
- const {darkMode} = useContext(ThemeContext);
+
   if (loading) {
     return <div>Yükleniyor</div>;
   }
@@ -75,16 +74,17 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
 
     setActivePage(page);
 
+    console.log(numberPage.current);
   };
 
   return (
     <>
       {copyPendingLeaveList && (
-        <div className= { darkMode ? "card" : "card bg-dark"}>
-          <div className={ darkMode ? "card-header border-0" : "card-header border-0 bg-dark "}>
+        <div className="card">
+          <div className="card-header border-0">
             <div className="row align-items-center">
               <div className="col">
-                <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>İzin İstekleri</h3>
+                <h3 className="mb-0">İzin İstekleri</h3>
               </div>
               <div className="col text-right">
                 <a href="#!" className="btn btn-sm btn-primary">
@@ -94,9 +94,9 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
             </div>
           </div>
           <div className="table-responsive">
-            <table className={darkMode ? "table align-items-center table-flush" : "table align-items-center bg-dark" }>
-              <thead className={darkMode ? "thead-light" : "bg-dark"}>
-                <tr className={darkMode  ? "" : "text-white" }>
+            <table className="table align-items-center table-flush">
+              <thead className="thead-light">
+                <tr>
                   <th scope="col">Adı Soyadı</th>
                   <th scope="col">Başlangıç</th>
                   <th scope="col">Bitiş</th>
@@ -106,7 +106,7 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
               </thead>
               <tbody>
                 {copyPendingLeaveList.map((leave, index) => (
-                  <tr key={index} className={darkMode  ? "" : "text-white" } >
+                  <tr key={index}>
                     <th scope="row">{leave.fullName}</th>
                     <td>{formatDate(leave.leaveStartDate)}</td>
                     <td>{formatDate(leave.leaveEndDate)}</td>
@@ -118,7 +118,6 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                           marginLeft: "-30px",
                           padding: "0px 5px",
                           fontSize: "15px",
-                          paddingTop:"2px"
                         }}
                         onClick={() => handleOperation(leave.id, true)}
                       >
@@ -126,18 +125,17 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                       </a>
                       <a
                         className="btn btn-outline-danger"
-                        style={{ padding: "0px 5px",                          paddingTop:"2px"
-,                        fontSize: "15px" }}
+                        style={{ padding: "0px 5px", fontSize: "15px" }}
                         onClick={() => handleOperation(leave.id, false)}
                       >
-                        <i className="ni ni-fat-remove"  style={{margin:"auto" }}></i>
+                        <i className="ni ni-fat-remove"></i>
                       </a>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className={darkMode ? "card-footer py-4" : "card-footer py-4 bg-dark"}>
+            <div className="card-footer py-4">
               <nav aria-label="...">
                 <ul className="pagination justify-content-end mb-0">
                   <li className="page-item">
@@ -146,7 +144,8 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                         activePage === 1 ? "disabled" : ""
                       }`}
                       onClick={() => {
-                        if(getNumber.current > Math.floor(pendingLeaveList.length / 5)){
+
+                        if(getNumber.current >= Math.floor(pendingLeaveList.length / 5)){
 
                           handleList(activePage - 1, false);
                         }
@@ -247,4 +246,4 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   );
 }
 
-export default DirectorCard;
+export default ProfileCard;

@@ -20,6 +20,7 @@ namespace Ekite.Application.Validators.AdvanceValidations
             RuleFor(x => x.Description).MaximumLength(250).WithMessage("En fazla 250 karakter girebilirsiniz");
 
             RuleFor(x => x.Amount).LessThan(x=> IsAdvanceType(x.AdvanceType) ? employee.Salary *3 : 500000).WithMessage(x => IsAdvanceType(x.AdvanceType) ? "Maaşınızın 3 katı kadar avans isteyebilirsiniz" : "Kurumsal avans isteklerinde en fazla 500.000 avans isteyebilirsiniz");
+
             RuleFor(x => x.Amount).GreaterThan(0).WithMessage("Miktarı alanı boş geçilemez");
 
         }
