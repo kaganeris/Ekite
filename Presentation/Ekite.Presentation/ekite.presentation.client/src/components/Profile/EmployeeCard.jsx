@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const EmployeeCard = ({ profileData }) => {
   const birthDate = new Date(profileData.birthDate);
   const currentDate = new Date();
   const age = currentDate.getFullYear() - birthDate.getFullYear();
-
+const {darkMode} = useContext(ThemeContext)
   return (
     <>
       {profileData && (
@@ -27,18 +28,18 @@ const EmployeeCard = ({ profileData }) => {
               </div>
             </div>
           </div>
-          <div className="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"></div>
+          <div className={ darkMode ? "card-header  text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4" :"card-header bg-dark text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"}></div>
           <div className="card-body pt-0">
-            <div className="text-center mt-5">
-              <h5 className="h3">
+            <div className={darkMode ? "text-center mt-5" : "text-center mt-5 text-white "} >
+              <h5 className={darkMode ?  "h3" : "h3 text-white"}>
                 {profileData.fullName}
                 <span className="font-weight-light">, {age}</span>
               </h5>
-              <div className="h5 font-weight-300">
+              <div className={darkMode ? "h5 font-weight-300 ": "h5 font-weight-300 text-white"}>
                 <i className="ni location_pin mr-2"></i>
                 {profileData.address}
               </div>
-              <div className="h5 mt-4">
+              <div className= {darkMode ?  "h5 mt-4": "h5 mt-4 text-white"}>
                 <i className="ni business_briefcase-24 mr-2"></i>
                 {profileData.jobName}
               </div>

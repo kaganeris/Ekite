@@ -3,6 +3,7 @@ import { SpendContext } from "../../context/SpendContext";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const CreateSpend = ({ spendTypes, currencyTypes }) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
 
   const { addSpend } = useContext(SpendContext);
   const { id } = useContext(AuthContext);
-
+  const { darkMode } = useContext(ThemeContext);
   const validateFile = (file) => {
     const allowedFileTypes = [
       "image/jpeg",
@@ -102,13 +103,14 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
     setAmount(formattedValue);
   };
 
-
   return (
-    <div className="card">
-      <div className="card-header">
+    <div className={darkMode ? "card" : "card bg-dark"}>
+      <div className={darkMode ? "card-header" : "card-header bg-dark"}>
         <div className="row align-items-center">
           <div className="col-8">
-            <h3 className="mb-0">Harcama Oluştur </h3>
+            <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>
+              Harcama Oluştur{" "}
+            </h3>
           </div>
         </div>
       </div>
@@ -119,14 +121,22 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-username"
                   >
                     Harcama Türü
                   </label>
                   {spendTypes && (
                     <select
-                      className="form-control"
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
                       onChange={(e) => setSpendType(e.target.value)}
                       value={spendType}
                     >
@@ -146,7 +156,11 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Açıklama
@@ -154,7 +168,11 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
                   <input
                     type="text"
                     id="input-first-name"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     onChange={(e) => setDescription(e.target.value)}
                   />
                   {!isDescriptionValid && (
@@ -166,10 +184,14 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
             <div className="row">
-            <div className="col-lg-8">
+              <div className="col-lg-8">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Miktar
@@ -178,7 +200,11 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
                     value={amount}
                     type="text"
                     id="input-first-name"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     onChange={handleAmountChange}
                   />
                   {!isAmountValid && (
@@ -191,14 +217,22 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               <div className="col-lg-4">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-leave-end"
                   >
                     Para Birimi
                   </label>
                   {currencyTypes && (
                     <select
-                      className="form-control"
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
                       onChange={(e) => setCurrency(e.target.value)}
                       value={currency}
                     >
@@ -214,13 +248,16 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
                 </div>
               </div>
             </div>
-            <div className="row">             
-            </div>         
+            <div className="row"></div>
             <div className="row">
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Fatura
@@ -228,7 +265,11 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
                   <input
                     type="file"
                     id="input-first-name"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     onChange={handleFileChange}
                   />
                   {!isFileValid && (

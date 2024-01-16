@@ -25,7 +25,7 @@ import AdvanceCreatePage from "./Pages/AdvanceCreate/AdvanceCreatePage";
 import AdvanceUpdatePage from "./Pages/AdvanceUpdate/AdvanceUpdatePage";
 import AdvanceListPage from "./Pages/Advance/AdvanceListPage";
 import { AddresProvider } from "./context/AddressContext";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeContext, ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar/Navbar";
 import PendingLeaveListPage from "./Pages/PendingLeaveList/PendingLeaveListPage";
 import ProfilePage from "./Pages/Profile/ProfilePage";
@@ -33,119 +33,126 @@ import ApprovedLeaveListPage from "./Pages/ApprovedLeaveList/ApprovedLeaveListPa
 import RejectLeaveListPage from "./Pages/RejectLeaveList/RejectLeaveListPage";
 
 function App() {
-    const [isSidebarOpen, setSidebarOpen] = useState(true);
-    const { isAuthenticated, setIsAuthenticated, employeeId, token, setToken } =
-        useContext(AuthContext);
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const { isAuthenticated, setIsAuthenticated, employeeId, token, setToken } =
+    useContext(AuthContext);
+  const { darkMode } = useContext(ThemeContext);
+  useEffect(() => {}, [isAuthenticated]);
 
-    useEffect(() => { }, [isAuthenticated]);
+  return (
+    <div className={darkMode ? "" : "bg-dark"} style={{ height: "100dvh" }}>
+      <>
+        <BrowserRouter>
+          <ProfileProvider>
+            <LeaveProvider>
+              <AdvanceProvider>
+                <SpendProvider>
+                  <AddresProvider>
+                    {isAuthenticated && (
+                      <>
+                        <Navbar
+                          isSidebarOpen={isSidebarOpen}
+                          setSidebarOpen={setSidebarOpen}
+                        />
+                        {isSidebarOpen && <Sidebar />}
+                      </>
+                    )}
 
-    return (
-        <div>
-            <>
-                <BrowserRouter>
-                    <ProfileProvider>
-                        <LeaveProvider>
-                            <AdvanceProvider>
-                                <SpendProvider>
-                                    <AddresProvider>
-                                        <ThemeProvider>
-                                            {isAuthenticated && (
-                                                <>
-                                                    <Navbar
-                                                        isSidebarOpen={isSidebarOpen}
-                                                        setSidebarOpen={setSidebarOpen}
-                                                    />
-                                                    {isSidebarOpen && <Sidebar />}
-                                                </>
-                                            )}
+                    <Routes>
+                      {isAuthenticated ? (
+                        <Route path="/" element={<Navigate to="/home" />} />
+                      ) : (
+                        <Route path="/" element={<Navigate to="/login" />} />
+                      )}
+                      <Route path="/login" element={<LoginPage />} />
+                      <Route
+                        path="/home"
+                        element={<PrivateRoute element={<ProfilePage />} />}
+                      />
+                      <Route
+                        path="/profilesum"
+                        element={<PrivateRoute element={<ProfileSumPage />} />}
+                      />
+                      <Route
+                        path="/editprofile"
+                        element={<PrivateRoute element={<EditProfilePage />} />}
+                      />
+                      <Route
+                        path="/leaves"
+                        element={<PrivateRoute element={<LeaveListPage />} />}
+                      />
+                      <Route
+                        path="/addLeave"
+                        element={<PrivateRoute element={<AddLeavePage />} />}
+                      />
+                      <Route
+                        path="/updateLeave"
+                        element={<PrivateRoute element={<UpdateLeavePage />} />}
+                      />
+                      <Route
+                        path="/spend"
+                        element={<PrivateRoute element={<SpendListPage />} />}
+                      />
 
-                                            <Routes>
-                                                {isAuthenticated ? (
-                                                    <Route path="/" element={<Navigate to="/home" />} />
-                                                ) : (
-                                                    <Route path="/" element={<Navigate to="/login" />} />
-                                                )}
-                                                <Route path="/login" element={<LoginPage />} />
-                                                <Route
-                                                    path="/home"
-                                                    element={<PrivateRoute element={<ProfilePage />} />}
-                                                />
-                                                <Route
-                                                    path="/profilesum"
-                                                    element={<PrivateRoute element={<ProfileSumPage />} />}
-                                                />
-                                                <Route
-                                                    path="/editprofile"
-                                                    element={<PrivateRoute element={<EditProfilePage />} />}
-                                                />
+                      <Route
+                        path="/createspend"
+                        element={<PrivateRoute element={<CreateSpendPage />} />}
+                      />
 
-                                                <Route
-                                                    path="/leaves"
-                                                    element={<PrivateRoute element={<LeaveListPage />} />}
-                                                />
-                                                <Route
-                                                    path="/addLeave"
-                                                    element={<PrivateRoute element={<AddLeavePage />} />}
-                                                />
-                                                <Route
-                                                    path="/updateLeave"
-                                                    element={<PrivateRoute element={<UpdateLeavePage />} />}
-                                                />
-                                                <Route
-                                                    path="/spend"
-                                                    element={<PrivateRoute element={<SpendListPage />} />}
-                                                />
+                      <Route
+                        path="/updatespend"
+                        element={<PrivateRoute element={<UpdateSpendPage />} />}
+                      />
+                      <Route
+                        path="/advanceList"
+                        element={<PrivateRoute element={<AdvanceListPage />} />}
+                      />
+                      <Route
+                        path="/createAdvance"
+                        element={
+                          <PrivateRoute element={<AdvanceCreatePage />} />
+                        }
+                      />
+                      <Route
+                        path="/updateAdvance"
+                        element={
+                          <PrivateRoute element={<AdvanceUpdatePage />} />
+                        }
+                      />
+                      <Route
+                        path="/pendingLeaveList"
+                        element={
+                          <PrivateRoute element={<PendingLeaveListPage />} />
+                        }
+                      />
+                      <Route
+                        path="/approvedLeaveList"
+                        element={
+                          <PrivateRoute element={<ApprovedLeaveListPage />} />
+                        }
+                      />
+                      <Route
+                        path="/rejectLeaveList"
+                        element={
+                          <PrivateRoute element={<RejectLeaveListPage />} />
+                        }
+                      />
+                    </Routes>
+                    {/* <Footer /> */}
+                  </AddresProvider>
+                </SpendProvider>
+              </AdvanceProvider>
+            </LeaveProvider>
+          </ProfileProvider>
+        </BrowserRouter>
+      </>
+    </div>
+  );
 
-                                                <Route
-                                                    path="/createspend"
-                                                    element={<PrivateRoute element={<CreateSpendPage />} />}
-                                                />
-
-                                                <Route
-                                                    path="/updatespend"
-                                                    element={<PrivateRoute element={<UpdateSpendPage />} />}
-                                                />
-                                                <Route
-                                                    path="/advanceList"
-                                                    element={<PrivateRoute element={<AdvanceListPage />} />}
-                                                />
-                                                <Route
-                                                    path="/createAdvance"
-                                                    element={<PrivateRoute element={<AdvanceCreatePage />} />}
-                                                />
-                                                <Route
-                                                    path="/updateAdvance"
-                                                    element={<PrivateRoute element={<AdvanceUpdatePage />} />}
-                                                />
-                                                <Route
-                                                    path="/pendingLeaveList"
-                                                    element={<PrivateRoute element={<PendingLeaveListPage />} />}
-                                                />
-                                                <Route
-                                                    path="/approvedLeaveList"
-                                                    element={<PrivateRoute element={<ApprovedLeaveListPage />} />}
-                                                />
-                                                <Route
-                                                    path="/rejectLeaveList"
-                                                    element={<PrivateRoute element={<RejectLeaveListPage />} />}
-                                                />
-                                            </Routes>
-                                            <Footer />
-                                        </ThemeProvider>
-                                    </AddresProvider>
-                                </SpendProvider>
-                            </AdvanceProvider>
-                        </LeaveProvider>
-                    </ProfileProvider>
-                </BrowserRouter>
-            </>
-        </div>
-    );
-
-    //async function populateWeatherData() {
-    //    const response = await fetch("weatherforecast");
-    //    const data = await response.json();
-    //}
+  //async function populateWeatherData() {
+  //    const response = await fetch("weatherforecast");
+  //    const data = await response.json();
+  //}
 }
 
 export default App;

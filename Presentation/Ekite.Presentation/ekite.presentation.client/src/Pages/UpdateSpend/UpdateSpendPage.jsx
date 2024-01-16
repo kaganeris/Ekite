@@ -2,10 +2,11 @@ import React, { useContext, useState,useEffect } from 'react'
 import { SpendContext } from '../../context/SpendContext';
 import { AuthContext } from '../../context/AuthContext';
 import UpdateSpend from "../../Components/UpdateSpend/UpdateSpend"
+import { ThemeContext } from '../../context/ThemeContext';
 
 const UpdateSpendPage = () => {
     const {id,setId,setIsAuthenticated} = useContext(AuthContext);
-
+  const{darkMode} = useContext(ThemeContext)
     const {getSpendType,getCurrencyType} = useContext(SpendContext);
     const [spendTypes, setSpendTypes] = useState(null);
     const [currencyTypes, setCurrencyTypes] = useState(null);
@@ -35,7 +36,7 @@ const UpdateSpendPage = () => {
 
 
   return (
-    <div className="main-content">
+    <div className={darkMode  ? "main-content" : "main-content bg-dark"}>
       <div className="container mt-4  ">
         <div className="row ">
           <div className="col ">

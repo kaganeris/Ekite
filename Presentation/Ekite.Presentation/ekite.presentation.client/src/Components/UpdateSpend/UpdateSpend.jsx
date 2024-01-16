@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { SpendContext } from "../../context/SpendContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const UpdateSpend = ({ spendTypes, currencyTypes }) => {
   const { updateSpend, updateSpendId, getSpend } = useContext(SpendContext);
@@ -18,7 +19,7 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
   const [isDescriptionValid, setDescriptionValid] = useState(true);
   const [isAmountValid, setAmountValid] = useState(true);
   const [isFileValid, setFileValid] = useState(true);
-
+  const { darkMode } = useContext(ThemeContext);
   const handleUpdateFile = (event) => {
     const file = event.target.files[0];
     console.log(event.target.files[0]);
@@ -116,11 +117,13 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
   };
 
   return (
-    <div className="card">
-      <div className="card-header">
+    <div className={darkMode ? "card" : "card bg-dark"}>
+      <div className={darkMode ? "card-header" : "card-header bg-dark"}>
         <div className="row align-items-center">
           <div className="col-8">
-            <h3 className="mb-0">Harcama Güncelle </h3>
+            <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>
+              Harcama Güncelle{" "}
+            </h3>
           </div>
         </div>
       </div>
@@ -131,15 +134,22 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-username"
                   >
                     Harcama Türü
                   </label>
                   {spendTypes && (
                     <select
-                      className="form-control"
-                      onChange={(e) => setSpendType(e.target.value)}
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }                      onChange={(e) => setSpendType(e.target.value)}
                       value={spendType}
                     >
                       {spendTypes.map((spendType) => (
@@ -159,7 +169,11 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Açıklama
@@ -167,7 +181,11 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                   <input
                     type="text"
                     id="input-first-name"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     value={description}
                     onChange={(e) => {
                       setDescription(e.target.value);
@@ -186,7 +204,11 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
               <div className="col-lg-8">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Miktar
@@ -195,7 +217,11 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                     value={amount}
                     type="text"
                     id="input-first-name"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     onChange={handleAmountChange}
                   />
                   {!isAmountValid && (
@@ -208,14 +234,22 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
               <div className="col-lg-4">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-leave-end"
                   >
                     Para Birimi
                   </label>
                   {currencyTypes && (
                     <select
-                      className="form-control"
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
                       onChange={(e) => setCurrency(parseInt(e.target.value))}
                       value={currency}
                     >
@@ -238,7 +272,11 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Fatura
@@ -246,9 +284,11 @@ const UpdateSpend = ({ spendTypes, currencyTypes }) => {
                   <input
                     type="file"
                     id="input-first-name"
-                    className={`form-control ${
-                      isFileValid ? "" : "is-invalid"
-                    }`}
+                    className={`${
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    } ${isFileValid ? "" : "is-invalid"}`}
                     accept="image/*,application/pdf"
                     onChange={handleUpdateFile}
                   />
