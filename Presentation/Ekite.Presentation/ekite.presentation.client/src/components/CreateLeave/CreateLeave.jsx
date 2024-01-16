@@ -3,70 +3,72 @@ import { useNavigate } from "react-router-dom";
 
 import { LeaveContext } from "../../context/LeaveContext";
 import { AuthContext } from "../../context/AuthContext";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
+import { ThemeContext } from "../../context/ThemeContext";
 const CreateLeave = ({ leaveTypes }) => {
   const [leaveStartDate, setLeaveStartDate] = useState("");
   const [leaveEndDate, setLeaveEndDate] = useState("");
   const [leaveType, setLeaveType] = useState(1);
   const { createLeave } = useContext(LeaveContext);
-    const { id } = useContext(AuthContext)
-    const navigate = useNavigate();
-    const [error, setError] = useState("");
- 
+  const { darkMode } = useContext(ThemeContext);
+
+  const { id } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+
   const handleAddleave = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (leaveEndDate && leaveStartDate && leaveType) {
-        const leaveData = {
-          leaveType: leaveType,
-          leaveStartDate: leaveStartDate,
-          leaveEndDate: leaveEndDate,
-          employeeId: id,
-        };
-        const formData = new FormData();
-        formData.append('leaveType', leaveType);
-        formData.append('leaveStartDate', leaveStartDate);
-        formData.append('leaveEndDate', leaveEndDate);
-        formData.append('employeeId', id);
-        console.log(leaveData);
+      const leaveData = {
+        leaveType: leaveType,
+        leaveStartDate: leaveStartDate,
+        leaveEndDate: leaveEndDate,
+        employeeId: id,
+      };
+      const formData = new FormData();
+      formData.append("leaveType", leaveType);
+      formData.append("leaveStartDate", leaveStartDate);
+      formData.append("leaveEndDate", leaveEndDate);
+      formData.append("employeeId", id);
+      console.log(leaveData);
 
-        let data = await createLeave(formData);
-        console.log("data",data)
+      let data = await createLeave(formData);
+      console.log("data", data);
 
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "İzin Talebi Oluşturuldu",
-            showConfirmButton: false,
-            timer: 2000
-        });
-        setTimeout(() => {
-
-            navigate("/leaves")
-        }, 2000)
-     
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "İzin Talebi Oluşturuldu",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setTimeout(() => {
+        navigate("/leaves");
+      }, 2000);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "İzin Talebi Başarısız",
+        text: "Tüm Bilgileri Eksiksiz Doldurun",
+      });
     }
-      else{
-        Swal.fire({
-            icon: "error",
-            title: "İzin Talebi Başarısız",
-            text: "Tüm Bilgileri Eksiksiz Doldurun",
-        });
-      }
-    }
+  };
 
-    useEffect(() => {
-        console.log("Leave type",leaveType);
-        console.log("leave end date",leaveEndDate);
-        console.log("leave start date",leaveStartDate);
-        console.log("employee id",id);
-    },[leaveType,leaveEndDate,leaveStartDate])
+  useEffect(() => {
+    console.log("Leave type", leaveType);
+    console.log("leave end date", leaveEndDate);
+    console.log("leave start date", leaveStartDate);
+    console.log("employee id", id);
+  }, [leaveType, leaveEndDate, leaveStartDate]);
 
   return (
-    <div className="card">
-      <div className="card-header ">
+    <div className={darkMode ? "card " : "card bg-dark"}>
+      <div className={darkMode ? "card-header" : "card-header bg-dark "}>
         <div className="row align-items-center">
           <div className="col-8">
-            <h3 className="mb-0">İzin Oluştur </h3>
+            <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>
+              İzin Oluştur{" "}
+            </h3>
           </div>
         </div>
       </div>
@@ -77,14 +79,22 @@ const CreateLeave = ({ leaveTypes }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-username"
                   >
                     İzin Türü
                   </label>
                   {leaveTypes && (
                     <select
-                      className="form-control"
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
                       onChange={(e) => setLeaveType(e.target.value)}
                       value={leaveType}
                     >
@@ -104,7 +114,11 @@ const CreateLeave = ({ leaveTypes }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     İzin Başlangıç Tarihi
@@ -112,7 +126,11 @@ const CreateLeave = ({ leaveTypes }) => {
                   <input
                     type="date"
                     id="input-first-name"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     onChange={(e) => setLeaveStartDate(e.target.value)}
                   />
                 </div>
@@ -122,7 +140,11 @@ const CreateLeave = ({ leaveTypes }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-leave-end"
                   >
                     İzin Bitiş Tarihi
@@ -130,7 +152,11 @@ const CreateLeave = ({ leaveTypes }) => {
                   <input
                     type="date"
                     id="input-leave-end"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     onChange={(e) => setLeaveEndDate(e.target.value)}
                   />
                 </div>

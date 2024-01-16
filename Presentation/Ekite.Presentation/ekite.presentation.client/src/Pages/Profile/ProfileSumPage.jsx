@@ -39,7 +39,7 @@ const ProfileSumPage = () => {
   return (
     <>
        {profileData ? (    
-        <div className="main-content" id="panel">
+        <div className="main-content"  id="panel">
           <div className="col-xl-12 order-xl-2">
          <ProfileSum profileData={profileData}/>
           </div>

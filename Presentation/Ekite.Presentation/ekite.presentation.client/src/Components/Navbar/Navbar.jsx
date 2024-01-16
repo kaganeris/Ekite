@@ -1,5 +1,4 @@
-﻿
-import React, { useContext, useEffect, useState } from "react";
+﻿import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ProfileContext } from "../../context/ProfileContext";
 import { AuthContext } from "../../context/AuthContext";
@@ -23,47 +22,43 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
         }
     };
 
-    const handleLogout = () => {
-        Swal.fire({
-            title: "Çıkış işlemi başarılı",
-            text: "İyi günler dileriz...",
-            imageUrl: "https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png",
-            imageWidth: 400,
-            imageHeight:200,
-            imageAlt:"logo",       
-            showConfirmButton: false,
-            timer: 2000
-        });
-        setTimeout(() => {
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Çıkış işlemi başarılı",
+      text: "İyi günler dileriz...",
+      imageUrl: "https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png",
+      imageWidth: 400,
+      imageHeight: 200,
+      imageAlt: "logo",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+    setTimeout(() => {
+      logout();
+    }, 2000);
+  };
 
-        logout()
-        },2000)
-
+  useEffect(() => {
+    if (id !== 0) {
+      (async () => {
+        try {
+          if (userRole == "Employee") {
+            let data = await fetchData(id);
+            setProfileData(data);
+          } else if (userRole == "Admin") {
+            let data = await getDirectorById(id);
+            setProfileData(data);
+          }
+        } catch (error) {}
+      })();
+    } else {
+      const storedEmployeeId = localStorage.getItem("id");
+      if (storedEmployeeId) {
+        setId(parseInt(storedEmployeeId));
+        setIsAuthenticated(true);
+      }
     }
-
-    useEffect(() => {
-        if (id !== 0) {
-            (async () => {
-                try {
-                    if(userRole == "Employee"){
-                        let data = await fetchData(id);
-                        setProfileData(data);
-                    }
-                    else if(userRole == "Admin"){
-                        let data = await getDirectorById(id)
-                        setProfileData(data)
-                    }
-
-                } catch (error) { }
-            })();
-        } else {
-            const storedEmployeeId = localStorage.getItem("id");
-            if (storedEmployeeId) {
-                setId(parseInt(storedEmployeeId));
-                setIsAuthenticated(true);
-            }
-        }
-    }, [id]);
+  }, [id]);
 
 
     return (

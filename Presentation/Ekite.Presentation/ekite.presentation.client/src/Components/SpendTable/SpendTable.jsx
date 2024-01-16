@@ -9,7 +9,6 @@ const SpendTable = ({ spendList }) => {
   const { deleteSpend, setUpdateSpendId, updateSpendId } =
     useContext(SpendContext);
   const navigate = useNavigate();
-
   const formatDate = (inputDate) => {
     const date = new Date(inputDate);
     const formattedDate = new Intl.DateTimeFormat("tr-TR").format(date);

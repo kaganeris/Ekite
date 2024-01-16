@@ -11,7 +11,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./context/AuthContext";
 import PrivateRoute from "./services/PrivateRoute";
 import { ProfileProvider } from "./context/ProfileContext";
-import ProfilePage from "./pages/Profile/ProfilePage";
 import ProfileSumPage from "./Pages/Profile/ProfileSumPage";
 import LeaveListPage from "./pages/LeaveList/LeaveListPage";
 import { LeaveProvider } from "./context/LeaveContext";
@@ -26,18 +25,22 @@ import AdvanceCreatePage from "./Pages/AdvanceCreate/AdvanceCreatePage";
 import AdvanceUpdatePage from "./Pages/AdvanceUpdate/AdvanceUpdatePage";
 import AdvanceListPage from "./Pages/Advance/AdvanceListPage";
 import { AddresProvider } from "./context/AddressContext";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeContext, ThemeProvider } from "./context/ThemeContext";
 import Navbar from "./components/Navbar/Navbar";
+import PendingLeaveListPage from "./Pages/PendingLeaveList/PendingLeaveListPage";
+import ProfilePage from "./Pages/Profile/ProfilePage";
+import ApprovedLeaveListPage from "./Pages/ApprovedLeaveList/ApprovedLeaveListPage";
+import RejectLeaveListPage from "./Pages/RejectLeaveList/RejectLeaveListPage";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const { isAuthenticated, setIsAuthenticated, employeeId, token, setToken } =
     useContext(AuthContext);
-
+  const { darkMode } = useContext(ThemeContext);
   useEffect(() => {}, [isAuthenticated]);
 
   return (
-    <div>
+    <div className={darkMode ? "" : "bg-dark"} style={{ height: "100dvh" }}>
       <>
         <BrowserRouter>
           <ProfileProvider>
@@ -45,7 +48,6 @@ function App() {
               <AdvanceProvider>
                 <SpendProvider>
                   <AddresProvider>
-                    <ThemeProvider>
                     {isAuthenticated && (
                       <>
                         <Navbar
@@ -75,7 +77,6 @@ function App() {
                         path="/editprofile"
                         element={<PrivateRoute element={<EditProfilePage />} />}
                       />
-
                       <Route
                         path="/leaves"
                         element={<PrivateRoute element={<LeaveListPage />} />}
@@ -118,9 +119,26 @@ function App() {
                           <PrivateRoute element={<AdvanceUpdatePage />} />
                         }
                       />
+                      <Route
+                        path="/pendingLeaveList"
+                        element={
+                          <PrivateRoute element={<PendingLeaveListPage />} />
+                        }
+                      />
+                      <Route
+                        path="/approvedLeaveList"
+                        element={
+                          <PrivateRoute element={<ApprovedLeaveListPage />} />
+                        }
+                      />
+                      <Route
+                        path="/rejectLeaveList"
+                        element={
+                          <PrivateRoute element={<RejectLeaveListPage />} />
+                        }
+                      />
                     </Routes>
-                    <Footer />
-                    </ThemeProvider>
+                    {/* <Footer /> */}
                   </AddresProvider>
                 </SpendProvider>
               </AdvanceProvider>
