@@ -39,9 +39,6 @@ namespace Ekite.Persistence.Concrete.Managers
 
                 return await leaveRepository.UpdateWithoutStatus(leave);
 
-
-
-
             }
             else
             {
@@ -124,11 +121,52 @@ namespace Ekite.Persistence.Concrete.Managers
                 LeaveStartDate = x.LeaveStartDate,
                 LeaveType = EnumDescriber.Description(x.LeaveType),
                 FullName = x.Employee.FullName,
+                ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+                CreatedDate = x.CreatedDate,
+
 
             }, where: x => x.ApprovalStatus == ApprovalStatus.Pending, include: q => q.Include(x => x.Employee));
 
             return resultList;
 
+        }
+
+        public async Task<List<ResultApprovedLeaveDTO>> GetApprovedList()
+        {
+            List<ResultApprovedLeaveDTO> resultList = await leaveRepository.GetFilteredList(select: x => new ResultApprovedLeaveDTO
+            {
+                Id = x.Id,
+                Day = x.Day,
+                LeaveEndDate = x.LeaveEndDate,
+                LeaveStartDate = x.LeaveStartDate,
+                LeaveType = EnumDescriber.Description(x.LeaveType),
+                FullName = x.Employee.FullName,
+                ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+                ApprovedDate = x.ApprovedDate,
+                CreatedDate = x.CreatedDate,
+
+            }, where: x => x.ApprovalStatus == ApprovalStatus.Approved, include: q => q.Include(x => x.Employee));
+
+            return resultList;
+        }
+
+        public async Task<List<ResultRejectLeaveDTO>> GetRejectList()
+        {
+            List<ResultRejectLeaveDTO> resultList = await leaveRepository.GetFilteredList(select: x => new ResultRejectLeaveDTO
+            {
+                Id = x.Id,
+                Day = x.Day,
+                LeaveEndDate = x.LeaveEndDate,
+                LeaveStartDate = x.LeaveStartDate,
+                LeaveType = EnumDescriber.Description(x.LeaveType),
+                FullName = x.Employee.FullName,
+                ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+                ApprovedDate = x.ApprovedDate,
+                CreatedDate = x.CreatedDate,
+
+            }, where: x => x.ApprovalStatus == ApprovalStatus.Rejected, include: q => q.Include(x => x.Employee));
+
+            return resultList;
         }
 
 
@@ -188,6 +226,6 @@ namespace Ekite.Persistence.Concrete.Managers
             }
         }
 
-
+ 
     }
 }

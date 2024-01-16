@@ -4684,7 +4684,6 @@ input[type='button'].btn-block
 .dropdown-item:focus
 {
     text-decoration: none;
-
     color: #16181b;
     background-color: #f6f9fc;
 }
@@ -4692,7 +4691,6 @@ input[type='button'].btn-block
 .dropdown-item:active
 {
     text-decoration: none;
-
     color: #16181b;
     background-color: transparent;
 }
@@ -4700,10 +4698,60 @@ input[type='button'].btn-block
 .dropdown-item:disabled
 {
     pointer-events: none;
-
     color: #8898aa;
     background-color: transparent;
 }
+
+
+
+.dropdownn-item
+{
+    font-weight: 400;
+
+    display: block;
+    clear: both;
+
+    width: 100%;
+    padding: .5rem 1rem;
+
+    text-align: inherit;
+    white-space: nowrap;
+
+    color: white;
+    border: 0; 
+    background-color: transparent;
+}
+.dropdownn-item:hover,
+.dropdownn-item:focus
+{
+    text-decoration: none;
+    color: black;
+    background-color: #f6f9fc;
+}
+.dropdownn-item.active,
+.dropdownn-item:active
+{
+    text-decoration: none;
+    color: black;
+    background-color: transparent;
+}
+.dropdownn-item.disabled,
+.dropdownn-item:disabled
+{
+    pointer-events: none;
+    color: black;
+    background-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
 
 .dropdown-menu.show
 {
@@ -8782,7 +8830,7 @@ button.bg-primary:focus
 
 .bg-secondary
 {
-    background-color: #f7fafc !important;
+    background-color: #cdcfd1 !important;
 }
 
 a.bg-secondary:hover,
@@ -18893,9 +18941,8 @@ a.btn-icon-only
 .card
 {
     margin-bottom: 30px;
-
-    border: 0; 
-    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15);
+    border: 1px solid white;
+    box-shadow: 0 0 10px 3px rgba(136, 152, 170, .15);
 }
 
 .card-translucent

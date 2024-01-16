@@ -15,6 +15,8 @@ namespace Ekite.Application.Interfaces.Services
         Task<bool> TUpdate(UpdateLeaveDTO updateLeaveDTO);
         Task<UpdateLeaveDTO> GetLeaveById(int leaveId);
         Task<List<ResultPendingLeaveDTO>> GetPendingList();
+        Task<List<ResultApprovedLeaveDTO>> GetApprovedList();
+        Task<List<ResultRejectLeaveDTO>> GetRejectList();
         Task<bool> ApproveLeave(int id);
         Task<bool> RejectLeave(int id);
     }

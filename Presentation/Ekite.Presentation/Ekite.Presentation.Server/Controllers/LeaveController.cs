@@ -44,6 +44,28 @@ namespace Ekite.Presentation.Server.Controllers
 
 
 
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> GetApprovedList()
+        {
+
+            return Ok(await leaveService.GetApprovedList());
+        }
+
+
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> GetRejectList()
+        {
+
+            return Ok(await leaveService.GetRejectList());
+        }
+
+
+
         [HttpPost]
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> Create([FromForm]CreateLeaveDTO createLeaveDTO)
@@ -162,7 +184,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpGet("[action]")]
-        [Authorize(Roles = "Admin,Employee")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ApproveLeave(int id)
         {
             if (await leaveService.ApproveLeave(id))
@@ -175,7 +197,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpGet("[action]")]
-        [Authorize(Roles = "Admin,Employee")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RejectLeave(int id)
         {
             if (await leaveService.RejectLeave(id))

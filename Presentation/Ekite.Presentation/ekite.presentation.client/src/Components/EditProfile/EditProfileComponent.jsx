@@ -4,6 +4,7 @@ import { ProfileContext } from "../../context/ProfileContext";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthContext";
 import { AddressContext } from "../../context/AddressContext";
+import { ThemeContext } from "../../context/ThemeContext";
 function EditProfileComponent({ profileData, id }) {
   const [phoneNumber, setPhoneNumber] = useState(profileData.phoneNumber);
   const [cityName, setCityName] = useState(profileData.city);
@@ -16,7 +17,7 @@ function EditProfileComponent({ profileData, id }) {
   const [cities, setCities] = useState(null);
   const [districts, setDistricts] = useState(null);
   const { getCities, getDistricts } = useContext(AddressContext);
-  const navigate = useNavigate();
+  const { darkMode } = useContext(ThemeContext);
 
   const [formErrors, setFormErrors] = useState({
     phoneNumber: "",
@@ -99,23 +100,37 @@ function EditProfileComponent({ profileData, id }) {
   }, [cityName]);
 
   return (
-    <div className="card m-4">
-      <div className="card-header">
+    <div className={darkMode ? "card m-4" : "card m-4 bg-dark"}>
+      <div className={darkMode ? "card-header" : "card-header bg-dark"}>
         <div className="row align-items-center">
           <div className="col-8">
-            <h3 className="mb-0">Profili Güncelle </h3>
+            <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>
+              Profili Güncelle{" "}
+            </h3>
           </div>
         </div>
       </div>
       <div className="card-body">
         <form onSubmit={handleUpdate} encType="multipart/form-data">
-          <h6 className="heading-small text-muted mb-4">Çalışan Bilgileri</h6>
+          <h6
+            className={
+              darkMode
+                ? "heading-small text-muted mb-4"
+                : "heading-small text-white mb-4"
+            }
+          >
+            Kişisel Bilgiler
+          </h6>
           <div className="pl-lg-4">
             <div className="row">
               <div className={selectedImage ? "col-lg-9" : "col-lg-12"}>
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-username"
                   >
                     Profil Fotoğrafı
@@ -123,7 +138,11 @@ function EditProfileComponent({ profileData, id }) {
                   <input
                     type="file"
                     id="input-username"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     placeholder="Username"
                     onChange={handleFileChange}
                     accept="image/*"
@@ -150,7 +169,11 @@ function EditProfileComponent({ profileData, id }) {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Telefon Numarası
@@ -159,7 +182,11 @@ function EditProfileComponent({ profileData, id }) {
                     value={phoneNumber}
                     type="number"
                     id="input-first-name"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     placeholder="Telefon Numarası"
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     required
@@ -170,17 +197,36 @@ function EditProfileComponent({ profileData, id }) {
           </div>
           <hr className="my-4" />
 
-          <h6 className="heading-small text-muted mb-4">İletişim Bilgileri</h6>
+          <h6
+            className={
+              darkMode
+                ? "heading-small text-muted mb-4"
+                : "heading-small text-white mb-4"
+            }
+          >
+            İletişim Bilgileri
+          </h6>
           <div className="pl-lg-4">
             <div className="row">
               <div className="col-lg-6">
                 <div className="form-group">
-                  <label className="form-control-label" htmlFor="input-city">
+                  <label
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
+                    htmlFor="input-city"
+                  >
                     Şehir
                   </label>
                   {cities && (
                     <select
-                      className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                       onChange={(e) => setCityName(e.target.value)}
                       value={cityName}
                     >
@@ -197,14 +243,25 @@ function EditProfileComponent({ profileData, id }) {
               </div>
               <div className="col-lg-6">
                 <div className="form-group">
-                  <label className="form-control-label" htmlFor="input-country">
+                  <label
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
+                    htmlFor="input-country"
+                  >
                     İlçe
                   </label>
                   {districts && (
                     <>
                       {cityName && (
                         <select
-                          className="form-control"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
                           onChange={(e) => setDistrict(e.target.value)}
                           value={district}
                         >
@@ -223,13 +280,24 @@ function EditProfileComponent({ profileData, id }) {
             <div className="row">
               <div className="col-md-12">
                 <div className="form-group">
-                  <label className="form-control-label" htmlFor="input-address">
+                  <label
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
+                    htmlFor="input-address"
+                  >
                     Mahalle - Cadde - Sokak
                   </label>
                   <input
                     value={addressDetail}
                     id="input-address"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     placeholder="Mahalle-Cadde-Sokak"
                     type="text"
                     onChange={(e) => setAddressDetail(e.target.value)}

@@ -92,7 +92,7 @@ const LoginForm = () => {
         <div className="container mt--9 pb-5">
             <div className="row justify-content-center">
                 <div className="col-lg-5 col-md-7">
-                    <div className="card bg-secondary border-0 mb-0">
+                    <div className="card  border-0 mb-0">
                         <div className="card-header bg-transparent pb-6">
                             <div className=" text-center mt-3 mb-3 ">
                                 <h2>Giriş yapın</h2>
