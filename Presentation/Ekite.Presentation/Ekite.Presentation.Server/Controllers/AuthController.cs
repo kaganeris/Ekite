@@ -35,7 +35,7 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(Roles = "Admin,Employee")]
+        [Authorize(AuthenticationSchemes = "Admin,Employee")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
             IdentityResult result = await _appUserService.Register(registerDTO);
@@ -68,8 +68,6 @@ namespace Ekite.Presentation.Server.Controllers
 
                 if (result.Succeeded)
                 {
-
-
                     //int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
 
                     int id = await _appUserService.GetIDByRole(appUser.Id, role.FirstOrDefault());

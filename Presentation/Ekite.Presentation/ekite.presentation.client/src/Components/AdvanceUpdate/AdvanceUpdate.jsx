@@ -3,13 +3,14 @@ import { AuthContext } from "../../context/AuthContext";
 import { AdvanceContext } from "../../context/AdvanceContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
   const [advanceType, setAdvanceType] = useState(advance.advanceType);
   const [currency, setCurrency] = useState(advance.currency);
   const [amount, setAmount] = useState(advance.amount);
   const [description, setDescription] = useState(advance.description);
-
+  const { darkMode } = useContext(ThemeContext);
   const { id } = useContext(AuthContext);
   const { updateAdvance } = useContext(AdvanceContext);
   const navigate = useNavigate();
@@ -24,14 +25,14 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
   const handleUpdate = async (e) => {
     console.log("handleUpdateÇalıştı");
     e.preventDefault();
-   
+
     if (amount && description) {
       const data = {
         advanceType,
         currency,
         amount: parseInt(amount.toString().replace(/\D/g, ""), 10),
         description,
-        employeeId:id,
+        employeeId: id,
       };
       const response = await updateAdvance(updateAdvanceId, data);
 
@@ -70,11 +71,13 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
   };
 
   return (
-    <div className="card">
-      <div className="card-header">
+    <div className={darkMode ? "card" : "card bg-dark"}>
+      <div className={darkMode ? "card-header" : "card-header bg-dark"}>
         <div className="row align-items-center">
           <div className="col-8">
-            <h3 className="mb-0">Avans Güncelle </h3>
+            <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>
+              Avans Güncelle{" "}
+            </h3>
           </div>
         </div>
       </div>
@@ -85,14 +88,22 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-username"
                   >
                     Avans Türü
                   </label>
                   {enumsType && (
                     <select
-                      className="form-control"
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
                       onChange={(e) => setAdvanceType(parseInt(e.target.value))}
                       value={advanceType}
                     >
@@ -111,7 +122,11 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Açıklama
@@ -119,7 +134,11 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
                   <textarea
                     value={description}
                     id="input-first-name"
-                    className="form-control"
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }
                     onChange={(e) => setDescription(e.target.value)}
                   />
                 </div>
@@ -130,7 +149,11 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Miktar
@@ -139,8 +162,11 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
                     value={amount}
                     type="text"
                     id="input-first-name"
-                    className="form-control"
-                    onChange={handleAmountChange}
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }                    onChange={handleAmountChange}
                   />
                 </div>
               </div>
@@ -149,14 +175,22 @@ const AdvanceUpdate = ({ enumsType, advance, updateAdvanceId }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-username"
                   >
                     Para Birimi
                   </label>
                   {enumsType && (
                     <select
-                      className="form-control"
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
                       onChange={(e) => setCurrency(parseInt(e.target.value))}
                       value={currency}
                     >

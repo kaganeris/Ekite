@@ -138,6 +138,49 @@ const LeaveService = {
     
   },
 
+  getApprovedLeaveList : async () => {
+    try {
+      console.log("getapproved servis çalıştı");
+      const token = localStorage.getItem("user");
+      const response = await axios.get(
+        `https://localhost:7152/api/Leave/GetApprovedList`,
+        {
+          headers: {
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+      );
+      console.log(response.data);
+      return response;
+    } catch (error) {
+      console.error("Bekleyen izin bilgileri çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }  
+    
+  },
+  getRejectLeaveList : async () => {
+    try {
+      console.log("get reject servis çalıştı");
+      const token = localStorage.getItem("user");
+      const response = await axios.get(
+        `https://localhost:7152/api/Leave/GetRejectList`,
+        {
+          headers: {
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+      );
+      console.log(response.data);
+      return response;
+    } catch (error) {
+      console.error("Bekleyen izin bilgileri çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }  
+    
+  },
+
 
   approveLeave: async (id) => {
     console.log("ONAYLAMA ÇALIŞTI" , id);
@@ -179,7 +222,10 @@ rejectLeave: async (id) => {
     console.error("Reddetme işlemi yapılırken hata oluştu.", error.message);
     return error.response;
   }
-}
+},
+
+  
+
 
 }
 

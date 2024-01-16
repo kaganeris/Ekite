@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ekite.Application.DTOs.LeaveDto
 {
-    public class ResultPendingLeaveDTO
+    public class ResultRejectLeaveDTO
     {
         public int Id { get; set; }
         public string FullName { get; set; }
@@ -14,8 +14,8 @@ namespace Ekite.Application.DTOs.LeaveDto
         public string ApprovalStatus { get; set; }
         public int Day { get; set; }
         public DateTime CreatedDate { get; set; }
+        public DateTime? ApprovedDate { get; set; }
         public DateTime? LeaveStartDate { get; set; }
         public DateTime? LeaveEndDate { get; set; }
-
     }
 }

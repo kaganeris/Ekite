@@ -3,17 +3,16 @@ import { AuthContext } from "../../context/AuthContext";
 import { AdvanceContext } from "../../context/AdvanceContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const AdvanceCreate = ({ enumsType }) => {
   const [advanceType, setAdvanceType] = useState(1);
   const [currency, setCurrency] = useState(1);
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
-
+  const { darkMode } = useContext(ThemeContext);
   const [isDescriptionValid, setDescriptionValid] = useState(true);
   const [isAmountValid, setAmountValid] = useState(true);
-
-
 
   const { id } = useContext(AuthContext);
   const { addAdvance } = useContext(AdvanceContext);
@@ -27,14 +26,14 @@ const AdvanceCreate = ({ enumsType }) => {
 
   const handleAddCreate = async (e) => {
     e.preventDefault();
- 
+
     if (advanceType && currency && amount && description) {
       const formData = {
         advanceType,
         currency,
         amount: parseInt(amount.toString().replace(/\D/g, ""), 10),
         description,
-        employeeId:id,
+        employeeId: id,
       };
 
       console.log(formData);
@@ -55,14 +54,11 @@ const AdvanceCreate = ({ enumsType }) => {
           navigate("/advanceList");
         }, 2000);
       } else {
-
         let errorsArray = response.map((element, index) => {
           return element + (index < response.length - 1 ? "<br/>" : "");
-      });
+        });
 
- 
-      let errors = errorsArray.join("");
-      
+        let errors = errorsArray.join("");
 
         console.log(errors);
         Swal.fire({
@@ -72,7 +68,6 @@ const AdvanceCreate = ({ enumsType }) => {
         });
       }
     } else {
-
       if (!description) setDescriptionValid(false);
       if (!amount) setAmountValid(false);
 
@@ -85,11 +80,13 @@ const AdvanceCreate = ({ enumsType }) => {
   };
 
   return (
-    <div className="card">
-      <div className="card-header">
+    <div className={darkMode ? "card" : "card bg-dark"}>
+      <div className={darkMode ? "card-header" : "card-header bg-dark"}>
         <div className="row align-items-center">
           <div className="col-8">
-            <h3 className="mb-0">Avans Oluştur </h3>
+            <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>
+              Avans Oluştur{" "}
+            </h3>
           </div>
         </div>
       </div>
@@ -100,15 +97,22 @@ const AdvanceCreate = ({ enumsType }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-username"
                   >
                     Avans Türü
                   </label>
                   {enumsType && (
                     <select
-                      className="form-control"
-                      onChange={(e) => setAdvanceType(parseInt(e.target.value))}
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }                      onChange={(e) => setAdvanceType(parseInt(e.target.value))}
                       value={advanceType}
                     >
                       {Object.keys(enumsType.advanceType).map((key) => (
@@ -125,7 +129,11 @@ const AdvanceCreate = ({ enumsType }) => {
               <div className="col-lg-12">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Açıklama
@@ -133,8 +141,11 @@ const AdvanceCreate = ({ enumsType }) => {
                   <textarea
                     value={description}
                     id="input-first-name"
-                    className="form-control"
-                    onChange={(e) => setDescription(e.target.value)}
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }                    onChange={(e) => setDescription(e.target.value)}
                   />
                   {!isDescriptionValid && (
                     <label className="text-danger">
@@ -149,7 +160,11 @@ const AdvanceCreate = ({ enumsType }) => {
               <div className="col-lg-8">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-first-name"
                   >
                     Miktar
@@ -158,10 +173,13 @@ const AdvanceCreate = ({ enumsType }) => {
                     value={amount}
                     type="text"
                     id="input-first-name"
-                    className="form-control"
-                    onChange={handleAmountChange}
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }                    onChange={handleAmountChange}
                   />
-                    {!isAmountValid && (
+                  {!isAmountValid && (
                     <label className="text-danger">
                       Miktar boş bırakılamaz.
                     </label>
@@ -171,15 +189,22 @@ const AdvanceCreate = ({ enumsType }) => {
               <div className="col-lg-4">
                 <div className="form-group">
                   <label
-                    className="form-control-label"
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
                     htmlFor="input-username"
                   >
                     Para Birimi
                   </label>
                   {enumsType && (
                     <select
-                      className="form-control"
-                      onChange={(e) => setCurrency(parseInt(e.target.value))}
+                    className={
+                      darkMode
+                        ? "form-control"
+                        : "form-control bg-secondary text-dark"
+                    }                      onChange={(e) => setCurrency(parseInt(e.target.value))}
                       value={currency}
                     >
                       {Object.keys(enumsType.currency).map((key) => (
@@ -192,9 +217,7 @@ const AdvanceCreate = ({ enumsType }) => {
                 </div>
               </div>
             </div>
-            <div className="row">
-              
-            </div>
+            <div className="row"></div>
           </div>
           <div className="main-content">
             <div className="container">
