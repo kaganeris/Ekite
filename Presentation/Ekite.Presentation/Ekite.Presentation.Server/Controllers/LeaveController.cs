@@ -184,7 +184,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpGet("[action]")]
-        [Authorize(Roles = "Admin,Employee")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ApproveLeave(int id)
         {
             if (await leaveService.ApproveLeave(id))
@@ -197,7 +197,7 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         [HttpGet("[action]")]
-        [Authorize(Roles = "Admin,Employee")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RejectLeave(int id)
         {
             if (await leaveService.RejectLeave(id))

@@ -96,6 +96,13 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
     console.log("SpendType", spendTypes);
   }, []);
 
+  const handleAmountChange = (e) => {
+    const sanitizedValue = e.target.value.replace(/[^\d]/g, "");
+    const formattedValue = new Intl.NumberFormat().format(sanitizedValue);
+    setAmount(formattedValue);
+  };
+
+
   return (
     <div className="card">
       <div className="card-header">
@@ -159,23 +166,24 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-8">
+            <div className="col-lg-8">
                 <div className="form-group">
                   <label
                     className="form-control-label"
                     htmlFor="input-first-name"
                   >
-                    Tutar
+                    Miktar
                   </label>
                   <input
+                    value={amount}
                     type="text"
                     id="input-first-name"
                     className="form-control"
-                    onChange={(e) => setAmount(e.target.value)}
+                    onChange={handleAmountChange}
                   />
                   {!isAmountValid && (
                     <label className="text-danger">
-                      Tutar boş bırakılamaz.
+                      Miktar boş bırakılamaz.
                     </label>
                   )}
                 </div>
@@ -206,11 +214,8 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
                 </div>
               </div>
             </div>
-            <div className="row">
-              
-            </div>
-            
-
+            <div className="row">             
+            </div>         
             <div className="row">
               <div className="col-lg-12">
                 <div className="form-group">
