@@ -86,7 +86,7 @@ namespace Ekite.Presentation.Server.Controllers
 			}
 			else
 			{
-				return NotFound("bulunamadı");
+				return NotFound("Bulunamadı");
 			}
 		}
 

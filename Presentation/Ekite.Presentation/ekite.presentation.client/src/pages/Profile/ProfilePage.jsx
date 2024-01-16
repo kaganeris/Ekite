@@ -60,12 +60,14 @@ function ProfilePage() {
             <ProfileHeader profileData={profileData}/>
           </div>
 
-          <div className="container-fluid mt--6 ">
+          <div className="container-fluid mt--6">
             <div className="row ">
               <div className="col-xl-6 order-xl-1">
                 <div className="card card-profile  ">
                   {userRole === "Employee" ? (
+                <div className="card card-profile ">
                     <EmployeeCard profileData={profileData} />
+                    </div>
                   ) : (
                     <DirectorCard
                       profileData={profileData}
