@@ -1,31 +1,65 @@
-import React, { useContext } from 'react'
-import { LeaveContext } from '../../context/LeaveContext';
+import React, { useContext } from "react";
+import { LeaveContext } from "../../context/LeaveContext";
+import Swal from "sweetalert2";
 
-const PendingLeaveList = ({pendingLeaveList,setPendingLeaveList}) => {
+const PendingLeaveList = ({ pendingLeaveList, setPendingLeaveList }) => {
   const { rejectLeaveProcess, approveLeaveProcess } = useContext(LeaveContext);
 
-    const formatDate = (inputDate) => {
-        const date = new Date(inputDate);
-        const formattedDate = new Intl.DateTimeFormat("tr-TR").format(date);
-        return formattedDate;
-      };
+  const formatDate = (inputDate) => {
+    const date = new Date(inputDate);
+    const formattedDate = new Intl.DateTimeFormat("tr-TR").format(date);
+    return formattedDate;
+  };
 
+  const handleOperation = (id, result) => {
+    const updatedLeaveList = pendingLeaveList.filter(
+      (leave) => leave.id !== id
+    );
 
-      const handleOperation = (id, result) => {
-        const updatedLeaveList = pendingLeaveList.filter(
-          (leave) => leave.id !== id
-        );
-    
-        setPendingLeaveList(updatedLeaveList);
-    
-        if (result) {
-          approveLeaveProcess(id);
-        } else {
-          rejectLeaveProcess(id);
-        }
-      };
+    setPendingLeaveList(updatedLeaveList);
 
-console.log(pendingLeaveList)
+    if (result) {
+      try {
+        (async () => {
+          await approveLeaveProcess(id);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "İzin Başarıyla Onaylandı",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          setTimeout(() => {}, 2000);
+        })();
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "İzin Onaylama İşlemi Başarısız",
+        });
+      }
+    } else {
+      try {
+        (async () => {
+          await rejectLeaveProcess(id);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "İzin Başarıyla Reddedildi",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          setTimeout(() => {}, 2000);
+        })();
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "İzin Reddetme İşlemi Başarısız",
+        });
+      }
+    }
+  };
+
+  console.log(pendingLeaveList);
 
   return (
     <div className="table-responsive">
@@ -33,6 +67,9 @@ console.log(pendingLeaveList)
         <table className="table align-items-center table-dark table-flush">
           <thead className="thead-dark">
             <tr>
+              <th scope="col" className="sort">
+                Ad Soyad
+              </th>
               <th scope="col" className="sort" data-sort="budget">
                 İzin Türü
               </th>
@@ -50,7 +87,7 @@ console.log(pendingLeaveList)
               </th>
               <th scope="col" className="sort" data-sort="completion">
                 Talep Edilme Tarihi
-              </th>             
+              </th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
@@ -58,11 +95,11 @@ console.log(pendingLeaveList)
           <tbody className="list">
             {pendingLeaveList.map((leave, index) => (
               <tr key={index}>
+                <td>{leave.fullName}</td>
                 <td className="budget">{leave.leaveType}</td>
                 <th scope="row">{leave.day}</th>
                 <td>
                   <span className="badge badge-dot mr-4">
-
                     <i
                       className={
                         leave.approvalStatus === "Bekleniyor"
@@ -80,11 +117,11 @@ console.log(pendingLeaveList)
                 <td>{formatDate(leave.leaveEndDate)}</td>
                 <td>{formatDate(leave.createdDate)}</td>
                 {leave.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right" style={{ paddingRight: '0px' }} >
+                  <td className="text-right" style={{ paddingRight: "0px" }}>
                     <a
                       className="btn btn-outline-primary"
                       onClick={() => handleOperation(leave.id, true)}
-                      >
+                    >
                       Onayla
                     </a>
                   </td>
@@ -92,15 +129,13 @@ console.log(pendingLeaveList)
                   <td></td>
                 )}
                 {leave.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right" style={{ paddingLeft: '0px' }} >
-                    
+                  <td className="text-right" style={{ paddingLeft: "0px" }}>
                     <a
                       className="btn btn-outline-danger "
                       onClick={() => handleOperation(leave.id, false)}
-                      >
+                    >
                       Reddet
                     </a>
-                    
                   </td>
                 ) : (
                   <td></td>
@@ -112,6 +147,6 @@ console.log(pendingLeaveList)
       )}
     </div>
   );
-}
+};
 
-export default PendingLeaveList
+export default PendingLeaveList;

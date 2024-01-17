@@ -3,17 +3,19 @@ import React, { useContext, useEffect, useState } from "react";
 import EditProfileComponent from "../../Components/EditProfile/EditProfileComponent";
 import { AuthContext } from "../../context/AuthContext";
 import { ProfileContext } from "../../context/ProfileContext";
+import { PageContext } from "../../context/PageContext";
 
 function EditProfilePage() {
   const { updatePersonelData,updateDirectorData } = useContext(ProfileContext);
   const { id, setId, userRole } =
     useContext(AuthContext);
   const [profileData, setProfileData] = useState(null);
-
+  const {handlePrevPage} = useContext(PageContext)
   useEffect(() => {
     if (id !== 0) {
       (async () => {
         try {
+          handlePrevPage(location.pathname)
           if(userRole === "Employee"){
             let data = await updatePersonelData(id);
             setProfileData(data);
