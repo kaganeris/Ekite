@@ -1,20 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import UpdateLeave from "../../components/UpdateLeave/UpdateLeave";
+import UpdateLeave from "../../components/Leave/UpdateLeave";
 import { LeaveContext } from "../../context/LeaveContext";
 import { AuthContext } from "../../context/AuthContext";
-import { PageContext } from "../../context/PageContext";
 
 const UpdateLeavePage = () => {
   const [leaveTypes, setLeaveTypes] = useState(null);
   const { getLeaveTypes } = useContext(LeaveContext);
   const { id, setId, setIsAuthenticated } =
     useContext(AuthContext);
-    const {handlePrevPage} = useContext(PageContext)
+
   useEffect(() => {
     if (id !== 0) {
       (async () => {
         try {
-          handlePrevPage(location.pathname)
           let data = await getLeaveTypes();
           setLeaveTypes(data);
         } catch (error) {

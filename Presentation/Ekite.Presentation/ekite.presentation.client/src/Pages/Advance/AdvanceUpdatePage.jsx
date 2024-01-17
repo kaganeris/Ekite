@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AdvanceContext } from "../../context/AdvanceContext";
 import { AuthContext } from "../../context/AuthContext";
-import AdvanceUpdate from "../../Components/AdvanceUpdate/AdvanceUpdate";
-import { PageContext } from "../../context/PageContext";
+import AdvanceUpdate from "../../Components/Advance/AdvanceUpdate";
 
 const AdvanceUpdatePage = () => {
   const { getEnums, updateAdvanceId, getAdvanceById } =
     useContext(AdvanceContext);
   const { id, setId, setIsAuthenticated, isAuthenticated } =
     useContext(AuthContext);
-    const {handlePrevPage} = useContext(PageContext)
+
   const [enumsType, setEnumsType] = useState(null);
   const [advance, setAdvance] = useState(null);
 
@@ -17,7 +16,6 @@ const AdvanceUpdatePage = () => {
     if (id !== 0) {
       (async () => {
         try {
-          handlePrevPage(location.pathname)
           let enumData = await getEnums();
           let updateAdvanceData = await getAdvanceById(updateAdvanceId);
           setEnumsType(enumData);

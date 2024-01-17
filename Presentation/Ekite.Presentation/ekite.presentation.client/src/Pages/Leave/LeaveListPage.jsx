@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import LeaveTable from "../../components/LeaveTable/LeaveTable";
-import LeaveHeader from "../../components/LeaveHeader/LeaveHeader";
+import LeaveTable from "../../components/Leave/LeaveTable";
+import LeaveHeader from "../../components/Leave/LeaveHeader";
 import { AuthContext } from "../../context/AuthContext";
 import { LeaveContext } from "../../context/LeaveContext";
-import { PageContext } from "../../context/PageContext";
 
 const LeaveListPage = () => {
   const { id, setId, setIsAuthenticated } =
@@ -11,13 +10,12 @@ const LeaveListPage = () => {
     const [leaveData,setLeaveData] = useState(null)
 
     const {LeaveDatas} = useContext(LeaveContext)
-    const {handlePrevPage} = useContext(PageContext)
+
   useEffect(() => {
     console.log("LeavePage çalıştı");
     if (id !== 0) {
       (async () => {
         try {
-          handlePrevPage(location.pathname)
           let data = await LeaveDatas(id);
           console.log(data);
           setLeaveData(data);
