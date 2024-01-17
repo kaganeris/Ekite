@@ -97,7 +97,7 @@ const LoginForm = () => {
                             <div className=" text-center mt-3 mb-3 ">
                                 <h2>Giriş yapın</h2>
                                 <img src="https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png" className="img-fluid" style={{ width: "30%" }} />
-                                <span></span>
+                                <p>İşinizi sevin, ekip ruhuyla çalışın!</p>
                             </div>
                         </div>
                         <div className="card-body px-lg-5 py-lg-2 ">
