@@ -1,11 +1,16 @@
 import axios from "axios";
 // ilgili verileri backend'den çekmek ve bu verileri uygulamanın ilgili bölümlerinde göstermek işine yarar.
+
+//const url = "https://ekite.azurewebsites.net"
+
+const url = "https://localhost:7152"
+
 const SpendService={
     
     getSpendById: async(id) =>{
         try{
             const token=localStorage.getItem("user");
-            const response = await axios.get(`https://localhost:7152/api/Spend/UpdateSpend?id=${id}`,
+            const response = await axios.get(`${url}/api/Spend/UpdateSpend?id=${id}`,
             {
               headers: {
                 Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -24,7 +29,7 @@ const SpendService={
         try{
             const token=localStorage.getItem("user");
 
-            const response=await axios.get(`https://localhost:7152/api/Spend/GetListSpend/${employeeId}`,
+            const response=await axios.get(`${url}/api/Spend/GetListSpend/${employeeId}`,
             {
                 headers:{
                     Authorization: "Bearer " + token.replace(/"/g, ""), 
@@ -45,7 +50,7 @@ const SpendService={
         try{
             const token = localStorage.getItem("user");
             const response = await axios.get(
-                `https://localhost:7152/api/Spend/GetSpendTypeDisplay`,
+                `${url}/api/Spend/GetSpendTypeDisplay`,
                 {
                     headers : {
                         Authorization: "Bearer " + token.replace(/"/g, ""),  
@@ -63,7 +68,7 @@ const SpendService={
         try{
             const token = localStorage.getItem("user");
             const response = await axios.get(
-                `https://localhost:7152/api/Spend/GetCurrencyDisplay`,
+                `${url}/api/Spend/GetCurrencyDisplay`,
                 {
                     headers : {
                         Authorization: "Bearer " + token.replace(/"/g, ""),  
@@ -80,7 +85,7 @@ const SpendService={
     postSpend: async(spendData) => {
         try{
             const token =localStorage.getItem("user");
-            const response=await axios.post(`https://localhost:7152/api/Spend/CreateSpend`,spendData,
+            const response=await axios.post(`${url}/api/Spend/CreateSpend`,spendData,
             {
                 headers: {
                 
@@ -103,7 +108,7 @@ const SpendService={
         try{
             const token = localStorage.getItem("user");
             const response = await axios.delete(
-                `https://localhost:7152/api/Spend/DeleteSpend?id=${id}`,
+                `${url}/api/Spend/DeleteSpend?id=${id}`,
                 {
                     headers: {
                       Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -126,7 +131,7 @@ const SpendService={
         try{
             const token =localStorage.getItem("user");
             const response = await axios.put(
-                `https://localhost:7152/api/Spend/UpdateSpend`,updateSpendData,
+                `${url}/api/Spend/UpdateSpend`,updateSpendData,
                 {
                     headers: {
                         Authorization: "Bearer " + token.replace(/"/g, ""),
