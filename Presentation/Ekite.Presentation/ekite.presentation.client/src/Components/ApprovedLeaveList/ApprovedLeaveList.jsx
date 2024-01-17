@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { LeaveContext } from '../../context/LeaveContext';
+import Swal from 'sweetalert2';
 
 const ApprovedLeaveList = ({approvedLeaveList,setApprovedLeaveList}) => {
   const { rejectLeaveProcess } = useContext(LeaveContext);
@@ -20,7 +21,22 @@ const ApprovedLeaveList = ({approvedLeaveList,setApprovedLeaveList}) => {
     );
     setApprovedLeaveList(updatedLeaveList);
 
+    try {
       rejectLeaveProcess(id);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "İzin Başarıyla Reddedildi",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setTimeout(() => {}, 2000);
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "İzin Reddetme İşlemi Başarısız",
+      });
+    }
   };
 
 
@@ -30,6 +46,9 @@ const ApprovedLeaveList = ({approvedLeaveList,setApprovedLeaveList}) => {
       <table className="table align-items-center table-dark table-flush">
         <thead className="thead-dark">
           <tr>
+          <th scope="col" className="sort">
+              Ad Soyad
+            </th>
             <th scope="col" className="sort" data-sort="budget">
               İzin Türü
             </th>
@@ -58,6 +77,7 @@ const ApprovedLeaveList = ({approvedLeaveList,setApprovedLeaveList}) => {
         <tbody className="list">
           {approvedLeaveList.map((leave, index) => (
             <tr key={index}>
+              <td>{leave.fullName}</td>
               <td className="budget">{leave.leaveType}</td>
               <th scope="row">{leave.day}</th>
               <td>

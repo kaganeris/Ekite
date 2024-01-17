@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { LeaveContext } from '../../context/LeaveContext';
+import Swal from 'sweetalert2';
 
 const RejectLeaveList = ({rejectLeaveList,setRejectLeaveList}) => {
 
@@ -19,7 +20,24 @@ const{approveLeaveProcess} = useContext(LeaveContext)
     );
     setRejectLeaveList(updatedLeaveList);
 
-    approveLeaveProcess(id);
+
+    try {
+      approveLeaveProcess(id);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "İzin Başarıyla Onaylandı",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      setTimeout(() => {}, 2000)
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "İzin Onaylama İşlemi Başarısız",
+      });
+    }
+    
   };
 
   return (
@@ -28,6 +46,9 @@ const{approveLeaveProcess} = useContext(LeaveContext)
       <table className="table align-items-center table-dark table-flush">
         <thead className="thead-dark">
           <tr>
+          <th scope="col" className="sort">
+              Ad Soyad
+            </th>
             <th scope="col" className="sort" data-sort="budget">
               İzin Türü
             </th>
@@ -56,6 +77,7 @@ const{approveLeaveProcess} = useContext(LeaveContext)
         <tbody className="list">
           {rejectLeaveList.map((leave, index) => (
             <tr key={index}>
+              <td>{leave.fullName}</td>
               <td className="budget">{leave.leaveType}</td>
               <th scope="row">{leave.day}</th>
               <td>

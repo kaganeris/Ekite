@@ -3,6 +3,7 @@ import PendingLeaveList from '../../Components/PendingLeaveList/PendingLeaveList
 import { AuthContext } from '../../context/AuthContext';
 import PendingLeaveListHeader from '../../Components/PendingLeaveList/PendingLeaveListHeader';
 import { LeaveContext } from '../../context/LeaveContext';
+import { PageContext } from '../../context/PageContext';
 
 const PendingLeaveListPage = () => {
 
@@ -10,11 +11,12 @@ const PendingLeaveListPage = () => {
     useContext(AuthContext);
     const {pendingLeaveDatas} = useContext(LeaveContext)
     const [pendingLeaveList,setPendingLeaveList] = useState(null);
-
+    const {handlePrevPage} = useContext(PageContext)
     useEffect(() => {
         if (id !== 0) {
           (async () => {
             try {
+              handlePrevPage(location.pathname)
               let data = await pendingLeaveDatas();
               console.log("admin leave list çalıştı");
               setPendingLeaveList(data);
