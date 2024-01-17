@@ -1,7 +1,7 @@
 import React, { useContext, useState,useEffect } from 'react'
 import { SpendContext } from '../../context/SpendContext';
 import { AuthContext } from '../../context/AuthContext';
-import UpdateSpend from "../../Components/UpdateSpend/UpdateSpend"
+import UpdateSpend from "../../Components/Spend/UpdateSpend"
 import { ThemeContext } from '../../context/ThemeContext';
 
 const UpdateSpendPage = () => {

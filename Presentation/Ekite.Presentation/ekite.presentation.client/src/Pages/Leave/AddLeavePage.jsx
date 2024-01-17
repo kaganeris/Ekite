@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import CreateLeave from "../../Components/CreateLeave/CreateLeave"
+import CreateLeave from "../../Components/Leave/CreateLeave"
 import { LeaveContext } from "../../context/LeaveContext";
 import { AuthContext } from "../../context/AuthContext";
 

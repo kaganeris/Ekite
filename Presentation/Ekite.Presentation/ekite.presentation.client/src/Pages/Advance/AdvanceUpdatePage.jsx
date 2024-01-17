@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AdvanceContext } from "../../context/AdvanceContext";
 import { AuthContext } from "../../context/AuthContext";
-import AdvanceUpdate from "../../Components/AdvanceUpdate/AdvanceUpdate";
+import AdvanceUpdate from "../../Components/Advance/AdvanceUpdate";
 
 const AdvanceUpdatePage = () => {
   const { getEnums, updateAdvanceId, getAdvanceById } =

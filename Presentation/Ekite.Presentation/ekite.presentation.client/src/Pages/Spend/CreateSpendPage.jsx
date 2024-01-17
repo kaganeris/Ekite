@@ -1,7 +1,7 @@
 import React, { useContext, useEffect,useState} from 'react'
 import { AuthContext } from '../../context/AuthContext';
 import { SpendContext } from '../../context/SpendContext';
-import CreateSpend from '../../Components/CreateSpend/CreateSpend'
+import CreateSpend from '../../Components/Spend/CreateSpend'
 
 
 const CreateSpendPage = () => {

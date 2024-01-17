@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import EditProfileComponent from "../../Components/EditProfile/EditProfileComponent";
+import EditProfileComponent from "../../Components/Profile/EditProfileComponent";
 import { AuthContext } from "../../context/AuthContext";
 import { ProfileContext } from "../../context/ProfileContext";
 
