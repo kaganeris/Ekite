@@ -3,6 +3,7 @@ import ProfileDetails from "../../Components/Profile/ProfileDetails";
 import { AuthContext } from "../../context/AuthContext";
 import { ProfileContext } from "../../context/ProfileContext";
 import ProfileSum from "../../Components/Profile/ProfileSum";
+import { PageContext } from "../../context/PageContext";
 
 const ProfileSumPage = () => {
 
@@ -10,12 +11,14 @@ const ProfileSumPage = () => {
     const { id, setId,userRole } =
     useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
+    const {handlePrevPage} = useContext(PageContext)
 
   useEffect(() => {
     console.log("profilsum çalıştı kullanıcı rolü",userRole,id);
     if (id !== 0) {
       (async () => {
         try {
+          handlePrevPage(location.pathname)
           if(userRole === "Employee"){
             let data = await fetchData(id);
             setProfileData(data);

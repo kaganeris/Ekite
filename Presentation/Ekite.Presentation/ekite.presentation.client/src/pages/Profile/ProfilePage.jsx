@@ -7,6 +7,7 @@ import { LeaveContext } from "../../context/LeaveContext";
 import DirectorCard from "../../components/Profile/DirectorCard";
 import EmployeeCard from "../../components/Profile/EmployeeCard";
 import { ThemeContext } from "../../context/ThemeContext";
+import { PageContext } from "../../context/PageContext";
 
 function ProfilePage() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -17,11 +18,13 @@ function ProfilePage() {
   const { id, setId, setIsAuthenticated, userRole } = useContext(AuthContext);
   const [profileData, setProfileData] = useState(null);
   const [pendingLeaveList, setPendingLeaveList] = useState(null);
+  const {handlePrevPage} = useContext(PageContext)
 
   useEffect(() => {
     if (id !== 0) {
       (async () => {
         try {
+          handlePrevPage(location.pathname)
           if (userRole === "Employee") {
             console.log("kullanıcı rolu employee çalıştı");
             let data = await fetchData(id);

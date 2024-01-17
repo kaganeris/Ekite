@@ -3,6 +3,7 @@ import RejectLeaveList from '../../Components/RejectLeaveList/RejectLeaveList'
 import RejectLeaveListHeader from '../../Components/RejectLeaveList/RejectLeaveListHeader'
 import { AuthContext } from '../../context/AuthContext';
 import { LeaveContext } from '../../context/LeaveContext';
+import { PageContext } from '../../context/PageContext';
 
 const RejectLeaveListPage = () => {
  
@@ -10,12 +11,13 @@ const RejectLeaveListPage = () => {
     useContext(AuthContext);
     const {rejectLeaveDatas} = useContext(LeaveContext)
     const [rejectLeaveList,setRejectLeaveList] = useState(null);
-
+    const {handlePrevPage} = useContext(PageContext)
 
     useEffect(() => {
         if (id !== 0) {
             (async () => {
                 try {
+                  handlePrevPage(location.pathname)
                     let data = await rejectLeaveDatas();
                     console.log("admin leave list çalıştı");
               setRejectLeaveList(data);

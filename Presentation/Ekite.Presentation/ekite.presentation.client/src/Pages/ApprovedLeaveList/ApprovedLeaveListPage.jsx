@@ -3,18 +3,20 @@ import ApprovedLeaveList from '../../Components/ApprovedLeaveList/ApprovedLeaveL
 import ApprovedLeaveListHeader from '../../Components/ApprovedLeaveList/ApprovedLeaveListHeader';
 import { LeaveContext } from '../../context/LeaveContext';
 import { AuthContext } from '../../context/AuthContext';
+import { PageContext } from '../../context/PageContext';
 
 const ApprovedLeaveListPage = () => {
   const { id, setId, setIsAuthenticated } =
     useContext(AuthContext);
   const {approvedLeaveDatas} = useContext(LeaveContext)
   const [approvedLeaveList,setApprovedLeaveList] = useState(null);
-
+  const {handlePrevPage} = useContext(PageContext)
 
   useEffect(() => {
     if (id !== 0) {
       (async () => {
         try {
+          handlePrevPage(location.pathname)
           console.log("admin approved list çalıştı");
           let data = await approvedLeaveDatas();
           setApprovedLeaveList(data);
