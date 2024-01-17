@@ -86,11 +86,14 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
     console.log("page", page);
     console.log("getNumber.current ", getNumber.current);
     console.log("pendingLeaveList", Math.ceil(pendingLeaveList.length / 5));
+ 
+
+    const totalNumberOfPages = Math.ceil(pendingLeaveList.length / 5);
 
     if (
       bool === true &&
       getNumber.current <= Math.floor(pendingLeaveList.length / 5) 
-      && pendingLeaveList.length !== 5
+        && activePage < totalNumberOfPages 
     ) {
       getNumber.current += 1;
       setActivePage(page);
@@ -106,6 +109,8 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
       console.log("Previous çalıştı");
     } else if (bool === undefined) {
       console.log("default çalıştı");
+      setActivePage(page);
+
       getNumber.current = page;
     }
     numberPage.current = getNumber.current * 5;
@@ -208,7 +213,7 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                       }`}
                       onClick={() => {
                         if (
-                          getNumber.current >
+                          getNumber.current >=
                           Math.floor(pendingLeaveList.length / 5)
                         ) {
                           handleList(activePage - 1, false);
