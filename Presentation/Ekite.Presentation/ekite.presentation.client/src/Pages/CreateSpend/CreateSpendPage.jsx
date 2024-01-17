@@ -2,6 +2,7 @@ import React, { useContext, useEffect,useState} from 'react'
 import { AuthContext } from '../../context/AuthContext';
 import { SpendContext } from '../../context/SpendContext';
 import CreateSpend from '../../Components/CreateSpend/CreateSpend'
+import { PageContext } from '../../context/PageContext';
 
 
 const CreateSpendPage = () => {
@@ -9,11 +10,12 @@ const CreateSpendPage = () => {
     const [spendTypes, setSpendTypes] = useState(null);
     const [currencyTypes, setCurrencyTypes] = useState(null);
     const {getSpendType,getCurrencyType} = useContext(SpendContext);
-
+    const {handlePrevPage} = useContext(PageContext)
     useEffect(()=>{
       if(id !==0){
         (async()=>{
           try{
+            handlePrevPage(location.pathname)
             let typeData =await getSpendType();
             setSpendTypes(typeData);
 

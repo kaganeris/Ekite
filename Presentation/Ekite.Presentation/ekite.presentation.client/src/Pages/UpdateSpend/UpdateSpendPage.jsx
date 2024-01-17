@@ -3,6 +3,7 @@ import { SpendContext } from '../../context/SpendContext';
 import { AuthContext } from '../../context/AuthContext';
 import UpdateSpend from "../../Components/UpdateSpend/UpdateSpend"
 import { ThemeContext } from '../../context/ThemeContext';
+import { PageContext } from '../../context/PageContext';
 
 const UpdateSpendPage = () => {
     const {id,setId,setIsAuthenticated} = useContext(AuthContext);
@@ -11,11 +12,12 @@ const UpdateSpendPage = () => {
     const [spendTypes, setSpendTypes] = useState(null);
     const [currencyTypes, setCurrencyTypes] = useState(null);
 
-
+    const {handlePrevPage} = useContext(PageContext)
     useEffect(()=>{
         if (id !==0) {
             (async()=>{
                 try{
+                  handlePrevPage(location.pathname)
                     let typeData = await getSpendType();
                     setSpendTypes(typeData);
 

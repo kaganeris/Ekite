@@ -93,9 +93,11 @@ const LoginForm = () => {
             <div className="row justify-content-center">
                 <div className="col-lg-5 col-md-7">
                     <div className="card  border-0 mb-0">
-                        <div className="card-header bg-transparent pb-6">
+                        <div className="card-header bg-transparent">
                             <div className=" text-center mt-3 mb-3 ">
                                 <h2>Giriş yapın</h2>
+                                <img src="https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png" className="img-fluid" style={{ width: "30%" }} />
+                                <span></span>
                             </div>
                         </div>
                         <div className="card-body px-lg-5 py-lg-2 ">

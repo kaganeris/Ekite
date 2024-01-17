@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { SpendContext } from "../../context/SpendContext";
 import SpendHeader from "../../Components/SpendHeader/SpendHeader";
 import SpendTable from "../../Components/SpendTable/SpendTable";
+import { PageContext } from "../../context/PageContext";
 
 const SpendListPage = () => {
 
@@ -10,12 +11,13 @@ const SpendListPage = () => {
     const{SpendDatas}= useContext(SpendContext);
 
     const [spendData, setSpendData]=useState();
-    
+    const {handlePrevPage} = useContext(PageContext)
 
     useEffect(()=>{
         if (id !==0) {
             (async ()=>{
                 try{
+                  handlePrevPage(location.pathname)
                     let data =await SpendDatas(id);
 
           console.log(data);
