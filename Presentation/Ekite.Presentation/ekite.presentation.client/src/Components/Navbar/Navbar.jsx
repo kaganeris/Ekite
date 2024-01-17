@@ -34,7 +34,8 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
       timer: 2000,
     });
     setTimeout(() => {
-      logout();
+        logout();
+        location.reload();
     }, 2000);
   };
 
