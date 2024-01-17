@@ -11,7 +11,7 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   const getNumber = useRef(1);
   const [copyPendingLeaveList, setCopyPendingLeaveList] = useState(null);
   const [activePage, setActivePage] = useState(1);
- const {darkMode} = useContext(ThemeContext);
+  const { darkMode } = useContext(ThemeContext);
   if (loading) {
     return <div>Yükleniyor</div>;
   }
@@ -47,44 +47,53 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   }, [pendingLeaveList]);
 
   const handleList = (page, bool) => {
-    console.log(bool);
+    console.log("page", page);
     console.log("getNumber.current ", getNumber.current);
-    console.log("pendingLeaveList", Math.floor(pendingLeaveList.length / 5));
+    console.log("pendingLeaveList", Math.ceil(pendingLeaveList.length / 5));
 
     if (
       bool === true &&
-      getNumber.current <= Math.floor(pendingLeaveList.length / 5)
+      getNumber.current <= Math.floor(pendingLeaveList.length / 5) 
+      && pendingLeaveList.length !== 5
     ) {
       getNumber.current += 1;
+      setActivePage(page);
       console.log("next çalıştı");
     } else if (
       bool === false &&
-      getNumber.current >= Math.floor(pendingLeaveList.length / 5)
+      getNumber.current >= Math.floor(pendingLeaveList.length / 5) &&
+      getNumber.current !== 1
     ) {
       getNumber.current -= 1;
+      setActivePage(page);
+
       console.log("Previous çalıştı");
     } else if (bool === undefined) {
       console.log("default çalıştı");
       getNumber.current = page;
     }
-
     numberPage.current = getNumber.current * 5;
     setCopyPendingLeaveList(
       pendingLeaveList.slice(numberPage.current - 5, numberPage.current)
     );
-
-    setActivePage(page);
-
   };
 
   return (
     <>
       {copyPendingLeaveList && (
-        <div className= { darkMode ? "card" : "card bg-dark"}>
-          <div className={ darkMode ? "card-header border-0" : "card-header border-0 bg-dark "}>
+        <div className={darkMode ? "card" : "card bg-dark"}>
+          <div
+            className={
+              darkMode
+                ? "card-header border-0"
+                : "card-header border-0 bg-dark "
+            }
+          >
             <div className="row align-items-center">
               <div className="col">
-                <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>İzin İstekleri</h3>
+                <h3 className={darkMode ? "mb-0" : "mb-0 text-white"}>
+                  İzin İstekleri
+                </h3>
               </div>
               <div className="col text-right">
                 <a href="#!" className="btn btn-sm btn-primary">
@@ -94,9 +103,15 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
             </div>
           </div>
           <div className="table-responsive">
-            <table className={darkMode ? "table align-items-center table-flush" : "table align-items-center bg-dark" }>
+            <table
+              className={
+                darkMode
+                  ? "table align-items-center table-flush"
+                  : "table align-items-center bg-dark"
+              }
+            >
               <thead className={darkMode ? "thead-light" : "bg-dark"}>
-                <tr className={darkMode  ? "" : "text-white" }>
+                <tr className={darkMode ? "" : "text-white"}>
                   <th scope="col">Adı Soyadı</th>
                   <th scope="col">Başlangıç</th>
                   <th scope="col">Bitiş</th>
@@ -106,7 +121,7 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
               </thead>
               <tbody>
                 {copyPendingLeaveList.map((leave, index) => (
-                  <tr key={index} className={darkMode  ? "" : "text-white" } >
+                  <tr key={index} className={darkMode ? "" : "text-white"}>
                     <th scope="row">{leave.fullName}</th>
                     <td>{formatDate(leave.leaveStartDate)}</td>
                     <td>{formatDate(leave.leaveEndDate)}</td>
@@ -118,7 +133,7 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                           marginLeft: "-30px",
                           padding: "0px 5px",
                           fontSize: "15px",
-                          paddingTop:"2px"
+                          paddingTop: "2px",
                         }}
                         onClick={() => handleOperation(leave.id, true)}
                       >
@@ -126,18 +141,28 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                       </a>
                       <a
                         className="btn btn-outline-danger"
-                        style={{ padding: "0px 5px",                          paddingTop:"2px"
-,                        fontSize: "15px" }}
+                        style={{
+                          padding: "0px 5px",
+                          paddingTop: "2px",
+                          fontSize: "15px",
+                        }}
                         onClick={() => handleOperation(leave.id, false)}
                       >
-                        <i className="ni ni-fat-remove"  style={{margin:"auto" }}></i>
+                        <i
+                          className="ni ni-fat-remove"
+                          style={{ margin: "auto" }}
+                        ></i>
                       </a>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <div className={darkMode ? "card-footer py-4" : "card-footer py-4 bg-dark"}>
+            <div
+              className={
+                darkMode ? "card-footer py-4" : "card-footer py-4 bg-dark"
+              }
+            >
               <nav aria-label="...">
                 <ul className="pagination justify-content-end mb-0">
                   <li className="page-item">
@@ -146,8 +171,10 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                         activePage === 1 ? "disabled" : ""
                       }`}
                       onClick={() => {
-                        if(getNumber.current > Math.floor(pendingLeaveList.length / 5)){
-
+                        if (
+                          getNumber.current >
+                          Math.floor(pendingLeaveList.length / 5)
+                        ) {
                           handleList(activePage - 1, false);
                         }
                       }}
@@ -185,8 +212,10 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                           : ""
                       }`}
                       onClick={() => {
-                        if( getNumber.current <= Math.floor(pendingLeaveList.length / 5)){
-
+                        if (
+                          getNumber.current <=
+                          Math.floor(pendingLeaveList.length / 5)
+                        ) {
                           handleList(activePage + 1, true);
                         }
                         // setActivePage(activePage + 1);

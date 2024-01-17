@@ -46,7 +46,7 @@ const SpendTable = ({ spendList }) => {
         denyButtonText: `İptal`,
       }).then(async (result) => {
         if (result.isConfirmed) {
-          let data = await await deleteSpend(spendId);
+          let data = await deleteSpend(spendId);
 
           Swal.fire({
             title: "Silme İşlemi Başarılı",
@@ -68,7 +68,9 @@ const SpendTable = ({ spendList }) => {
   };
 
   return (
+    
     <div className="table-responsive">
+    
       {spendList && (
         <table className="table align-items-center table-dark table-flush">
           <thead className="thead-dark">
