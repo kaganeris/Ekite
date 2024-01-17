@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import UpdateLeave from "../../components/UpdateLeave/UpdateLeave";
+import UpdateLeave from "../../components/Leave/UpdateLeave";
 import { LeaveContext } from "../../context/LeaveContext";
 import { AuthContext } from "../../context/AuthContext";
 

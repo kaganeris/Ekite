@@ -1,25 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
+import LeaveTable from "../../components/Leave/LeaveTable";
+import LeaveHeader from "../../components/Leave/LeaveHeader";
 import { AuthContext } from "../../context/AuthContext";
-import { SpendContext } from "../../context/SpendContext";
-import SpendHeader from "../../Components/SpendHeader/SpendHeader";
-import SpendTable from "../../Components/SpendTable/SpendTable";
+import { LeaveContext } from "../../context/LeaveContext";
 
-const SpendListPage = () => {
+const LeaveListPage = () => {
+  const { id, setId, setIsAuthenticated } =
+    useContext(AuthContext);
+    const [leaveData,setLeaveData] = useState(null)
 
-    const{id, setId, setIsAuthenticated}=useContext(AuthContext);
-    const{SpendDatas}= useContext(SpendContext);
+    const {LeaveDatas} = useContext(LeaveContext)
 
-    const [spendData, setSpendData]=useState();
-    
-
-    useEffect(()=>{
-        if (id !==0) {
-            (async ()=>{
-                try{
-                    let data =await SpendDatas(id);
-
+  useEffect(() => {
+    console.log("LeavePage çalıştı");
+    if (id !== 0) {
+      (async () => {
+        try {
+          let data = await LeaveDatas(id);
           console.log(data);
-          setSpendData(data);
+          setLeaveData(data);
         } catch (error) {}
       })();
     } else {
@@ -33,12 +32,12 @@ const SpendListPage = () => {
   return (
     <>
       <div className="main-content" id="panel">
-        <SpendHeader />
+        <LeaveHeader />
         <div className="container-fluid mt--6">
           <div className="row">
             <div className="col">
               <div className="card">
-                <SpendTable spendList={spendData} />
+                <LeaveTable leaveList={leaveData}/>
               </div>
             </div>
           </div>
@@ -48,4 +47,4 @@ const SpendListPage = () => {
   );
 };
 
-export default SpendListPage;
+export default LeaveListPage;

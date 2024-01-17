@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AdvanceContext } from "../../context/AdvanceContext";
-import AdvanceCreate from "../../Components/AdvanceCreate/AdvanceCreate";
+import AdvanceCreate from "../../Components/Advance/AdvanceCreate";
 import { AuthContext } from "../../context/AuthContext";
 
 const AdvanceCreatePage = () => {
