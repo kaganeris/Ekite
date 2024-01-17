@@ -3,6 +3,8 @@ import { ProfileContext } from "../../context/ProfileContext";
 import { LeaveContext } from "../../context/LeaveContext";
 import AuthService from "../../services/AuthService";
 import { ThemeContext } from "../../context/ThemeContext";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
   const { loading } = useContext(ProfileContext);
@@ -34,9 +36,43 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
     setPendingLeaveList(updatedLeaveList);
 
     if (result) {
-      approveLeaveProcess(id);
+      try {
+        (async () => {
+          await approveLeaveProcess(id);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "İzin Başarıyla Onaylandı",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          setTimeout(() => {}, 2000);
+        })();
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "İzin Onaylama İşlemi Başarısız",
+        });
+      }
     } else {
-      rejectLeaveProcess(id);
+      try {
+        (async () => {
+          await rejectLeaveProcess(id);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "İzin Başarıyla Reddedildi",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          setTimeout(() => {}, 2000);
+        })();
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "İzin Reddetme İşlemi Başarısız",
+        });
+      }
     }
   };
 
@@ -96,9 +132,9 @@ function DirectorCard({ profileData, pendingLeaveList, setPendingLeaveList }) {
                 </h3>
               </div>
               <div className="col text-right">
-                <a href="#!" className="btn btn-sm btn-primary">
+                <Link to={"/pendingLeaveList"} className="btn btn-sm btn-primary">
                   Hepsini Gör
-                </a>
+                </Link>
               </div>
             </div>
           </div>

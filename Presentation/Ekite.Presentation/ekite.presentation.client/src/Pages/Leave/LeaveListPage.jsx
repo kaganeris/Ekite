@@ -1,32 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AdvanceContext } from '../../context/AdvanceContext'
-import { AuthContext } from '../../context/AuthContext';
-import AdvanceList from '../../Components/Advance/AdvanceList';
-import AdvanceHeader from '../../Components/Advance/AdvanceHeader';
-import { PageContext } from '../../context/PageContext';
+import React, { useContext, useEffect, useState } from "react";
+import LeaveTable from "../../components/Leave/LeaveTable";
+import LeaveHeader from "../../components/Leave/LeaveHeader";
+import { AuthContext } from "../../context/AuthContext";
+import { LeaveContext } from "../../context/LeaveContext";
+import { PageContext } from "../../context/PageContext";
 
-
-const AdvanceListPage = () => {
-
-    const { getAdvanceList } = useContext(AdvanceContext)
+const LeaveListPage = () => {
     const { id, setId, setIsAuthenticated } =
         useContext(AuthContext);
+    const [leaveData, setLeaveData] = useState(null)
+
+    const { LeaveDatas } = useContext(LeaveContext)
     const { handlePrevPage } = useContext(PageContext)
-    const [advanceList, setAdvanceList] = useState(null);
-    
 
     useEffect(() => {
+        console.log("LeavePage çalıştı");
         if (id !== 0) {
             (async () => {
                 try {
                     handlePrevPage(location.pathname)
-                  
-                    let data = await getAdvanceList(id);
+                    let data = await LeaveDatas(id);
                     console.log(data);
-                    setAdvanceList(data);
+                    setLeaveData(data);
                 } catch (error) { }
             })();
-
         } else {
             const storedEmployeeId = localStorage.getItem("id");
             if (storedEmployeeId) {
@@ -38,19 +35,19 @@ const AdvanceListPage = () => {
     return (
         <>
             <div className="main-content" id="panel">
-                <AdvanceHeader />
+                <LeaveHeader />
                 <div className="container-fluid mt--6">
                     <div className="row">
                         <div className="col">
                             <div className="card">
-                                <AdvanceList advanceList={advanceList} />
+                                <LeaveTable leaveList={leaveData} />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default AdvanceListPage
+export default LeaveListPage;

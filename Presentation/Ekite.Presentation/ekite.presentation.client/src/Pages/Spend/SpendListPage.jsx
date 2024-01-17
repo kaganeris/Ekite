@@ -1,32 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AdvanceContext } from '../../context/AdvanceContext'
-import { AuthContext } from '../../context/AuthContext';
-import AdvanceList from '../../Components/Advance/AdvanceList';
-import AdvanceHeader from '../../Components/Advance/AdvanceHeader';
-import { PageContext } from '../../context/PageContext';
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { SpendContext } from "../../context/SpendContext";
+import SpendHeader from "../../Components/Spend/SpendHeader";
+import SpendTable from "../../Components/Spend/SpendTable";
+import { PageContext } from "../../context/PageContext";
 
+const SpendListPage = () => {
 
-const AdvanceListPage = () => {
+    const { id, setId, setIsAuthenticated } = useContext(AuthContext);
+    const { SpendDatas } = useContext(SpendContext);
 
-    const { getAdvanceList } = useContext(AdvanceContext)
-    const { id, setId, setIsAuthenticated } =
-        useContext(AuthContext);
+    const [spendData, setSpendData] = useState();
     const { handlePrevPage } = useContext(PageContext)
-    const [advanceList, setAdvanceList] = useState(null);
-    
+
 
     useEffect(() => {
         if (id !== 0) {
+
             (async () => {
                 try {
                     handlePrevPage(location.pathname)
-                  
-                    let data = await getAdvanceList(id);
+                    let data = await SpendDatas(id);
+
                     console.log(data);
-                    setAdvanceList(data);
+                    setSpendData(data);
                 } catch (error) { }
             })();
-
         } else {
             const storedEmployeeId = localStorage.getItem("id");
             if (storedEmployeeId) {
@@ -38,19 +37,19 @@ const AdvanceListPage = () => {
     return (
         <>
             <div className="main-content" id="panel">
-                <AdvanceHeader />
+                <SpendHeader />
                 <div className="container-fluid mt--6">
                     <div className="row">
                         <div className="col">
                             <div className="card">
-                                <AdvanceList advanceList={advanceList} />
+                                <SpendTable spendList={spendData} />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
-export default AdvanceListPage
+export default SpendListPage;
