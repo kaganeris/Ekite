@@ -11,8 +11,8 @@ const Sidebar = () => {
     <nav
       className={
         darkMode
-          ? "sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light"
-          : "sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-dark"
+          ? "sidenav navbar navbar-vertical p-1 fixed-left navbar-expand-xs navbar-light"
+          : "sidenav navbar navbar-vertical p-1 fixed-left navbar-expand-xs navbar-light bg-dark"
       }
     >
       <div
@@ -81,14 +81,15 @@ const Sidebar = () => {
                     <span className="nav-link-text">İzin İşlemleri</span>
                   </a>
                   <div
-                    className="dropdown-menu bg-white "
+                    className={darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"}
                     aria-labelledby="navbarDropdown"
+                    style={darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }}
                   >
                     <div className="container  ">
                       <div className="row ">
                         <div className="col  ">
                           <Link
-                            className="dropdown-item "
+                            className={darkMode ? "dropdown-item" :"dropdownn-item" }
                             to={"/approvedLeaveList"}
                           >
                             <div className="dropdown-content ">
@@ -99,7 +100,7 @@ const Sidebar = () => {
                         </div>
                         <div className="col">
                           <Link
-                            className="dropdown-item"
+                          className={darkMode ? "dropdown-item" :"dropdownn-item" }
                             to={"/pendingLeaveList"}
                           >
                             <div className="dropdown-content ">
@@ -110,7 +111,7 @@ const Sidebar = () => {
                         </div>
                         <div className="col">
                           <Link
-                            className="dropdown-item"
+                            className={darkMode ? "dropdown-item" :"dropdownn-item" }
                             to={"/rejectLeaveList"}
                           >
                             <div className="dropdown-content ">
