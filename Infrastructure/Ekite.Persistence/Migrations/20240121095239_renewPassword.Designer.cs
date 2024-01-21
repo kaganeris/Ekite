@@ -4,6 +4,7 @@ using Ekite.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ekite.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240121095239_renewPassword")]
+    partial class renewPassword
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +122,7 @@ namespace Ekite.Persistence.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("RenewPasswordCode")
+                    b.Property<int>("RenewPasswordCode")
                         .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
@@ -185,14 +187,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 21, 13, 1, 42, 472, DateTimeKind.Local).AddTicks(3530),
+                            CreatedDate = new DateTime(2024, 1, 21, 12, 52, 39, 173, DateTimeKind.Local).AddTicks(3610),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 21, 13, 1, 42, 472, DateTimeKind.Local).AddTicks(3543),
+                            CreatedDate = new DateTime(2024, 1, 21, 12, 52, 39, 173, DateTimeKind.Local).AddTicks(3621),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -231,14 +233,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 21, 13, 1, 42, 472, DateTimeKind.Local).AddTicks(5661),
+                            CreatedDate = new DateTime(2024, 1, 21, 12, 52, 39, 173, DateTimeKind.Local).AddTicks(4917),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 21, 13, 1, 42, 472, DateTimeKind.Local).AddTicks(5669),
+                            CreatedDate = new DateTime(2024, 1, 21, 12, 52, 39, 173, DateTimeKind.Local).AddTicks(4921),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -501,14 +503,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 21, 13, 1, 42, 474, DateTimeKind.Local).AddTicks(3302),
+                            CreatedDate = new DateTime(2024, 1, 21, 12, 52, 39, 174, DateTimeKind.Local).AddTicks(3782),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 21, 13, 1, 42, 474, DateTimeKind.Local).AddTicks(3320),
+                            CreatedDate = new DateTime(2024, 1, 21, 12, 52, 39, 174, DateTimeKind.Local).AddTicks(3786),
                             Name = "Proje Müdürü",
                             Status = 1
                         });

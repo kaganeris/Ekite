@@ -31,6 +31,7 @@ import PendingLeaveListPage from "./Pages/PendingLeaveList/PendingLeaveListPage"
 import ProfilePage from "./Pages/Profile/ProfilePage";
 import ApprovedLeaveListPage from "./Pages/ApprovedLeaveList/ApprovedLeaveListPage";
 import RejectLeaveListPage from "./Pages/RejectLeaveList/RejectLeaveListPage";
+import { EmployeeProvider } from "./context/EmployeeContext";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -48,6 +49,7 @@ function App() {
               <AdvanceProvider>
                 <SpendProvider>
                   <AddresProvider>
+                  <EmployeeProvider>
                     {isAuthenticated && (
                       <>
                         <Navbar
@@ -139,6 +141,7 @@ function App() {
                       />
                     </Routes>
                     {/* <Footer /> */}
+                    </EmployeeProvider>
                   </AddresProvider>
                 </SpendProvider>
               </AdvanceProvider>
