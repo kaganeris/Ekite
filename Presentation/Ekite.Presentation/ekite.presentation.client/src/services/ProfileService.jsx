@@ -1,6 +1,9 @@
 import axios from "axios";
-//https://localhost:7152
-//https://ekite.azurewebsites.net
+
+//const url = "https://ekite.azurewebsites.net"
+
+const url = "https://localhost:7152"
+
 const ProfileService = {
   getDetailPersonelById: async (id) => {
     try {
@@ -8,7 +11,7 @@ const ProfileService = {
       const token = localStorage.getItem("user");
       if(token){
         const response = await axios.get(
-          `https://localhost:7152/api/Employee/GetDetailPersonel?id=${id}`,
+          `${url}/api/Employee/GetDetailPersonel?id=${id}`,
           {
             headers: {
               Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -28,7 +31,7 @@ const ProfileService = {
       const token = localStorage.getItem("user");
       if(token){
         const response = await axios.get(
-          `https://localhost:7152/api/Director/GetDetailDirector?id=${id}`,
+          `${url}/api/Director/GetDetailDirector?id=${id}`,
           {
             headers: {
               Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -49,7 +52,7 @@ const ProfileService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Employee/GetUpdatePersonel?id=${id}`,
+        `${url}/api/Employee/GetUpdatePersonel?id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -68,7 +71,7 @@ const ProfileService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Director/GetUpdateDirector?id=${id}`,
+        `${url}/api/Director/GetUpdateDirector?id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -89,7 +92,7 @@ const ProfileService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.put(
-        `https://localhost:7152/api/Employee/PutUpdatePersonel?id=${id}`,
+        `${url}/api/Employee/PutUpdatePersonel?id=${id}`,
         data,
         {
           headers: {
@@ -109,7 +112,7 @@ const ProfileService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.put(
-        `https://localhost:7152/api/Director/PutUpdateDirector?id=${id}`,
+        `${url}/api/Director/PutUpdateDirector?id=${id}`,
         data,
         {
           headers: {

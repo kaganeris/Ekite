@@ -22329,7 +22329,7 @@ textarea[resize='horizontal']
 {
     .sidenav
     {
-        transform: translateX(-250px);
+       
     }
     .sidenav.fixed-left + .main-content
     {

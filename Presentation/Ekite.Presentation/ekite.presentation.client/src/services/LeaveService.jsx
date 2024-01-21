@@ -1,11 +1,15 @@
 import axios from "axios";
 
+//const url = "https://ekite.azurewebsites.net"
+
+const url = "https://localhost:7152"
+
 const LeaveService = {
   getLeaveById: async (id) => {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Leave/GetUpdateLeaveById?id=${id}`,
+        `${url}/api/Leave/GetUpdateLeaveById?id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -24,7 +28,7 @@ const LeaveService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Leave?employeeId=${employeeId}`,
+        `${url}/api/Leave?employeeId=${employeeId}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -44,7 +48,7 @@ const LeaveService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Leave/GetLeaveTypes`,
+        `${url}/api/Leave/GetLeaveTypes`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -64,7 +68,7 @@ const LeaveService = {
       const token = localStorage.getItem("user");
       console.log("Leave data", leaveData);
       const response = await axios.post(
-        `https://localhost:7152/api/Leave`,
+        `${url}/api/Leave`,
         leaveData,
         {
           headers: {
@@ -83,7 +87,7 @@ const LeaveService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.delete(
-        `https://localhost:7152/api/Leave?id=${id}`,
+        `${url}/api/Leave?id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -102,7 +106,7 @@ const LeaveService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.put(
-        `https://localhost:7152/api/Leave`,
+        `${url}/api/Leave`,
         updateLeaveData,
         {
           headers: {
@@ -121,7 +125,7 @@ const LeaveService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Leave/GetPendingList`,
+        `${url}/api/Leave/GetPendingList`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -143,7 +147,7 @@ const LeaveService = {
       console.log("getapproved servis çalıştı");
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Leave/GetApprovedList`,
+        `${url}/api/Leave/GetApprovedList`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -164,7 +168,7 @@ const LeaveService = {
       console.log("get reject servis çalıştı");
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Leave/GetRejectList`,
+        `${url}/api/Leave/GetRejectList`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -187,7 +191,7 @@ const LeaveService = {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Leave/ApproveLeave?id=${id}`, 
+        `${url}/api/Leave/ApproveLeave?id=${id}`, 
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -208,7 +212,7 @@ rejectLeave: async (id) => {
   try {
     const token = localStorage.getItem("user");
     const response = await axios.get(
-      `https://localhost:7152/api/Leave/RejectLeave?id=${id}`, 
+      `${url}/api/Leave/RejectLeave?id=${id}`, 
       {
         headers: {
           Authorization: "Bearer " + token.replace(/"/g, ""),
