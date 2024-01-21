@@ -1,4 +1,5 @@
 ﻿using Ekite.Application.DTOs.AppUserDto;
+using Ekite.Application.Helpers;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Domain.Entities;
@@ -13,7 +14,7 @@ namespace Ekite.Persistence.Concrete.Managers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IAppUserRepository appUserRepository;
 
-        public AppUserManager(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,IAppUserRepository appUserRepository)
+        public AppUserManager(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IAppUserRepository appUserRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -23,7 +24,7 @@ namespace Ekite.Persistence.Concrete.Managers
         public async Task<int> GetIDByRole(string appuserId, string roleName)
         {
             AppUser appUser = await _userManager.FindByIdAsync(appuserId);
-            if(appUser  == null)
+            if (appUser == null)
             {
                 return 0;
             }
@@ -31,7 +32,7 @@ namespace Ekite.Persistence.Concrete.Managers
             {
 
 
-                if(roleName == "Admin")
+                if (roleName == "Admin")
                 {
                     UserDTO userDto = await appUserRepository.GetFilteredFirstOrDefault(
                          select: x => new UserDTO
@@ -43,7 +44,7 @@ namespace Ekite.Persistence.Concrete.Managers
                          );
                     return userDto.Id;
                 }
-                else if(roleName == "Employee")
+                else if (roleName == "Employee")
                 {
                     UserDTO userDto = await appUserRepository.GetFilteredFirstOrDefault(
                         select: x => new UserDTO
@@ -65,15 +66,15 @@ namespace Ekite.Persistence.Concrete.Managers
         public async Task<SignInResult> Login(LoginDTO model)
         {
             AppUser userLogin = await _userManager.FindByEmailAsync(model.Email);
-            
-            if(userLogin != null)
+
+            if (userLogin != null)
             {
-                return await _signInManager.CheckPasswordSignInAsync(userLogin,model.Password,false);
+                return await _signInManager.CheckPasswordSignInAsync(userLogin, model.Password, false);
             }
             else
             {
                 return SignInResult.Failed;
-            }           
+            }
         }
 
         public async Task<IdentityResult> Register(RegisterDTO model)
@@ -81,23 +82,50 @@ namespace Ekite.Persistence.Concrete.Managers
             AppUser appUser = new AppUser()
             {
 
-               Email = model.Email,
-               UserName = model.Email
+                Email = model.Email,
+                UserName = model.Email
 
             };
 
             IdentityResult result = await _userManager.CreateAsync(appUser, model.Password);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(appUser,"Employee");
+                await _userManager.AddToRoleAsync(appUser, "Employee");
             }
 
             return result;
         }
 
+        public async Task<string> SendRenewPasswordCode(string email)
+        {
+            if (email == null)
+            {
+                return null;
+            }
+            else
+            {
+                AppUser appUser = await _userManager.FindByEmailAsync(email);
+                if (appUser != null)
+                {
+                    Random random = new Random();
+                    int code = random.Next(100000, 1000000);
 
+                    appUser.RenewPasswordCode = code;
 
+                    IdentityResult result = await _userManager.UpdateAsync(appUser);
+                    if (result.Succeeded)
+                    {
+                        MailHelper.Send(email, code);
+                    }
 
+                    return appUser.Id;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }
