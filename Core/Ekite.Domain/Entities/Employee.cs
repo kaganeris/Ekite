@@ -36,16 +36,8 @@ namespace Ekite.Domain.Entities
 		public Company Company { get; set; }
 		public string AppUserId { get; set; }
 		public AppUser AppUser { get; set; }
-
-
         public List<Leave> Leaves { get; set; }
-    
-
         public List<Advance> Advances { get; set; }
-
-
-    
-
 		public List<Spend> Spends { get; set; } = new();
 	}
 

@@ -17,6 +17,7 @@ namespace Ekite.Domain.Entities
         public Status Status { get; set; }
         public Employee? Employee { get; set; }
         public Director? Director { get; set; }
+        public SiteOwner? SiteOwner { get; set; }
 
     }
 }
