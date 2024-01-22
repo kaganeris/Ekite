@@ -43,7 +43,7 @@ const ApprovedLeaveList = ({approvedLeaveList,setApprovedLeaveList}) => {
   return (
     <div className="table-responsive">
     {approvedLeaveList && (
-      <table className="table align-items-center table-dark table-flush">
+      <table className="table align-items-center bg-dark text-white table-flush">
         <thead className="thead-dark">
           <tr>
           <th scope="col" className="sort">

@@ -14,6 +14,10 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Ekite.Application.DTOs.LeaveDto;
+using Ekite.Persistence.Concrete.Repositories;
+using Ekite.Application.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ekite.Persistence.Concrete.Managers
 {
@@ -30,7 +34,100 @@ namespace Ekite.Persistence.Concrete.Managers
 			_mapper = mapper;
 			_employeeRepository = employeeRepository;
 		}
-        public async Task<bool> TCreate(CreateSpendDto createSpendDto)
+
+		public async Task<bool> ApproveSpend(int id)
+		{
+			if (id > 0)
+			{
+
+				Spend spend= await _spendRepository.GetById(id);
+				spend.ApprovalStatus = ApprovalStatus.Approved;
+				spend.ApprovedDate = DateTime.Now;
+
+				return await _spendRepository.UpdateWithoutStatus(spend);
+
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public async Task<List<ResultApprovedSpendDTO>> GetApprovedList()
+		{
+			List<ResultApprovedSpendDTO> resultList = await _spendRepository.GetFilteredList(select: x => new ResultApprovedSpendDTO
+			{
+				Id = x.Id,			
+				SpendType = EnumDescriber.Description(x.SpendType),
+				FullName = x.Employee.FullName,
+				ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+				ApprovedDate = x.ApprovedDate,
+				CreatedDate = x.CreatedDate,
+				Price = x.Amount,
+				Currency = EnumDescriber.Description(x.Currency),
+				ImagePath = x.ImagePath,
+				Description = x.Description
+			}, where: x => x.ApprovalStatus == ApprovalStatus.Approved, include: q => q.Include(x => x.Employee));
+
+			return resultList;
+		}
+
+		public async Task<List<ResultPendingSpendDTO>> GetPendingList()
+		{
+			List<ResultPendingSpendDTO> resultList = await _spendRepository.GetFilteredList(select: x => new ResultPendingSpendDTO
+			{
+				Id = x.Id,				
+				SpendType = EnumDescriber.Description(x.SpendType),
+				FullName = x.Employee.FullName,
+				ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+				CreatedDate = x.CreatedDate,
+				Price=x.Amount,
+				Currency = EnumDescriber.Description(x.Currency),
+				ImagePath=x.ImagePath,
+				Description=x.Description
+
+		}, where: x => x.ApprovalStatus == ApprovalStatus.Pending, include: q => q.Include(x => x.Employee));;
+
+			return resultList;
+		}
+
+		public async Task<List<ResultRejectSpendDTO>> GetRejectList()
+		{
+			List<ResultRejectSpendDTO> resultList = await _spendRepository.GetFilteredList(select: x => new ResultRejectSpendDTO
+			{
+				Id = x.Id,				
+				SpendType = EnumDescriber.Description(x.SpendType),
+				FullName = x.Employee.FullName,
+				ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+				ApprovedDate = x.ApprovedDate,
+				CreatedDate = x.CreatedDate,
+				Price = x.Amount,
+				Currency = EnumDescriber.Description(x.Currency),
+				ImagePath = x.ImagePath,
+				Description = x.Description
+
+			}, where: x => x.ApprovalStatus == ApprovalStatus.Rejected, include: q => q.Include(x => x.Employee));
+
+			return resultList;
+		}
+
+		public async Task<bool> RejectSpend(int id)
+		{
+			if (id > 0)
+			{
+
+				Spend spend= await _spendRepository.GetById(id);
+				spend.ApprovalStatus = ApprovalStatus.Rejected;
+				spend.ApprovedDate = DateTime.Now;
+				return await _spendRepository.UpdateWithoutStatus(spend);
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public async Task<bool> TCreate(CreateSpendDto createSpendDto)
 		{
 			if ( await _employeeRepository.GetById(createSpendDto.EmployeeId) != null)
 			{

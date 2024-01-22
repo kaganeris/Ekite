@@ -165,5 +165,59 @@ namespace Ekite.Presentation.Server.Controllers
 
 			return BadRequest("Silme Başarısız!");
 		}
+
+		[HttpGet]
+		[Route("[action]")]
+		[Authorize(Roles = "Admin,Employee")]
+		public async Task<IActionResult> GetApprovedList()
+		{
+
+			return Ok(await _spendService.GetApprovedList());
+		}
+
+
+		[HttpGet]
+		[Route("[action]")]
+		[Authorize(Roles = "Admin,Employee")]
+		public async Task<IActionResult> GetRejectList()
+		{
+
+			return Ok(await _spendService.GetRejectList());
+		}
+
+		[HttpGet("[action]")]
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> ApproveSpend(int id)
+		{
+			if (await _spendService.ApproveSpend(id))
+			{
+				return Ok("İşlem başarılı");
+			}
+
+			return BadRequest("İşlem sırasında hata oluştu");
+		}
+
+		[HttpGet("[action]")]
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> RejectSpend(int id)
+		{
+			if (await _spendService.RejectSpend(id))
+			{
+				return Ok("İşlem başarılı");
+			}
+
+			return BadRequest("İşlem sırasında hata oluştu");
+		}
+
+
+		[HttpGet]
+		[Route("[action]")]
+		[Authorize(Roles = "Admin,Employee")]
+		public async Task<IActionResult> GetPendingList()
+		{
+
+			return Ok(await _spendService.GetPendingList());
+		}
+
 	}
 }

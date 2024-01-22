@@ -1,4 +1,5 @@
 ﻿using Ekite.Application.DTOs.AppUserDto;
+using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Helpers;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
@@ -61,6 +62,43 @@ namespace Ekite.Persistence.Concrete.Managers
                     return 1;
                 }
             }
+        }
+
+        public async Task<bool> IsRenewCodeCheck(CodeEmployeeDto codeEmployeeDto)
+        {
+
+            try
+            {
+                if (codeEmployeeDto != null)
+                {
+                    AppUser appUser = await _userManager.FindByIdAsync(codeEmployeeDto.AppUserID);
+
+                    if (appUser == null)
+                    {
+                        return false;
+                    }
+                    else if (appUser.RenewPasswordCode.ToString() == codeEmployeeDto.Code)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+
         }
 
         public async Task<SignInResult> Login(LoginDTO model)

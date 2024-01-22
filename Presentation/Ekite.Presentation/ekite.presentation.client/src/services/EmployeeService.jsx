@@ -29,7 +29,19 @@ const EmployeeService = {
           console.error("Kod gönderilirken hata oluştu", error.message);
           return error.response;
         }
+      },
 
+
+      postNewPassword : async (passAndAppUserID) => {
+        try {
+          const response = await axios.post(
+            `${url}/api/Auth/NewPassword`,passAndAppUserID
+          );
+          return response;
+        } catch (error) {
+          console.error("Şifre gönderilirken hata oluştu", error.message);
+          return error.response;
+        }
 
       }
 }

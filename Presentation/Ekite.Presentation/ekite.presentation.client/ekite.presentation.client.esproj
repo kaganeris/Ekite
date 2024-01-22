@@ -12,5 +12,8 @@
     <Folder Include="src\assets\img\profilPhotos\" />
     <Folder Include="src\Components\EditProfile\" />
     <Folder Include="src\Pages\EditProfile\" />
+    <Folder Include="src\Pages\ApprovedSpendList\" />
+    <Folder Include="src\Pages\RejectSpendList\" />
+    <Folder Include="src\Pages\PendingSpendList\" />
   </ItemGroup>
 </Project>
