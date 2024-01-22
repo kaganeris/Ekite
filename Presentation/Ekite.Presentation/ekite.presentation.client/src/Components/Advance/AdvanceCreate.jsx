@@ -108,11 +108,12 @@ const AdvanceCreate = ({ enumsType }) => {
                   </label>
                   {enumsType && (
                     <select
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }                      onChange={(e) => setAdvanceType(parseInt(e.target.value))}
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
+                      onChange={(e) => setAdvanceType(parseInt(e.target.value))}
                       value={advanceType}
                     >
                       {Object.keys(enumsType.advanceType).map((key) => (
@@ -145,7 +146,8 @@ const AdvanceCreate = ({ enumsType }) => {
                       darkMode
                         ? "form-control"
                         : "form-control bg-secondary text-dark"
-                    }                    onChange={(e) => setDescription(e.target.value)}
+                    }
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                   {!isDescriptionValid && (
                     <label className="text-danger">
@@ -177,7 +179,8 @@ const AdvanceCreate = ({ enumsType }) => {
                       darkMode
                         ? "form-control"
                         : "form-control bg-secondary text-dark"
-                    }                    onChange={handleAmountChange}
+                    }
+                    onChange={handleAmountChange}
                   />
                   {!isAmountValid && (
                     <label className="text-danger">
@@ -200,11 +203,12 @@ const AdvanceCreate = ({ enumsType }) => {
                   </label>
                   {enumsType && (
                     <select
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }                      onChange={(e) => setCurrency(parseInt(e.target.value))}
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
+                      onChange={(e) => setCurrency(parseInt(e.target.value))}
                       value={currency}
                     >
                       {Object.keys(enumsType.currency).map((key) => (
