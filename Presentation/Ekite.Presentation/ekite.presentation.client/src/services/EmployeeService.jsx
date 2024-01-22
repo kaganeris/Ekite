@@ -18,6 +18,20 @@ const EmployeeService = {
           return error.response;
         }
       },
+
+      postCode: async (codeAndappUserId) => {
+        try {
+          const response = await axios.post(
+            `${url}/api/Auth/CheckCode`,codeAndappUserId
+          );
+          return response;
+        } catch (error) {
+          console.error("Kod gönderilirken hata oluştu", error.message);
+          return error.response;
+        }
+
+
+      }
 }
 
 export default EmployeeService
