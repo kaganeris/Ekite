@@ -8,10 +8,11 @@ import DirectorCard from "../../components/Profile/DirectorCard";
 import EmployeeCard from "../../components/Profile/EmployeeCard";
 import { ThemeContext } from "../../context/ThemeContext";
 import { PageContext } from "../../context/PageContext";
+import SiteOwnerCard from "../../Components/Profile/SiteOwnerCard";
 
 function ProfilePage() {
   const { isAuthenticated } = useContext(AuthContext);
-  const { fetchData, getDirectorById } = useContext(ProfileContext);
+  const { fetchData, getDirectorById ,getSiteOwnerById } = useContext(ProfileContext);
   const {darkMode} = useContext(ThemeContext);
   const { pendingLeaveDatas } = useContext(LeaveContext);
 
@@ -36,6 +37,10 @@ function ProfilePage() {
             setPendingLeaveList(pendingListData);
             console.log("kullanıcı rolu admin çalıştı");
             console.log("auth",isAuthenticated);
+          }
+          else if(userRole =="SiteOwner") {
+            let data = await getSiteOwnerById(id)
+            setProfileData(data);  
           }
         } catch (error) {}
       })();
@@ -67,17 +72,17 @@ function ProfilePage() {
           <div className="container-fluid mt--6">
             <div className="row ">
               <div className={userRole === "Employee"? "col-xl-4 order-xl-1" : "col-xl-6 order-xl-1"}>
-                  {userRole === "Employee" ? (
+                  {userRole === "Employee"  ? (
                 <div className={darkMode ? "card card-profile " : "card card-profile bg-dark" }>
                     <EmployeeCard profileData={profileData} />
                     </div>
-                  ) : (
+                  ) : userRole === "SiteOwner" ?  (
                     <DirectorCard
                       profileData={profileData}
                       pendingLeaveList={pendingLeaveList}
                       setPendingLeaveList={setPendingLeaveList}
                     />
-                  )}
+                  ) : <SiteOwnerCard profileData={profileData}/> }
               </div>
               <div className={userRole === "Employee"? "col-xl-8 order-xl-2" : "col-xl-6 order-xl-2"}>
                 <ProfileDetails profileData={profileData} />
