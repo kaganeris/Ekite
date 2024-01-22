@@ -20,7 +20,7 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize(Roles = "SiteOwner")]
-        public async Task<IActionResult> GetDetailDirector(int id)
+        public async Task<IActionResult> GetDetailSiteOwner(int id)
         {
             ResultDetailSiteOwner resultSum = await siteOwnerService.GetDetailSiteOwner(id);
 
@@ -37,7 +37,7 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize(Roles = "SiteOwner")]
-        public async Task<IActionResult> GetSummaryDirector(int id)
+        public async Task<IActionResult> GetSummarySiteOwner(int id)
         {
             ResultDetailSiteOwner resultSum = await siteOwnerService.GetDetailSiteOwner(id);
 
@@ -53,7 +53,7 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpGet("[action]")]
         [Authorize(Roles = "SiteOwner")]
-        public async Task<IActionResult> GetUpdateDirector(int id)
+        public async Task<IActionResult> GetUpdateSiteOwner(int id)
         {
             UpdateSiteOwnerDto updateSiteOwnerDto = await siteOwnerService.GetUpdateSiteOwner(id);
 
