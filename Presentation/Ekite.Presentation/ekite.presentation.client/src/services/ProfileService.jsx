@@ -127,6 +127,31 @@ const ProfileService = {
       return error.response;
     }
   },
+
+  getDetailSiteOwnerById : async (id) => {
+    try {
+      const token = localStorage.getItem("user");
+      if(token){
+        const response = await axios.get(
+          `${url}/api/SiteOwner/GetDetailSiteOwner?id=${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token.replace(/"/g, ""),
+            },
+          }
+        );
+        console.log("profileservice getdetailowner",response);
+        return response;
+      }
+    } catch (error) {
+      console.error("Profil verisi çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }
+  },
+
+
+
 };
 
 export default ProfileService;

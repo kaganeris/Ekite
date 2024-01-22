@@ -36,7 +36,7 @@ namespace Ekite.Presentation.Server.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        [Authorize(AuthenticationSchemes = "Admin,Employee")]
+        [Authorize(Roles = "Admin,Employee,SiteOwner")]
         public async Task<IActionResult> Register(RegisterDTO registerDTO)
         {
             IdentityResult result = await _appUserService.Register(registerDTO);
@@ -153,9 +153,31 @@ namespace Ekite.Presentation.Server.Controllers
         public async Task<IActionResult> CheckCode(CodeEmployeeDto codeEmployeeDto)
         {
 
+            if (await _appUserService.IsRenewCodeCheck(codeEmployeeDto))
+            {
+                return Ok();
 
-            return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
 
         }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> NewPassword(NewPasswordEmployeeDto newPasswordEmployeeDto)
+        {
+
+        
+                return Ok();
+
+    
+        }
+
+
+
     }
 }

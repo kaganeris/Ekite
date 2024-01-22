@@ -48,20 +48,61 @@ namespace Ekite.Persistence.SeedData
 					PhoneNumber = "05069232107",
 					AppUserId = user.Id,
 					BirthDate = Convert.ToDateTime("1992/01/01"),
-					City = "Istanbul",
+					City = "İstanbul",
 					ImagePath = "https://randomuser.me/api/portraits/men/77.jpg",
 					BirthPlace = "ISTANBUL",
 					CompanyId = 1,
                     DepartmentId = 1,
                     JobId = 1,
-					District = "Kadikoy",
+					District = "Kadıköy",
 					Status = Status.Active,
 					AddressDetail = "Kırmızı Caddesi 124",
 					CreatedDate = DateTime.Now
 				};
 				_context.Directors.Add(adminDirector);
 
-				AppUser appUser = new AppUser
+
+                AppUser owner = new AppUser
+                {
+                    UserName = "owner",
+                    Email = "kagan.ers@bilgeadam.com",
+                    EmailConfirmed = true,
+                    CreatedDate = DateTime.Now,
+                    Status = Domain.Enums.Status.Active
+                };
+
+                IdentityResult ownerResult = await userManager.CreateAsync(owner, "Kagan12345.");
+
+                IdentityRole ownerRole = new IdentityRole();
+                ownerRole.Name = "SiteOwner";
+
+                await roleManager.CreateAsync(ownerRole);
+
+                AppUser createdOwner = await userManager.FindByNameAsync("owner");
+
+                await userManager.AddToRoleAsync(createdOwner, ownerRole.Name);
+
+                SiteOwner siteOwner = new SiteOwner
+                {
+                    FirstName = "Kağan",
+                    LastName = "ERİŞ",
+                    TCNO = "12345678912",
+                    PhoneNumber = "05443665412",
+                    AppUserId = owner.Id,
+                    BirthDate = Convert.ToDateTime("1998/07/12"),
+                    City = "Aydın",
+                    ImagePath = "https://randomuser.me/api/portraits/men/9.jpg",
+                    BirthPlace = "ANKARA",
+                    JobId = 1,
+                    District = "Efeler",
+                    Status = Status.Active,
+                    AddressDetail = "Mavi Caddesi 124",
+                    CreatedDate = DateTime.Now
+                };
+                _context.SiteOwners.Add(siteOwner);
+
+
+                AppUser appUser = new AppUser
                 {
                     CreatedDate = DateTime.Now,
                     Email = "ali@bilgeadam.com",

@@ -101,12 +101,14 @@ const LoginForm = () => {
                         className="img-fluid"
                         style={{ width: "30%" }}
                       />
+                      <br />
+                      <br />
                       <p>İşinizi sevin, ekip ruhuyla çalışın!</p>
                     </div>
                   </div>
 
                   <form role="form" onSubmit={handlelogin}>
-                    <div className="form-group mb-3">
+                    <div className="form-group mb-3 mt-3">
                       <div className="input-group input-group-merge input-group-alternative">
                         <div className="input-group-prepend">
                           <span className="input-group-text">

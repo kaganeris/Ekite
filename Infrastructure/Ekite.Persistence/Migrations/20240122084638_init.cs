@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ekite.Persistence.Migrations
 {
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -420,8 +420,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(621), null, "EKİTE", 1, null },
-                    { 2, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(629), null, "Bilge ADAM", 1, null }
+                    { 1, new DateTime(2024, 1, 22, 11, 46, 38, 250, DateTimeKind.Local).AddTicks(8746), null, "EKİTE", 1, null },
+                    { 2, new DateTime(2024, 1, 22, 11, 46, 38, 250, DateTimeKind.Local).AddTicks(8760), null, "Bilge ADAM", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -429,8 +429,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(1086), null, "IK", 1, null },
-                    { 2, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(1088), null, "Bilgi işlem", 1, null }
+                    { 1, new DateTime(2024, 1, 22, 11, 46, 38, 251, DateTimeKind.Local).AddTicks(562), null, "IK", 1, null },
+                    { 2, new DateTime(2024, 1, 22, 11, 46, 38, 251, DateTimeKind.Local).AddTicks(570), null, "Bilgi işlem", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -438,8 +438,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(5941), null, "Yazılım Geliştirici", 1, null },
-                    { 2, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(5947), null, "Proje Müdürü", 1, null }
+                    { 1, new DateTime(2024, 1, 22, 11, 46, 38, 252, DateTimeKind.Local).AddTicks(6640), null, "Yazılım Geliştirici", 1, null },
+                    { 2, new DateTime(2024, 1, 22, 11, 46, 38, 252, DateTimeKind.Local).AddTicks(6651), null, "Proje Müdürü", 1, null }
                 });
 
             migrationBuilder.CreateIndex(

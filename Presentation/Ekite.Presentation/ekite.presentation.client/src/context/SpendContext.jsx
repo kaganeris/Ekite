@@ -39,7 +39,6 @@ const SpendProvider=({children}) =>{
                 navigate("/login");
               }
         }catch(error){
-
         }
     };
 
@@ -119,12 +118,87 @@ const SpendProvider=({children}) =>{
         } catch(error) {}
     };
 
+    const pendingSpendDatas = async () => {
+        try {
+            console.log("context çalýþtý")
+            const data = await SpendService.getPendingSpendList();
+            if (data.status === 200) {
+                console.log("context gelen veri:", data.data)
+                return data.data;
+            } else {
+                if (token === "") {
+                    setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+            }
+          
+        } catch (error) { }
+    };
 
+    const approvedSpendDatas = async () => {
+        try {
+            const data = await SpendService.getApprovedSpendList();
+            if (data.status === 200) {
+                return data.data;
+            } else {
+                if (token === "") {
+                    setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+            }
+        } catch (error) { }
+    };
 
+    const rejectSpendDatas = async () => {
+        try {
+            const data = await SpendService.getRejectSpendList();
+            if (data.status === 200) {
+                return data.data;
+            } else {
+                if (token === "") {
+                    setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+            }
+        } catch (error) { }
+    };
+
+    const approveSpendProcess = async (id) => {
+        try {
+            const data = await SpendService.approveSpend(id);
+            if (data.status === 200) {
+                return data.data;
+            } else {
+                if (token === "") {
+                    setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+            }
+        } catch (error) { }
+    }
+
+    const rejectSpendProcess = async (id) => {
+        try {
+            const data = await SpendService.rejectSpend(id);
+            if (data.status === 200) {
+                return data.data;
+            } else {
+                if (token === "") {
+                    setIsAuthenticated(false);
+                }
+                setToken("");
+                navigate("/login");
+            }
+        } catch (error) { }
+    }
 
 
     return (
-        <SpendContext.Provider value={{SpendDatas, addSpend, deleteSpend,updateSpend,getSpendType,getCurrencyType,updateSpendId,setUpdateSpendId,getSpend}}>
+        <SpendContext.Provider value={{ SpendDatas, addSpend, deleteSpend, updateSpend, getSpendType, getCurrencyType, updateSpendId, setUpdateSpendId, getSpend, pendingSpendDatas, rejectSpendProcess, approveSpendProcess, approvedSpendDatas, rejectSpendDatas }}>
             {children}
         </SpendContext.Provider>
     )

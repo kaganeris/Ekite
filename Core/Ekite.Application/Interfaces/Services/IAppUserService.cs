@@ -1,4 +1,5 @@
 ﻿using Ekite.Application.DTOs.AppUserDto;
+using Ekite.Application.DTOs.EmployeeDto;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,7 @@ namespace Ekite.Application.Interfaces.Services
         Task<int> GetIDByRole(string appuserId,string roleName);
 
         Task<string> SendRenewPasswordCode(string email);
+
+        Task<bool> IsRenewCodeCheck(CodeEmployeeDto codeEmployeeDto);
     }
 }
