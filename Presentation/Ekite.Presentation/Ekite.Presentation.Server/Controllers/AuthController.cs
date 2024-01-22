@@ -1,4 +1,5 @@
 ﻿using Ekite.Application.DTOs.AppUserDto;
+using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Application.Validators.AppUserValidations;
 using Ekite.Domain.Entities;
@@ -144,6 +145,17 @@ namespace Ekite.Presentation.Server.Controllers
             {
                 return Ok(appUserId);
             }
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> CheckCode(CodeEmployeeDto codeEmployeeDto)
+        {
+
+
+            return Ok();
+
         }
     }
 }
