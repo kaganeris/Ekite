@@ -120,6 +120,9 @@ namespace Ekite.Persistence.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("RenewPasswordCode")
+                        .HasColumnType("int");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -182,14 +185,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 17, 10, 41, 30, 145, DateTimeKind.Local).AddTicks(582),
+                            CreatedDate = new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(621),
                             Name = "EKİTE",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 17, 10, 41, 30, 145, DateTimeKind.Local).AddTicks(602),
+                            CreatedDate = new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(629),
                             Name = "Bilge ADAM",
                             Status = 1
                         });
@@ -228,14 +231,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 17, 10, 41, 30, 145, DateTimeKind.Local).AddTicks(3952),
+                            CreatedDate = new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(1086),
                             Name = "IK",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 17, 10, 41, 30, 145, DateTimeKind.Local).AddTicks(3962),
+                            CreatedDate = new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(1088),
                             Name = "Bilgi işlem",
                             Status = 1
                         });
@@ -498,14 +501,14 @@ namespace Ekite.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 1, 17, 10, 41, 30, 149, DateTimeKind.Local).AddTicks(2651),
+                            CreatedDate = new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(5941),
                             Name = "Yazılım Geliştirici",
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2024, 1, 17, 10, 41, 30, 149, DateTimeKind.Local).AddTicks(2667),
+                            CreatedDate = new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(5947),
                             Name = "Proje Müdürü",
                             Status = 1
                         });

@@ -1,11 +1,15 @@
 import axios from "axios";
 
+//const url = "https://ekite.azurewebsites.net"
+
+const url = "https://localhost:7152"
+
 const AdvanceService = {
   getAdvanceList: async (employeeId) => {
     try {
       const token = localStorage.getItem("user");
       const response = await axios.get(
-        `https://localhost:7152/api/Advance/GetListAdvance?employeeId=${employeeId}`,
+        `${url}/api/Advance/GetListAdvance?employeeId=${employeeId}`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -25,7 +29,7 @@ const AdvanceService = {
       const token = localStorage.getItem("user");
 
       const response = await axios.get(
-        `https://localhost:7152/api/Advance/GetEnums`,
+        `${url}/api/Advance/GetEnums`,
         {
           headers: {
             Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -44,7 +48,7 @@ const AdvanceService = {
     try {
 
       const token = localStorage.getItem("user");
-      const response = await axios.post(`https://localhost:7152/api/Advance/CreateAdvance`,createData,
+      const response = await axios.post(`${url}/api/Advance/CreateAdvance`,createData,
       {
         headers : {
           Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -60,7 +64,7 @@ const AdvanceService = {
   getAdvanceById : async (id) => {
    try {
     const token = localStorage.getItem("user");
-    const response = await axios.get(`https://localhost:7152/api/Advance/GetUpdateById?id=${id}`,
+    const response = await axios.get(`${url}/api/Advance/GetUpdateById?id=${id}`,
     {
       headers: {
         Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -83,7 +87,7 @@ const AdvanceService = {
   updateAdvance : async (id,updateData) => {
     try {
       const token = localStorage.getItem("user");
-      const response = await axios.put(`https://localhost:7152/api/Advance/UpdateAdvance?id=${id}`,updateData,
+      const response = await axios.put(`${url}/api/Advance/UpdateAdvance?id=${id}`,updateData,
       {
         headers : {
           Authorization: "Bearer " + token.replace(/"/g, ""),
@@ -101,7 +105,7 @@ const AdvanceService = {
     try {
       const token = localStorage.getItem("user");
       
-      const response = await axios.delete(`https://localhost:7152/api/Advance/DeleteAdvance?id=${id}`,
+      const response = await axios.delete(`${url}/api/Advance/DeleteAdvance?id=${id}`,
       {
         headers : {
           Authorization: "Bearer " + token.replace(/"/g, ""),

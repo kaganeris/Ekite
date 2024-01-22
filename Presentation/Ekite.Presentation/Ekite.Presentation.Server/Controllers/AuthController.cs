@@ -1,4 +1,5 @@
 ﻿using Ekite.Application.DTOs.AppUserDto;
+using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Application.Validators.AppUserValidations;
 using Ekite.Domain.Entities;
@@ -24,7 +25,7 @@ namespace Ekite.Presentation.Server.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IEmployeeService employeeService;
 
-        public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager,IEmployeeService employeeService)
+        public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager, IEmployeeService employeeService)
 
         {
             _appUserService = appUserService;
@@ -103,9 +104,9 @@ namespace Ekite.Presentation.Server.Controllers
                 {
                     errors.Add(item.ErrorMessage);
                 }
-                return BadRequest(error:errors);
+                return BadRequest(error: errors);
             }
-           
+
         }
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
@@ -123,11 +124,37 @@ namespace Ekite.Presentation.Server.Controllers
                 expires: DateTime.Now.AddDays(10),
 
                 signingCredentials: signIn
-                
+
                 );
 
             return token;
 
+        }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> RenewPassword(string email)
+        {
+            string appUserId = await _appUserService.SendRenewPasswordCode(email);
+
+            if (appUserId == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(appUserId);
+            }
+        }
+
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> CheckCode(CodeEmployeeDto codeEmployeeDto)
+        {
+
+
+            return Ok();
 
         }
     }

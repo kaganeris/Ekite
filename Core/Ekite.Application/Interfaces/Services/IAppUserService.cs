@@ -16,5 +16,7 @@ namespace Ekite.Application.Interfaces.Services
         Task<SignInResult> Login(LoginDTO model);
 
         Task<int> GetIDByRole(string appuserId,string roleName);
+
+        Task<string> SendRenewPasswordCode(string email);
     }
 }
