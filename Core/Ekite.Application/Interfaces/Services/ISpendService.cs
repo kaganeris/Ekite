@@ -1,4 +1,5 @@
-﻿using Ekite.Application.DTOs.SpendDto;
+﻿using Ekite.Application.DTOs.LeaveDto;
+using Ekite.Application.DTOs.SpendDto;
 using Ekite.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,11 @@ namespace Ekite.Application.Interfaces.Services
 		Task<bool> TUpdate(UpdateSpendDto updateSpendDto);
 		Task<List<ResultSpendDto>> TGetAll(Expression<Func<Spend, bool>> expression = null);
 		Task<UpdateSpendDto> TGetUpdateSpend(int id);
+
+		Task<List<ResultPendingSpendDTO>> GetPendingList();
+		Task<List<ResultApprovedSpendDTO>> GetApprovedList();
+		Task<List<ResultRejectSpendDTO>> GetRejectList();
+		Task<bool> ApproveSpend(int id);
+		Task<bool> RejectSpend(int id);
 	}
 }
