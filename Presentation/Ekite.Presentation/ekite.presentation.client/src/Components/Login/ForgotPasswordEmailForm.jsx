@@ -9,7 +9,7 @@ const ForgotPasswordEmailForm = ({ setForgotPassword }) => {
   const { sendMail } = useContext(EmployeeContext);
   const [email, setEmail] = useState("");
   const [appUserId, setAppUserId] = useState("");
-  const [isCodeTrue, setIsCodeTrue] = useState(false);
+  const [isEmailTrue, setIsEmailTrue] = useState(false);
 
   const handleMail = async (e) => {
     e.preventDefault();
@@ -18,18 +18,18 @@ const ForgotPasswordEmailForm = ({ setForgotPassword }) => {
       let appUserId = await sendMail(email);
       if (appUserId) {
         setAppUserId(appUserId);
-        setIsCodeTrue(true);
+        setIsEmailTrue(true);
       }
     }
   };
 
-  return isCodeTrue ? (
-    <ForgotPasswordCodeForm appUserId={appUserId} />
+  return isEmailTrue ? (
+    <ForgotPasswordCodeForm appUserId={appUserId} setIsEmailTrue={setIsEmailTrue} setForgotPassword={setForgotPassword} />
   ) : (
     <>
       <ForgotPasswordEmailHeader />
       <form role="form" onSubmit={handleMail}>
-        <div className="form-group mb-3">
+        <div className="form-group mb-3 mt-3">
           <div className="input-group input-group-merge input-group-alternative">
             <div className="input-group-prepend">
               <span className="input-group-text">

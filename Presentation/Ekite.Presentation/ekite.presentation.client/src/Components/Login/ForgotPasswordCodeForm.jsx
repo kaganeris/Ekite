@@ -1,63 +1,96 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import ForgotPasswordCodeHeader from "./ForgotPasswordCodeHeader";
 import { Link, useNavigate } from "react-router-dom";
 import { EmployeeContext } from "../../context/EmployeeContext";
+import ForgotPasswordNewPassForm from "./ForgotPasswordNewPassForm";
 
-const ForgotPasswordCodeForm = ({ appUserId }) => {
+const ForgotPasswordCodeForm = ({ appUserId, setIsEmailTrue,setForgotPassword }) => {
   const [code, setCode] = useState(0);
   const { sendCode } = useContext(EmployeeContext);
-  
-  console.log("🚀 ~ ForgotPasswordCodeForm ~ appUserId:", appUserId)
+  const [secondTime, setSecondTime] = useState(59);
+  const [minuteTime, setMinute] = useState(2);
+  const [isCodeTrue, setIsCodeTrue] = useState(false);
+  const timerRef = useRef(null);
 
   const handleCode = async (e) => {
     e.preventDefault();
-
     if (code !== null) {
       let data = {
         appUserId: appUserId,
         code: code,
       };
-      console.log("handlecodeCalıstı",code)
+      console.log("handlecodeCalıstı", code);
       let success = await sendCode(data);
-      if (success) {
-        console.log("Kod Gönderimi Başarılı");
+      console.log("🚀 ~ handleCode ~ success:", success);
+      if (success.status === 200) {
+        clearTimeout(timerRef.current)
+        console.log("🚀 ~ handleCode ~ success.status:", success.status)
+        setIsCodeTrue(true);
       }
     }
   };
 
+  useEffect(() => {
+    if (minuteTime === 0 && secondTime === 0) {
+      setIsEmailTrue(false);
+    } else {
+      timerRef.current = setTimeout(() => {
+        if (secondTime === 0) {
+          setSecondTime(59);
+          setMinute((prevMinute) => prevMinute - 1);
+        } else if (secondTime > 0) {
+          setSecondTime((prevSecond) => prevSecond - 1);
+        }
+      }, 1000);
+    }
+  }, [secondTime, minuteTime]);
+
   return (
     <>
-      <ForgotPasswordCodeHeader />
-      <form role="form" onSubmit={handleCode}>
-        <div className="form-group mb-3">
-          <div className="input-group input-group-merge input-group-alternative">
-            <div className="input-group-prepend">
-              <span className="input-group-text">
-                <i className="ni ni-email-83"></i>
-              </span>
+      {isCodeTrue ? (
+        <ForgotPasswordNewPassForm appUserId={appUserId} setForgotPassword={setForgotPassword} />
+      ) : (
+        <>
+          {" "}
+          <ForgotPasswordCodeHeader />
+          <form role="form" onSubmit={handleCode}>
+            <div className="form-group mb-3 mt-3">
+              <div className="d-flex justify-content-center">
+                <h4>{`0${minuteTime}:${
+                  secondTime > 9 ? secondTime : "0" + secondTime
+                }`}</h4>
+              </div>
+              <div className="input-group input-group-merge input-group-alternative">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    <i className="fa-solid fa-lock"></i>
+                  </span>
+                </div>
+                <input
+                  className="form-control"
+                  placeholder="Kodu Giriniz"
+                  type="text"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                />
+              </div>
             </div>
-            <input
-              className="form-control"
-              placeholder="Kodu Giriniz"
-              type="text"
-              value={code}
-              onChange={(e) => setCode(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="row justify-content-between">
-          <Link
-            className="mt-2 h5 text-primary"
-            onClick={(e) => {
-              setForgotPassword(false);
-              setCode("");
-            }}
-          >
-            Giriş Ekranına Dön
-          </Link>
-          <input type="submit" className="btn btn-primary" value="Gönder" />
-        </div>
-      </form>
+
+            <div className="row justify-content-between">
+              <Link
+                className="mt-2 h5 text-primary"
+                onClick={(e) => {
+                  setForgotPassword(false);
+                  setCode(0);
+                }}
+              >
+                Giriş Ekranına Dön
+              </Link>
+              <input type="submit" className="btn btn-primary" value="Gönder" />
+            </div>
+          </form>
+        </>
+      )}
     </>
   );
 };

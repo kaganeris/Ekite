@@ -2,8 +2,8 @@ import React from "react";
 
 const ForgotPasswordEmailHeader = () => {
   return (
-    <div className="card-header bg-transparent">
-      <div className=" text-center mt-3 mb-3 ">
+    <div className="card-header d-flex row justify-content-center align-items-center  bg-transparent">
+      <div className=" text-center mt-3 ">
         <h2>Şifre Yenileme</h2>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Mail_%28iOS%29.svg/2048px-Mail_%28iOS%29.svg.png"
