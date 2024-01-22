@@ -24,7 +24,7 @@ const EmployeeProvider = ({ children }) => {
             console.log("🚀 ~ sendCode ~ codeAndAppUserId:", codeAndAppUserId)      
             const data = await EmployeeService.postCode(codeAndAppUserId)
             if(data.status === 200){
-                return data.data
+                return data
             }
             else{
 
@@ -34,11 +34,25 @@ const EmployeeProvider = ({ children }) => {
         }
     }
 
+    const sendPassword = async (passAndAppUserID) => {
+        try {
+            console.log("🚀 ~ sendCode ~ codeAndAppUserId:", passAndAppUserID)      
+            const data = await EmployeeService.postNewPassword(passAndAppUserID)
+            if(data.status === 200){
+                return data
+            }
+            else{
+
+            }
+        } catch (error) {
+            return error;
+        }
+
+    }
 
 
 
-
-  return <EmployeeContext.Provider value={{sendMail , sendCode}}>
+  return <EmployeeContext.Provider value={{sendMail , sendCode , sendPassword}}>
     {children}
     </EmployeeContext.Provider>;
 };

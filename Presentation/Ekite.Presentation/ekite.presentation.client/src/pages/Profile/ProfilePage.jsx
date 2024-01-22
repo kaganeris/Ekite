@@ -68,23 +68,24 @@ function ProfilePage() {
           >
             <ProfileHeader profileData={profileData}/>
           </div>
-
           <div className="container-fluid mt--6">
             <div className="row ">
-              <div className={userRole === "Employee"? "col-xl-4 order-xl-1" : "col-xl-6 order-xl-1"}>
+              <div className={userRole === "Employee" || "SiteOwner" ? "col-xl-4 order-xl-1" : "col-xl-6 order-xl-1"}>
                   {userRole === "Employee"  ? (
                 <div className={darkMode ? "card card-profile " : "card card-profile bg-dark" }>
                     <EmployeeCard profileData={profileData} />
                     </div>
-                  ) : userRole === "SiteOwner" ?  (
+                  ) : userRole === "Admin" ?  (
                     <DirectorCard
                       profileData={profileData}
                       pendingLeaveList={pendingLeaveList}
                       setPendingLeaveList={setPendingLeaveList}
                     />
-                  ) : <SiteOwnerCard profileData={profileData}/> }
+                  ) :  <div className={darkMode ? "card card-profile " : "card card-profile bg-dark" }>
+                  <SiteOwnerCard profileData={profileData} />
+                  </div> }
               </div>
-              <div className={userRole === "Employee"? "col-xl-8 order-xl-2" : "col-xl-6 order-xl-2"}>
+              <div className={userRole === "Employee" || "SiteOwner" ? "col-xl-8 order-xl-2" : "col-xl-6 order-xl-2"}>
                 <ProfileDetails profileData={profileData} />
               </div>
             </div>
