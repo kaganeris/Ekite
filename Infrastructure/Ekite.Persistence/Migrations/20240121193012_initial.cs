@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ekite.Persistence.Migrations
 {
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,7 @@ namespace Ekite.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RenewPasswordCode = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -419,8 +420,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 17, 15, 14, 7, 998, DateTimeKind.Local).AddTicks(1296), null, "EKİTE", 1, null },
-                    { 2, new DateTime(2024, 1, 17, 15, 14, 7, 998, DateTimeKind.Local).AddTicks(1393), null, "Bilge ADAM", 1, null }
+                    { 1, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(621), null, "EKİTE", 1, null },
+                    { 2, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(629), null, "Bilge ADAM", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -428,8 +429,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 17, 15, 14, 7, 998, DateTimeKind.Local).AddTicks(3030), null, "IK", 1, null },
-                    { 2, new DateTime(2024, 1, 17, 15, 14, 7, 998, DateTimeKind.Local).AddTicks(3106), null, "Bilgi işlem", 1, null }
+                    { 1, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(1086), null, "IK", 1, null },
+                    { 2, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(1088), null, "Bilgi işlem", 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -437,8 +438,8 @@ namespace Ekite.Persistence.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Name", "Status", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 17, 15, 14, 7, 999, DateTimeKind.Local).AddTicks(7028), null, "Yazılım Geliştirici", 1, null },
-                    { 2, new DateTime(2024, 1, 17, 15, 14, 7, 999, DateTimeKind.Local).AddTicks(7037), null, "Proje Müdürü", 1, null }
+                    { 1, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(5941), null, "Yazılım Geliştirici", 1, null },
+                    { 2, new DateTime(2024, 1, 21, 22, 30, 12, 115, DateTimeKind.Local).AddTicks(5947), null, "Proje Müdürü", 1, null }
                 });
 
             migrationBuilder.CreateIndex(

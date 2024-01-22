@@ -19,7 +19,26 @@ const EmployeeProvider = ({ children }) => {
         }
     }
 
-  return <EmployeeContext.Provider value={{sendMail}}>
+    const sendCode = async (codeAndAppUserId) => {
+        try {
+            console.log("🚀 ~ sendCode ~ codeAndAppUserId:", codeAndAppUserId)      
+            const data = await EmployeeService.postCode(codeAndAppUserId)
+            if(data.status === 200){
+                return data.data
+            }
+            else{
+
+            }
+        } catch (error) {
+            return error;
+        }
+    }
+
+
+
+
+
+  return <EmployeeContext.Provider value={{sendMail , sendCode}}>
     {children}
     </EmployeeContext.Provider>;
 };

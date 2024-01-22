@@ -3,6 +3,8 @@ import { AuthContext } from "../../context/AuthContext";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { EmployeeContext } from "../../context/EmployeeContext";
+import ForgotPasswordEmailHeader from "./ForgotPasswordEmailHeader";
+import ForgotPasswordEmailForm from "./ForgotPasswordEmailForm";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,10 +13,6 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
   const { login } = useContext(AuthContext);
-  const [appUserId, setAppUserId] = useState("");
-
-  const { sendMail } = useContext(EmployeeContext);
-
   const navigate = useNavigate();
 
   const validatePassword = () => {
@@ -47,17 +45,6 @@ const LoginForm = () => {
     }
 
     return true;
-  };
-
-  const handleMail = async (e) => {
-    e.preventDefault();
-
-    if (email) {
-      let appUserId = await sendMail(email);
-      if (appUserId) {
-        setAppUserId(appUserId);
-      }
-    }
   };
 
   const handlelogin = async (event) => {
@@ -94,143 +81,97 @@ const LoginForm = () => {
       }
     }
   };
-
   return (
     <div className="container mt--9 pb-5">
       <div className="row justify-content-center">
         <div className="col-lg-5 col-md-7">
           <div className="card  border-0 mb-0">
-            {forgotPassword ? (
-              <div className="card-header bg-transparent">
-                <div className=" text-center mt-3 mb-3 ">
-                  <h2>Şifre Yenileme</h2>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Mail_%28iOS%29.svg/2048px-Mail_%28iOS%29.svg.png"
-                    className="img-fluid"
-                    style={{ width: "30%" }}
-                  />
-                  <br />
-                  <br />
-                  <p>Şifrenizi yenilemek için mail adresinizi girin.</p>
-                </div>
-              </div>
-            ) : (
-              <div className="card-header bg-transparent">
-                <div className=" text-center mt-3 mb-3 ">
-                  <h2>Giriş yapın</h2>
-                  <img
-                    src="https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png"
-                    className="img-fluid"
-                    style={{ width: "30%" }}
-                  />
-                  <p>İşinizi sevin, ekip ruhuyla çalışın!</p>
-                </div>
-              </div>
-            )}
             <div className="card-body px-lg-5 py-lg-2 ">
               {forgotPassword ? (
-                <form role="form" onSubmit={handleMail}>
-                  <div className="form-group mb-3">
-                    <div className="input-group input-group-merge input-group-alternative">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="ni ni-email-83"></i>
-                        </span>
-                      </div>
-                      <input
-                        className="form-control"
-                        placeholder="E-posta"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="row justify-content-between">
-                    <Link
-                      className="mt-2 h5 text-primary"
-                      onClick={(e) => {
-                        setForgotPassword(false);
-                        setEmail("");
-                      }}
-                    >
-                      Giriş Ekranına Dön
-                    </Link>
-                    <input
-                      type="submit"
-                      className="btn btn-primary"
-                      value="Gönder"
-                    />
-                  </div>
-                </form>
+                <ForgotPasswordEmailForm
+                  setForgotPassword={setForgotPassword}
+                />
               ) : (
-                <form role="form" onSubmit={handlelogin}>
-                  <div className="form-group mb-3">
-                    <div className="input-group input-group-merge input-group-alternative">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="ni ni-email-83"></i>
-                        </span>
-                      </div>
-                      <input
-                        className="form-control"
-                        placeholder="E-posta"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                <>
+                  <div className="card-header bg-transparent">
+                    <div className=" text-center mt-3 mb-3 ">
+                      <h2>Giriş yapın</h2>
+                      <img
+                        src="https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png"
+                        className="img-fluid"
+                        style={{ width: "30%" }}
                       />
+                      <p>İşinizi sevin, ekip ruhuyla çalışın!</p>
                     </div>
-                    {emailError && (
-                      <span className="text-danger">{emailError}</span>
-                    )}
                   </div>
-                  <div className="form-group">
-                    <div className="input-group input-group-merge input-group-alternative">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text">
-                          <i className="ni ni-lock-circle-open"></i>
-                        </span>
-                      </div>
-                      <input
-                        className="form-control"
-                        placeholder="Şifre"
-                        type={showPassword ? "text" : "password"}
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
 
-                      <span className="input-group-text  bg-transparent ">
-                        <i
-                          className={`${
-                            showPassword
-                              ? "fa-regular fa-eye-slash"
-                              : "fa-regular fa-eye"
-                          }`}
-                          onClick={() => setShowPassword(!showPassword)}
-                          style={{ cursor: "pointer" }}
-                        ></i>
-                      </span>
+                  <form role="form" onSubmit={handlelogin}>
+                    <div className="form-group mb-3">
+                      <div className="input-group input-group-merge input-group-alternative">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text">
+                            <i className="ni ni-email-83"></i>
+                          </span>
+                        </div>
+                        <input
+                          className="form-control"
+                          placeholder="E-posta"
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
+                      </div>
+                      {emailError && (
+                        <span className="text-danger">{emailError}</span>
+                      )}
                     </div>
-                    {passwordError && (
-                      <span className="text-danger">{passwordError}</span>
-                    )}
-                  </div>
-                  <div className="row justify-content-between">
-                    <Link
-                      className="mt-2 h5 text-primary"
-                      onClick={(e) => {
-                        setForgotPassword(true);
-                      }}
-                    >
-                      Şifremi Unuttum
-                    </Link>
-                    <input
-                      type="submit"
-                      className="btn btn-primary"
-                      value="Giriş Yap"
-                    />
-                  </div>
-                </form>
+                    <div className="form-group">
+                      <div className="input-group input-group-merge input-group-alternative">
+                        <div className="input-group-prepend">
+                          <span className="input-group-text">
+                            <i className="ni ni-lock-circle-open"></i>
+                          </span>
+                        </div>
+                        <input
+                          className="form-control"
+                          placeholder="Şifre"
+                          type={showPassword ? "text" : "password"}
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <span className="input-group-text  bg-transparent ">
+                          <i
+                            className={`${
+                              showPassword
+                                ? "fa-regular fa-eye-slash"
+                                : "fa-regular fa-eye"
+                            }`}
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{ cursor: "pointer" }}
+                          ></i>
+                        </span>
+                      </div>
+                      {passwordError && (
+                        <span className="text-danger">{passwordError}</span>
+                      )}
+                    </div>
+                    <div className="row justify-content-between">
+                      <Link
+                        className="mt-2 h5 text-primary"
+                        onClick={(e) => {
+                          setForgotPassword(true);
+                        }}
+                      >
+                        Şifremi Unuttum
+                      </Link>
+                      <input
+                        type="submit"
+                        className="btn btn-primary"
+                        value="Giriş Yap"
+                      />
+                    </div>
+                  </form>
+                </>
               )}
             </div>
           </div>
