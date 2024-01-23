@@ -23,7 +23,6 @@ namespace Ekite.Presentation.Server.Controllers
         private readonly IAppUserService _appUserService;
         private readonly IConfiguration _configuration;
         private readonly UserManager<AppUser> _userManager;
-        private readonly IEmployeeService employeeService;
 
         public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager, IEmployeeService employeeService)
 
@@ -31,7 +30,6 @@ namespace Ekite.Presentation.Server.Controllers
             _appUserService = appUserService;
             _configuration = configuration;
             _userManager = userManager;
-            this.employeeService = employeeService;
         }
 
         [HttpPost]
@@ -63,13 +61,11 @@ namespace Ekite.Presentation.Server.Controllers
             {
                 Microsoft.AspNetCore.Identity.SignInResult result = await _appUserService.Login(loginDTO);
 
-
                 AppUser appUser = await _userManager.FindByEmailAsync(loginDTO.Email);
                 var role = await _userManager.GetRolesAsync(appUser);
 
                 if (result.Succeeded)
                 {
-                    //int employeeId = await employeeService.GetEmployeeIdByUserId(appUser.Id);
 
                     int id = await _appUserService.GetIDByRole(appUser.Id, role.FirstOrDefault());
 

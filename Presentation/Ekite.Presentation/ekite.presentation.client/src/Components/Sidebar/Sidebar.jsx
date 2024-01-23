@@ -87,7 +87,7 @@ const Sidebar = () => {
                                             style={darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }}
                                         >
                                             <div className="container  ">
-                                                <div className="row ">
+                                                <div className="row " style={{fontSize:"small"}}>
                                                     <div className="col  ">
                                                         <Link
                                                             className={darkMode ? "dropdown-item" : "dropdownn-item"}
@@ -106,7 +106,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
-                                                                <span> Bekleyen İzin Listele</span>
+                                                                <span> Bekleyen İzin İstekleri</span>
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -117,7 +117,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-x text-red mr-2"></i>
-                                                                <span> Reddedilen İzin Listele</span>
+                                                                <span> Reddedilen İzin İstekleri</span>
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -149,7 +149,7 @@ const Sidebar = () => {
                                             style={darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }}
                                         >
                                             <div className="container  ">
-                                                <div className="row ">
+                                                <div className="row " style={{fontSize:"small"}}>
                                                     <div className="col  ">
                                                         <Link
                                                             className={darkMode ? "dropdown-item" : "dropdownn-item"}
@@ -168,7 +168,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
-                                                                <span> Bekleyen Harcama Listele</span>
+                                                                <span> Bekleyen Harcama İstekleri</span>
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -179,7 +179,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-x text-red mr-2"></i>
-                                                                <span> Reddedilen Harcama Listele</span>
+                                                                <span> Reddedilen Harcama İstekleri</span>
                                                             </div>
                                                         </Link>
                                                     </div>
