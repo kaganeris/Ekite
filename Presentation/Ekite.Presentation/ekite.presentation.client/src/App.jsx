@@ -36,6 +36,7 @@ import { EmployeeProvider } from "./context/EmployeeContext";
 import ApprovedSpendListPage from "./Pages/ApprovedSpendList/ApprovedSpendListPage";
 import PendingSpendListPage from "./Pages/PendingSpendList/PendingSpendListPage";
 import RejectSpendListPage from "./Pages/RejectSpendList/RejectSpendListPage";
+import CreateEmployeePage from "./Pages/Employee/CreateEmployeePage";
 function App() {
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const { isAuthenticated, setIsAuthenticated, employeeId, token, setToken } =
@@ -158,6 +159,12 @@ function App() {
                                                     path="/rejectSpendList"
                                                     element={
                                                         <PrivateRoute element={<RejectSpendListPage />} />
+                                                    }
+                                                />
+                                                  <Route
+                                                    path="/createEmployee"
+                                                    element={
+                                                        <PrivateRoute element={<CreateEmployeePage />} />
                                                     }
                                                 />
                                             </Routes>

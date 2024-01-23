@@ -84,7 +84,6 @@ const LoginForm = () => {
   };
   return (
     <div className="container mt--9 pb-5">
-      <CreateEmployeeHeader/>
       <div className="row justify-content-center">
         <div className="col-lg-5 col-md-7">
           <div className="card  border-0 mb-0">
