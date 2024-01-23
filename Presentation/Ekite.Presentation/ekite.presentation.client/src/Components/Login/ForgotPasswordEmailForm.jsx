@@ -10,21 +10,33 @@ const ForgotPasswordEmailForm = ({ setForgotPassword }) => {
   const [email, setEmail] = useState("");
   const [appUserId, setAppUserId] = useState("");
   const [isEmailTrue, setIsEmailTrue] = useState(false);
+  const [mailError, setMailError] = useState(null);
 
   const handleMail = async (e) => {
     e.preventDefault();
 
     if (email) {
       let appUserId = await sendMail(email);
+      console.log("🚀 ~ handleMail ~ appUserId:", appUserId);
       if (appUserId) {
         setAppUserId(appUserId);
+        setMailError(null);
         setIsEmailTrue(true);
+      } else {
+        setMailError("Mail adresi bulunamadı!");
+        console.log("🚀 ~ ForgotPasswordEmailForm ~ mailError:", mailError);
       }
+    } else {
+      setMailError("Mail adresi giriniz!");
     }
   };
 
   return isEmailTrue ? (
-    <ForgotPasswordCodeForm appUserId={appUserId} setIsEmailTrue={setIsEmailTrue} setForgotPassword={setForgotPassword} />
+    <ForgotPasswordCodeForm
+      appUserId={appUserId}
+      setIsEmailTrue={setIsEmailTrue}
+      setForgotPassword={setForgotPassword}
+    />
   ) : (
     <>
       <ForgotPasswordEmailHeader />
@@ -44,6 +56,9 @@ const ForgotPasswordEmailForm = ({ setForgotPassword }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
+          {!mailError !== null && (
+            <label className="mt-1 text-danger">{mailError}</label>
+          )}
         </div>
         <div className="row justify-content-between">
           <Link

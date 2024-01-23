@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { EmployeeContext } from "../../context/EmployeeContext";
 import ForgotPasswordEmailHeader from "./ForgotPasswordEmailHeader";
 import ForgotPasswordEmailForm from "./ForgotPasswordEmailForm";
+import CreateEmployeeHeader from "../Employee/CreateEmployeeHeader";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -83,6 +84,7 @@ const LoginForm = () => {
   };
   return (
     <div className="container mt--9 pb-5">
+      <CreateEmployeeHeader/>
       <div className="row justify-content-center">
         <div className="col-lg-5 col-md-7">
           <div className="card  border-0 mb-0">
@@ -93,6 +95,7 @@ const LoginForm = () => {
                 />
               ) : (
                 <>
+
                   <div className="card-header bg-transparent">
                     <div className=" text-center mt-3 mb-3 ">
                       <h2>Giriş yapın</h2>
@@ -162,6 +165,8 @@ const LoginForm = () => {
                         className="mt-2 h5 text-primary"
                         onClick={(e) => {
                           setForgotPassword(true);
+                          setPasswordError("");
+                          setEmailError("");
                         }}
                       >
                         Şifremi Unuttum

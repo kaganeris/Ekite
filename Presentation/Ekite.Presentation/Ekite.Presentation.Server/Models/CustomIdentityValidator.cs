@@ -50,5 +50,10 @@ namespace Ekite.Presentation.Server.Models
 				Description = $"Parola özel karakter içermelidir!"
 			};
 		}
+
+		
+
+
+		
 	}
 }
