@@ -12,7 +12,7 @@ const EmployeeProvider = ({ children }) => {
                 return data.data
             }
             else{
-
+                return data.data
             }
         } catch (error) {
             
@@ -27,7 +27,7 @@ const EmployeeProvider = ({ children }) => {
                 return data
             }
             else{
-
+                return data
             }
         } catch (error) {
             return error;
@@ -42,7 +42,7 @@ const EmployeeProvider = ({ children }) => {
                 return data
             }
             else{
-
+                return data
             }
         } catch (error) {
             return error;

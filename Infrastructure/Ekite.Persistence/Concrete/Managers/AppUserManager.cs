@@ -64,6 +64,29 @@ namespace Ekite.Persistence.Concrete.Managers
             }
         }
 
+        public async Task<IdentityResult> HandleNewPassword(NewPasswordEmployeeDto newPasswordEmployeeDto)
+        {
+
+            if (newPasswordEmployeeDto == null)
+            {
+                return IdentityResult.Failed();
+            }
+            else
+            {
+
+                AppUser appUser = await _userManager.FindByIdAsync(newPasswordEmployeeDto.AppUserID);
+
+                //appUser.PasswordHash = _userManager.PasswordHasher.HashPassword(appUser, newPasswordEmployeeDto.Password);
+                //IdentityResult result = await _userManager.UpdateAsync(appUser);
+
+                IdentityResult result =  await  _userManager.ResetPasswordAsync(appUser, await _userManager.GeneratePasswordResetTokenAsync(appUser), newPasswordEmployeeDto.Password);
+
+                return result;
+            }
+
+
+        }
+
         public async Task<bool> IsRenewCodeCheck(CodeEmployeeDto codeEmployeeDto)
         {
 

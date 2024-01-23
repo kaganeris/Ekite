@@ -9,7 +9,7 @@ const ForgotPasswordNewPassForm = ({appUserId ,setForgotPassword}) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+ const [passwordError,setPasswordError] = useState(null);
   const handlePassword = async (e) => {
     e.preventDefault();
 
@@ -22,10 +22,20 @@ const ForgotPasswordNewPassForm = ({appUserId ,setForgotPassword}) => {
       console.log("🚀 ~ handlePassword ~ data:", data);
 
       let success = await sendPassword(data);
-
+      
       if (success.status === 200) {
         setForgotPassword(false);
+      }else{
+        
+        setPasswordError(success.data)
+        if(success.data !== null){
+          console.log("🚀 ~ handlePassword ~ success:", passwordError)
+
+        }
+        
       }
+
+
     }
   };
 
@@ -84,6 +94,12 @@ const ForgotPasswordNewPassForm = ({appUserId ,setForgotPassword}) => {
               ></i>
             </span>
           </div>
+          {passwordError && (
+            <ul className="mt-1" style={{listStyleType:"none", padding:"0px"}}>
+             {passwordError.map((error) =><li className="mt-2 text-danger">{error}</li>
+             )}
+            </ul >
+          )}
         </div>
         <div className="row justify-content-between">
           <Link
