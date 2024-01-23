@@ -8,8 +8,9 @@ const ForgotPasswordCodeForm = ({ appUserId, setIsEmailTrue,setForgotPassword })
   const [code, setCode] = useState(0);
   const { sendCode } = useContext(EmployeeContext);
   const [secondTime, setSecondTime] = useState(59);
-  const [minuteTime, setMinute] = useState(2);
+  const [minuteTime, setMinute] = useState(10);
   const [isCodeTrue, setIsCodeTrue] = useState(false);
+  const [codeError,setCodeError] = useState(null);
   const timerRef = useRef(null);
 
   const handleCode = async (e) => {
@@ -19,13 +20,26 @@ const ForgotPasswordCodeForm = ({ appUserId, setIsEmailTrue,setForgotPassword })
         appUserId: appUserId,
         code: code,
       };
-      console.log("handlecodeCalıstı", code);
-      let success = await sendCode(data);
-      console.log("🚀 ~ handleCode ~ success:", success);
-      if (success.status === 200) {
-        clearTimeout(timerRef.current)
-        console.log("🚀 ~ handleCode ~ success.status:", success.status)
-        setIsCodeTrue(true);
+      try {
+        let success = await sendCode(data);
+        console.log("🚀 ~ handleCode ~ success:", success);
+  
+        if (success.status === 200) {
+          clearTimeout(timerRef.current);
+          console.log("🚀 ~ handleCode ~ success.status:", success.status);
+          setIsCodeTrue(true);
+          setCodeError(null);
+        } else if (success.status === 404) {
+          setCodeError("Kod geçersiz.");
+          console.log(codeError);
+        } else {
+          setCodeError("Kod boş geçilemez.");
+          console.log(codeError);
+        }
+      } catch (error) {
+        //TODOOO BURAYI DÜZELT
+        console.error("🚀 ~ handleCode ~ error:", error);
+        setCodeError("Bir hata oluştu. Lütfen tekrar deneyin.");
       }
     }
   };
@@ -74,6 +88,9 @@ const ForgotPasswordCodeForm = ({ appUserId, setIsEmailTrue,setForgotPassword })
                   onChange={(e) => setCode(e.target.value)}
                 />
               </div>
+              {!codeError !== null && (
+            <label className="mt-1 text-danger">{codeError}</label>
+          )}
             </div>
 
             <div className="row justify-content-between">

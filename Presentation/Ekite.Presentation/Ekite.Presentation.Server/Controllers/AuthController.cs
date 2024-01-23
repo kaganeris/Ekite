@@ -26,7 +26,6 @@ namespace Ekite.Presentation.Server.Controllers
         private readonly IEmployeeService employeeService;
 
         public AuthController(IAppUserService appUserService, IConfiguration configuration, UserManager<AppUser> userManager, IEmployeeService employeeService)
-
         {
             _appUserService = appUserService;
             _configuration = configuration;
@@ -160,7 +159,7 @@ namespace Ekite.Presentation.Server.Controllers
             }
             else
             {
-                return BadRequest();
+                return NotFound();
             }
 
         }
@@ -171,13 +170,40 @@ namespace Ekite.Presentation.Server.Controllers
         public async Task<IActionResult> NewPassword(NewPasswordEmployeeDto newPasswordEmployeeDto)
         {
 
-        
-                return Ok();
+            NewPasswordDtoValidator validationRules = new NewPasswordDtoValidator();
+            ValidationResult result = validationRules.Validate(newPasswordEmployeeDto);
+            if (result.IsValid)
+            {
+                IdentityResult response = await _appUserService.HandleNewPassword(newPasswordEmployeeDto);
 
-    
+                if (response.Succeeded)
+                {
+                    return Ok("Şifre Yenileme  Başarılı");
+
+                }
+                else
+                {
+                    List<string> errors = new List<string>();
+                    foreach (var item in response.Errors)
+                    {
+                        errors.Add(item.Description);
+                    }
+                    return BadRequest(error: errors);
+
+                }
+
+            }
+            else
+            {
+                List<string> errors = new List<string>();
+                foreach (var item in result.Errors)
+                {
+                    errors.Add(item.ErrorMessage);
+                }
+                return BadRequest(error: errors);
+
+            }
         }
-
-
 
     }
 }

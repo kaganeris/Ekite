@@ -21,5 +21,7 @@ namespace Ekite.Application.Interfaces.Services
         Task<string> SendRenewPasswordCode(string email);
 
         Task<bool> IsRenewCodeCheck(CodeEmployeeDto codeEmployeeDto);
+
+        Task<IdentityResult> HandleNewPassword(NewPasswordEmployeeDto newPasswordEmployeeDto);
     }
 }
