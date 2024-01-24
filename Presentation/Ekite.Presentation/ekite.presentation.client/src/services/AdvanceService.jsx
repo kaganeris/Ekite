@@ -45,6 +45,7 @@ const AdvanceService = {
   },
 
   createAdvance: async (createData) => {
+    console.log("🚀 ~ createAdvance: ~ createData:", createData)
     try {
 
       const token = localStorage.getItem("user");

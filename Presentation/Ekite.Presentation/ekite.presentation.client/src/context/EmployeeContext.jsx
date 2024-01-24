@@ -51,8 +51,23 @@ const EmployeeProvider = ({ children }) => {
     }
 
 
-
-  return <EmployeeContext.Provider value={{sendMail , sendCode , sendPassword}}>
+    const createEmployee = async (employeeData) => {
+        try {
+            const data = await EmployeeService.createEmployee(employeeData);
+            if (data.status !== 401) {
+              return data.data;
+            } else {
+              if (token === "") {
+                setIsAuthenticated(false);
+              }
+              setToken("");
+              navigate("/login");
+            }
+          } catch (error) {
+            return error;
+          }
+    }
+  return <EmployeeContext.Provider value={{sendMail , sendCode , sendPassword , createEmployee}}>
     {children}
     </EmployeeContext.Provider>;
 };

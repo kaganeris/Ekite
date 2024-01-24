@@ -83,6 +83,7 @@ const SpendService = {
     },
 
     postSpend: async (spendData) => {
+        console.log("🚀 ~ postSpend: ~ spendData:", spendData)
         try {
             const token = localStorage.getItem("user");
             const response = await axios.post(`${url}/api/Spend/CreateSpend`, spendData,

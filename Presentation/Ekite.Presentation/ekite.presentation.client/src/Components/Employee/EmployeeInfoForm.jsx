@@ -1,9 +1,84 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
+import { EmployeeContext } from "../../context/EmployeeContext";
 
-const EmployeeInfoForm = ({setActiveFormNumber}) => {
+const EmployeeInfoForm = ({
+  setActiveFormNumber,
+  personalInfo,
+  setPersonalInfo,
+}) => {
   const { darkMode } = useContext(ThemeContext);
-  console.log("🚀 ~ EmployeeInfoForm ~ darkMode:", darkMode);
+  const { createEmployee } = useContext(EmployeeContext);
+  const [isFileValid, setFileValid] = useState(true);
+
+  //FOTOGRAF MI KONTROL EDİYOR
+  const validateFile = (file) => {
+    const allowedFileTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/jpg",
+    ];
+    return allowedFileTypes.includes(file.type);
+  };
+
+  //FOTOGRAFI ATIYOR
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (validateFile(file)) {
+        setFileValid(true);
+        setPersonalInfo((prevInfo) => ({
+          ...prevInfo,
+          uploadPath: file,
+        }));
+      } else {
+        setFileValid(false);
+      }
+    }
+  };
+
+  //TARİHİ DOGRU FORMATA ÇEVİRİYOR
+  const handleBirthDate = (e) => {
+    const selectedDate = new Date(e.target.value);
+    setPersonalInfo((prevInfo) => ({
+      ...prevInfo,
+      birthDate: selectedDate.toISOString().split("T")[0],
+    }));
+  };
+
+  //TC YE SADECE SAYI GİRMESİNİ SAĞLIYOR
+  const handleTcChange = (e) => {
+    const sanitizedValue = e.target.value.replace(/[^\d]/g, "");
+    setPersonalInfo((prevInfo) => ({
+      ...prevInfo,
+      tcno: sanitizedValue,
+    }));
+  };
+
+  // const personelEkleDeneme = async (e) => {
+  //   e.preventDefault();
+  //   if (personalInfo !== null) {
+  //     const formData = new FormData();
+  //     formData.append("firstName", personalInfo.firstName);
+  //     formData.append("lastName", personalInfo.lastName);
+  //     formData.append("secondName", personalInfo.secondName);
+  //     formData.append("secondLastName", personalInfo.secondLastName);
+  //     formData.append("birthDate", personalInfo.birthDate);
+  //     formData.append("tcno", personalInfo.tcno);
+  //     formData.append("birthPlace", personalInfo.birthPlace);
+  //     formData.append("uploadPath", personalInfo.uploadPath);
+
+  //     if (formData !== null) {
+  //       let data = await createEmployee(formData);
+  //     }
+  //   }
+  // };
+
+  useEffect(()=> {
+    console.log("🚀 ~ personalInfo:", personalInfo)
+    
+
+  },[personalInfo])
 
   return (
     <div className={darkMode ? "card" : "card bg-dark"}>
@@ -19,222 +94,253 @@ const EmployeeInfoForm = ({setActiveFormNumber}) => {
       <div className="card-body">
         <form encType="multipart/form-data">
           <div className="pl-lg-4">
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="input-first-name"
-                  >
-                    Ad
-                  </label>
-                  <input
-                    type="text"
-                    // value={""}
-                    id="input-first-name"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    // onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-              </div>
+            {/* CONDITION */}
+            {personalInfo && (
+              <>
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className={
+                          darkMode
+                            ? "form-control-label"
+                            : "form-control-label text-white"
+                        }
+                        htmlFor="input-first-name"
+                      >
+                        Ad
+                      </label>
+                      <input
+                        type="text"
+                        value={personalInfo.firstName}
+                        id="input-first-name"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={(e) =>
+                          setPersonalInfo((prevInfo) => ({
+                            ...prevInfo,
+                            firstName: e.target.value,
+                          }))
+                        }
+                      />
+                    </div>
+                  </div>
 
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="lastName"
-                  >
-                    Soyad
-                  </label>
-                  <input
-                    type="text"
-                    // value={""}
-                    id="lastName"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    // onChange={(e) => setDescription(e.target.value)}
-                  />
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className={
+                          darkMode
+                            ? "form-control-label"
+                            : "form-control-label text-white"
+                        }
+                        htmlFor="lastName"
+                      >
+                        Soyad
+                      </label>
+                      <input
+                        type="text"
+                        value={personalInfo.lastName}
+                        id="lastName"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={(e) =>
+                          setPersonalInfo((prevInfo) => ({
+                            ...prevInfo,
+                            lastName: e.target.value,
+                          }))
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="secondName"
-                  >
-                    İkinci Ad
-                  </label>
-                  <input
-                    type="text"
-                    // value={""}
-                    id="secondName"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    // onChange={(e) => setDescription(e.target.value)}
-                  />
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className={
+                          darkMode
+                            ? "form-control-label"
+                            : "form-control-label text-white"
+                        }
+                        htmlFor="secondName"
+                      >
+                        İkinci Ad
+                      </label>
+                      <input
+                        type="text"
+                        value={personalInfo.secondName}
+                        id="secondName"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={(e) =>
+                          setPersonalInfo((prevInfo) => ({
+                            ...prevInfo,
+                            secondName: e.target.value,
+                          }))
+                        }
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className={
+                          darkMode
+                            ? "form-control-label"
+                            : "form-control-label text-white"
+                        }
+                        htmlFor="secondLastname"
+                      >
+                        İkinci Soyad
+                      </label>
+                      <input
+                        type="text"
+                        value={personalInfo.secondLastName}
+                        id="secondLastname"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={(e) =>
+                          setPersonalInfo((prevInfo) => ({
+                            ...prevInfo,
+                            secondLastName: e.target.value,
+                          }))
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className={
+                          darkMode
+                            ? "form-control-label"
+                            : "form-control-label text-white"
+                        }
+                        htmlFor="TC"
+                      >
+                        T.C. NO
+                      </label>
+                      <input
+                        type="text"
+                        value={personalInfo.tcno}
+                        id="TC"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={handleTcChange}
+                      />
+                    </div>
+                  </div>
 
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="secondLastname"
-                  >
-                    İkinci Soyad
-                  </label>
-                  <input
-                    type="text"
-                    // value={""}
-                    id="secondLastname"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    // onChange={(e) => setDescription(e.target.value)}
-                  />
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className={
+                          darkMode
+                            ? "form-control-label"
+                            : "form-control-label text-white"
+                        }
+                        htmlFor="birthdate"
+                      >
+                        Dogum Tarihi
+                      </label>
+                      <input
+                        type="date"
+                        value={personalInfo.birthDate}
+                        id="birthdate"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={handleBirthDate}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="TC"
-                  >
-                    T.C. NO
-                  </label>
-                  <input
-                    type="text"
-                    // value={""}
-                    id="TC"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    // onChange={(e) => setDescription(e.target.value)}
-                  />
+                <div className="row">
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className={
+                          darkMode
+                            ? "form-control-label"
+                            : "form-control-label text-white"
+                        }
+                        htmlFor="birthPlace"
+                      >
+                        Dogum Yeri
+                      </label>
+                      <input
+                        type="text"
+                        value={personalInfo.birthPlace}
+                        id="birthPlace"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={(e) =>
+                          setPersonalInfo((prevInfo) => ({
+                            ...prevInfo,
+                            birthPlace: e.target.value,
+                          }))
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-lg-6">
+                    <div className="form-group">
+                      <label
+                        className={
+                          darkMode
+                            ? "form-control-label"
+                            : "form-control-label text-white"
+                        }
+                        htmlFor="photo"
+                      >
+                        Fotoğraf
+                      </label>
+                      <input
+                        type="file"
+                        id="photo"
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={handleFileChange}
+                      />
+
+                      {!isFileValid && (
+                        <label className="text-danger">
+                          Geçerli bir dosya türü seçin (jpg, jpeg, png).
+                        </label>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="birthdate"
-                  >
-                    Dogum Tarihi
-                  </label>
-                  <input
-                    type="date"
-                    // value={""}
-                    id="birthdate"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    // onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="birthPlace"
-                  >
-                    Dogum Yeri
-                  </label>
-                  <input
-                    type="text"
-                    // value={""}
-                    id="birthPlace"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    // onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-              </div>
-
-
-              <div className="col-lg-6">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="photo"
-                  >
-                    Fotoğraf
-                  </label>
-                  <input
-                    type="file"
-                    // value={""}
-                    id="photo"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    // onChange={(e) => setDescription(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
+              </>
+            )}
 
             <div className="row"></div>
           </div>
@@ -242,16 +348,17 @@ const EmployeeInfoForm = ({setActiveFormNumber}) => {
           <div className="main-content">
             <div className="container">
               <div className="row justify-content-end">
-              <div className="col-auto ">
+                <div className="col-auto ">
                   <input
                     type="submit"
                     value="İleri"
                     className="btn btn-m btn-primary"
-                    onClick={()=>{setActiveFormNumber(1)}}
+                    onClick={() => {
+                      setActiveFormNumber(1);
+                    }}
                   />
                 </div>
-                
-              </div>        
+              </div>
             </div>
           </div>
         </form>
