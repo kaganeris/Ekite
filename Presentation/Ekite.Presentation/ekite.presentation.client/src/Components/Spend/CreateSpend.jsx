@@ -21,6 +21,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
   const { addSpend } = useContext(SpendContext);
   const { id } = useContext(AuthContext);
   const { darkMode } = useContext(ThemeContext);
+ 
   const validateFile = (file) => {
     const allowedFileTypes = [
       "image/jpeg",
@@ -249,6 +250,8 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
             <div className="row"></div>
+
+
             <div className="row">
               <div className="col-lg-12">
                 <div className="form-group">

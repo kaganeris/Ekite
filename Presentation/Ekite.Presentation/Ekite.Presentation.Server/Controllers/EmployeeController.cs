@@ -90,5 +90,12 @@ namespace Ekite.Presentation.Server.Controllers
 			}
 		}
 
-	}
+
+		[HttpPost("[action]")]
+        //[Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateEmployee([FromForm] CreateEmployeeDto createEmployeeDto)
+        {
+            return Ok();
+		}
+    }
 }

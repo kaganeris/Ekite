@@ -13,10 +13,7 @@ import StepConnector, {
 } from "@mui/material/StepConnector";
 
 const CreateEmployeeHeader = ({ activeFormNumber }) => {
-  console.log(
-    "🚀 ~ CreateEmployeeHeader ~ activeFormNumber:",
-    activeFormNumber
-  );
+  
   const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
     color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
     display: "flex",
