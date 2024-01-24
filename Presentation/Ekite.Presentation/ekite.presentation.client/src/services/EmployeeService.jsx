@@ -53,15 +53,14 @@ const EmployeeService = {
         employeeData,
         {
           headers: {
+            "Content-Type": "multipart/form-data",
             Authorization: "Bearer " + token.replace(/"/g, ""),
-            "Content-Type": "multipart/form-data", 
-
           },
         }
       );
       return response;
     } catch (error) {
-      console.error("Personel oluşturulurken bir hata oluştu", error.message);
+      console.error("Personel oluşturulurken bir hata oluştu", error);
       return error.response;
     }
   },

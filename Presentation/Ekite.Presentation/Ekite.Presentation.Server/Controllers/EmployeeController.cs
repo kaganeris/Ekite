@@ -90,9 +90,9 @@ namespace Ekite.Presentation.Server.Controllers
             }
         }
 
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeDto createEmployeeDto)
+        [HttpPost("[action]")]
+        [Authorize(Roles = "Admin,SiteOwner")]
+        public async Task<IActionResult> CreateEmployee([FromForm] CreateEmployeeDto createEmployeeDto)
         {
             CreateEmployeeValidator validationRules = new CreateEmployeeValidator();
             ValidationResult result = validationRules.Validate(createEmployeeDto);
@@ -101,7 +101,7 @@ namespace Ekite.Presentation.Server.Controllers
                 bool response = await _employeeService.TCreate(createEmployeeDto);
                 if (response)
                 {
-                    return Ok();
+                    return Ok("Başarılı");
                 }
                 else
                 {

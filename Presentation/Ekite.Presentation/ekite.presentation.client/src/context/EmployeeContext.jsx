@@ -64,6 +64,7 @@ const EmployeeProvider = ({ children }) => {
               navigate("/login");
             }
           } catch (error) {
+            console.log("employee context create",error);
             return error;
           }
     }

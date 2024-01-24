@@ -1,6 +1,7 @@
 ﻿using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Domain.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace Ekite.Application.Validators.EmployeeValidations
 
             RuleFor(x => x.LastName).NotEmpty().NotNull().WithMessage("Lütfen Soyadınızı Giriniz!").MinimumLength(2).WithMessage("Lütfen Daha Uzun Bir Soyad Giriniz!").MaximumLength(20).WithMessage("Bu Kadar Uzun Soyad Olamaz!");
 
-            RuleFor(x => x.SecondName).MinimumLength(2).WithMessage("Lütfen Daha Uzun Bir Ad Giriniz!").MaximumLength(20).WithMessage("Bu Kadar Uzun Ad Olamaz!");
+            RuleFor(x => x.SecondName).MinimumLength(2).WithMessage("Lütfen Daha Uzun Bir İkinci Ad Giriniz!").MaximumLength(20).WithMessage("Bu Kadar Uzun İkinci Ad Olamaz!");
 
-            RuleFor(x => x.SecondLastName).MinimumLength(2).WithMessage("Lütfen Daha Uzun Bir Ad Giriniz!").MaximumLength(20).WithMessage("Bu Kadar Uzun Ad Olamaz!");
+            RuleFor(x => x.SecondLastName).MinimumLength(2).WithMessage("Lütfen Daha Uzun Bir İkinci Soyad Giriniz!").MaximumLength(20).WithMessage("Bu Kadar Uzun İkinci Soyad Olamaz!");
 
             RuleFor(x => x.BirthDate).NotNull().NotEmpty().WithMessage("Doğum Tarihi Boş Geçilemez!").Must(ResitMi).WithMessage("18 Yaşından Küçükler Kayıt Olamaz!");
 
@@ -35,7 +36,7 @@ namespace Ekite.Application.Validators.EmployeeValidations
             RuleFor(x => x.District).NotNull().NotEmpty().WithMessage("İlçe Alanı Boş Geçilemez!");
             RuleFor(x => x.AddressDetail).NotNull().NotEmpty().WithMessage("Mahalle-Cadde-Sokak Alanı Boş Geçilemez!");
 
-            RuleFor(x => x.ImagePath).NotEmpty().WithMessage("Image path is required")
+            RuleFor(x => x.UploadPath).NotEmpty().WithMessage("Image path is required")
             .Must(FormatDogruMu).WithMessage("Lütfen Doğru Formatta Dosya Yolu Veriniz! (.jpg, .png, .gif)");
 
         }
@@ -49,10 +50,10 @@ namespace Ekite.Application.Validators.EmployeeValidations
             return age >= 18;
         }
 
-        private bool FormatDogruMu(string imagePath)
+        private bool FormatDogruMu(IFormFile uploadPath)
         {
             var allowedExtensions = new[] { ".jpg", ".png", ".gif" };
-            return allowedExtensions.Any(ext => imagePath.EndsWith(ext, StringComparison.OrdinalIgnoreCase));
+            return allowedExtensions.Any(ext => uploadPath.FileName.EndsWith(ext, StringComparison.OrdinalIgnoreCase));
         }
 
     }

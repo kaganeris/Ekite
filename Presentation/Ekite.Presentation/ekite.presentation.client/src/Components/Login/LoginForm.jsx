@@ -40,7 +40,7 @@ const LoginForm = () => {
   };
 
   const validateEmail = () => {
-    if (!email.endsWith("@bilgeadam.com")) {
+    if (!email.endsWith("@bilgeadam.com") && !email.endsWith("@bilgeadamboost.com")) {
       setEmailError("E-Mail adresi @bilgeadam.com ile bitmelidir.");
       return false;
     }

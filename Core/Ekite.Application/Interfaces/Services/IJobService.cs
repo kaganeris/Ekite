@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ekite.Application.DTOs.JobDto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace Ekite.Application.Interfaces.Services
 {
     public interface IJobService
     {
-
+        Task<List<JobDto>> GetAllJob();
     }
 }
