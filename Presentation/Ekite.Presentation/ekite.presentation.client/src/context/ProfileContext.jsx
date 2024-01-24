@@ -90,6 +90,24 @@ const ProfileProvider = ({ children }) => {
     }
   };
 
+  const updateSiteOwnerData = async (directorId) => {
+    try {
+      const data = await ProfileService.getUpdateSiteOwnerByID(directorId);
+      if (data.status === 200) {
+        setLoading(false);
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   const putPersonelData = async (employeeId, updateData) => {
     try {
       const data = await ProfileService.putUpdatePersonelById(
@@ -116,6 +134,28 @@ const ProfileProvider = ({ children }) => {
     try {
       const data = await ProfileService.putUpdateDirectorById(
         directorId,
+        updateData
+      );
+      if (data.status === 200) {
+        setLoading(false);
+        return data.data;
+      } else {
+        if (token === "") {
+          setIsAuthenticated(false);
+        }
+        setToken("");
+        navigate("/login");
+      }
+    } catch (error) {
+      setLoading(false);
+      throw error;
+    }
+  };
+
+  const putSiteOwnerData = async (siteOwnerId, updateData) => {
+    try {
+      const data = await ProfileService.putUpdateSiteOwnerById(
+        siteOwnerId,
         updateData
       );
       if (data.status === 200) {
@@ -166,7 +206,9 @@ const ProfileProvider = ({ children }) => {
         getDirectorById,
         updateDirectorData,
         putDirectorData,
-        getSiteOwnerById
+        getSiteOwnerById,
+        updateSiteOwnerData,
+        putSiteOwnerData
       }}
     >
       {children}

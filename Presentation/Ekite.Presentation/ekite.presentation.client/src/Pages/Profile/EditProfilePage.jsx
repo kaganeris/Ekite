@@ -6,7 +6,7 @@ import { ProfileContext } from "../../context/ProfileContext";
 import { PageContext } from "../../context/PageContext";
 
 function EditProfilePage() {
-  const { updatePersonelData,updateDirectorData } = useContext(ProfileContext);
+  const { updatePersonelData,updateDirectorData,updateSiteOwnerData } = useContext(ProfileContext);
   const { id, setId, userRole } =
     useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
@@ -23,6 +23,10 @@ function EditProfilePage() {
           }
           else if(userRole === "Admin"){
             let data = await updateDirectorData(id)
+            setProfileData(data)
+          }
+          else if(userRole === "SiteOwner"){
+            let data = await updateSiteOwnerData(id)
             setProfileData(data)
           }
         } catch (error) {}

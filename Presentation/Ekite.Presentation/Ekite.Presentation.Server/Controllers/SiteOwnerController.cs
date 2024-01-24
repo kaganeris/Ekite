@@ -68,5 +68,20 @@ namespace Ekite.Presentation.Server.Controllers
 
 
         }
+
+        [HttpPut("[action]")]
+        [Authorize(Roles = "SiteOwner")]
+        public async Task<IActionResult> PutUpdateSiteOwner(int id, [FromForm] UpdateSiteOwnerDto siteOwnerDto)
+        {
+
+            if (await siteOwnerService.TUpdate(id, siteOwnerDto))
+            {
+                return Ok(siteOwnerDto);
+            }
+            else
+            {
+                return NotFound("Bulunamadı");
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@ using Ekite.Domain.Entities;
 using Ekite.Domain.Enums;
 using Ekite.Persistence.Concrete.Repositories;
 using Ekite.Persistence.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using SixLabors.ImageSharp;
@@ -25,11 +26,13 @@ namespace Ekite.Persistence.Concrete.Managers
     {
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
+        private readonly IAppUserService appUserService;
 
-        public EmployeeManager(IEmployeeRepository employeeRepository, IMapper mapper)
+        public EmployeeManager(IEmployeeRepository employeeRepository, IMapper mapper, IAppUserService appUserService)
         {
             _employeeRepository = employeeRepository;
             _mapper = mapper;
+            this.appUserService = appUserService;
         }
 
         public Task<List<Employee>> TGetAll(Expression<Func<Employee, bool>> expression = null)
@@ -37,11 +40,54 @@ namespace Ekite.Persistence.Concrete.Managers
             return _employeeRepository.GetAll(expression);
         }
 
-        public async Task<bool> TCreate(Employee entity)
+        public async Task<bool> TCreate(CreateEmployeeDto entity)
         {
             if (entity != null)
             {
-                return await _employeeRepository.Create(entity);
+                string employeeAppUserId = await appUserService.RegisterEmployee(entity.FirstName, entity.LastName);
+                if (employeeAppUserId == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    if (entity.UploadPath != null)
+                    {
+                        string fileExtension = Path.GetExtension(entity.UploadPath.FileName);
+
+                        using MemoryStream fileUploadStream = new MemoryStream();
+
+                        entity.UploadPath.CopyTo(fileUploadStream);
+                        fileUploadStream.Position = 0;
+
+                        string connectionString = "DefaultEndpointsProtocol=https;AccountName=ekitedepo;AccountKey=vSKMkCAXSsLU58GHf/rSoaSbK05OOnuQmh2kPKO8Go2kIh4a6WmYDnro27Cg24Fv9bNyYiRCpOGG+AStSG8pyA==;EndpointSuffix=core.windows.net";
+                        string blobContainerName = "yeni";
+
+                        BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, blobContainerName);
+
+                        var uniqueName = Guid.NewGuid().ToString() + fileExtension;
+
+                        BlobClient blobClient = blobContainerClient.GetBlobClient(uniqueName);
+
+                        blobClient.Upload(fileUploadStream, new BlobUploadOptions()
+                        {
+
+                            HttpHeaders = new BlobHttpHeaders
+                            {
+
+                                ContentType = "image/bitmap"
+                            }
+                        }, cancellationToken: default);
+
+                        entity.ImagePath = $"https://ekitedepo.blob.core.windows.net/yeni/{uniqueName}";
+                    }
+
+                    Employee employee = _mapper.Map<Employee>(entity);
+                    employee.AppUserId = employeeAppUserId;
+                    return await _employeeRepository.Create(employee);
+                }
+
+
             }
             else
             {
@@ -119,7 +165,7 @@ namespace Ekite.Persistence.Concrete.Managers
 
                         HttpHeaders = new BlobHttpHeaders
                         {
-                            
+
                             ContentType = "image/bitmap"
                         }
                     }, cancellationToken: default);

@@ -14,7 +14,7 @@ namespace Ekite.Application.Interfaces.Services
     {
         Task<Employee> TGetById(int id);
         Task<Employee> TGetByExpression(Expression<Func<Employee, bool>> expression);
-        Task<bool> TCreate(Employee entity);
+        Task<bool> TCreate(CreateEmployeeDto entity);
         Task<bool> TUpdate(int id, UpdateEmployeeDto entity);
         Task<bool> TUpdateWithoutStatus(Employee entity);
         Task<bool> TSoftDelete(Employee entity);

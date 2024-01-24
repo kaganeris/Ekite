@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import { ThemeContext } from "../../context/ThemeContext";
 
 function Navbar({ isSidebarOpen, setSidebarOpen }) {
-    const { fetchData,getDirectorById } = useContext(ProfileContext)
+    const { fetchData,getDirectorById,getSiteOwnerById } = useContext(ProfileContext)
     const { id, setId, setIsAuthenticated, logout,userRole } =
         useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
@@ -49,6 +49,10 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
           } else if (userRole == "Admin") {
             let data = await getDirectorById(id);
             setProfileData(data);
+          }
+          else if(userRole === "SiteOwner"){
+            let data = await getSiteOwnerById(id)
+            setProfileData(data)
           }
         } catch (error) {}
       })();
