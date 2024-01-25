@@ -7,6 +7,12 @@ const PendingAdvanceList = ({ pendingAdvanceList, setPendingAdvanceList }) => {
   const { approveAdvanceProcess, rejectAdvanceProcess } = useContext(AdvanceContext)
   const {darkMode}=useContext(ThemeContext);
 
+  const formatDate = (inputDate) => {
+    const date = new Date(inputDate);
+    const formattedDate = new Intl.DateTimeFormat("tr-TR").format(date);
+    return formattedDate;
+}
+  
   const handleOperation = (id, result) => {
     const updatedAdvanceList = pendingAdvanceList.filter((advance) => advance.id !== id)
 
@@ -85,7 +91,6 @@ const PendingAdvanceList = ({ pendingAdvanceList, setPendingAdvanceList }) => {
                 Onay Tarihi
               </th>
               <th scope="col"></th>
-              <th scope="col"></th>
             </tr>
           </thead>
 
@@ -113,7 +118,7 @@ const PendingAdvanceList = ({ pendingAdvanceList, setPendingAdvanceList }) => {
                 <td className='budget'>{advance.advanceType}</td>
                 <td className='budget'>{advance.amount}</td>
                 <td className='budget'>{advance.currency}</td>
-                <td className='budget'>{advance.approvalDate}</td>
+                <td className='budget'>{formatDate(advance.approvalDate)}</td>
                 {advance.approvalStatus === "Bekleniyor" ? (
                   <td className="text-right" style={{ paddingLeft: '0px' }} >
 

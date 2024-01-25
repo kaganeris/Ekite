@@ -73,7 +73,6 @@ const ApprovedLeaveList = ({approvedLeaveList,setApprovedLeaveList}) => {
               Onaylanma Tarihi
             </th>                  
             <th scope="col"></th>
-            <th scope="col"></th>
           </tr>
         </thead>
         <tbody className="list">

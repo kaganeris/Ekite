@@ -108,34 +108,21 @@ const Sidebar = () => {
                               </div>
                             </Link>
                           </div>
-
                           <div className="col">
                             <Link
                               className={
                                 darkMode ? "dropdown-item" : "dropdownn-item"
                               }
-                              to={"/pendingLeaveList"}
+                              to={"/employeeAllList"}
                             >
                               <div className="dropdown-content ">
-                                <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
-                                <span> Personel Güncelle</span>
+                              <i class="ni ni-chart-bar-32 mr-1 text-yellow"></i>
+                                {/* <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i> */}
+                                <span> Personel Listesi</span>
                               </div>
                             </Link>
                           </div>
 
-                          <div className="col">
-                            <Link
-                              className={
-                                darkMode ? "dropdown-item" : "dropdownn-item"
-                              }
-                              to={"/rejectLeaveList"}
-                            >
-                              <div className="dropdown-content ">
-                                <i className="fa-solid fa-x text-red mr-2"></i>
-                                <span> Personel Sil</span>
-                              </div>
-                            </Link>
-                          </div>
                         </div>
                       </div>
                     </div>

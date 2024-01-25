@@ -63,7 +63,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
       formData.append("description", description);
       formData.append("spendType", spendType);
       formData.append("currency", currency);
-      formData.append("amount", amount);
+      formData.append("amount",  parseInt(amount.toString().replace(/\D/g, ""), 10));
       formData.append("imagePath", imagePath);
       formData.append("employeeId", id);
       formData.append("uploadPath", uploadPath);

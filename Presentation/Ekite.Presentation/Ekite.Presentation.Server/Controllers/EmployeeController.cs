@@ -40,6 +40,20 @@ namespace Ekite.Presentation.Server.Controllers
             }
         }
 
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllList(int id)
+        {
+
+            return Ok(await _employeeService.GetAllEmployee(id));
+
+
+        }
+
+
+
+
         [HttpGet("[action]")]
         [Authorize(Roles = "Admin,Employee")]
         public async Task<IActionResult> GetDetailPersonel(int id)
@@ -56,6 +70,25 @@ namespace Ekite.Presentation.Server.Controllers
             }
 
         }
+
+        [HttpGet("[action]")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllDetailPersonel(int id)
+        {
+            ResultAllDetailEmployeeDto resultSum = await _employeeService.GetAllDetailEmployee(id);
+
+            if (id > 0)
+            {
+                return Ok(resultSum);
+            }
+            else
+            {
+                return NotFound("Kişi bulunamadı");
+            }
+
+        }
+
+
 
 
         [HttpGet("[action]")]

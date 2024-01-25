@@ -42,10 +42,12 @@ import { JobProvider } from "./context/JobContext";
 import { CompanyProvider } from "./context/CompanyContext";
 import { DepartmentProvider } from "./context/DepartmentContext";
 
-import ApprovedAdvanceListPage from "./Pages/ApprovedAdvanceList/ApprovedAdvanceListPage"
+import ApprovedAdvanceListPage from "./Pages/ApprovedAdvanceList/ApprovedAdvanceListPage";
 
-import PendingAdvanceListPage from "./Pages/PendingAdvanceList/PendingAdvanceListPage"
-import RejectAdvanceListPage from "./Pages/RejectAdvanceList/RejectAdvanceListPage"
+import PendingAdvanceListPage from "./Pages/PendingAdvanceList/PendingAdvanceListPage";
+import RejectAdvanceListPage from "./Pages/RejectAdvanceList/RejectAdvanceListPage";
+import AllListEmployeePage from "./Pages/Employee/AllListEmployeePage";
+import EmployeeProfileDetailPage from "./Pages/Employee/EmployeeProfileDetailPage";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -225,30 +227,49 @@ function App() {
                                 }
                               />
 
+                              <Route
+                                path="/approvedAdvanceList"
+                                element={
+                                  <PrivateRoute
+                                    element={<ApprovedAdvanceListPage />}
+                                  />
+                                }
+                              />
 
-                                                <Route
-                                                    path="/approvedAdvanceList"
-                                                    element={
-                                                        <PrivateRoute element={<ApprovedAdvanceListPage />} />
-                                                    }
-                                                />
+                              <Route
+                                path="/pendingAdvanceList"
+                                element={
+                                  <PrivateRoute
+                                    element={<PendingAdvanceListPage />}
+                                  />
+                                }
+                              />
 
-
-                                                <Route
-                                                    path="/pendingAdvanceList"
-                                                    element={
-                                                        <PrivateRoute element={<PendingAdvanceListPage />} />
-                                                    }
-                                                />
-
-                                                <Route
-                                                    path="/rejectAdvanceList"
-                                                    element={
-                                                        <PrivateRoute element={<RejectAdvanceListPage />} />
-                                                    }
-                                                />
-
-                                            </Routes>
+                              <Route
+                                path="/rejectAdvanceList"
+                                element={
+                                  <PrivateRoute
+                                    element={<RejectAdvanceListPage />}
+                                  />
+                                }
+                              />
+                              <Route
+                                path="/employeeProfileDetail"
+                                element={
+                                  <PrivateRoute
+                                    element={<EmployeeProfileDetailPage />}
+                                  />
+                                }
+                              />
+                              <Route
+                                path="/employeeAllList"
+                                element={
+                                  <PrivateRoute
+                                    element={<AllListEmployeePage />}
+                                  />
+                                }
+                              />
+                            </Routes>
 
                             {/* <Footer /> */}
                           </DepartmentProvider>
