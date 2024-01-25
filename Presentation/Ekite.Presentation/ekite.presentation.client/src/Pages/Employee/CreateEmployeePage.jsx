@@ -6,9 +6,12 @@ import EmployeeWorkInfo from "../../Components/Employee/EmployeeWorkInfo";
 import { EmployeeContext } from "../../context/EmployeeContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { PageContext } from "../../context/PageContext";
 
 const CreateEmployeePage = () => {
   const { createEmployee } = useContext(EmployeeContext);
+  const { handlePrevPage } = useContext(PageContext);
+
   const navigate = useNavigate();
   const [activeFormNumber, setActiveFormNumber] = useState(0);
   const [personalInfo, setPersonalInfo] = useState({
@@ -41,7 +44,7 @@ const CreateEmployeePage = () => {
 
   useEffect(() => {
     setPersonelData(Object.assign(personalInfo, personalContact, personalWork));
-    console.log("personeldata", personelData);
+    handlePrevPage(location.pathname);
   }, [personalInfo, personalContact, personalWork]);
 
   const submitEmployeeData = async (e) => {

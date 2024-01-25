@@ -46,7 +46,7 @@ const EmployeeService = {
 
   createEmployee: async (employeeData) => {
     try {
-      console.log("🚀 ~ createEmployee: ~ employeeData:", employeeData)
+      console.log("🚀 ~ createEmployee: ~ employeeData:", employeeData);
       const token = localStorage.getItem("user");
       const response = await axios.post(
         `${url}/api/Employee/CreateEmployee`,
@@ -64,6 +64,45 @@ const EmployeeService = {
       return error.response;
     }
   },
+
+  getAllListEmployee: async (id) => {
+    try {
+      const token = localStorage.getItem("user");
+      const response = await axios.get(`${url}/api/Employee/GetAllList?id=${id}`, {
+        headers: {
+          Authorization: "Bearer " + token.replace(/"/g, ""),
+        },
+      });
+      if (response !== null) {
+        return response;
+      }
+    } catch (error) {
+      return error.response;
+    }
+  },
+
+  getAllDetailPersonel: async (id) => {
+    try {
+      console.log("getAllDetailPersonel çalıştı",id);
+      const token = localStorage.getItem("user");
+      if(token){
+        const response = await axios.get(
+          `${url}/api/Employee/GetAllDetailPersonel?id=${id}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token.replace(/"/g, ""),
+            },
+          }
+        );
+        return response;
+      }
+    } catch (error) {
+      console.error("Profil verisi çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }
+  },
+
 };
 
 export default EmployeeService;

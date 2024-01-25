@@ -10,7 +10,8 @@ function EditProfileComponent({ profileData, id }) {
   const [cityName, setCityName] = useState(profileData.city);
   const [district, setDistrict] = useState(profileData.district);
   const [addressDetail, setAddressDetail] = useState(profileData.addressDetail);
-  const { putPersonelData, putDirectorData,putSiteOwnerData } = useContext(ProfileContext);
+  const { putPersonelData, putDirectorData, putSiteOwnerData } =
+    useContext(ProfileContext);
   const { userRole } = useContext(AuthContext);
   const [uploadPath, setUploadPath] = useState(profileData.uploadPath);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -68,9 +69,8 @@ function EditProfileComponent({ profileData, id }) {
         await putPersonelData(id, formData);
       } else if (userRole === "Admin") {
         await putDirectorData(id, formData);
-      }
-      else if(userRole === "SiteOwner"){
-        await putSiteOwnerData(id,formData)
+      } else if (userRole === "SiteOwner") {
+        await putSiteOwnerData(id, formData);
       }
 
       Swal.fire({
@@ -225,11 +225,11 @@ function EditProfileComponent({ profileData, id }) {
                   </label>
                   {cities && (
                     <select
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
+                      className={
+                        darkMode
+                          ? "form-control"
+                          : "form-control bg-secondary text-dark"
+                      }
                       onChange={(e) => setCityName(e.target.value)}
                       value={cityName}
                     >
@@ -260,11 +260,11 @@ function EditProfileComponent({ profileData, id }) {
                     <>
                       {cityName && (
                         <select
-                        className={
-                          darkMode
-                            ? "form-control"
-                            : "form-control bg-secondary text-dark"
-                        }
+                          className={
+                            darkMode
+                              ? "form-control"
+                              : "form-control bg-secondary text-dark"
+                          }
                           onChange={(e) => setDistrict(e.target.value)}
                           value={district}
                         >
@@ -313,15 +313,13 @@ function EditProfileComponent({ profileData, id }) {
           <hr className="my-3" />
 
           <div className="main-content">
-            <div className="container">
-              <div className="row justify-content-end">
-                <div className="col-auto ">
-                  <input
-                    type="submit"
-                    value="Kaydet"
-                    className="btn btn-m btn-primary"
-                  />
-                </div>
+            <div className="row justify-content-end">
+              <div className="col-auto ">
+                <input
+                  type="submit"
+                  value="Kaydet"
+                  className="btn btn-m btn-primary"
+                />
               </div>
             </div>
           </div>
