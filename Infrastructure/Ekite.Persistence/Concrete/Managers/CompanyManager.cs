@@ -3,6 +3,7 @@ using Ekite.Application.DTOs.JobDto;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Persistence.Concrete.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,9 @@ namespace Ekite.Persistence.Concrete.Managers
                 {
                     Id = x.Id,
                     Name = x.Name,
+                    EmployeeCount = x.Employees.Count,
                 },
-                where: x => x.Status != Domain.Enums.Status.Passive);
+                where: x => x.Status != Domain.Enums.Status.Passive, include: q => q.Include(x => x.Employees));
 
             return result;
         }

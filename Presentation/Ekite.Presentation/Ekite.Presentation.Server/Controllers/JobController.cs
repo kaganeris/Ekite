@@ -20,5 +20,6 @@ namespace Ekite.Presentation.Server.Controllers
         {
             return Ok(await jobService.GetAllJob());
         }
+
     }
 }

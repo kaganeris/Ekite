@@ -65,7 +65,50 @@ const Sidebar = () => {
               </li>
 
               {userRole === "SiteOwner" && (
-                <span></span>
+                <li className="nav-item dropdown">
+                <a
+                  className={
+                    darkMode
+                      ? "nav-link dropdown-toggle"
+                      : "nav-link dropdown-toggle text-white"
+                  }
+                  href="#"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i className="fa fa-calendar text-red"></i>
+                  <span className="nav-link-text">Şirket İşlemleri</span>
+                </a>
+                <div
+                  className={
+                    darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"
+                  }
+                  aria-labelledby="navbarDropdown"
+                  style={
+                    darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }
+                  }
+                >
+                  <div className="container  ">
+                    <div className="row ">
+                      <div className="col">
+                        <Link
+                          className={
+                            darkMode ? "dropdown-item" : "dropdownn-item"
+                          }
+                          to={"/companyList"}
+                        >
+                          <div className="dropdown-content ">
+                            <i className="fa fa-list mr-2 text-red"></i>
+                            <span>Şirket Listele</span>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
               )}
 
               {userRole === "Admin" && (

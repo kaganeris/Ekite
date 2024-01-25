@@ -24,5 +24,8 @@ namespace Ekite.Application.Interfaces.Services
 		Task<List<ResultRejectSpendDTO>> GetRejectList();
 		Task<bool> ApproveSpend(int id);
 		Task<bool> RejectSpend(int id);
-	}
+
+		Task<List<SpendDto>> GetAllSpendCompany(int companyId);
+
+    }
 }
