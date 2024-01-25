@@ -140,13 +140,13 @@ namespace Ekite.Persistence.Concrete.Managers
 
         public async Task<string> RegisterEmployee(string firstName, string lastName)
         {
-            string email = firstName + "." + lastName + "@bilgeadamboost.com";
+            string email = TurkishToEnglishHelper.NormalizeTurkishCharacters(firstName) + "." + TurkishToEnglishHelper.NormalizeTurkishCharacters(lastName) + "@bilgeadamboost.com";
             string password = RandomPasswordGenerator.Generate();
             AppUser appUser = new AppUser()
             {
 
                 Email = email,
-                UserName = firstName + "." + lastName
+                UserName = TurkishToEnglishHelper.NormalizeTurkishCharacters(firstName) + "." + TurkishToEnglishHelper.NormalizeTurkishCharacters(lastName)
 
             };
 
