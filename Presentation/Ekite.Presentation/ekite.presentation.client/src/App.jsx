@@ -46,6 +46,10 @@ import ApprovedAdvanceListPage from "./Pages/ApprovedAdvanceList/ApprovedAdvance
 
 import PendingAdvanceListPage from "./Pages/PendingAdvanceList/PendingAdvanceListPage"
 import RejectAdvanceListPage from "./Pages/RejectAdvanceList/RejectAdvanceListPage"
+import CompanyListPage from "./Pages/Company/CompanyListPage";
+import CompanyAdvancePage from "./Pages/Company/CompanyAdvancePage";
+import CompanySpendPage from "./Pages/Company/CompanySpendPage";
+import CompanyLeavePage from "./Pages/Company/CompanyLeavePage";
 
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -197,6 +201,38 @@ function App() {
                                 element={
                                   <PrivateRoute
                                     element={<PendingSpendListPage />}
+                                  />
+                                }
+                              />
+                              <Route
+                                path="/companyList"
+                                element={
+                                  <PrivateRoute
+                                    element={<CompanyListPage />}
+                                  />
+                                }
+                              />
+                              <Route
+                                path="/companyAdvances"
+                                element={
+                                  <PrivateRoute
+                                    element={<CompanyAdvancePage />}
+                                  />
+                                }
+                              />
+                              <Route
+                                path="/companySpends"
+                                element={
+                                  <PrivateRoute
+                                    element={<CompanySpendPage />}
+                                  />
+                                }
+                              />
+                              <Route
+                                path="/companyLeaves"
+                                element={
+                                  <PrivateRoute
+                                    element={<CompanyLeavePage />}
                                   />
                                 }
                               />

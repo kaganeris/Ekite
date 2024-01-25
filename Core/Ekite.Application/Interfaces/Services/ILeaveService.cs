@@ -19,5 +19,6 @@ namespace Ekite.Application.Interfaces.Services
         Task<List<ResultRejectLeaveDTO>> GetRejectList();
         Task<bool> ApproveLeave(int id);
         Task<bool> RejectLeave(int id);
+        Task<List<LeaveDto>> GetAllLeaveCompany(int companyId);
     }
 }

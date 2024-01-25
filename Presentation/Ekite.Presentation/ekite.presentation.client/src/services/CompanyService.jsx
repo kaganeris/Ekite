@@ -16,6 +16,40 @@ const CompanyService = {
       return error.response;
     }
   },
+  getCompanyLeaves: async (id) => {
+    try {
+      const response = await axios.get(`${url}/api/Company/GetCompanyLeaves?companyID=${id}`);
+      console.log(response.data);
+      return response;
+    } catch (error) {
+      console.error("Şirket İzin bilgisi çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }
+  },
+  getCompanyAdvances: async (id) => {
+    try {
+      const response = await axios.get(`${url}/api/Company/GetCompanyAdvances?companyID=${id}`);
+      console.log(response.data);
+      return response;
+    } catch (error) {
+      console.error("Şirket Avans bilgisi çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }
+  },
+  getCompanySpends: async (id) => {
+    try {
+      const response = await axios.get(`${url}/api/Company/GetCompanySpends?companyID=${id}`);
+      console.log(response.data);
+      return response;
+    } catch (error) {
+      console.error("Şirket Harcama bilgisi çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }
+  }
+
 };
 
 export default CompanyService

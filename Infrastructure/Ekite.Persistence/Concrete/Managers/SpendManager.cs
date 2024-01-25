@@ -53,7 +53,35 @@ namespace Ekite.Persistence.Concrete.Managers
 			}
 		}
 
-		public async Task<List<ResultApprovedSpendDTO>> GetApprovedList()
+        public async Task<List<SpendDto>> GetAllSpendCompany(int companyId)
+        {
+            if(companyId > 0)
+			{
+                List<SpendDto> resultList = await _spendRepository.GetFilteredList(select: x => new SpendDto
+                {
+                    Id = x.Id,
+                    SpendType = EnumDescriber.Description(x.SpendType),
+                    FullName = x.Employee.FullName,
+					CompanyName = x.Employee.Company.Name,
+                    ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+                    ApprovedDate = x.ApprovedDate,
+                    CreatedDate = x.CreatedDate,
+                    Price = x.Amount,
+                    Currency = EnumDescriber.Description(x.Currency),
+                    ImagePath = x.ImagePath,
+                    Description = x.Description
+                }, where: x => x.Employee.CompanyId == companyId, include: q => q.Include(x => x.Employee).Include(x => x.Employee.Company));
+
+                return resultList;
+            }
+			else
+			{
+				return null;
+			}
+
+		}
+
+        public async Task<List<ResultApprovedSpendDTO>> GetApprovedList()
 		{
 			List<ResultApprovedSpendDTO> resultList = await _spendRepository.GetFilteredList(select: x => new ResultApprovedSpendDTO
 			{

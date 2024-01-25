@@ -28,9 +28,7 @@ const LeaveTable = ({ leaveList }) => {
         if (result.isConfirmed) {
           navigate("/addLeave");
         } else {
-
           navigate("/");
-
         }
       });
     } else {
@@ -107,7 +105,6 @@ const LeaveTable = ({ leaveList }) => {
                 <th scope="row">{leave.day}</th>
                 <td>
                   <span className="badge badge-dot mr-4">
-
                     <i
                       className={
                         leave.approvalStatus === "Bekleniyor"
@@ -131,30 +128,25 @@ const LeaveTable = ({ leaveList }) => {
                 )}
 
                 {leave.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right" style={{ paddingRight: '0px' }} >
-                    
+                  <td className="text-right" style={{ paddingRight: "0px" }}>
                     <a
                       className="btn btn-outline-primary"
                       onClick={() => handleUpdateLeave(leave.id)}
                     >
                       Düzenle
                     </a>
-                 
                   </td>
                 ) : (
                   <td></td>
                 )}
                 {leave.approvalStatus === "Bekleniyor" ? (
-                  <td className="text-right" style={{ paddingLeft: '0px' }} >
-                    
+                  <td className="text-right" style={{ paddingLeft: "0px" }}>
                     <a
                       className="btn btn-outline-danger "
-                      
                       onClick={() => handleDeleteLeave(leave.id)}
                     >
                       Sil
                     </a>
-                    
                   </td>
                 ) : (
                   <td></td>

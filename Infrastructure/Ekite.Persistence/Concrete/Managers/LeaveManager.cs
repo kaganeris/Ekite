@@ -226,6 +226,34 @@ namespace Ekite.Persistence.Concrete.Managers
             }
         }
 
- 
+        public async Task<List<LeaveDto>> GetAllLeaveCompany(int companyId)
+        {
+            if (companyId <= 0)
+            {
+                return null;
+            }
+            else
+            {
+                List<LeaveDto> result = await leaveRepository.GetFilteredList(
+                select: x => new LeaveDto
+                {
+                    Id = x.Id,
+                    Day = x.Day,
+                    FullName = x.Employee.FullName,
+                    CompanyName= x.Employee.Company.Name,
+                    ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+                    LeaveType = EnumDescriber.Description(x.LeaveType),
+                    CreatedDate = x.CreatedDate,
+                    UpdatedDate = x.UpdatedDate,
+                    ApprovedDate = x.ApprovedDate,
+                    LeaveEndDate = x.LeaveEndDate,
+                    LeaveStartDate = x.LeaveStartDate,
+                },
+                where: x => x.Employee.CompanyId == companyId,
+                include: x => x.Include(x => x.Employee).Include(x => x.Employee.Company));
+
+                return result;
+            }
+        }
     }
 }

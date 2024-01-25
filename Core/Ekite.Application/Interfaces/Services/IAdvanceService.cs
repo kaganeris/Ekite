@@ -27,6 +27,8 @@ namespace Ekite.Application.Interfaces.Services
 
         Task<bool> ApproveAdvance(int id);
         Task<bool> RejectAdvance(int id);
+
+        Task<List<AdvanceDto>> GetAllAdvanceCompany(int companyId);
        
 
     }
