@@ -10,6 +10,7 @@ const ForgotPasswordNewPassForm = ({appUserId ,setForgotPassword}) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
  const [passwordError,setPasswordError] = useState(null);
+ 
   const handlePassword = async (e) => {
     e.preventDefault();
 

@@ -4,7 +4,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { ThemeContext } from "../../context/ThemeContext";
-
+ 
 const CreateSpend = ({ spendTypes, currencyTypes }) => {
   const navigate = useNavigate();
   const [spendType, setSpendType] = useState(1);
@@ -12,12 +12,12 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
   const [currency, setCurrency] = useState(1);
   const [amount, setAmount] = useState(0);
   const [imagePath, setImagePath] = useState(null);
-
+ 
   const [uploadPath, setUploadPath] = useState("");
   const [isDescriptionValid, setDescriptionValid] = useState(true);
   const [isAmountValid, setAmountValid] = useState(true);
   const [isFileValid, setFileValid] = useState(true);
-
+ 
   const { addSpend } = useContext(SpendContext);
   const { id } = useContext(AuthContext);
   const { darkMode } = useContext(ThemeContext);
@@ -31,7 +31,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
     ];
     return allowedFileTypes.includes(file.type);
   };
-
+ 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -43,10 +43,10 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
       }
     }
   };
-
+ 
   const handleAddSpend = async (e) => {
     e.preventDefault();
-
+ 
     if (description && amount && uploadPath && isFileValid) {
       const spendData = {
         description: description,
@@ -56,7 +56,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
         imagePath: imagePath,
         employeeId: id,
       };
-
+ 
       console.log(spendData);
       console.log("currency", currencyTypes);
       const formData = new FormData();
@@ -93,17 +93,17 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
       });
     }
   };
-
+ 
   useEffect(() => {
     console.log("SpendType", spendTypes);
   }, []);
-
+ 
   const handleAmountChange = (e) => {
     const sanitizedValue = e.target.value.replace(/[^\d]/g, "");
     const formattedValue = new Intl.NumberFormat().format(sanitizedValue);
     setAmount(formattedValue);
   };
-
+ 
   return (
     <div className={darkMode ? "card" : "card bg-dark"}>
       <div className={darkMode ? "card-header" : "card-header bg-dark"}>
@@ -250,8 +250,8 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
             <div className="row"></div>
-
-
+ 
+ 
             <div className="row">
               <div className="col-lg-12">
                 <div className="form-group">
@@ -284,7 +284,7 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
               </div>
             </div>
           </div>
-
+ 
           <div className="main-content">
             <div className="container">
               <div className="row justify-content-end">
@@ -303,5 +303,5 @@ const CreateSpend = ({ spendTypes, currencyTypes }) => {
     </div>
   );
 };
-
+ 
 export default CreateSpend;
