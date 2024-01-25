@@ -14,10 +14,10 @@ const AuthService = {
               "password": password,
             }
           );
-          if(response.data.token){
+          if(response.data.firstLogin === false){
             console.log(response.data);
             localStorage.setItem("user",response.data.token)
-            localStorage.setItem("id", response.data.id);
+            localStorage.setItem("id", Number(response.data.id));
             localStorage.setItem("userRole",response.data.role)
           }
         console.log(response);

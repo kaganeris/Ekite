@@ -10,6 +10,8 @@ namespace Ekite.Domain.Entities
 {
     public class AppUser : IdentityUser, IBaseEntity
     {
+
+        public bool? FirstLogin { get; set; }
         public int? RenewPasswordCode { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }

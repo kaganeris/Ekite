@@ -31,24 +31,6 @@ namespace Ekite.Presentation.Server.Controllers
             _userManager = userManager;
         }
 
-        //[HttpPost]
-        //[Route("[action]")]
-        //[Authorize(Roles = "Admin,Employee,SiteOwner")]
-        //public async Task<IActionResult> Register(RegisterDTO registerDTO)
-        //{
-        //    IdentityResult result = await _appUserService.Register(registerDTO);
-
-        //    if (result.Succeeded)
-        //    {
-        //        return Ok();
-
-        //    }
-        //    else
-        //    {
-        //        return BadRequest();
-
-        //    }
-        //}
 
         [HttpPost]
         [Route("[action]")]
@@ -80,12 +62,12 @@ namespace Ekite.Presentation.Server.Controllers
 
                     return Ok(new
                     {
-
                         token = new JwtSecurityTokenHandler().WriteToken(token),
                         expiration = token.ValidTo,
                         role = role.FirstOrDefault(),
-                        id = id,
-                    });
+                        id = appUser.FirstLogin == true ? appUser.Id : id.ToString() ,
+                        firstLogin = role.FirstOrDefault() == "Employee" ? appUser.FirstLogin : false
+                    }); ;
                 }
                 else
                 {
