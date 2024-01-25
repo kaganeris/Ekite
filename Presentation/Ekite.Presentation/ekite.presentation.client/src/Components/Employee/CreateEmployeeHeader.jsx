@@ -11,9 +11,10 @@ import WorkIcon from "@mui/icons-material/Work";
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const CreateEmployeeHeader = ({ activeFormNumber }) => {
-  
+  const{darkMode} = React.useContext(ThemeContext)
   const QontoStepIconRoot = styled("div")(({ theme, ownerState }) => ({
     color: theme.palette.mode === "dark" ? theme.palette.grey[700] : "#eaeaf0",
     display: "flex",
@@ -163,7 +164,7 @@ const CreateEmployeeHeader = ({ activeFormNumber }) => {
         <Step key={label}>
           <StepLabel StepIconComponent={ColorlibStepIcon}>
             <label
-              className={index <= activeFormNumber ? "text-green" : "text-white"}
+              className={index <= activeFormNumber ? "text-green" : (darkMode ? "text-dark" : "text-white")}
             >
               {label}
             </label>

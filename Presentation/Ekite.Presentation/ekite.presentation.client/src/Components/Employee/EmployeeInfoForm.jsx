@@ -13,11 +13,7 @@ const EmployeeInfoForm = ({
 
   //FOTOGRAF MI KONTROL EDİYOR
   const validateFile = (file) => {
-    const allowedFileTypes = [
-      "image/jpeg",
-      "image/png",
-      "image/jpg",
-    ];
+    const allowedFileTypes = ["image/jpeg", "image/png", "image/jpg"];
     return allowedFileTypes.includes(file.type);
   };
 
@@ -51,34 +47,9 @@ const EmployeeInfoForm = ({
     const sanitizedValue = e.target.value.replace(/[^\d]/g, "");
     setPersonalInfo((prevInfo) => ({
       ...prevInfo,
-      tcno: sanitizedValue,
+      tCNO: sanitizedValue,
     }));
   };
-
-  // const personelEkleDeneme = async (e) => {
-  //   e.preventDefault();
-  //   if (personalInfo !== null) {
-  //     const formData = new FormData();
-  //     formData.append("firstName", personalInfo.firstName);
-  //     formData.append("lastName", personalInfo.lastName);
-  //     formData.append("secondName", personalInfo.secondName);
-  //     formData.append("secondLastName", personalInfo.secondLastName);
-  //     formData.append("birthDate", personalInfo.birthDate);
-  //     formData.append("tcno", personalInfo.tcno);
-  //     formData.append("birthPlace", personalInfo.birthPlace);
-  //     formData.append("uploadPath", personalInfo.uploadPath);
-
-  //     if (formData !== null) {
-  //       let data = await createEmployee(formData);
-  //     }
-  //   }
-  // };
-
-  useEffect(()=> {
-    console.log("🚀 ~ personalInfo:", personalInfo)
-    
-
-  },[personalInfo])
 
   return (
     <div className={darkMode ? "card" : "card bg-dark"}>
@@ -237,7 +208,7 @@ const EmployeeInfoForm = ({
                       </label>
                       <input
                         type="text"
-                        value={personalInfo.tcno}
+                        value={personalInfo.tCNO}
                         id="TC"
                         className={
                           darkMode
@@ -350,7 +321,6 @@ const EmployeeInfoForm = ({
               <div className="row justify-content-end">
                 <div className="col-auto ">
                   <input
-                    type="submit"
                     value="İleri"
                     className="btn btn-m btn-primary"
                     onClick={() => {

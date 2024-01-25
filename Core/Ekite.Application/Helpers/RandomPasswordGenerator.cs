@@ -17,28 +17,55 @@ namespace Ekite.Application.Helpers
             for (int j = 0; j < 8; j++)
             {
                 Random rnd = new Random();
-                int random = rnd.Next(0, 4);
+                if( j <= 3)
+                {
+                    if (j == 0)
+                    {
+                        char rastgeleOzelKarakter = (char)rnd.Next(33, 48);
+                        metin += rastgeleOzelKarakter;
+                    }
+                    else if (j == 1)
+                    {
+                        int rastgeleRakam = rnd.Next(0, 10);
+                        metin += rastgeleRakam.ToString();
+                    }
+                    else if (j == 2)
+                    {
+                        char rastgeleBuyukHarf = (char)rnd.Next(65, 91);
+                        metin += rastgeleBuyukHarf;
+                    }
+                    else if (j == 3)
+                    {
+                        char rastgeleKucukHarf = (char)rnd.Next(97, 122);
+                        metin += rastgeleKucukHarf;
+                    }
+                }
+                else
+                {
+                    int random = rnd.Next(0, 4);
 
-                if (random == 0)
-                {
-                    char rastgeleOzelKarakter = (char)rnd.Next(33, 48);
-                    metin += rastgeleOzelKarakter;
+                    if (random == 0)
+                    {
+                        char rastgeleOzelKarakter = (char)rnd.Next(33, 48);
+                        metin += rastgeleOzelKarakter;
+                    }
+                    else if (random == 1)
+                    {
+                        int rastgeleRakam = rnd.Next(0, 10);
+                        metin += rastgeleRakam.ToString();
+                    }
+                    else if (random == 2)
+                    {
+                        char rastgeleBuyukHarf = (char)rnd.Next(65, 91);
+                        metin += rastgeleBuyukHarf;
+                    }
+                    else if (random == 3)
+                    {
+                        char rastgeleKucukHarf = (char)rnd.Next(97, 122);
+                        metin += rastgeleKucukHarf;
+                    }
                 }
-                else if (random == 1)
-                {
-                    int rastgeleRakam = rnd.Next(0, 10);
-                    metin += rastgeleRakam.ToString();
-                }
-                else if (random == 2)
-                {
-                    char rastgeleBuyukHarf = (char)rnd.Next(65, 91);
-                    metin += rastgeleBuyukHarf;
-                }
-                else if (random == 3)
-                {
-                    char rastgeleKucukHarf = (char)rnd.Next(97, 122);
-                    metin += rastgeleKucukHarf;
-                }
+                
             }
 
             return metin;

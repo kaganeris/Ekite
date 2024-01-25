@@ -64,87 +64,9 @@ const Sidebar = () => {
                 </Link>
               </li>
 
-                {userRole==="SiteOwner" && ( <li className="nav-item dropdown ">
-                    <a
-                      className={
-                        darkMode
-                          ? "nav-link dropdown-toggle"
-                          : "nav-link dropdown-toggle text-white"
-                      }
-                      href="#"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <i className="fa fa-calendar text-red"></i>
-                      <span className="nav-link-text">Personel İşlemleri</span>
-                    </a>
-                    <div
-                      className={
-                        darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"
-                      }
-                      aria-labelledby="navbarDropdown"
-                      style={
-                        darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }
-                      }
-                    >
-                      <div className="container  ">
-                        <div className="row " style={{ fontSize: "small" }}>
-
-
-                          <div className="col  ">
-                            <Link
-                              className={
-                                darkMode ? "dropdown-item" : "dropdownn-item"
-                              }
-                              to={"/createEmployee"}
-                            >
-                              <div className="dropdown-content ">
-                                <i className="fa-solid fa-check text-green mr-2"></i>
-                                <span>Personel Ekle</span>
-                              </div>
-                            </Link>
-                          </div>
-
-
-                          <div className="col">
-                            <Link
-                              className={
-                                darkMode ? "dropdown-item" : "dropdownn-item"
-                              }
-                              to={"/pendingLeaveList"}
-                            >
-                              <div className="dropdown-content ">
-                                <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
-                                <span> Personel Güncelle</span>
-                              </div>
-                            </Link>
-                          </div>
-
-
-
-                          <div className="col">
-                            <Link
-                              className={
-                                darkMode ? "dropdown-item" : "dropdownn-item"
-                              }
-                              to={"/rejectLeaveList"}
-                            >
-                              <div className="dropdown-content ">
-                                <i className="fa-solid fa-x text-red mr-2"></i>
-                                <span> Personel Sil</span>
-                              </div>
-                            </Link>
-                          </div>
-
-
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </li> )}
-
+              {userRole === "SiteOwner" && (
+                <span></span>
+              )}
 
               {userRole === "Admin" && (
                 <>
@@ -289,6 +211,78 @@ const Sidebar = () => {
                       </div>
                     </div>
                   </li>
+                  <li className="nav-item dropdown ">
+                  <a
+                    className={
+                      darkMode
+                        ? "nav-link dropdown-toggle"
+                        : "nav-link dropdown-toggle text-white"
+                    }
+                    href="#"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="fa fa-calendar text-red"></i>
+                    <span className="nav-link-text">Personel İşlemleri</span>
+                  </a>
+                  <div
+                    className={
+                      darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"
+                    }
+                    aria-labelledby="navbarDropdown"
+                    style={
+                      darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }
+                    }
+                  >
+                    <div className="container  ">
+                      <div className="row " style={{ fontSize: "small" }}>
+                        <div className="col  ">
+                          <Link
+                            className={
+                              darkMode ? "dropdown-item" : "dropdownn-item"
+                            }
+                            to={"/createEmployee"}
+                          >
+                            <div className="dropdown-content ">
+                              <i className="fa-solid fa-check text-green mr-2"></i>
+                              <span>Personel Ekle</span>
+                            </div>
+                          </Link>
+                        </div>
+
+                        <div className="col">
+                          <Link
+                            className={
+                              darkMode ? "dropdown-item" : "dropdownn-item"
+                            }
+                            to={"/pendingLeaveList"}
+                          >
+                            <div className="dropdown-content ">
+                              <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
+                              <span> Personel Güncelle</span>
+                            </div>
+                          </Link>
+                        </div>
+
+                        <div className="col">
+                          <Link
+                            className={
+                              darkMode ? "dropdown-item" : "dropdownn-item"
+                            }
+                            to={"/rejectLeaveList"}
+                          >
+                            <div className="dropdown-content ">
+                              <i className="fa-solid fa-x text-red mr-2"></i>
+                              <span> Personel Sil</span>
+                            </div>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
                 </>
               )}
 
@@ -491,8 +485,6 @@ const Sidebar = () => {
                   </li>
                 </>
               )}
-
-
             </ul>
             <hr className={darkMode ? "my-3" : "my-3  bg-white"} />
           </div>

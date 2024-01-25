@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { AddressContext } from "../../context/AddressContext";
 
 const EmployeeContactForm = ({
   activeFormNumber,
@@ -10,10 +11,20 @@ const EmployeeContactForm = ({
   setPersonalContact,
 }) => {
   const { darkMode } = useContext(ThemeContext);
+  const [cities, setCities] = useState(null);
+  const [districts, setDistricts] = useState(null);
+  const { getCities, getDistricts } = useContext(AddressContext);
 
   useEffect(() => {
-    console.log("🚀 ~ personalInfo:", personalContact);
-  }, [personalContact]);
+    (async () => {
+      if (cities === null) {
+        const data = await getCities();
+        setCities(data);
+      }
+      const districtData = await getDistricts(personalContact.city);
+      setDistricts(districtData);
+    })();
+  }, [personalContact.city]);
 
   return (
     <div className={darkMode ? "card" : "card bg-dark"}>
@@ -30,41 +41,6 @@ const EmployeeContactForm = ({
         <form encType="multipart/form-data">
           <div className="pl-lg-4">
             <div className="row">
-              <div className="col-lg-12">
-                <div className="form-group">
-                  <label
-                    className={
-                      darkMode
-                        ? "form-control-label"
-                        : "form-control-label text-white"
-                    }
-                    htmlFor="phone"
-                  >
-                    Telefon Numarası
-                  </label>
-                  <PhoneInput
-                    country={"us"}
-                    value={personalContact.phoneNumber}
-                    id="phone"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    onChange={(e) =>
-                      setPersonalContact((prevInfo) => ({
-                        ...prevInfo,
-                        phoneNumber: e,
-                      }))
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-
-      
-
-            <div className="row">
               <div className="col-lg-6">
                 <div className="form-group">
                   <label
@@ -73,14 +49,12 @@ const EmployeeContactForm = ({
                         ? "form-control-label"
                         : "form-control-label text-white"
                     }
-                    htmlFor="city"
+                    htmlFor="input-city"
                   >
-                    İl
+                    Şehir
                   </label>
-                  <input
-                    type="text"
-                    value={personalContact.city}
-                    id="city"
+                  {cities && (
+                    <select
                     className={
                       darkMode
                         ? "form-control"
@@ -92,7 +66,17 @@ const EmployeeContactForm = ({
                         city: e.target.value,
                       }))
                     }
-                  />
+                      value={personalContact.city}
+                    >
+                      {cities.map((city) => {
+                        return (
+                          <option key={city.id} value={city.name}>
+                            {city.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
                 </div>
               </div>
 
@@ -104,31 +88,41 @@ const EmployeeContactForm = ({
                         ? "form-control-label"
                         : "form-control-label text-white"
                     }
-                    htmlFor="district"
+                    htmlFor="input-country"
                   >
                     İlçe
                   </label>
-                  <input
-                    type="text"
-                    value={personalContact.district}
-                    id="district"
-                    className={
-                      darkMode
-                        ? "form-control"
-                        : "form-control bg-secondary text-dark"
-                    }
-                    onChange={(e) =>
-                      setPersonalContact((prevInfo) => ({
-                        ...prevInfo,
-                        district: e.target.value,
-                      }))
-                    }
-                  />
+                  {districts && (
+                    <>
+                      {personalContact.city && (
+                        <select
+                        className={
+                          darkMode
+                            ? "form-control"
+                            : "form-control bg-secondary text-dark"
+                        }
+                        onChange={(e) =>
+                          setPersonalContact((prevInfo) => ({
+                            ...prevInfo,
+                            district: e.target.value,
+                          }))
+                        }
+                          value={personalContact.district}
+                        >
+                          {districts.map((district) => (
+                            <option key={district.id} value={district.name}>
+                              {district.name}
+                            </option>
+                          ))}
+                        </select>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-12">
+              <div className="col-lg-6">
                 <div className="form-group">
                   <label
                     className={
@@ -158,6 +152,37 @@ const EmployeeContactForm = ({
                   />
                 </div>
               </div>
+              <div className="col-lg-6">
+                <div className="form-group">
+                  <label
+                    className={
+                      darkMode
+                        ? "form-control-label"
+                        : "form-control-label text-white"
+                    }
+                    htmlFor="phone"
+                  >
+                    Telefon Numarası
+                  </label>
+                  <PhoneInput
+                    country={"tr"}
+                    inputStyle={darkMode ? {background:"#fff ",height:"max-content",width:"inherit"}: {background:"#cdcfd1 ",height:"max-content",width:"inherit",color:"black"}}
+                    value={personalContact.phoneNumber}
+                    id="phone"
+                    className={
+                      darkMode
+                        ? ""
+                        : "text-dark"
+                    }
+                    onChange={(e) =>
+                      setPersonalContact((prevInfo) => ({
+                        ...prevInfo,
+                        phoneNumber: e,
+                      }))
+                    }
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -166,7 +191,7 @@ const EmployeeContactForm = ({
               <div className="row justify-content-between">
                 <div className="col-auto ">
                   <input
-                    type="submit"
+                  type="button"
                     value="Geri"
                     className="btn btn-m btn-primary"
                     onClick={() => {
@@ -176,7 +201,7 @@ const EmployeeContactForm = ({
                 </div>
                 <div className="col-auto ">
                   <input
-                    type="submit"
+                  type="button"
                     value="İleri"
                     className="btn btn-m btn-primary"
                     onClick={() => {
