@@ -2,6 +2,7 @@
 using Ekite.Application.Helpers;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Application.Validators.AdvanceValidations;
+using Ekite.Domain.Entities;
 using Ekite.Domain.Enums;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
@@ -148,6 +149,86 @@ namespace Ekite.Presentation.Server.Controllers
             return BadRequest("Avans silinirken hata oluştu.");
 
         }
+
+        //GetRejectList, GetApprovedList, GetPendingList
+        //ApprovedAdvance, RejectAdvance
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> GetRejectList()
+        {
+            return Ok(await _advanceService.GetRejectList());
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> GetApprovedList()
+        {
+            return Ok(await _advanceService.GetApprovedList());
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize(Roles = "Admin,Employee")]
+        public async Task<IActionResult> GetPendingList()
+        {
+            return Ok(await _advanceService.GetPendingList());
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize(Roles ="Admin")]
+        public async Task<IActionResult> ApprovedAdvance(int id)
+        {
+            if (id>0)
+            {
+                var result = await _advanceService.ApproveAdvance(id);
+                if (result !=null)
+                {
+                    return Ok("işlem başarılı");
+                }
+                else
+                {
+                    return BadRequest("işlem başarısız");
+                }
+
+            }
+            else
+            {
+                return BadRequest("id bulunamadı!");
+            }
+         
+            
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> RejectAdvance(int id)
+        {
+            if (id > 0)
+            {
+                var result = await _advanceService.RejectAdvance(id);
+                if (result != null)
+                {
+                    return Ok("işlem başarılı");
+                }
+                else
+                {
+                    return BadRequest("işlem başarısız");
+                }
+
+            }
+            else
+            {
+                return BadRequest("id bulunamadı!");
+            }
+
+
+        }
+
 
     }
 }
