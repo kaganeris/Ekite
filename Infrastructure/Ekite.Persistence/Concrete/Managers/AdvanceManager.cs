@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Ekite.Application.DTOs.AdvanceDto;
+using Ekite.Application.Helpers;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
 using Ekite.Domain.Entities;
 using Ekite.Domain.Enums;
 using Ekite.Persistence.Concrete.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -145,6 +147,100 @@ namespace Ekite.Persistence.Concrete.Managers
                 return false;
             }
 
+        }
+
+        public async Task<List<ResultApprovedAdvanceDTO>> GetApprovedList()
+        {
+            List<ResultApprovedAdvanceDTO> resultList = await _advanceRepository.GetFilteredList(select: x => new ResultApprovedAdvanceDTO
+            {
+                Id = x.Id,
+                FullName= x.Employee.FullName,
+                ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+                Currency = EnumDescriber.Description(x.Currency),
+                AdvanceType = EnumDescriber.Description(x.AdvanceType),
+                Amount = x.Amount,
+                CreatedDate = x.CreatedDate,
+                ApprovalDate = x.ApprovalDate,
+                Description = x.Description
+
+
+
+            }, where: x => x.ApprovalStatus == ApprovalStatus.Approved, include: q => q.Include(x => x.Employee));
+            return resultList;  
+
+        }
+
+        public async Task<bool> ApproveAdvance(int id)
+        {
+            if (id > 0)
+            {
+                Advance advance = await _advanceRepository.GetById(id);
+                advance.ApprovalStatus = ApprovalStatus.Approved;
+                advance.ApprovalDate = DateTime.Now;
+                return await _advanceRepository.UpdateWithoutStatus(advance);
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<ResultPendingAdvanceDTO>> GetPendingList()
+        {
+            List<ResultPendingAdvanceDTO> resultList = await _advanceRepository.GetFilteredList(select: x => new ResultPendingAdvanceDTO
+            {
+                Id = x.Id,
+                FullName = x.Employee.FullName,
+                ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+                Currency = EnumDescriber.Description(x.Currency),
+                AdvanceType = EnumDescriber.Description(x.AdvanceType),
+                Amount = x.Amount,
+                CreatedDate = x.CreatedDate,
+                Description = x.Description
+
+            }, where: x => x.ApprovalStatus == ApprovalStatus.Pending, include: q => q.Include(x=>x.Employee));
+
+            return resultList;
+
+
+        }
+
+        
+
+       
+
+        public async Task<List<ResultRejectAdvanceDTO>> GetRejectList()
+        {
+            List<ResultRejectAdvanceDTO> resultList = await _advanceRepository.GetFilteredList(select: x => new ResultRejectAdvanceDTO
+            {
+                Id = x.Id,
+                FullName = x.Employee.FullName,
+                ApprovalStatus = EnumDescriber.Description(x.ApprovalStatus),
+                Currency = EnumDescriber.Description(x.Currency),
+                AdvanceType = EnumDescriber.Description(x.AdvanceType),
+                Amount = x.Amount,
+                CreatedDate = x.CreatedDate,
+                Description = x.Description,
+                ApprovalDate = x.ApprovalDate,
+
+            }, where: x => x.ApprovalStatus == ApprovalStatus.Rejected, include: q => q.Include(x => x.Employee));
+            return resultList;
+        }
+
+        public async Task<bool> RejectAdvance(int id)
+        {
+            if (id > 0)
+            {
+                Advance advance = await _advanceRepository.GetById(id);
+                advance.ApprovalStatus=ApprovalStatus.Rejected; 
+                advance.ApprovalDate = DateTime.Now;
+                return await _advanceRepository.UpdateWithoutStatus(advance);
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

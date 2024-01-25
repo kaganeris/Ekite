@@ -21,5 +21,13 @@ namespace Ekite.Application.Interfaces.Services
 
         Task<UpdateAdvanceDTO> GetUpdateAdvance(int id);
 
+        Task<List<ResultApprovedAdvanceDTO>> GetApprovedList();
+        Task<List<ResultPendingAdvanceDTO>> GetPendingList();
+        Task<List<ResultRejectAdvanceDTO>> GetRejectList();
+
+        Task<bool> ApproveAdvance(int id);
+        Task<bool> RejectAdvance(int id);
+       
+
     }
 }

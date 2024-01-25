@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { SpendContext } from "../../context/SpendContext";
 import Swal from "sweetalert2";
+import {ThemeContext} from "../../context/ThemeContext"
 
 const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
     const { rejectSpendProcess, approveSpendProcess } = useContext(SpendContext);
+    const {darkMode} = useContext(ThemeContext)
 
     const formatDate = (inputDate) => {
         const date = new Date(inputDate);
@@ -25,7 +27,7 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Harcama Baþarýyla Onaylandý",
+                        title: "Harcama BaÅŸarÄ±yla OnaylandÄ±",
                         showConfirmButton: false,
                         timer: 2000,
                     });
@@ -34,7 +36,7 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
             } catch (error) {
                 Swal.fire({
                     icon: "error",
-                    title: "Harcama Onaylama Ýþlemi Baþarýsýz",
+                    title: "Harcama Onaylama Ä°ÅŸlemi BaÅŸarÄ±sÄ±z",
                 });
             }
         } else {
@@ -44,7 +46,7 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
-                        title: "Harcama Baþarýyla Reddedildi",
+                        title: "Harcama BaÅŸarÄ±yla Reddedildi",
                         showConfirmButton: false,
                         timer: 2000,
                     });
@@ -53,7 +55,7 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
             } catch (error) {
                 Swal.fire({
                     icon: "error",
-                    title: "Harcama Reddetme Ýþlemi Baþarýsýz",
+                    title: "Harcama Reddetme Ä°ÅŸlemi BaÅŸarÄ±sÄ±z",
                 });
             }
         }
@@ -63,8 +65,8 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
     return (
         <div className="table-responsive">
             {pendingSpendList && (
-                <table className="table align-items-center bg-dark text-white table-flush">
-                    <thead className="thead-dark">
+                <table className={darkMode? "table align-items-center table-dark text-black table-flush":"table align-items-center bg-dark text-white table-flush"}>
+                    <thead className={darkMode ? "thead-dark" : "bg-dark"}>
                         <tr>
                             <th scope="col" className="sort">
                                 Ad Soyad
@@ -89,7 +91,7 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
                                 Talep Tarihi
                             </th>
                             <th scope="col" className="sort" data-sort="completion">
-                                Açýklama
+                                AÃ§Ä±klama
                             </th>
 
                             <th scope="col"></th>
@@ -124,7 +126,7 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
                                         href={spend.imagePath}
                                         target="_blank"
                                     >
-                                        Görüntüle
+                                        GÃ¶rÃ¼ntÃ¼le
                                     </a>
                                 </td>
 
