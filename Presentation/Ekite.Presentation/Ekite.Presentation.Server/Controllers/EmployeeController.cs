@@ -105,7 +105,7 @@ namespace Ekite.Presentation.Server.Controllers
                 }
                 else
                 {
-                    return BadRequest("Beklenmedik bir hata oluştu!");
+                    return BadRequest(error: "Beklenmedik bir hata oluştu!");
                 }
             }
             else
