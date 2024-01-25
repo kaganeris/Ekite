@@ -70,9 +70,8 @@ const {darkMode}=useContext(ThemeContext)
               Talep Edilme Tarihi
             </th>   
             <th scope="col" className="sort" data-sort="completion">
-              İşlem Tarihi
+              Reddedilme Tarihi
             </th>                  
-            <th scope="col"></th>
             <th scope="col"></th>
           </tr>
         </thead>

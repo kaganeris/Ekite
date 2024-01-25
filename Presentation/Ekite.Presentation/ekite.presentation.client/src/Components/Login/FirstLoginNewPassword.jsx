@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { EmployeeContext } from "../../context/EmployeeContext";
 import { AuthContext } from "../../context/AuthContext";
-import { Link,Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ForgotPasswordNewPassHeader from "./ForgotPasswordNewPassHeader";
 
 const FirstLoginNewPassword = () => {
@@ -13,7 +13,6 @@ const FirstLoginNewPassword = () => {
   const [passwordError, setPasswordError] = useState(null);
   const { id } = useContext(AuthContext);
 
-  const navigate = useNavigate();  
 
   const handlePassword = async (e) => {
     e.preventDefault();
@@ -25,12 +24,14 @@ const FirstLoginNewPassword = () => {
         confirmPassword: confirmPassword,
       };
       let success = await sendPassword(data);
-      
+
       if (success.status === 200) {
         location.reload();
       } else {
         setPasswordError(success.data);
+
         if (success.data !== null) {
+
         }
       }
     }

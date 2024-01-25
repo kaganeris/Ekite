@@ -93,8 +93,6 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
                             <th scope="col" className="sort" data-sort="completion">
                                 Açıklama
                             </th>
-
-                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>

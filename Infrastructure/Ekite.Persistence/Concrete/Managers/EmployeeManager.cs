@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
+using Ekite.Application.DTOs.DirectorDto;
 using Ekite.Application.DTOs.EmployeeDto;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
@@ -17,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,12 +29,14 @@ namespace Ekite.Persistence.Concrete.Managers
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _mapper;
         private readonly IAppUserService appUserService;
+        private readonly IDirectorService _directorService;
 
-        public EmployeeManager(IEmployeeRepository employeeRepository, IMapper mapper, IAppUserService appUserService)
+        public EmployeeManager(IEmployeeRepository employeeRepository, IMapper mapper, IAppUserService appUserService, IDirectorService directorService)
         {
             _employeeRepository = employeeRepository;
             _mapper = mapper;
             this.appUserService = appUserService;
+            _directorService = directorService;
         }
 
         public Task<List<Employee>> TGetAll(Expression<Func<Employee, bool>> expression = null)
@@ -299,5 +303,60 @@ namespace Ekite.Persistence.Concrete.Managers
             }
         }
 
+        public async Task<List<AllListEmployeeDto>> GetAllEmployee(int id)
+        {
+            ResultDetailDirectorDto director = await _directorService.GetDetailDirector(id);
+            List<AllListEmployeeDto> resultSum = await _employeeRepository.GetFilteredList(select: x => new AllListEmployeeDto
+            {
+                FullName = (x.FirstName + " " + x.SecondName).Trim(' ') + " " + (x.LastName + " " + x.SecondName).Trim(' '),
+                BirthDate = x.BirthDate,
+                BirthPlace = x.BirthPlace,
+                Department = x.Department.Name,
+                EmployeeID = x.Id,
+                Job = x.Job.Name
+
+            }, where: x => x.Status != Status.Passive && x.Company.Name == director.CompanyName, include: q => q.Include(x => x.AppUser).Include(x => x.Department).Include(x => x.Job).Include(x => x.Company));
+
+
+            return resultSum;
+
+
+        }
+
+        public async Task<ResultAllDetailEmployeeDto> GetAllDetailEmployee(int id)
+        {
+
+            if (id > 0)
+            {
+
+                ResultAllDetailEmployeeDto resultSum = await _employeeRepository.GetFilteredFirstOrDefault(select: x => new ResultAllDetailEmployeeDto
+                {
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    SecondLastName = x.SecondLastName,
+                    SecondName = x.SecondName,
+                    Address = x.Address,
+                    DepartmentName = x.Department.Name,
+                    JobName = x.Job.Name,
+                    Email = x.AppUser.Email,
+                    PhoneNumber = x.PhoneNumber,
+                    BirthDate = x.BirthDate,
+                    BirthPlace = x.BirthPlace,
+                    CompanyName = x.Company.Name,
+                    HireDate = x.HireDate,
+                    ImagePath = x.ImagePath,
+                    LeavingDate = x.LeavingDate,
+                    TCNO = x.TCNO,
+                    Salary = x.Salary,
+
+                }, where: x => x.Id == id && x.Status != Status.Passive, include: q => q.Include(x => x.AppUser).Include(x => x.Department).Include(x => x.Job));
+
+                return resultSum;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

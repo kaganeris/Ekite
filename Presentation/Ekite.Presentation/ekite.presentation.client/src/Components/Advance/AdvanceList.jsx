@@ -88,7 +88,7 @@ const AdvanceList = ({ advanceList }) => {
                 Talep Edilme Tarihi
               </th>
               <th scope="col" className="sort">
-                Onaylanma Tarihi
+                İşlem Tarihi
               </th>
               <th scope="col"></th>
               <th scope="col"></th>

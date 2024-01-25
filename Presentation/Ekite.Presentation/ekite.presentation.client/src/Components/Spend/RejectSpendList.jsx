@@ -70,7 +70,6 @@ const RejectSpendList = ({ rejectSpendList, setRejectSpendList }) => {
                                 Reddedilme Tarihi
                             </th>
                             <th scope="col"></th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody className="list">

@@ -4663,6 +4663,9 @@ input[type='button'].btn-block
     border-top: 1px solid #e9ecef;
 }
 
+
+
+
 .dropdown-item
 {
     font-weight: 400;
@@ -4675,7 +4678,7 @@ input[type='button'].btn-block
 
     text-align: inherit;
     white-space: nowrap;
-
+   font-size: "small";
     color: #212529;
     border: 0; 
     background-color: transparent;
@@ -4710,6 +4713,7 @@ input[type='button'].btn-block
 
     display: block;
     clear: both;
+    font-size: "small";
 
     width: 100%;
     padding: .5rem ;
@@ -19913,12 +19917,12 @@ a.btn-icon-only
 {
     min-width: 12rem;
 }
-.dropdown-menu .dropdown-item
+/* .dropdown-menu .dropdown-item
 {
     font-size: .875rem; 
 
     padding: .5rem 1rem;
-}
+} */
 .dropdown-menu .dropdown-item > i,
 .dropdown-menu .dropdown-item > svg
 {

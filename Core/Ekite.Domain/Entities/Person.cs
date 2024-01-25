@@ -12,8 +12,7 @@ namespace Ekite.Domain.Entities
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		[NotMapped]
-		public string? FullName { get { return FirstName + " " + LastName; } }
-		
+		public string? FullName { get { return FirstName + " " + LastName; } }		
 		public string? SecondName { get; set; }
 		public string? SecondLastName { get; set; }
 		public DateTime BirthDate { get; set; }
