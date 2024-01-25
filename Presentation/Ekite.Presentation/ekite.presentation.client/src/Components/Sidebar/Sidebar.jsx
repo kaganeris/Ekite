@@ -22,8 +22,8 @@ const Sidebar = () => {
         aria-labelledby="sidebar-label"
       >
         <div className="sidenav-header align-items-center">
-          <a
-            href="/"
+          <Link
+             to={"/"}
             className="d-flex justify-content-center  align-items-center p-3"
           >
             <img
@@ -31,7 +31,7 @@ const Sidebar = () => {
               className="img-fluid"
               style={{ width: "40%" }}
             />
-          </a>
+          </Link>
         </div>
         <div className="navbar-inner">
           <div className="collapse navbar-collapse" id="sidenav-collapse-main">
