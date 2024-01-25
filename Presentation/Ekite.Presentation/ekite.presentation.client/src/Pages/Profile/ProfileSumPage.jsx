@@ -7,7 +7,7 @@ import { PageContext } from "../../context/PageContext";
 
 const ProfileSumPage = () => {
 
-    const {fetchData,getDirectorById} = useContext(ProfileContext)
+    const {fetchData,getDirectorById,getSiteOwnerById} = useContext(ProfileContext)
     const { id, setId,userRole } =
     useContext(AuthContext);
     const [profileData, setProfileData] = useState(null);
@@ -26,6 +26,10 @@ const ProfileSumPage = () => {
           else if(userRole === "Admin"){
             let data = await getDirectorById(id)
             console.log(data);
+            setProfileData(data)
+          }
+          else if(userRole === "SiteOwner"){
+            let data = await getSiteOwnerById(id)
             setProfileData(data)
           }
         } catch (error) {}

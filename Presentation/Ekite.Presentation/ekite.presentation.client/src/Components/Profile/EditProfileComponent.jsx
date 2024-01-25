@@ -10,7 +10,7 @@ function EditProfileComponent({ profileData, id }) {
   const [cityName, setCityName] = useState(profileData.city);
   const [district, setDistrict] = useState(profileData.district);
   const [addressDetail, setAddressDetail] = useState(profileData.addressDetail);
-  const { putPersonelData, putDirectorData } = useContext(ProfileContext);
+  const { putPersonelData, putDirectorData,putSiteOwnerData } = useContext(ProfileContext);
   const { userRole } = useContext(AuthContext);
   const [uploadPath, setUploadPath] = useState(profileData.uploadPath);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -68,6 +68,9 @@ function EditProfileComponent({ profileData, id }) {
         await putPersonelData(id, formData);
       } else if (userRole === "Admin") {
         await putDirectorData(id, formData);
+      }
+      else if(userRole === "SiteOwner"){
+        await putSiteOwnerData(id,formData)
       }
 
       Swal.fire({

@@ -12,7 +12,7 @@ namespace Ekite.Application.Interfaces.Services
     public interface IAppUserService
     {
 
-        Task<IdentityResult> Register(RegisterDTO model);
+        Task<string> RegisterEmployee(string firstName,string lastName);
 
         Task<SignInResult> Login(LoginDTO model);
 

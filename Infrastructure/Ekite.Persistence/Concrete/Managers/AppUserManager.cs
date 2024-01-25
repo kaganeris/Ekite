@@ -79,7 +79,7 @@ namespace Ekite.Persistence.Concrete.Managers
                 //appUser.PasswordHash = _userManager.PasswordHasher.HashPassword(appUser, newPasswordEmployeeDto.Password);
                 //IdentityResult result = await _userManager.UpdateAsync(appUser);
 
-                IdentityResult result =  await  _userManager.ResetPasswordAsync(appUser, await _userManager.GeneratePasswordResetTokenAsync(appUser), newPasswordEmployeeDto.Password);
+                IdentityResult result = await _userManager.ResetPasswordAsync(appUser, await _userManager.GeneratePasswordResetTokenAsync(appUser), newPasswordEmployeeDto.Password);
 
                 return result;
             }
@@ -138,24 +138,31 @@ namespace Ekite.Persistence.Concrete.Managers
             }
         }
 
-        public async Task<IdentityResult> Register(RegisterDTO model)
+        public async Task<string> RegisterEmployee(string firstName, string lastName)
         {
+            string email = TurkishToEnglishHelper.NormalizeTurkishCharacters(firstName) + "." + TurkishToEnglishHelper.NormalizeTurkishCharacters(lastName) + "@bilgeadamboost.com";
+            string password = RandomPasswordGenerator.Generate();
             AppUser appUser = new AppUser()
             {
 
-                Email = model.Email,
-                UserName = model.Email
+                Email = email,
+                UserName = TurkishToEnglishHelper.NormalizeTurkishCharacters(firstName) + "." + TurkishToEnglishHelper.NormalizeTurkishCharacters(lastName)
 
             };
 
-            IdentityResult result = await _userManager.CreateAsync(appUser, model.Password);
+            IdentityResult result = await _userManager.CreateAsync(appUser, password);
 
             if (result.Succeeded)
             {
+                MailHelper.SendNewEmpInfo(email, password);
                 await _userManager.AddToRoleAsync(appUser, "Employee");
+                return appUser.Id;
+            }
+            else
+            {
+                return null;
             }
 
-            return result;
         }
 
         public async Task<string> SendRenewPasswordCode(string email)
@@ -177,7 +184,7 @@ namespace Ekite.Persistence.Concrete.Managers
                     IdentityResult result = await _userManager.UpdateAsync(appUser);
                     if (result.Succeeded)
                     {
-                        MailHelper.Send(email, code);
+                        MailHelper.SendRenewPassword(email, code);
                     }
 
                     return appUser.Id;

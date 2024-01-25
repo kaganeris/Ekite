@@ -31,24 +31,24 @@ namespace Ekite.Presentation.Server.Controllers
             _userManager = userManager;
         }
 
-        [HttpPost]
-        [Route("[action]")]
-        [Authorize(Roles = "Admin,Employee,SiteOwner")]
-        public async Task<IActionResult> Register(RegisterDTO registerDTO)
-        {
-            IdentityResult result = await _appUserService.Register(registerDTO);
+        //[HttpPost]
+        //[Route("[action]")]
+        //[Authorize(Roles = "Admin,Employee,SiteOwner")]
+        //public async Task<IActionResult> Register(RegisterDTO registerDTO)
+        //{
+        //    IdentityResult result = await _appUserService.Register(registerDTO);
 
-            if (result.Succeeded)
-            {
-                return Ok();
+        //    if (result.Succeeded)
+        //    {
+        //        return Ok();
 
-            }
-            else
-            {
-                return BadRequest();
+        //    }
+        //    else
+        //    {
+        //        return BadRequest();
 
-            }
-        }
+        //    }
+        //}
 
         [HttpPost]
         [Route("[action]")]

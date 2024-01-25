@@ -1,4 +1,4 @@
-﻿using Ekite.Application.DTOs.DirectorDto;
+﻿
 using Ekite.Application.DTOs.SiteOwnerDto;
 using System;
 using System.Collections.Generic;
@@ -13,5 +13,6 @@ namespace Ekite.Application.Interfaces.Services
         Task<ResultSumSiteOwnerDto> GetSumSiteOwner(int id);
         Task<ResultDetailSiteOwner> GetDetailSiteOwner(int id);
         Task<UpdateSiteOwnerDto> GetUpdateSiteOwner(int id);
+        Task<bool> TUpdate(int id, UpdateSiteOwnerDto entity);
     }
 }

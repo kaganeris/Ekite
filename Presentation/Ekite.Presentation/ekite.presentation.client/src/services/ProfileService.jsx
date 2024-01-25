@@ -85,6 +85,24 @@ const ProfileService = {
 
       return error.response;
     }
+  },getUpdateSiteOwnerByID: async (id) => {
+    try {
+      const token = localStorage.getItem("user");
+      const response = await axios.get(
+        `${url}/api/SiteOwner/GetUpdateSiteOwner?id=${id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+        );
+        console.log(response);
+      return response;
+    } catch (error) {
+      console.error("Profil verisi çekilirken bir hata oluştu", error.message);
+
+      return error.response;
+    }
   },
 
   putUpdatePersonelById: async (id, data) => {
@@ -113,6 +131,25 @@ const ProfileService = {
       const token = localStorage.getItem("user");
       const response = await axios.put(
         `${url}/api/Director/PutUpdateDirector?id=${id}`,
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+          },
+        }
+      );
+
+      return response;
+    } catch (error) {
+      return error.response;
+    }
+  },
+  putUpdateSiteOwnerById: async (id,data) => {
+    try {
+      const token = localStorage.getItem("user");
+      const response = await axios.put(
+        `${url}/api/SiteOwner/PutUpdateSiteOwner?id=${id}`,
         data,
         {
           headers: {

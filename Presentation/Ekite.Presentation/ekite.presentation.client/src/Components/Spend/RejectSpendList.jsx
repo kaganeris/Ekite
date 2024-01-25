@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
 import { SpendContext } from '../../context/SpendContext';
 import Swal from 'sweetalert2';
+import { ThemeContext } from '../../context/ThemeContext'
 
 const RejectSpendList = ({ rejectSpendList, setRejectSpendList }) => {
+    const{darkMode}=useContext(ThemeContext)
 
     const { approveSpendProcess } = useContext(SpendContext)
 
@@ -24,7 +26,7 @@ const RejectSpendList = ({ rejectSpendList, setRejectSpendList }) => {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Harcama Baþarýyla Onaylandý",
+                title: "Harcama BaÅŸarÄ±yla OnaylandÄ±",
                 showConfirmButton: false,
                 timer: 2000,
             });
@@ -32,7 +34,7 @@ const RejectSpendList = ({ rejectSpendList, setRejectSpendList }) => {
         } catch (error) {
             Swal.fire({
                 icon: "error",
-                title: "Harcama Onaylama Ýþlemi Baþarýsýz",
+                title: "Harcama Onaylama Ä°ÅŸlemi BaÅŸarÄ±sÄ±z",
             });
         }
     };
@@ -40,8 +42,8 @@ const RejectSpendList = ({ rejectSpendList, setRejectSpendList }) => {
     return (
         <div className="table-responsive">
             {rejectSpendList && (
-                <table className="table align-items-center bg-dark text-white table-flush">
-                    <thead className="thead-dark">
+                <table className={darkMode? "table align-items-center table-dark text-black table-flush":"table align-items-center bg-dark text-white table-flush"}>
+                    <thead className={darkMode ? "thead-dark" : "bg-dark"}>
                         <tr>
                             <th scope="col" className="sort">
                                 Ad Soyad
@@ -62,7 +64,7 @@ const RejectSpendList = ({ rejectSpendList, setRejectSpendList }) => {
                                 Fatura
                             </th>
                             <th scope="col" className="sort" data-sort="completion">
-                                Açýklama
+                                AÃ§Ä±klama
                             </th>
                             <th scope="col" className="sort" data-sort="completion">
                                 Reddedilme Tarihi
@@ -100,7 +102,7 @@ const RejectSpendList = ({ rejectSpendList, setRejectSpendList }) => {
                                         href={spend.imagePath}
                                         target="_blank"
                                     >
-                                        Görüntüle
+                                        GÃ¶rÃ¼ntÃ¼le
                                     </a>
                                 </td>
 

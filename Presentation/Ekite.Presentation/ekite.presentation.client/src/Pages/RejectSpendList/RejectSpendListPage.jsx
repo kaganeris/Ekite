@@ -18,10 +18,14 @@ const RejectSpendListPage = () => {
             (async () => {
                 try {
                     handlePrevPage(location.pathname)
-                    let data = await rejectSpendDatas();                    
+                    let data = await rejectSpendDatas(); 
+                                   
                     setRejectSpendList(data);
+                    
+                    
                 } catch (error) { }
             })();
+            
         } else {
             const storedEmployeeId = localStorage.getItem("id");
             if (storedEmployeeId) {
@@ -29,7 +33,8 @@ const RejectSpendListPage = () => {
             }
         }
     }, [id]);
-
+  
+    console.log(rejectSpendList);
 
 
     return (

@@ -10,7 +10,7 @@ namespace Ekite.Application.Helpers
 {
     public static class MailHelper
     {
-        public static void Send(string email, int code)
+        public static void SendRenewPassword(string email, int code)
         {
             MimeMessage mimeMessage = new MimeMessage();
             MailboxAddress mailboxAddressFrom = new MailboxAddress("Kağan Eriş", "projemaka@gmail.com"); // Mailin kimden gideceği!
@@ -31,5 +31,28 @@ namespace Ekite.Application.Helpers
             client.Send(mimeMessage);
             client.Disconnect(true);
         }
+
+        public static void SendNewEmpInfo(string email, string password)
+        {
+            MimeMessage mimeMessage = new MimeMessage();
+            MailboxAddress mailboxAddressFrom = new MailboxAddress("Kağan Eriş", "projemaka@gmail.com"); // Mailin kimden gideceği!
+            MailboxAddress mailboxAddressTo = new MailboxAddress("User", email);
+
+            mimeMessage.From.Add(mailboxAddressFrom);
+            mimeMessage.To.Add(mailboxAddressTo);
+
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.TextBody = "Kullanıcı adınız E-Mail adresinizdir: " + email + "\nŞifreniz: " + password;
+            mimeMessage.Body = bodyBuilder.ToMessageBody();
+
+            mimeMessage.Subject = "Hoşgeldiniz!";
+
+            SmtpClient client = new SmtpClient();
+            client.Connect("smtp.gmail.com", 587, false);
+            client.Authenticate("projemaka@gmail.com", "wvgdopwbgegdlgcl");
+            client.Send(mimeMessage);
+            client.Disconnect(true);
+        }
+
     }
 }

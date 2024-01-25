@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using Azure.Storage.Blobs.Models;
+using Azure.Storage.Blobs;
 using Ekite.Application.DTOs.DirectorDto;
 using Ekite.Application.DTOs.SiteOwnerDto;
 using Ekite.Application.Interfaces.IRepositories;
 using Ekite.Application.Interfaces.Services;
+using Ekite.Domain.Entities;
 using Ekite.Persistence.Concrete.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -98,6 +101,53 @@ namespace Ekite.Persistence.Concrete.Managers
             else
             {
                 return null;
+            }
+        }
+
+        public async Task<bool> TUpdate(int id, UpdateSiteOwnerDto entity)
+        {
+            SiteOwner siteOwner = await siteOwnerRepository.GetById(id);
+
+            if (siteOwner != null)
+            {
+                if (entity.UploadPath != null)
+                {
+                    string fileExtension = Path.GetExtension(entity.UploadPath.FileName);
+
+                    using MemoryStream fileUploadStream = new MemoryStream();
+
+                    entity.UploadPath.CopyTo(fileUploadStream);
+                    fileUploadStream.Position = 0;
+
+                    string connectionString = "DefaultEndpointsProtocol=https;AccountName=ekitedepo;AccountKey=vSKMkCAXSsLU58GHf/rSoaSbK05OOnuQmh2kPKO8Go2kIh4a6WmYDnro27Cg24Fv9bNyYiRCpOGG+AStSG8pyA==;EndpointSuffix=core.windows.net";
+                    string blobContainerName = "yeni";
+
+                    BlobContainerClient blobContainerClient = new BlobContainerClient(connectionString, blobContainerName);
+
+                    var uniqueName = Guid.NewGuid().ToString() + fileExtension;
+
+                    BlobClient blobClient = blobContainerClient.GetBlobClient(uniqueName);
+
+                    blobClient.Upload(fileUploadStream, new BlobUploadOptions()
+                    {
+
+                        HttpHeaders = new BlobHttpHeaders
+                        {
+
+                            ContentType = "image/bitmap"
+                        }
+                    }, cancellationToken: default);
+
+                    entity.ImagePath = $"https://ekitedepo.blob.core.windows.net/yeni/{uniqueName}";
+                }
+
+                mapper.Map(entity, siteOwner);
+
+                return await siteOwnerRepository.Update(siteOwner);
+            }
+            else
+            {
+                return false;
             }
         }
     }

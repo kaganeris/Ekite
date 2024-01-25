@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 import { LeaveContext } from '../../context/LeaveContext';
 import Swal from 'sweetalert2';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const ApprovedLeaveList = ({approvedLeaveList,setApprovedLeaveList}) => {
   const { rejectLeaveProcess } = useContext(LeaveContext);
+  const {darkMode}=useContext(ThemeContext)
 
 
 
@@ -43,8 +45,8 @@ const ApprovedLeaveList = ({approvedLeaveList,setApprovedLeaveList}) => {
   return (
     <div className="table-responsive">
     {approvedLeaveList && (
-      <table className="table align-items-center bg-dark text-white table-flush">
-        <thead className="thead-dark">
+      <table className={darkMode? "table align-items-center table-dark text-black table-flush":"table align-items-center bg-dark text-white table-flush"}>
+        <thead className={darkMode ? "thead-dark" : "bg-dark"}>
           <tr>
           <th scope="col" className="sort">
               Ad Soyad
