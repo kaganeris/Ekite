@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 
 const CreateEmployeePage = () => {
   const { createEmployee } = useContext(EmployeeContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [activeFormNumber, setActiveFormNumber] = useState(0);
   const [personalInfo, setPersonalInfo] = useState({
     firstName: "",
@@ -21,6 +21,7 @@ const CreateEmployeePage = () => {
     birthPlace: "",
     uploadPath: null,
   });
+
   const [personalContact, setPersonalContact] = useState({
     phoneNumber: "",
     city: "Adana",
@@ -40,67 +41,66 @@ const CreateEmployeePage = () => {
 
   useEffect(() => {
     setPersonelData(Object.assign(personalInfo, personalContact, personalWork));
-    console.log("personeldata",personelData);
+    console.log("personeldata", personelData);
   }, [personalInfo, personalContact, personalWork]);
 
   const submitEmployeeData = async (e) => {
     e.preventDefault();
     if (personelData !== null) {
-     try {
-      console.log("personel Data", personelData);
-      const formData = new FormData();
-      formData.append("firstName", personelData.firstName);
-      formData.append("lastName", personelData.lastName);
-      formData.append("secondName", personelData.secondName);
-      formData.append("secondLastName", personelData.secondLastName);
-      formData.append("birthDate", personelData.birthDate);
-      formData.append("tCNO", personelData.tCNO);
-      formData.append("birthPlace", personelData.birthPlace);
-      formData.append("uploadPath", personelData.uploadPath);
-       formData.append("phoneNumber", personelData.phoneNumber);
-       formData.append("city", personelData.city);
-       formData.append("district", personelData.district);
-       formData.append("addressDetail", personelData.adressDetail);
+      try {
+        console.log("personel Data", personelData);
+        const formData = new FormData();
+        formData.append("firstName", personelData.firstName);
+        formData.append("lastName", personelData.lastName);
+        formData.append("secondName", personelData.secondName);
+        formData.append("secondLastName", personelData.secondLastName);
+        formData.append("birthDate", personelData.birthDate);
+        formData.append("tCNO", personelData.tCNO);
+        formData.append("birthPlace", personelData.birthPlace);
+        formData.append("uploadPath", personelData.uploadPath);
+        formData.append("phoneNumber", personelData.phoneNumber);
+        formData.append("city", personelData.city);
+        formData.append("district", personelData.district);
+        formData.append("addressDetail", personelData.adressDetail);
         formData.append("jobId", Number(personelData.jobId));
         formData.append("departmentId", Number(personelData.departmentId));
         formData.append("companyId", Number(personelData.companyId));
         formData.append("salary", personelData.salary);
         formData.append("hireDate", personelData.hireDate);
-       formData.append("imagePath", null);
-     let data = await createEmployee(formData);
-     if(data === "Başarılı"){
-       Swal.fire({
-         position: "top-end",
-         icon: "success",
-         title: "Çalışan Başarıyla Oluşturuldu",
-         showConfirmButton: false,
-         timer: 2000,
-       });
-       setTimeout(() => {
-         navigate("/home");
-       }, 2000);
-     }
-     else{
-       let errorsArray = data.map((element, index) => {
-         return element + (index < data.length - 1 ? "<br/>" : "");
-       });
+        formData.append("imagePath", null);
+        let data = await createEmployee(formData);
+        if (data === "Başarılı") {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Çalışan Başarıyla Oluşturuldu",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          setTimeout(() => {
+            navigate("/home");
+          }, 2000);
+        } else {
+          let errorsArray = data.map((element, index) => {
+            return element + (index < data.length - 1 ? "<br/>" : "");
+          });
 
-       let errors = errorsArray.join("");
+          let errors = errorsArray.join("");
 
-       Swal.fire({
-         icon: "error",
-         title: "Çalışan Oluşturma Başarısız",
-         html: errors,
-         confirmButtonText:"Tamam"
-       });
-     }
-     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Tüm Bilgiler Doldurulmalıdır!",
-        confirmButtonText:"Tamam"
-      });
-     }
+          Swal.fire({
+            icon: "error",
+            title: "Çalışan Oluşturma Başarısız",
+            html: errors,
+            confirmButtonText: "Tamam",
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Tüm Bilgiler Doldurulmalıdır!",
+          confirmButtonText: "Tamam",
+        });
+      }
     }
   };
 
