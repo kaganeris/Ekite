@@ -36,6 +36,10 @@ import { EmployeeProvider } from "./context/EmployeeContext";
 import ApprovedSpendListPage from "./Pages/ApprovedSpendList/ApprovedSpendListPage";
 import PendingSpendListPage from "./Pages/PendingSpendList/PendingSpendListPage";
 import RejectSpendListPage from "./Pages/RejectSpendList/RejectSpendListPage";
+import ApprovedAdvanceListPage from "./Pages/ApprovedAdvanceList/ApprovedAdvanceListPage"
+
+import PendingAdvanceListPage from "./Pages/PendingAdvanceList/PendingAdvanceListPage"
+import RejectAdvanceListPage from "./Pages/RejectAdvanceList/RejectAdvanceListPage"
 function App() {
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const { isAuthenticated, setIsAuthenticated, employeeId, token, setToken } =
@@ -160,6 +164,29 @@ function App() {
                                                         <PrivateRoute element={<RejectSpendListPage />} />
                                                     }
                                                 />
+
+                                                <Route
+                                                    path="/approvedAdvanceList"
+                                                    element={
+                                                        <PrivateRoute element={<ApprovedAdvanceListPage />} />
+                                                    }
+                                                />
+
+
+                                                <Route
+                                                    path="/pendingAdvanceList"
+                                                    element={
+                                                        <PrivateRoute element={<PendingAdvanceListPage />} />
+                                                    }
+                                                />
+
+                                                <Route
+                                                    path="/rejectAdvanceList"
+                                                    element={
+                                                        <PrivateRoute element={<RejectAdvanceListPage />} />
+                                                    }
+                                                />
+
                                             </Routes>
                                             {/* <Footer /> */}
                                         </EmployeeProvider>

@@ -120,7 +120,7 @@ const SpendProvider=({children}) =>{
 
     const pendingSpendDatas = async () => {
         try {
-            console.log("context çalýþtý")
+            console.log("context ï¿½alï¿½ï¿½tï¿½")
             const data = await SpendService.getPendingSpendList();
             if (data.status === 200) {
                 console.log("context gelen veri:", data.data)

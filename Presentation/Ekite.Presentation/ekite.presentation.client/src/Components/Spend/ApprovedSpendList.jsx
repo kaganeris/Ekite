@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { SpendContext } from "../../context/SpendContext";
 import Swal from 'sweetalert2';
+import {ThemeContext} from "../../context/ThemeContext"
 
 const ApprovedSpendList = ({ approvedSpendList, setApprovedSpendList }) => {
 
     const { rejectSpendProcess } = useContext(SpendContext);
+    const {darkMode} = useContext(ThemeContext)
 
     const formatDate = (inputDate) => {
         const date = new Date(inputDate);
@@ -23,7 +25,7 @@ const ApprovedSpendList = ({ approvedSpendList, setApprovedSpendList }) => {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "Harcama Baþarýyla Reddedildi",
+                title: "Harcama BaÅŸarÄ±yla Reddedildi",
                 showConfirmButton: false,
                 timer: 2000,
             });
@@ -31,7 +33,7 @@ const ApprovedSpendList = ({ approvedSpendList, setApprovedSpendList }) => {
         } catch (error) {
             Swal.fire({
                 icon: "error",
-                title: "Harcama Reddetme Ýþlemi Baþarýsýz",
+                title: "Harcama Reddetme iÅŸlemi BaÅŸarÄ±sÄ±z",
             });
         }
     };
@@ -39,8 +41,8 @@ const ApprovedSpendList = ({ approvedSpendList, setApprovedSpendList }) => {
     return (
         <div className="table-responsive">
             {approvedSpendList && (
-                <table className="table align-items-center bg-dark text-white table-flush">
-                    <thead className="thead-dark">
+                <table className={darkMode? "table align-items-center table-dark text-black table-flush":"table align-items-center bg-dark text-white table-flush"}>
+                    <thead className={darkMode ? "thead-dark" : "bg-dark"}>
                         <tr>
                             <th scope="col" className="sort">
                                 Ad Soyad
@@ -62,7 +64,7 @@ const ApprovedSpendList = ({ approvedSpendList, setApprovedSpendList }) => {
                             </th>
 
                             <th scope="col" className="sort" data-sort="completion">
-                                Açýklama
+                                AÃ§Ä±kklama
                             </th>
                             <th scope="col" className="sort" data-sort="completion">
                                 Onaylanma Tarihi
@@ -102,7 +104,7 @@ const ApprovedSpendList = ({ approvedSpendList, setApprovedSpendList }) => {
                                         href={spend.imagePath}
                                         target="_blank"
                                     >
-                                        Görüntüle
+                                        GÃ¶rÃ¼ntÃ¼le
                                     </a>
                                 </td>
 
@@ -114,7 +116,7 @@ const ApprovedSpendList = ({ approvedSpendList, setApprovedSpendList }) => {
                                 ) : (
                                     <td></td>
                                 )}
-                                {spend.approvalStatus !== "Onaylandý" ? (
+                                {spend.approvalStatus === "OnaylandÄ±" ? (
                                     <td className="text-right" style={{ paddingLeft: '0px' }} >
 
                                         <a

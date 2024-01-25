@@ -95,7 +95,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-check text-green mr-2"></i>
-                                                                <span> Onaylanan İzin İstekleri</span>
+                                                                <span style={{fontSize:14}}> Onaylanan İzin Listesi</span>
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -106,7 +106,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
-                                                                <span> Bekleyen İzin Listele</span>
+                                                                <span style={{fontSize:14}}> Bekleyen İzin Listesi</span>
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -117,7 +117,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-x text-red mr-2"></i>
-                                                                <span> Reddedilen İzin Listele</span>
+                                                                <span style={{fontSize:14}}> Reddedilen İzin Listesi</span>
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -157,7 +157,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-check text-green mr-2"></i>
-                                                                <span> Onaylanan Harcama İstekleri</span>
+                                                                <span style={{fontSize:14}}> Onaylanan Harcama Listesi</span>
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -168,7 +168,7 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
-                                                                <span> Bekleyen Harcama Listele</span>
+                                                                <span style={{fontSize:14}}> Bekleyen Harcama Listesi</span>
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -179,7 +179,69 @@ const Sidebar = () => {
                                                         >
                                                             <div className="dropdown-content ">
                                                                 <i className="fa-solid fa-x text-red mr-2"></i>
-                                                                <span> Reddedilen Harcama Listele</span>
+                                                                <span style={{fontSize:14}} > Reddedilen Harcama Listesi</span>
+                                                            </div>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    {/* ************* */}
+                                    <li className="nav-item dropdown ">
+                                        <a
+                                            className={
+                                                darkMode
+                                                    ? "nav-link dropdown-toggle"
+                                                    : "nav-link dropdown-toggle text-white"
+                                            }
+                                            href="#"
+                                            role="button"
+                                            data-toggle="dropdown"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                        >
+                                            <i className="fa fa-calendar text-red"></i>
+                                            <span className="nav-link-text">Avans İşlemleri</span>
+                                        </a>
+                                        <div
+                                            className={darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"}
+                                            aria-labelledby="navbarDropdown"
+                                            style={darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }}
+                                        >
+                                            <div className="container  ">
+                                                <div className="row ">
+                                                    <div className="col  ">
+                                                        <Link
+                                                            className={darkMode ? "dropdown-item" : "dropdownn-item"}
+                                                            to={"/approvedAdvanceList"}
+                                                        >
+                                                            <div className="dropdown-content ">
+                                                                <i className="fa-solid fa-check text-green mr-2"></i>
+                                                                <span style={{fontSize:14}}> Onaylanan Avans Listesi</span>
+                                                            </div>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="col">
+                                                        <Link
+                                                            className={darkMode ? "dropdown-item" : "dropdownn-item"}
+                                                            to={"/pendingAdvanceList"}
+                                                        >
+                                                            <div className="dropdown-content ">
+                                                                <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
+                                                                <span style={{fontSize:14}}> Bekleyen Avans Listesi</span>
+                                                            </div>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="col">
+                                                        <Link
+                                                            className={darkMode ? "dropdown-item" : "dropdownn-item"}
+                                                            to={"/rejectAdvanceList"}
+                                                        >
+                                                            <div className="dropdown-content ">
+                                                                <i className="fa-solid fa-x text-red mr-2"></i>
+                                                                <span style={{fontSize:14}}> Reddedilen Avans Listesi</span>
                                                             </div>
                                                         </Link>
                                                     </div>

@@ -111,12 +111,104 @@ const AdvanceService = {
           Authorization: "Bearer " + token.replace(/"/g, ""),
         }
       });
+      return response
     } catch (error) {
       return error.response
     }
 
 
+  },
+
+  getPendingAdvanceList: async ()=>{
+    try{
+      const token = localStorage.getItem("user");
+      const response = await axios.get(`${url}/api/Advance/GetPendingList`,
+      {
+        headers: {
+          Authorization: "Bearer " + token.replace(/"/g, ""),
+        }
+       
+      });
+      return response
+    }catch(error){
+      return error.response
+    }
+  },
+
+  getApprovedAdvanceList: async () =>{
+    try {
+      const token= localStorage.getItem("user");
+      const response =await axios.get(`${url}/api/Advance/GetApprovedList`,
+      {
+        headers:{
+          Authorization: "Bearer " + token.replace(/"/g, ""),
+        }
+      }
+      
+      )
+      return response
+    } catch (error) {
+      return error.response
+    }
+  },
+
+  getRejectAdvanceList: async () =>{
+    try {
+      const token=localStorage.getItem("user");
+      const response= await axios.get(`${url}/api/Advance/GetRejectList`,
+      {
+        headers:{
+          Authorization: "Bearer " + token.replace(/"/g, ""),
+        }
+      }
+      )
+      return response
+    } catch (error) {
+      return error.response
+    }
+  },
+
+
+  approvedAdvance: async (id)=>{
+    try {
+      //backend'deki http protokolü ile eşleşmesi gerekiyor orda get ise buradada get olmalı!
+      const token=localStorage.getItem("user");
+      const response = await axios.get(`${url}/api/Advance/ApprovedAdvance?id=${id}`,
+      {
+        headers: {
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+        },
+      }
+      )
+      return response;
+    } catch (error) {
+      console.error("Onaylama işlemi yapılırken hata oluştu.", error.message);
+            return error.response;
+    }
+
+  },
+
+
+  rejectAdvance: async (id)=>{
+    try {
+      const token=localStorage.getItem("user");
+      const response = await axios.get(`${url}/api/Advance/RejectAdvance?id=${id}`,
+      {
+        headers: {
+            Authorization: "Bearer " + token.replace(/"/g, ""),
+        },
+      }
+      );
+      return response;
+    } catch (error) {
+      console.error("Reddetme işlemi yapılırken hata oluştu.", error.message);
+            return error.response;
+    }
   }
+      
+    
+
+
 
 
 };
