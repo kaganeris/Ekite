@@ -75,9 +75,8 @@ namespace Ekite.Persistence.Concrete.Managers
             {
 
                 AppUser appUser = await _userManager.FindByIdAsync(newPasswordEmployeeDto.AppUserID);
+                appUser.FirstLogin = false;
 
-                //appUser.PasswordHash = _userManager.PasswordHasher.HashPassword(appUser, newPasswordEmployeeDto.Password);
-                //IdentityResult result = await _userManager.UpdateAsync(appUser);
 
                 IdentityResult result = await _userManager.ResetPasswordAsync(appUser, await _userManager.GeneratePasswordResetTokenAsync(appUser), newPasswordEmployeeDto.Password);
 
@@ -146,8 +145,9 @@ namespace Ekite.Persistence.Concrete.Managers
             {
 
                 Email = email,
-                UserName = TurkishToEnglishHelper.NormalizeTurkishCharacters(firstName) + "." + TurkishToEnglishHelper.NormalizeTurkishCharacters(lastName)
-
+                UserName = TurkishToEnglishHelper.NormalizeTurkishCharacters(firstName) + "." + TurkishToEnglishHelper.NormalizeTurkishCharacters(lastName),
+                FirstLogin = true
+               
             };
 
             IdentityResult result = await _userManager.CreateAsync(appUser, password);

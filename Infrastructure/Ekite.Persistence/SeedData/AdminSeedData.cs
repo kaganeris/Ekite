@@ -26,7 +26,8 @@ namespace Ekite.Persistence.SeedData
                     Email = "eren.colk@bilgeadam.com",
                     EmailConfirmed = true,
                     CreatedDate = DateTime.Now,
-                    Status = Domain.Enums.Status.Active
+                    Status = Domain.Enums.Status.Active,
+                    FirstLogin = false
                 };
 
                 IdentityResult adminResult = await userManager.CreateAsync(user, "Eren12345.");
@@ -68,7 +69,9 @@ namespace Ekite.Persistence.SeedData
                     Email = "kagan.ers@bilgeadam.com",
                     EmailConfirmed = true,
                     CreatedDate = DateTime.Now,
-                    Status = Domain.Enums.Status.Active
+                    Status = Domain.Enums.Status.Active,
+                    FirstLogin = false
+
                 };
 
                 IdentityResult ownerResult = await userManager.CreateAsync(owner, "Kagan12345.");
@@ -113,6 +116,8 @@ namespace Ekite.Persistence.SeedData
                     LockoutEnabled = true,
                     TwoFactorEnabled = false,
                     PhoneNumberConfirmed = false,
+                    FirstLogin = false
+
 
                 };
 
@@ -127,6 +132,8 @@ namespace Ekite.Persistence.SeedData
                     LockoutEnabled = true,
                     TwoFactorEnabled = false,
                     PhoneNumberConfirmed = false,
+                    FirstLogin = false
+
 
                 };
                

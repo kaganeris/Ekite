@@ -31,7 +31,7 @@ namespace Ekite.Application.Helpers
                         input = input.Replace(input[i], 'u');
                         break;
                     case 'ö':
-                        input = input.Replace(input[i], 'ı');
+                        input = input.Replace(input[i], 'o');
                         break;
                     case 'ş':
                         input = input.Replace(input[i], 's');

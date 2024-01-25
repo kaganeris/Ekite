@@ -9,6 +9,7 @@ export const AuthProvider = ({children}) => {
     const [id,setId] = useState(0)
     const [token,setToken] = useState(localStorage.getItem("user"))
     const [userRole,setUserRole] = useState("")
+    const [firstLogin,setFirstLogin] = useState(false);
 
     useEffect(() => {
       if(token){
@@ -25,10 +26,15 @@ export const AuthProvider = ({children}) => {
       const login = async (email, password) => {
         try {
           const response = await AuthService.login(email, password);
-          if (response.token) {
-            setId(response.id);
+          if (response.token && response.firstLogin === false) {
+            setId(Number(response.id));
             setIsAuthenticated(true);
             setUserRole(localStorage.getItem("userRole"))
+          }
+          else{
+            setId(response.id);
+            setFirstLogin(true);
+
           }
         } catch (error) {
           setIsAuthenticated(false);
@@ -46,7 +52,7 @@ export const AuthProvider = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated,id,setId,logout,token,setToken,userRole,setUserRole}}>
+        <AuthContext.Provider value={{isAuthenticated,login,setIsAuthenticated,id,setId,logout,token,setToken,firstLogin,userRole,setUserRole}}>
             {children}
         </AuthContext.Provider>
     )
