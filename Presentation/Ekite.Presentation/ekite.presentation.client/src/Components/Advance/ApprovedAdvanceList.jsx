@@ -95,7 +95,7 @@ const ApprovedAdvanceList = ({
                 <td className="budget">{advance.advanceType}</td>
                 <td className="budget">{advance.amount}</td>
                 <td className="budget">{advance.currency}</td>
-                <td className="budget">{formatDate(advance.approvalDate)}</td>
+                {advance.approvalDate ? <td className="budget">{formatDate(advance.approvalDate)}</td> : <td></td>}
                 {advance.approvalStatus === "Onaylandı" ? (
                   <td
                     style={{ paddingLeft:"0px"}}

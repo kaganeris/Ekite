@@ -32,30 +32,20 @@ import ProfilePage from "./Pages/Profile/ProfilePage";
 import ApprovedLeaveListPage from "./Pages/ApprovedLeaveList/ApprovedLeaveListPage";
 import RejectLeaveListPage from "./Pages/RejectLeaveList/RejectLeaveListPage";
 import { EmployeeProvider } from "./context/EmployeeContext";
-
 import ApprovedSpendListPage from "./Pages/ApprovedSpendList/ApprovedSpendListPage";
 import PendingSpendListPage from "./Pages/PendingSpendList/PendingSpendListPage";
 import RejectSpendListPage from "./Pages/RejectSpendList/RejectSpendListPage";
-
 import CreateEmployeePage from "./Pages/Employee/CreateEmployeePage";
 import { JobProvider } from "./context/JobContext";
 import { CompanyProvider } from "./context/CompanyContext";
 import { DepartmentProvider } from "./context/DepartmentContext";
-
-
-
 import ApprovedAdvanceListPage from "./Pages/ApprovedAdvanceList/ApprovedAdvanceListPage"
-
 import PendingAdvanceListPage from "./Pages/PendingAdvanceList/PendingAdvanceListPage"
 import RejectAdvanceListPage from "./Pages/RejectAdvanceList/RejectAdvanceListPage"
 import CompanyListPage from "./Pages/Company/CompanyListPage";
 import CompanyAdvancePage from "./Pages/Company/CompanyAdvancePage";
 import CompanySpendPage from "./Pages/Company/CompanySpendPage";
 import CompanyLeavePage from "./Pages/Company/CompanyLeavePage";
-import ApprovedAdvanceListPage from "./Pages/ApprovedAdvanceList/ApprovedAdvanceListPage";
-
-import PendingAdvanceListPage from "./Pages/PendingAdvanceList/PendingAdvanceListPage";
-import RejectAdvanceListPage from "./Pages/RejectAdvanceList/RejectAdvanceListPage";
 import AllListEmployeePage from "./Pages/Employee/AllListEmployeePage";
 import EmployeeProfileDetailPage from "./Pages/Employee/EmployeeProfileDetailPage";
 

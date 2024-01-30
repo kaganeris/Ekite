@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { EmployeeContext } from "../../context/EmployeeContext";
 import ForgotPasswordNewPassHeader from "./ForgotPasswordNewPassHeader";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ForgotPasswordNewPassForm = ({appUserId ,setForgotPassword}) => {
   const { sendPassword } = useContext(EmployeeContext);
@@ -25,7 +26,16 @@ const ForgotPasswordNewPassForm = ({appUserId ,setForgotPassword}) => {
       let success = await sendPassword(data);
       
       if (success.status === 200) {
-        setForgotPassword(false);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Şifre Değiştirme Başarılı",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        setTimeout(() => {
+          setForgotPassword(false);
+        }, 2000);
       }else{
         
         setPasswordError(success.data)

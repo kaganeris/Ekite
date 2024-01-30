@@ -13,7 +13,7 @@ namespace Ekite.Application.Helpers
         public static void SendRenewPassword(string email, int code)
         {
             MimeMessage mimeMessage = new MimeMessage();
-            MailboxAddress mailboxAddressFrom = new MailboxAddress("Kağan Eriş", "projemaka@gmail.com"); // Mailin kimden gideceği!
+            MailboxAddress mailboxAddressFrom = new MailboxAddress("Ekite Admin", "projemaka@gmail.com"); // Mailin kimden gideceği!
             MailboxAddress mailboxAddressTo = new MailboxAddress("User", email);
 
             mimeMessage.From.Add(mailboxAddressFrom);
@@ -35,7 +35,7 @@ namespace Ekite.Application.Helpers
         public static void SendNewEmpInfo(string email, string password)
         {
             MimeMessage mimeMessage = new MimeMessage();
-            MailboxAddress mailboxAddressFrom = new MailboxAddress("Kağan Eriş", "projemaka@gmail.com"); // Mailin kimden gideceği!
+            MailboxAddress mailboxAddressFrom = new MailboxAddress("Ekite Admin", "projemaka@gmail.com"); // Mailin kimden gideceği!
             MailboxAddress mailboxAddressTo = new MailboxAddress("User", email);
 
             mimeMessage.From.Add(mailboxAddressFrom);

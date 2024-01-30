@@ -12,8 +12,7 @@ const EmployeeProfileDetail = ({ profileData }) => {
   };
 
    const comeBack = () =>{
-    navigate("/employeeProfileDetail");
-
+    navigate("/employeeAllList");
    }
 
   return (

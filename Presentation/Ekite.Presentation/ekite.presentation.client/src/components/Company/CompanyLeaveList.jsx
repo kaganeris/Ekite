@@ -71,8 +71,8 @@ const CompanyLeaveList = ({companyLeavesData}) => {
                 </td>
                 <td className="budget">{formatDate(companyLeave.leaveStartDate)}</td>
                 <td className="budget">{formatDate(companyLeave.leaveEndDate)}</td>
-                {companyLeave.approvalDate ? (
-                  <td>{formatDate(companyLeave.approvalDate)}</td>
+                {companyLeave.approvedDate ? (
+                  <td>{formatDate(companyLeave.approvedDate)}</td>
                 ) : (
                   <td></td>
                 )}

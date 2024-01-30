@@ -1,9 +1,9 @@
 import axios from "axios";
 // ilgili verileri backend'den çekmek ve bu verileri uygulamanın ilgili bölümlerinde göstermek işine yarar.
 
-//const url = "https://ekite.azurewebsites.net"
+const url = "https://ekite.azurewebsites.net"
 
-const url = "https://localhost:7152"
+//const url = "https://localhost:7152"
 
 const SpendService = {
 

@@ -87,9 +87,7 @@ const PendingAdvanceList = ({ pendingAdvanceList, setPendingAdvanceList }) => {
               <th scope="col" className="sort" data-sort="status">
                 Para Birimi
               </th>
-              <th scope="col" className="sort" data-sort="completion">
-                Onay Tarihi
-              </th>
+              <th scope="col"></th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -118,7 +116,6 @@ const PendingAdvanceList = ({ pendingAdvanceList, setPendingAdvanceList }) => {
                 <td className='budget'>{advance.advanceType}</td>
                 <td className='budget'>{advance.amount}</td>
                 <td className='budget'>{advance.currency}</td>
-                <td className='budget'>{formatDate(advance.approvalDate)}</td>
                 {advance.approvalStatus === "Bekleniyor" ? (
                   <td className="text-right" style={{ paddingLeft: '0px' }} >
 

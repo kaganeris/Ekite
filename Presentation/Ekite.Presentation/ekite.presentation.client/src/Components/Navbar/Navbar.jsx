@@ -84,9 +84,9 @@ function Navbar({ isSidebarOpen, setSidebarOpen }) {
                                 {!isSidebarOpen && (
                                     <li className="nav-item  ">
 
-                                        <a href="/" className="d-flex justify-content-center  align-items-center" >
+                                        <Link to={"/home"} className="d-flex justify-content-center  align-items-center" >
                                             <img src="https://ekitedepo.blob.core.windows.net/yeni/ekiteLogo.png" className="" style={{ width: "40px", height:"auto" }} />
-                                        </a>                                
+                                        </Link>                                
                                     </li>                                  
                                 )}
                             </ul>

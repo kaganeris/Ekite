@@ -73,14 +73,14 @@ function EditProfileComponent({ profileData, id }) {
         await putSiteOwnerData(id, formData);
       }
 
-      Swal.fire({
+       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "Güncelleme başarılı",
+         title: "Güncelleme başarılı",
         showConfirmButton: false,
         timer: 1500,
-      });
-      location.reload();
+       });
+       location.reload();
     } catch (error) {
       console.log("swal error", error);
       Swal.fire({

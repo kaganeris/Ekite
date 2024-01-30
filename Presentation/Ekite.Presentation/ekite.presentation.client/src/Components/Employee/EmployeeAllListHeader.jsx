@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const EmployeeAllListHeader = () => {
+  const {darkMode} = useContext(ThemeContext)
   return (
-    <div className="header bg-primary pb-6">
+    <div className={darkMode? "header bg-primary pb-6": "header bg-dark pb-6"}>
       <div className="container-fluid">
         <div className="header-body">
           <div className="row align-items-center py-4">

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-//const url = "https://ekite.azurewebsites.net"
+const url = "https://ekite.azurewebsites.net"
 
-const url = "https://localhost:7152";
+//const url = "https://localhost:7152";
 
 const JobService = {
   getJobs: async () => {

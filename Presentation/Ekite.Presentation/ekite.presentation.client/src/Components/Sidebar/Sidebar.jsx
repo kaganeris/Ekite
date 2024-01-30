@@ -23,7 +23,7 @@ const Sidebar = () => {
       >
         <div className="sidenav-header align-items-center">
           <Link
-             to={"/"}
+            to={"/"}
             className="d-flex justify-content-center  align-items-center p-3"
           >
             <img
@@ -66,49 +66,49 @@ const Sidebar = () => {
 
               {userRole === "SiteOwner" && (
                 <li className="nav-item dropdown">
-                <a
-                  className={
-                    darkMode
-                      ? "nav-link dropdown-toggle"
-                      : "nav-link dropdown-toggle text-white"
-                  }
-                  href="#"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i className="fa fa-calendar text-red"></i>
-                  <span className="nav-link-text">Şirket İşlemleri</span>
-                </a>
-                <div
-                  className={
-                    darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"
-                  }
-                  aria-labelledby="navbarDropdown"
-                  style={
-                    darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }
-                  }
-                >
-                  <div className="container  ">
-                    <div className="row ">
-                      <div className="col">
-                        <Link
-                          className={
-                            darkMode ? "dropdown-item" : "dropdownn-item"
-                          }
-                          to={"/companyList"}
-                        >
-                          <div className="dropdown-content ">
-                            <i className="fa fa-list mr-2 text-red"></i>
-                            <span>Şirket Listele</span>
-                          </div>
-                        </Link>
+                  <a
+                    className={
+                      darkMode
+                        ? "nav-link dropdown-toggle"
+                        : "nav-link dropdown-toggle text-white"
+                    }
+                    href="#"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i className="fa fa-calendar text-red"></i>
+                    <span className="nav-link-text">Şirket İşlemleri</span>
+                  </a>
+                  <div
+                    className={
+                      darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"
+                    }
+                    aria-labelledby="navbarDropdown"
+                    style={
+                      darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }
+                    }
+                  >
+                    <div className="container  ">
+                      <div className="row ">
+                        <div className="col">
+                          <Link
+                            className={
+                              darkMode ? "dropdown-item" : "dropdownn-item"
+                            }
+                            to={"/companyList"}
+                          >
+                            <div className="dropdown-content ">
+                              <i className="fa fa-list mr-2 text-red"></i>
+                              <span>Şirket Listele</span>
+                            </div>
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </li>
+                </li>
               )}
 
               {userRole === "Admin" && (
@@ -126,9 +126,69 @@ const Sidebar = () => {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
+                      <i class="ni ni-badge" style={{ color: "#20aac9" }}></i>
+                      <span className="nav-link-text">Personel İşlemleri</span>
+                    </a>
+                    <div
+                      className={
+                        darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"
+                      }
+                      aria-labelledby="navbarDropdown"
+                      style={
+                        darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }
+                      }
+                    >
+                      <div className="container  ">
+                        <div className="row " style={{ fontSize: "small" }}>
+                          <div className="col  ">
+                            <Link
+                              className={
+                                darkMode ? "dropdown-item" : "dropdownn-item"
+                              }
+                              to={"/createEmployee"}
+                            >
+                              <div className="dropdown-content ">
+                                <i className="fa-solid fa-check text-green mr-2"></i>
+                                <span>Personel Ekle</span>
+                              </div>
+                            </Link>
+                          </div>
+                          <div className="col">
+                            <Link
+                              className={
+                                darkMode ? "dropdown-item" : "dropdownn-item"
+                              }
+                              to={"/employeeAllList"}
+                            >
+                              <div className="dropdown-content ">
+                                <i class="ni ni-chart-bar-32 mr-1 text-yellow"></i>
+                                {/* <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i> */}
+                                <span> Personel Listesi</span>
+                              </div>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <li className="nav-item dropdown ">
+                    <a
+                      className={
+                        darkMode
+                          ? "nav-link dropdown-toggle"
+                          : "nav-link dropdown-toggle text-white"
+                      }
+                      href="#"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
                       <i className="fa fa-calendar text-red"></i>
                       <span className="nav-link-text">İzin İşlemleri</span>
                     </a>
+
                     <div
                       className={
                         darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"
@@ -197,7 +257,10 @@ const Sidebar = () => {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <i className="fa fa-calendar text-red"></i>
+                      <i
+                        className="fa fa-money-bill-wave"
+                        style={{ color: "#64d38b" }}
+                      ></i>
                       <span className="nav-link-text">Harcama İşlemleri</span>
                     </a>
                     <div
@@ -267,7 +330,10 @@ const Sidebar = () => {
                       aria-haspopup="true"
                       aria-expanded="false"
                     >
-                      <i className="fa fa-calendar text-red"></i>
+                      <i
+                        className="fa fa-dollar-sign "
+                        style={{ color: "#0aa305" }}
+                      ></i>
                       <span className="nav-link-text">Avans İşlemleri</span>
                     </a>
                     <div
@@ -324,78 +390,6 @@ const Sidebar = () => {
                       </div>
                     </div>
                   </li>
-                  <li className="nav-item dropdown ">
-                  <a
-                    className={
-                      darkMode
-                        ? "nav-link dropdown-toggle"
-                        : "nav-link dropdown-toggle text-white"
-                    }
-                    href="#"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <i className="fa fa-calendar text-red"></i>
-                    <span className="nav-link-text">Personel İşlemleri</span>
-                  </a>
-                  <div
-                    className={
-                      darkMode ? "dropdown-menu" : "dropdown-menu bg-dark"
-                    }
-                    aria-labelledby="navbarDropdown"
-                    style={
-                      darkMode ? {} : { boxShadow: "0px 0px 10px 0px white" }
-                    }
-                  >
-                    <div className="container  ">
-                      <div className="row " style={{ fontSize: "small" }}>
-                        <div className="col  ">
-                          <Link
-                            className={
-                              darkMode ? "dropdown-item" : "dropdownn-item"
-                            }
-                            to={"/createEmployee"}
-                          >
-                            <div className="dropdown-content ">
-                              <i className="fa-solid fa-check text-green mr-2"></i>
-                              <span>Personel Ekle</span>
-                            </div>
-                          </Link>
-                        </div>
-
-                        <div className="col">
-                          <Link
-                            className={
-                              darkMode ? "dropdown-item" : "dropdownn-item"
-                            }
-                            to={"/pendingLeaveList"}
-                          >
-                            <div className="dropdown-content ">
-                              <i className="fa-solid fa-hourglass-start text-yellow mr-2"></i>
-                              <span> Personel Güncelle</span>
-                            </div>
-                          </Link>
-                        </div>
-
-                        <div className="col">
-                          <Link
-                            className={
-                              darkMode ? "dropdown-item" : "dropdownn-item"
-                            }
-                            to={"/rejectLeaveList"}
-                          >
-                            <div className="dropdown-content ">
-                              <i className="fa-solid fa-x text-red mr-2"></i>
-                              <span> Personel Sil</span>
-                            </div>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
                 </>
               )}
 

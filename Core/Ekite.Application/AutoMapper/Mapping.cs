@@ -6,6 +6,7 @@ using Ekite.Application.DTOs.LeaveDto;
 using Ekite.Application.Helpers;
 using Ekite.Domain.Entities;
 using Ekite.Application.DTOs.DirectorDto;
+using Ekite.Application.DTOs.SiteOwnerDto;
 
 namespace Ekite.Application.AutoMapper
 {
@@ -14,6 +15,7 @@ namespace Ekite.Application.AutoMapper
         public Mapping()
         {
             CreateMap<UpdateEmployeeDto, Employee>().ReverseMap();
+            CreateMap<UpdateSiteOwnerDto, SiteOwner>().ReverseMap();
             CreateMap<Employee,CreateEmployeeDto>().ReverseMap();
             CreateMap<CreateSpendDto, Spend>().ReverseMap();
             CreateMap<ResultSpendDto, Spend>().ReverseMap();

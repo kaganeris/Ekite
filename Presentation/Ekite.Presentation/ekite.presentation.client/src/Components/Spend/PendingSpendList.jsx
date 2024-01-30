@@ -94,6 +94,7 @@ const PendingSpendList = ({ pendingSpendList, setPendingSpendList }) => {
                                 Açıklama
                             </th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody className="list">
