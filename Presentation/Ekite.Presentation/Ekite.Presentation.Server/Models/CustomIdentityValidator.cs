@@ -37,7 +37,7 @@ namespace Ekite.Presentation.Server.Models
 			return new IdentityError()
 			{
 				Code = "PasswordRequiresDigit",
-				Description = $"Parola rakam içermelidir!"
+				Description = $"Parola rakam içermelidirr!"
 			};
 		}
 
